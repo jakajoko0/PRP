@@ -3,7 +3,7 @@ module FranchiseHelper
   	rtn_html = ""
   	if fran.non_compliant == 1 
   		rtn_html += <<-HTML
-        <i class="fas fa-exclamation-circle fa-lg padgett-blue-icon" 
+        <i class="fas fa-exclamation-circle fa-lg attention-icon" 
         aria-hidden="true" 
         data-html = "true" 
         data-toggle="tooltip" 
@@ -15,7 +15,7 @@ module FranchiseHelper
 
     if fran.inactive == 1
     	rtn_html += <<-HTML
-        <i class="fas fa-user-times fa-lg padgett-blue-icon" 
+        <i class="fas fa-user-times fa-lg attention-icon" 
         aria-hidden="true" 
         data-html = "true" 
         data-toggle="tooltip" 
@@ -28,7 +28,7 @@ module FranchiseHelper
 
     if fran.term_date && fran.term_date <= Date.today 
     	rtn_html += <<-HTML
-        <i class="fas fa-calendar-times fa-lg padgett-blue-icon" 
+        <i class="fas fa-calendar-times fa-lg attention-icon" 
         aria-hidden="true" 
         data-html = "true" 
         data-toggle="tooltip" 

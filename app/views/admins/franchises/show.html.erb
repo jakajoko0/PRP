@@ -8,19 +8,41 @@
         <%= link_to "Return", admins_franchises_path, class: "btn btn-light float-right"%>
       </div>
     </div>
-
-    <div class = "card-group" id="accordion" role="tablist" aria-multiselectable="true">
+    <!--FRANCHISE INFORMATION -->
+    <div class = "card-group accordion-padgett" id="accordion" role="tablist" 
+         aria-multiselectable="true">
       <div class = "card">
-        <div class = "card-header card-background-padgett" role="tab" id="headingOne">
+        <div class = "card-header card-background-padgett" role="tab" 
+          id="headingFran">
           <h4 class="card-title">
-            <h3  role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+            <h3 class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseFran" aria-expanded="true" aria-controls="collapseFran">
               Franchise Information
             </h3>
           </h4>
         </div>
-        <div id="collapseOne" class="collapse show" role="tabpanel" aria-labelledby="headingOne">
+        <div id="collapseFran" class="collapse" role="tabpanel" aria-labelledby="headingFran">
           <div class="card-body">
             <%= render :partial => 'admins/franchises/show/fran_details', :locals => {:franchise => @franchise} %>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--ACCOUNTANT INFORMATIONN -->
+    <div class = "card-group accordion-padgett" id="accordion" role="tablist" 
+         aria-multiselectable="true">
+      <div class = "card">
+        <div class = "card-header card-background-padgett" role="tab"
+          id="headingAcct">
+          <h4 class="card-title">
+            <h3 class="collapsed"  role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseAcct" aria-expanded="true" aria-controls="collapseAcct">
+              Accountant Information
+            </h3>
+          </h4>
+        </div>
+        <div id="collapseAcct" class="collapse" role="tabpanel" 
+          aria-labelledby="headingAcct">
+          <div class="card-body">
+            <%= render :partial => 'admins/franchises/show/accountant_details', :locals => {:franchise => @franchise} %>
           </div>
         </div>
       </div>

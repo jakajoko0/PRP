@@ -22,6 +22,8 @@ class Accountant < ApplicationRecord
   
   belongs_to :franchise	
 
+  scope :by_number, -> { order("accountant_num")}
+
   validates :franchise, presence: {message: "Please provide Franchise"}
   validates :firstname, presence: {message: "First name cannot be blank"}
   validates :lastname, presence: {message: "Last name cannot be blank"}
