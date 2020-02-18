@@ -13,7 +13,7 @@ def link_with_icon(link, action, description,confirm="",turbo=true)
     a_tag = <<-HTML
     <a data-turbolinks="#{turbo}" href="#{link}" class="show-link"
     >
-    <i class="far fa-file-alt fa-lg padgett-blue-icon" 
+    <i class="far fa-file-alt fa-2x padgett-blue-icon" 
     aria-hidden="true" 
     data-html = "true" 
     data-toggle="tooltip" 
@@ -24,7 +24,7 @@ def link_with_icon(link, action, description,confirm="",turbo=true)
   when "edit"
     a_tag = <<-HTML
     <a data-turbolinks="#{turbo}" href="#{link}" class = "edit-link">
-    <i class="far fa-edit fa-lg padgett-blue-icon" 
+    <i class="fas fa-edit fa-2x padgett-blue-icon" 
     aria-hidden="true" 
     data-html = "true" 
     data-toggle="tooltip" 
@@ -36,7 +36,7 @@ def link_with_icon(link, action, description,confirm="",turbo=true)
   when "delete" 
     a_tag = <<-HTML
     <a data-confirm="#{confirm}" rel="nofollow" data-method="delete" href="#{link}" class="delete-link">
-    <i class="far fa-trash fa-lg padgett-blue-icon" 
+    <i class="far fa-trash-alt fa-2x padgett-blue-icon" 
     aria-hidden="true" 
     data-html = "true" 
     data-toggle="tooltip" 
@@ -46,6 +46,23 @@ def link_with_icon(link, action, description,confirm="",turbo=true)
     HTML
   end 
   a_tag.html_safe
+end
+
+def display_checkmark(value = 0, description = "")
+  if value == 1
+    i_tag = <<-HTML 
+    <i class="far fa-check-circle fa-2x padgett-green-icon" 
+    aria-hidden="true"
+    data-html = "true" 
+    data-toggle="tooltip" 
+    title="#{description}" >
+    </i>
+    HTML
+  else
+    i_tag = ""
+  end
+  i_tag.html_safe
+
 end
 
 

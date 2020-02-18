@@ -1,0 +1,96 @@
+<div class = "card">
+ <div class = "card-header login_header">
+    <h4>
+      <%if action == "edit"%>
+        Insurance Record for <%=insurance.franchise.full_denomination%>
+      <%else%>
+        Create New Insurance Record <%=Franchise.number_and_name(insurance.franchise_id)%>
+      <%end%>
+    </h4>
+  </div>
+  <%=form_for [:admins, insurance] do |f| %>
+    <div class = "card-body card-background-padgett">
+      <div class = "form-row col-12">
+        <%=f.hidden_field :franchise_id, value: f.object.franchise_id	%>
+        <div class = "form-group form-row col-6">
+          <%=f.label :eo_insurance, "E&O Insurance",
+          class: "col-md-4 col-sm-4 col-lg-4 
+      	      col-form-label col-form-label-sm label-bold"%>
+          <div class = "col-sm-4 col-md-4 col-lg-4">
+      	    <%=f.check_box :eo_insurance, class: 'form-control form-control-sm col',style: "width:15px;vertical-align:middle"%>
+          </div>
+        </div>
+        <div class = "form-group form-row col-6">
+          <%=f.label :eo_expiration, "Expires On",
+          class: "col-md-4 col-sm-4 col-lg-4 col-form-label 
+          	col-form-label-sm label-bold"%>
+          <div class = "col-sm-4 col-md-4 col-lg-4">
+            <%=f.text_field :eo_expiration,
+            value: (l f.object.eo_expiration if f.object.eo_expiration),
+            class: "form-control form-control-sm col text-center",
+          	id: "insurance_eo_expiration", style: "display:inline-block;
+          	vertical-align:middle; width: 60%; margin: 0 5px 0 0;"%>
+          </div>
+        </div>
+      </div>  	      
+
+      <div class = "form-row col-12">
+        <div class = "form-group form-row col-6">
+          <%=f.label :gen_insurance, "General Insurance",
+          class: "col-md-4 col-sm-4 col-lg-4 
+      	      col-form-label col-form-label-sm label-bold"%>
+          <div class = "col-sm-4 col-md-4 col-lg-4">
+      	    <%=f.check_box :gen_insurance, class: 'form-control form-control-sm col',style: "width:15px;vertical-align:middle"%>
+          </div>
+        </div>
+        <div class = "form-group form-row col-6">
+          <%=f.label :gen_expiration, "Expires On",
+          class: "col-md-4 col-sm-4 col-lg-4 col-form-label 
+          	col-form-label-sm label-bold"%>
+          <div class = "col-sm-4 col-md-4 col-lg-4">
+            <%=f.text_field :gen_expiration,
+            value: (l f.object.gen_expiration if f.object.gen_expiration),
+            class: "form-control form-control-sm col text-center",
+          	id: "insurance_gen_expiration", style: "display:inline-block;
+          	vertical-align:middle; width: 60%; margin: 0 5px 0 0;"%>
+          </div>
+        </div>
+      </div>  
+
+      <div class = "form-row col-12">
+        <div class = "form-group form-row col-6">
+          <%=f.label :other_insurance, "Other Insurance",
+          class: "col-md-4 col-sm-4 col-lg-4 
+      	      col-form-label col-form-label-sm label-bold"%>
+          <div class = "col-sm-1 col-md-1 col-lg-1">
+      	    <%=f.check_box :other_insurance, class: 'form-control form-control-sm col',style: "width:15px;vertical-align:middle"%>
+          </div>
+
+          <div class = "col-sm-6 col-md-6 col-lg-6">
+      	    <%=f.text_field :other_description, class: 'form-control form-control-sm col'%>
+          </div>
+        </div>
+        <div class = "form-group form-row col-6">
+          <%=f.label :other_expiration, "Expires On",
+          class: "col-md-4 col-sm-4 col-lg-4 col-form-label 
+          	col-form-label-sm label-bold"%>
+          <div class = "col-sm-4 col-md-4 col-lg-4">
+            <%=f.text_field :other_expiration,
+            value: (l f.object.other_expiration if f.object.other_expiration),
+            class: "form-control form-control-sm col text-center",
+          	id: "insurance_other_expiration", style: "display:inline-block;
+          	vertical-align:middle; width: 60%; margin: 0 5px 0 0;"%>
+          </div>
+        </div>
+      </div>  	      	      
+    </div>
+</div>
+  <br />
+  <div class = "row col-6">
+    <%=f.submit "Save Changes", class: 'btn btn-padgett col-md-3 col-lg-3',
+	  name: "submit"%>
+    <div class = "col-md-2 col-lg-2"></div>
+      <%=link_to "Return", admins_insurances_path, class: 'btn btn-padgett col-md-3 col-lg-3' %>
+    </div>
+  </div>
+<%end%>

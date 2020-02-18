@@ -2,15 +2,13 @@
 <%= hidden_field_tag :sort, params[:sort] %>
 
 
-  <table class="table table-sm table-striped table-dan ">
+  <table id = "accountant-list" class="table table-sm table-striped table-dan ">
     <thead>
       <tr>
         <!-- Franchise Number -->
         <th scope = "col" style="text-align:left">
           <%=sortable "franchises.franchise_number", "Franchise" %>
         </th>
-
-        
 
         <!-- Accountant  -->
         <th scope = "col" style="text-align:left">
@@ -24,7 +22,8 @@
         <th scope = "col" style="text-align:left">
           <%=sortable "firstname" , "First Name" %>
         </th>
-        <!-- For Edit link we have 2 other columns  -->
+        <!-- For Edit and Delete link we have 2 other columns  -->
+        <th scope = "col"></th>
         <th scope = "col"></th>
         
       </tr>
@@ -62,7 +61,18 @@
         <%else%>
           <td></td>
         <%end%>
-        
+
+        <%if can? :delete, accountant%>
+        <td class = "text-nowrap">
+            <%=link_with_icon(admins_accountant_path(id:accountant.id),
+                "delete",
+                "Delete this accountant",
+                "Are you sure you want to delete this accounant?",
+                false)%> 
+          </td>
+          <%else%>
+          <td></td>
+        <%end%>
       </tr>
     <% end %>
   </table>

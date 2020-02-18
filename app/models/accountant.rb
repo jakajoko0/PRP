@@ -21,7 +21,7 @@ class Accountant < ApplicationRecord
   #t.index ["franchise_id"], name: "index_accountants_on_franchise_id"
   
   belongs_to :franchise	
-
+  after_create :log_new_accountant
   scope :by_number, -> { order("accountant_num")}
 
   validates :franchise, presence: {message: "Please provide Franchise"}
@@ -55,5 +55,13 @@ class Accountant < ApplicationRecord
     self.spouse_birthdate = Date.strptime(spouse_birthdate,I18n.translate('date.formats.default')) unless spouse_birthdate.blank?
     self.term_date = Date.strptime(term_date,I18n.translate('date.formats.default')) unless term_date.blank?
   end
+
+  private  
+
+  def log_new_accountant
+    desc = "Accountant #{self.accountant_num} #{self.lastname} was created"
+    EventLog.create(event_date: DateTime.now, franchise_id: self.franchise_id, fran: self.franchise.franchise_number, lastname: self.franchise.lastname, email: self.franchise.email, event_desc: desc)
+  end
+
 
 end

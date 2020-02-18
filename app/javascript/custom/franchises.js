@@ -1,4 +1,4 @@
-$(document).on("franchises#edit:loaded franchises#new:loaded", function() {
+$(document).on("franchises#edit:loaded franchises#new:loaded franchises#create:loaded franchises#update:loaded", function() {
   locale = gon.I18n;
 
   $.datepicker.setDefaults($.datepicker.regional[locale]);  
@@ -26,10 +26,16 @@ $(document).on("franchises#edit:loaded franchises#new:loaded", function() {
     yearRange:"-10:+30"});
 
   $('#franchise_term_date').next('button.ui-datepicker-trigger').css("verticalAlign","middle");
- 
-  
   });
 
+$(document).on("franchises#index:loaded", function() {
+$("#franchise_search input").keyup(function() 
+    {
+    $.get($("#franchise_search").attr("action"), $("#franchise_search").serialize()+"&destination="+gon.destination,  null, "script");
+    return false;
+  });
+
+});
   
 
 

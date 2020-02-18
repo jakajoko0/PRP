@@ -30,6 +30,7 @@ Rails.application.routes.draw do
     resources :users
     resources :franchises, only: [:edit]
     resources :accountants, only: [:show]
+    resources :insurances, only: [:show]
   end
   
   # Authenticated route to show specific Dashboard for admins
@@ -46,6 +47,7 @@ Rails.application.routes.draw do
       resources :admins
       resources :franchises
       resources :accountants
+      resources :insurances
     end
   end
   

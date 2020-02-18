@@ -3,7 +3,7 @@ module FranchiseHelper
   	rtn_html = ""
   	if fran.non_compliant == 1 
   		rtn_html += <<-HTML
-        <i class="fas fa-exclamation-circle fa-lg attention-icon" 
+        <i class="fas fa-exclamation-circle fa-2x attention-icon" 
         aria-hidden="true" 
         data-html = "true" 
         data-toggle="tooltip" 
@@ -15,7 +15,7 @@ module FranchiseHelper
 
     if fran.inactive == 1
     	rtn_html += <<-HTML
-        <i class="fas fa-user-times fa-lg attention-icon" 
+        <i class="fas fa-user-times fa-2x attention-icon" 
         aria-hidden="true" 
         data-html = "true" 
         data-toggle="tooltip" 
@@ -28,7 +28,7 @@ module FranchiseHelper
 
     if fran.term_date && fran.term_date <= Date.today 
     	rtn_html += <<-HTML
-        <i class="fas fa-calendar-times fa-lg attention-icon" 
+        <i class="fas fa-calendar-times fa-2x attention-icon" 
         aria-hidden="true" 
         data-html = "true" 
         data-toggle="tooltip" 
@@ -40,7 +40,7 @@ module FranchiseHelper
 
     if rtn_html == ""
       rtn_html = <<-HTML
-        <i class="fas fa-check-circle fa-lg padgett-green-icon" 
+        <i class="far fa-check-circle fa-2x padgett-green-icon" 
         aria-hidden="true" 
         data-html = "true" 
         data-toggle="tooltip" 
@@ -71,6 +71,8 @@ module FranchiseHelper
         route = new_admins_accountant_path(franchise_id: franchise.id)
       when 'support'
         route = supports_path(franchise_id: franchise.id)
+      when 'add_insurance'
+        route = new_admins_insurance_path(franchise_id: franchise.id)
       end
 
       rtn_html = <<-HTML     

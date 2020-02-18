@@ -71,6 +71,9 @@ group :test do
   gem 'selenium-webdriver', '3.8.0'
   gem 'database_cleaner'
   gem 'faker'
+  gem 'geckodriver-helper'
+  gem 'webdrivers', '4.1.2'
+
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

@@ -21,6 +21,7 @@ global.$ = jQuery;
 
 require("custom/franchises")
 require("custom/accountants")
+require("custom/insurances")
 
 require.context('../images',true, /\.(?:png|jpg|gif|ico|svg)$/)
 
@@ -46,18 +47,7 @@ document.addEventListener("turbolinks:load", () => {
   $('[data-toggle="tooltip"]').tooltip()
   $('[data-toggle="popover"]').popover()
 
-  $("#franchise_search input").keyup(function() 
-    {
-    $.get($("#franchise_search").attr("action"), $("#franchise_search").serialize()+"&destination="+gon.destination,  null, "script");
-    return false;
-  });
-
-
-  $("#accountant_search input").keyup(function() 
-    {
-    $.get($("#accountant_search").attr("action"), $("#accountant_search").serialize(),  null, "script");
-    return false;
-  });
+  
 
 
  

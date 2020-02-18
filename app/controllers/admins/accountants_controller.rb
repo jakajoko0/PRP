@@ -59,10 +59,10 @@ def destroy
 	authorize! :destroy, @accountant
 	if @accountant.destroy
     flash[:success] = 'Accountant Deleted Successfully'
-    redirect_to admin_accountants_path
+    redirect_to admins_accountants_path
   else
     flash[:error] = @accountant.errors.full_messages.to_sentence
-    redirect_to admin_accountants_path
+    redirect_to admins_accountants_path
   end 
 
 end

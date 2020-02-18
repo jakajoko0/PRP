@@ -34,10 +34,29 @@ RSpec.describe Accountant, type: :model do
   end
 
   describe "Test the instance methods" do
-    describe "#fullname" do 
+    describe "#full_name" do 
       it "should return the proper fullname" do 
         expect(glass_accountant.full_name).to eq([glass_accountant.firstname,glass_accountant.lastname].join(" "))
       end
+    end
+
+    describe "#full_denomination" do 
+      it "should return the proper denomination" do 
+        expect(glass_accountant.full_denomination).to eq([glass_accountant.accountant_num,glass_accountant.firstname, glass_accountant.lastname].join(" ") )
+      end
+    end
+
+    describe "#number_and_name" do
+      it "should return the proper number and name" do 
+        expect(glass_accountant.number_and_name).to eq([glass_accountant.accountant_num, glass_accountant.lastname].join(" "))
+      end
+    end
+  end
+
+  describe 'testing the after_create callback' do
+    it "should add a notice for accountant creation" do
+      new_accountant = build(:accountant, franchise: glass)
+      expect{new_accountant.save}.to change{EventLog.count}.by(1)
     end
   end
 

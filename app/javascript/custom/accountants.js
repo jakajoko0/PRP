@@ -1,4 +1,4 @@
-$(document).on("accountants#edit:loaded accountants#new:loaded", function() {
+$(document).on("accountants#edit:loaded accountants#new:loaded accountants#create:loaded accountants#update:loaded", function() {
   locale = gon.I18n;
 
 
@@ -38,6 +38,17 @@ $(document).on("accountants#edit:loaded accountants#new:loaded", function() {
   $('#accountant_spouse_birth_date').next('button.ui-datepicker-trigger').css("verticalAlign","middle"); 
   
   });
+
+
+$(document).on("accountants#index:loaded", function() {
+
+  $("#accountant_search input").keyup(function() 
+    {
+    $.get($("#accountant_search").attr("action"), $("#accountant_search").serialize(),  null, "script");
+    return false;
+  });
+
+});
 
   
 

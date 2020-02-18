@@ -135,7 +135,7 @@ RSpec.describe Franchise, type: :model do
   end
 
   describe "testing the after_create callback" do 
-    it "should add a notice for signing up" do 
+    it "should add a notice for franchise creation" do 
       new_franchise = build(:franchise)
       expect{new_franchise.save}.to change{EventLog.count}.by(1)
     end

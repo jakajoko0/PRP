@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_06_201429) do
+ActiveRecord::Schema.define(version: 2020_02_13_205151) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -123,6 +123,18 @@ ActiveRecord::Schema.define(version: 2019_12_06_201429) do
     t.index ["franchise_number"], name: "franchise_number"
   end
 
+  create_table "insurances", force: :cascade do |t|
+    t.bigint "franchise_id"
+    t.integer "eo_insurance", default: 0
+    t.integer "gen_insurance"
+    t.integer "other_insurance", default: 0
+    t.string "other_description"
+    t.date "eo_expiration"
+    t.date "gen_expiration"
+    t.date "other_expiration"
+    t.index ["franchise_id"], name: "index_insurances_on_franchise_id"
+  end
+
   create_table "regions", force: :cascade do |t|
     t.integer "region_id"
     t.string "region_number"
@@ -151,4 +163,5 @@ ActiveRecord::Schema.define(version: 2019_12_06_201429) do
   end
 
   add_foreign_key "accountants", "franchises"
+  add_foreign_key "insurances", "franchises"
 end

@@ -92,13 +92,35 @@ RSpec.configure do |config|
   # config.filter_gems_from_backtrace("gem name")
 end
 
-Capybara.register_driver(:firefox) do |app|
-  Capybara::Selenium::Driver.new(
-    app,
-    browser: :remote,
-    url: ENV.fetch('SELENIUM_URL'),
-    desired_capabilities: Selenium::WebDriver::Remote::Capabilities.firefox
-  )
+#Capybara.register_driver :firefox_headless do |app|
+#  options = ::Selenium::WebDriver::Firefox::Options.new()
+#  options.args << '--headless'
+#  Capybara::Selenium::Driver.new(
+#    app,
+#    browser: :firefox,
+#    options: options
+#  )
+#  
+#  Capybara.javascript_driver = :firefox_headless
+#end
+
+Capybara.register_driver :chrome do |app|
+  Capybara::Selenium::Driver.new(app, browser: :chrome)
+end
+
+#Capybara.register_driver :headless_chrome do |app|
+#  opts = Selenium::WebDriver::Chrome::Options.new
+#  opts.args << '--headless'
+#  Capybara::Selenium::Driver.new(app, browser: :chrome, options: opts)
+#  end
+
+#Capybara.default_driver = :headless_chrome
+
+case ENV['HEADLESS']
+when 'true', 1 , nil
+  Capybara.javascript_driver = :selenium_headless
+else
+  #Capybara.javascript_driver = :chrome 
 end
 
 FactoryBot::SyntaxRunner.class_eval do

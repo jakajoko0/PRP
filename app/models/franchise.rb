@@ -56,6 +56,7 @@
 has_many :users
 has_many :event_logs
 has_many :accountants
+has_one :insurance
 
 NULL_ATTRS = %w(start_date renew_date term_date)
 
@@ -143,6 +144,20 @@ after_save :log_rebate_changed, if: :advanced_rebate_changed?
     else
       where(nil)
     end
+  end
+
+  def self.number_and_name(franchise_id)
+    @fran_by_number_and_name ||= compute_number_and_name
+    return @fran_by_number_and_name[franchise_id] if @fran_by_number_and_name[franchise_id]
+    result = Franchise.select("(franchise_number || ' ' || lastname || ' ' || firstname) as name").where("id =?",franchise_id)
+    return @fran_by_number_and_name[franchise_id] = result[0]
+
+  end
+
+  def self.compute_number_and_name
+    Franchise.select(:id, "(franchise_number || ' ' || lastname || ' ' || firstname) as name")
+    .map{|e| e.attributes.values}
+    .inject({}) {|memo,fran| memo[fran[0]] = fran[1]; memo}
   end
 
   private

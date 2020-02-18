@@ -5,9 +5,11 @@ class AdminAbility
     if user.full_control? 
       can :manage, Franchise
       can :manage, Accountant
+      can :manage, Insurance
     else
       can :read, Franchise
       can :read, Accountant
+      can :read, Insurance
     end    
     # Define abilities for the passed in user here. For example:
     #
