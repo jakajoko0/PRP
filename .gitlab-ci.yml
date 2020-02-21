@@ -21,7 +21,7 @@ variables:
 
 build:
   <<: *default-cache      
-  servides:
+  services:
     - postgres:11.6
   stage: build 
     
