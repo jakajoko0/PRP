@@ -45,7 +45,7 @@ gem 'savon' , '2.12.0'
 
 gem 'sidekiq' 
 gem 'sidekiq-cron'
-gem 'rubyzip', '1.0.0'
+gem 'rubyzip', '1.2.2'
 
 
 group :development, :test do
@@ -68,7 +68,7 @@ end
 
 group :test do 
   gem 'capybara', '3.29.0'	
-  gem 'selenium-webdriver', '3.8.0'
+  gem 'selenium-webdriver', '3.142.6'
   gem 'database_cleaner'
   gem 'faker'
   gem 'geckodriver-helper'
