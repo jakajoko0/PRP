@@ -51,7 +51,7 @@ rspec:
     - RAILS_ENV=test bundle exec rake db:create db:schema:load db:seed 
     - RAILS_ENV=test bundle exec rails assets:precompile
     - RAILS_ENV=test bundle exec rails webpacker:compile
-    - export selenium_remote_url= "http://selenium__standalone-chrome:4444/wd/hub"
+    - export selenium_remote_url="http://selenium__standalone-chrome:4444/wd/hub"
     - RAILS_ENV=test HEADLESS=true bundle exec rspec --format progress  
   artifacts:
     when: on_failure
