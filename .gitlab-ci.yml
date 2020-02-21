@@ -1,5 +1,5 @@
 
-image: "registry.gitlab.com/damgrenier/reap20/testing:v1"
+image: "registry.gitlab.com/dangrenier/reap20/testing:v1"
 
 variables:
   LC_ALL: C.UTF-8
