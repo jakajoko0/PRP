@@ -120,7 +120,7 @@ case ENV['HEADLESS']
 when 'true', 1 , nil
   Capybara.javascript_driver = :selenium_headless
 else
-  #Capybara.javascript_driver = :chrome 
+  Capybara.javascript_driver = :chrome 
 end
 
 FactoryBot::SyntaxRunner.class_eval do

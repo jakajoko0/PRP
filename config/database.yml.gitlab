@@ -11,9 +11,9 @@ test:
   adapter: postgresql
   encoding: unicode
   database: test_db
-  host: <%=ENV['DB_HOST']%>
-  username: <%=ENV['DB_USERNAME']%>
-  password: <%=ENV['DB_PASSWORD']%>
-  pool: <%=ENV['DB_POOL']%>
+  host: postgres
+  username: runner
+  password: ""
+  pool: 5
   timeout: 5000
   port: 5432

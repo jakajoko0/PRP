@@ -1,47 +1,57 @@
-stages:
-  - build
-  - test
 
-.base:
-  image: "ruby:2.6.4"
+image: "registry.gitlab.com/damgrenier/reap20/testing:v1"
+
+variables:
+  LC_ALL: C.UTF-8
+  LANG: en_US.UTF-8
+  LANGUAGE: en_US.UTF-8
+  RAILS_ENV: "test"
+  POSTGRES_DB: test_db
+  POSTGRES_USER: runner
+  POSTGRES_PASSWORD: ""
+
+.default-cache: &default-cache
   cache:
-    key: gems_and_packages
+    untracked: true
+    key: reap20-key  
     paths:
-      - apt-cache/
-      - vendor/ruby
       - node_modules/
-    policy: pull  
-  before_script:
-    - gem install bundler --no_document
-    - bundle install --jobs $(nproc) "${FLAGS[@]}" -- path=vendor
+      - vendor/
+      - public
 
-.base_db:
-  extends: .base
-  services:  
+build:
+  <<: *default-cache      
+  servides:
     - postgres:11.6
-
-  variables:
-    POSTGRES_USER: runner
-    POSTGRES_PASSWORD: ""
-    DB_USERNAME: runner
-    DB_PASSWORD: ""
-    DB_HOST: postgres 
-    RAILS_ENV: test 
-  before_script:
-    - export APT_CACHE_DIR=`pwd`/apt-cache && mkdir -pv $APT_CACHE_DIR
-    - apt-get update -qq && apt-get -o dir::cache::archives="$APT_CACHE_DIR" install -yqq nodejs
+  stage: build 
+    
+  script:
     - ruby -v
+    - node -v 
+    - yarn --version 
     - which ruby 
     - gem install bundler --no-document
-    - RAILS_ENV=test bundle install --jobs $(nproc) "${FLAGS[@]}" --path=vendor
-    - cp config/database.yml.gitlab config/database.yml
-    - RAILS_ENV=test bundle exec rake db:create db:schema:load db:seed --trace
-    - RAILS_ENV=test bundle exec rails webpacker:compile
+    - bundle install --jobs $(nproc) "${FLAGS[@]}" --path=vendor
+    - yarn install
+    - cp config.database.gitlab confi/database.yml
+    - RAILS_ENV=test bundle exec rake db:create db:schema:load db:seed 
+    - RAILS_ENV=test bundle exec rails assets:precompile
+  
 
 rspec:
-  extends: .base_db 
+  <<: *default-cache
   stage: test
-  cache:
-    policy: pull-push
+  services:
+    - postgres:11.6
+    - selenium/standalone-chrome:latest
   script:
-    - RAILS_ENV=test bundle exec rspec --format progress  
+    - gem install bundler --no-document
+    - bundle install --jobs $(nproc) "${FLAGS[@]}" --path=vendor
+    - RAILS_ENV=test bundle exec rake db:create db:schema:load db:seed 
+    - RAILS_ENV=test bundle exec rails assets:precompile
+    - RAILS_ENV=test bundle exec rails webpacker:compile
+    - RAILS_ENV=test HEADLESS=true bundle exec rspec --format progress  
+  artifacts:
+    when: on_failure
+    paths:
+      - tmp/screenshots
