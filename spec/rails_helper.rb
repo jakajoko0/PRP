@@ -103,7 +103,7 @@ if ENV['SELENIUM_URL'].present?
 
   ip = Socket.ip_address_list.detect { |addr| addr.ipv4_private?}.ip_address
   Capybara.server = :puma, {Silent: true}
-  host! "http://#{ip}:#{Capybara.server_port}"
+  
 else  
 
   case ENV['HEADLESS']
