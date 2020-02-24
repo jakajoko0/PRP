@@ -96,7 +96,7 @@ if ENV['SELENIUM_URL'].present?
   Capybara.server_host = '0.0.0.0'
   Capybara.register_driver :selenium_remote_headless do |app|
     selenium_url = ENV['SELENIUM_URL']
-    Capybara::Selenium::Driver.new(app, browser: :remote, url: "#{selenium_url}")
+    Capybara::Selenium::Driver.new(app, browser: :remote, url: "#{selenium_url}", desired_capabilities: :chrome)
   end
 
   Capybara.javascript_driver = :selenium_remote_headless
