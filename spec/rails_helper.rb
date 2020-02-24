@@ -92,17 +92,28 @@ RSpec.configure do |config|
   # config.filter_gems_from_backtrace("gem name")
 end
 
+if ENV['SELENIUM_URL'].present?
+  Capybara.server_host = '0.0.0.0'
+  Capybara.register_driver :selenium_remote_headless do |app|
+    selenium_url = ENV['SELENIUM_URL']
+    Capybara::Selenium::Driver.new(app, browser: :remote, url: "#{selenium_url}", desired_capabilities: browser)
+  end
 
+  Capybara.javascript_driver = :selenium_remote_headless
 
-#Capybara.default_driver = :headless_chrome
+  ip = Socket.ip_address_list.detect { |addr| addr.ipv4_private?}.ip_address
+  Capybara.server = :puma, {Silent: true}
+  host! "http://#{ip}:#{Capybara.server_port}"
+else  
 
-#case ENV['HEADLESS']
-#when 'true', 1 , nil
-Capybara.javascript_driver = :selenium_chrome_headless
+  case ENV['HEADLESS']
+  when 'true', 1 , nil
+    Capybara.javascript_driver = :selenium_chrome_headless
+  else
+    Capybara.javascript_driver = :chrome 
+  end
+end
 
-#else
-#  Capybara.javascript_driver = :chrome 
-#end
 
 FactoryBot::SyntaxRunner.class_eval do
   include ActionDispatch::TestProcess
