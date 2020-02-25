@@ -119,6 +119,7 @@ end
       browser_options.args << '--headless'
       browser_options.args << '--disable-gpu'
       browser_options.args << '--no-sandbox'
+      browser_options.args << '--disable-dev-shm-usage'
       Capybara::Selenium::Driver.new(app,browser: :chrome, options: browser_options)
     end
   Capybara.javascript_driver = :selenium_chrome_headless_docker_friendly

@@ -44,7 +44,6 @@ rspec:
   stage: test
   services:
     - postgres:11.6
-    - selenium/standalone-chrome:latest
   script:
     - gem install bundler --no-document
     - bundle install --jobs $(nproc) "${FLAGS[@]}" --path=vendor
