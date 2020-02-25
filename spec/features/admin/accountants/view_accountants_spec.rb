@@ -17,20 +17,5 @@ RSpec.feature "Viewing Accountants", :type => :feature do
   
   end
 
-  scenario "Admin User Can Filter Accountants by Name", js: true  do 
-    visit '/'
-    simulate_admin_sign_in(admin)
-    visit admins_accountants_path
-    expect(page).to have_button("Add Accountant")
-    fill_in "search", with: "AAAB"
-    
-    expect(page).to have_content(accountants.last.firstname)
-    expect(page).to have_content(accountants.last.lastname)
-    expect(page).to_not have_content(accountants.first.firstname)
-  
-  end
-
-  
-
 
 end

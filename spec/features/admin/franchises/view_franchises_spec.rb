@@ -15,17 +15,6 @@ RSpec.feature "Viewing Franchises", :type => :feature do
   
   end
 
-  scenario "Admin User Can Filter franchises by Name", js: true  do 
-    visit '/'
-    simulate_admin_sign_in(admin)
-    visit admins_franchises_path
-    expect(page).to have_button("Create Franchise")
-    fill_in "search", with: "AAAB"
-    
-    expect(page).to have_content(franchises.last.full_name)
-    expect(page).to_not have_content(franchises.first.full_name)
-  
-  end
 
   scenario "Admin User Can view one specific franchise" do 
     visit '/'
