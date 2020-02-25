@@ -93,16 +93,14 @@ RSpec.configure do |config|
 end
 
 if ENV['SELENIUM_URL'].present?
-  Capybara.server_host = '0.0.0.0'
   Capybara.register_driver :selenium_remote_headless do |app|
-    selenium_url = ENV['SELENIUM_URL']
-    Capybara::Selenium::Driver.new(app, browser: :remote, url: "#{selenium_url}", desired_capabilities: :chrome)
+    options = Selenium::WebDriver::Chrome::Options.new(
+      args: %w[headless dusable-gpu no-sandbox])
+    Capybara::Selenium::Driver.new(app, browser: :selenium_remote_headless,options: options)
   end
 
   Capybara.javascript_driver = :selenium_remote_headless
 
-  ip = Socket.ip_address_list.detect { |addr| addr.ipv4_private?}.ip_address
-  Capybara.server = :puma, {Silent: true}
   
 else  
 

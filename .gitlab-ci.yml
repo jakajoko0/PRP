@@ -1,5 +1,5 @@
 
-image: "registry.gitlab.com/dangrenier/reap20/testing:v1"
+image: "registry.gitlab.com/dangrenier/reap20/testing:v2"
 
 variables:
   LC_ALL: C.UTF-8
@@ -10,6 +10,7 @@ variables:
   POSTGRES_USER: runner
   POSTGRES_PASSWORD: ""
   SELENIUM_URL: "http://selenium__standalone-chrome:4444/wd/hub"  
+
 
 .default-cache: &default-cache
   cache:
@@ -44,7 +45,6 @@ rspec:
   stage: test
   services:
     - postgres:11.6
-    - selenium/standalone-chrome:latest
   script:
     - gem install bundler --no-document
     - bundle install --jobs $(nproc) "${FLAGS[@]}" --path=vendor
