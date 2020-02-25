@@ -92,17 +92,17 @@ RSpec.configure do |config|
   # config.filter_gems_from_backtrace("gem name")
 end
 
-if ENV['SELENIUM_URL'].present?
-  Capybara.register_driver :selenium_remote_headless do |app|
-    options = Selenium::WebDriver::Chrome::Options.new(
-      args: %w[headless dusable-gpu no-sandbox])
-    Capybara::Selenium::Driver.new(app, browser: :selenium_remote_headless,options: options)
-  end
+#if ENV['SELENIUM_URL'].present?
+#  Capybara.register_driver :selenium_remote_headless do |app|
+#    options = Selenium::WebDriver::Chrome::Options.new(
+#      args: %w[headless dusable-gpu no-sandbox])
+#    Capybara::Selenium::Driver.new(app, browser: :selenium_remote_headless,options: options)
+#  end
 
-  Capybara.javascript_driver = :selenium_remote_headless
+#  Capybara.javascript_driver = :selenium_remote_headless
 
   
-else  
+#else  
 
   case ENV['HEADLESS']
   when 'true', 1 , nil
@@ -110,7 +110,7 @@ else
   else
     Capybara.javascript_driver = :chrome 
   end
-end
+#end
 
 
 FactoryBot::SyntaxRunner.class_eval do
