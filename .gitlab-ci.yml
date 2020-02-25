@@ -49,7 +49,7 @@ rspec:
   script:
     - gem install bundler --no-document
     - bundle install --jobs $(nproc) "${FLAGS[@]}" --path=vendor
-    - export selenium_remote_url="http://selenium__standalone/chrome:4444/wd/hub/"
+    - export selenium_remote_url="http://selenium__standalone-chrome:4444/wd/hub/"
     - RAILS_ENV=test bundle exec rake db:create db:schema:load db:seed 
     - RAILS_ENV=test bundle exec rails assets:precompile
     - RAILS_ENV=test bundle exec rails webpacker:compile
