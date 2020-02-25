@@ -39,7 +39,13 @@ Rails.application.configure do
   # Tell Action Mailer not to deliver emails to the real world.
   # The :test delivery method accumulates sent emails in the
   # ActionMailer::Base.deliveries array.
-  config.action_mailer.default_url_options = {host: 'localhost', port: 3000}
+  net = Socket.ip_address_list.detect{|addr| addr.ipv4_private?}
+  ip = net.nil? ? 'localhost' : net.ip_address
+  config.domain = ip 
+  config.action_mailer.default_url_options = {host: config.domain, port: 3000}
+  Capybara.server_port = 8200 
+  Capybara.server_host = ip
+  
   config.action_mailer.delivery_method = :test
   config.action_mailer.smtp_settings = {
     address: Rails.application.credentials.dig(:mail_address),
@@ -53,4 +59,7 @@ Rails.application.configure do
 
   # Raises error for missing translations.
   # config.action_view.raise_on_missing_translations = true
+
+
+
 end
