@@ -17,27 +17,7 @@ RSpec.feature "Viewing Insurance", :type => :feature do
   
   end
 
-  scenario "Admin User Can Filter Insurance by Franchise Name", js: true  do 
-    visit '/'
-    simulate_admin_sign_in(admin)
-    visit admins_insurances_path
-    fill_in "search", with: "Gre"
-    sleep 1
-    franchises.each do |fr|
-      expect(page).to have_content(fr.lastname)
-    end
-    
-    fill_in "search", with: "Gren"
-    sleep 1
-    expect(page).to have_content(franchises.first.lastname)
-    expect(page).to have_content(franchises.second.lastname)
-    
-    fill_in "search", with: "Grenn"
-    sleep 1
-    expect(page).to have_content(franchises.last.lastname)
-    expect(page).to_not have_content(franchises.first.lastname)
   
-  end
 
   
 
