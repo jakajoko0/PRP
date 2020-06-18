@@ -21,6 +21,9 @@ class Accountant < ApplicationRecord
   #t.index ["franchise_id"], name: "index_accountants_on_franchise_id"
   
   belongs_to :franchise	
+
+  audited
+  
   after_create :log_new_accountant
   scope :by_number, -> { order("accountant_num")}
 

@@ -7,6 +7,14 @@ class ApplicationController < ActionController::Base
   def current_ability
     @current_ability ||= current_admin ? AdminAbility.new(current_admin) : UserAbility.new(current_user)  
   end
+
+  def current_authenticated
+    if current_user 
+      current_user 
+    else
+      current_admin
+    end
+  end
     
 
   private

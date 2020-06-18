@@ -24,6 +24,8 @@ gem 'jbuilder', '~> 2.7'
 gem 'devise'
 
 gem 'devise_masquerade'
+
+gem 'audited', '4.9.0'
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 
@@ -45,7 +47,8 @@ gem 'savon' , '2.12.0'
 
 gem 'sidekiq' 
 gem 'sidekiq-cron'
-gem 'rubyzip', '1.2.2'
+gem 'rubyzip', '1.3.0'
+
 
 
 group :development, :test do

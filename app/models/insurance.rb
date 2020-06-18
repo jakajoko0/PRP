@@ -2,6 +2,8 @@ class Insurance < ApplicationRecord
 
 belongs_to :franchise
 
+audited
+
 validates :franchise_id, presence: {message: "Please provide Franchise"}	
 validates :franchise_id, uniqueness: {message: "An insurance record already exists for this Franchise"}
 validates :eo_expiration, presence: {if: :eo_entered? , message: "Please provide expiration date for E&O insurance"}

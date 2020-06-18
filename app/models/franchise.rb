@@ -58,6 +58,8 @@ has_many :event_logs
 has_many :accountants
 has_one :insurance
 
+audited
+
 NULL_ATTRS = %w(start_date renew_date term_date)
 
 before_save :nil_if_blank
