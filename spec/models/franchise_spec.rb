@@ -123,6 +123,12 @@ RSpec.describe Franchise, type: :model do
       end
     end
 
+    describe "#one_line_address" do 
+      it "should return the proper formatted address" do 
+        expect(glass.one_line_address).to eq("#{glass.address} #{glass.address2}, #{glass.city}, #{glass.state}, #{glass.zip_code}")
+      end
+    end
+
     describe "#name_has_changed?" do
       it "should return false when the name does not change" do 
         expect(glass.name_has_changed?).to eq(false)

@@ -1,91 +1,89 @@
 <%= hidden_field_tag :direction, params[:direction] %>
 <%= hidden_field_tag :sort, params[:sort] %>
 
-
-  <table id = "franchise-list" class="table table-sm table-striped table-dan ">
-    <thead>
-      <tr>
-        <!-- Franchise  -->
-        <th scope = "col" style="text-align:left">
-          <%=sortable "franchise", "Franchise" %>
-        </th>
-        <!-- Lastname  -->
-        <th scope = "col" style="text-align:left">
-          <%=sortable "lastname" , "Name" %>
-        </th>
-        <!-- Status (Compliant / Non Compliant, Terminated )  -->
-        <th scope = "col" style = "text-align:center">
-          Status
-        </th>
-        <!-- Region  -->
-        <th scope = "col" style="text-align:center">
-          Region
-        </th>
+<table id = "franchise-list" class="table table-sm table-striped table-dan ">
+  <thead>
+    <tr>
+      <!-- Franchise  -->
+      <th width="10%" scope = "col" style="text-align:left">
+        <%=sortable "franchise", "Franchise" %>
+      </th>
+      <!-- Lastname  -->
+      <th width="40%" scope = "col" style="text-align:left">
+        <%=sortable "lastname" , "Name" %>
+      </th>
+      <!-- Status (Compliant / Non Compliant, Terminated )  -->
+      <th width="20% "scope = "col" style = "text-align:center">
+        Status
+      </th>
+      <!-- Region  -->
+      <th width="20%" scope = "col" style="text-align:center">
+        Region
+      </th>
         
-        <% if destination == "franchise_edit"%>
-          <!-- For Edit link we have 2 other columns  -->
-          <th scope = "col"></th>
-          <th scope = "col"></th>
-        <%else%>
-          <!-- Only one more column if we have a destination  -->
-          <th scope = "col"></th>
-        <%end%>
-      </tr>
-    </thead>
-    <!-- Go through our filtered franchises  -->
-    <% @franchises.each do |franchise| %>
-      <tr>
-        <!-- Franchise  -->
-        <th scope="row" align="left" class = "text-nowrap">
-          <%=franchise.franchise_number %> 
-        </td>
-        <!-- Lastname  -->
-        <td align="left" class = "text-nowrap">
-          <%=franchise.full_name%> 
-        </td>
-        <!-- Status, calls a helper to display proper icons  -->
-        <td align="center" class = "text-nowrap">
-          <%=franchise_status(franchise)%>
+      <% if destination == "franchise_edit"%>
+        <!-- For Edit link we have 2 other columns  -->
+        <th width="5%" scope = "col"></th>
+        <th width="5%" scope = "col"></th>
+      <%else%>
+        <!-- Only one more column if we have a destination  -->
+        <th width="10%" scope = "col"></th>
+      <%end%>
+    </tr>
+  </thead>
+  <!-- Go through our filtered franchises  -->
+  <% @franchises.each do |franchise| %>
+    <tr>
+      <!-- Franchise  -->
+      <th width="10%" scope="row" align="left" class = "text-nowrap">
+        <%=franchise.franchise_number %> 
+      </td>
+      <!-- Lastname  -->
+      <td width="40%" align="left" class = "text-nowrap">
+        <%=franchise.full_name%> 
+      </td>
+      <!-- Status, calls a helper to display proper icons  -->
+      <td width="20%" align="center" class = "text-nowrap">
+        <%=franchise_status(franchise)%>
+      </td>
+      <!-- Region description  -->
+      <td width="20%" align="center" class = "text-nowrap">
+        <%=franchise.region_desc%> 
+      </td>
 
-        </td>
-        <!-- Region description  -->
-        <td align="center" class = "text-nowrap">
-          <%=franchise.region_desc%> 
-        </td>
-
-        <%if destination == 'franchise_edit' %>
-          <!-- Edit Icon and Link  -->
-          <%if can? :edit, franchise%>
-            <td class = "text-nowrap">
-              <%=link_with_icon(edit_admins_franchise_path(id:franchise.id),
-                "edit",
-                "Edit this franchise",
-                "",
-                false)%> 
-            </td>
-            <%else%>
-            <td></td>
-            <%end%>
-          <!-- View Icon and Link  -->
-          <td class = "text-nowrap">
-            <%=link_with_icon(
-              admins_franchise_path(id:franchise),
-              "show",
-              "View this Franchise")%>
+      <%if destination == 'franchise_edit' %>
+        <!-- Edit Icon and Link  -->
+        <%if can? :edit, franchise%>
+          <td width="5%" class = "text-nowrap">
+            <%=link_with_icon(edit_admins_franchise_path(id:franchise.id),
+              "edit",
+              "Edit this franchise",
+              "",
+              false)%> 
           </td>
         <%else%>
-          <!-- Continue Button taking user to destination  -->
-          <%= destination_button(destination,franchise) %>
-        <%end%>
-        
-      </tr>
-    <% end %>
-  </table>
-  <!-- Pagination Links  -->
-  <div class = "row justify-content-center">
-    <div class = "flickr_pagination">
-      <%= will_paginate @franchises %>
-    </div>
+          <td width="5%"></td>
+          <%end%>
+        <!-- View Icon and Link  -->
+        <td width="5%" class = "text-nowrap">
+          <%=link_with_icon(
+            admins_franchise_path(id:franchise),
+            "show",
+            "View this Franchise")%>
+        </td>
+      <%else%>
+        <!-- Continue Button taking user to destination  -->
+        <%= destination_button(destination,franchise) %>
+      <%end%>
+    </tr>
+  <% end %>
+</table>
+
+<!-- Pagination Links  -->
+<div class = "row justify-content-center">
+  <div class = "flickr_pagination">
+    <%= will_paginate @franchises %>
   </div>
+</div>
 
 

@@ -31,6 +31,12 @@ $.jMaskGlobals.watchDataMask = true;
 document.addEventListener("turbolinks:load", () => {
   var data = $('body').data();
   $(document).trigger(data.controller+'#'+data.action+':loaded');
+
+  setTimeout(clearNotice,3000);
+
+  function clearNotice(){
+    $(".alert").slideUp();
+  }
 	
 	$( ".dropdown-submenu" ).click(function(event) {
     

@@ -16,8 +16,8 @@ class Admins::FranchisesController < ApplicationController
     gon.destination = @destination
     
     @franchises = Franchise.search(params[:search])
-                           .order(sort_column + " " + sort_direction)
-                           .paginate(per_page: 10, page: params[:page])
+                  .order(sort_column + " " + sort_direction)
+                  .paginate(per_page: 10, page: params[:page])
     authorize! :read, Franchise
   end 
 

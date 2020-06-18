@@ -108,6 +108,10 @@ after_save :log_rebate_changed, if: :advanced_rebate_changed?
     [franchise_number, lastname].join(' ')
   end
 
+  def one_line_address
+  "#{address} #{address2}, #{city}, #{state}, #{zip_code}"
+  end
+
   #flag to see if name changed
   def name_has_changed?
     lastname_changed? || firstname_changed?
