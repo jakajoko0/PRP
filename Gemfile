@@ -26,6 +26,10 @@ gem 'devise'
 gem 'devise_masquerade'
 
 gem 'audited', '4.9.0'
+
+gem 'chartkick'
+
+gem 'friendly_id', '~> 5.2.4'
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 

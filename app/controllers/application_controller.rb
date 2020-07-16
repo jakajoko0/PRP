@@ -1,7 +1,8 @@
 class ApplicationController < ActionController::Base
-  before_action :set_locale
   before_action :pass_locale_js
   before_action :prepare_exception_notifier
+  before_action :configure_permitted_params, if: :devise_controller?
+  around_action :set_time_zone, if: :current_authenticated
   rescue_from CanCan::AccessDenied,with: :access_error 
   
   def current_ability
@@ -11,11 +12,19 @@ class ApplicationController < ActionController::Base
   def current_authenticated
     if current_user 
       current_user 
-    else
+    elsif current_admin
       current_admin
+    else
+      nil
     end
   end
     
+
+  protected 
+    
+  def configure_permitted_params
+    devise_parameter_sanitizer.permit(:account_update, keys: [:email,:password, :current_password, :time_zone])
+  end
 
   private
   #Make sure we add the current user information when an
@@ -24,6 +33,7 @@ class ApplicationController < ActionController::Base
     flash[:warning] = exception.message
     redirect_to root_path
   end
+
   def prepare_exception_notifier
     if current_user
       request.env["exception_notifier.exception_data"] = 
@@ -35,13 +45,15 @@ class ApplicationController < ActionController::Base
       {current_admin: current_admin}
     end
   end
- 
-  def set_locale
-    I18n.locale = 'en'
-  end
-
+  
+  #Pass that locale to our js
   def pass_locale_js
     gon.I18n = I18n.locale
   end 
 
+  #Set the locale for the entire app
+  def set_time_zone(&block)
+    logger.debug "GOES THROUGH TIME TONZE"
+    Time.use_zone(current_authenticated.time_zone, &block)
+  end
 end

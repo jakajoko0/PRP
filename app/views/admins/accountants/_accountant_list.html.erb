@@ -52,7 +52,7 @@
         <!-- Edit Icon and Link  -->
         <%if can? :edit, accountant%>
           <td class = "text-nowrap">
-            <%=link_with_icon(edit_admins_accountant_path(id:accountant.id),
+            <%=link_with_icon(edit_admins_accountant_path(id:accountant),
                 "edit",
                 "Edit this accountant",
                 "",
@@ -64,7 +64,7 @@
 
         <%if can? :delete, accountant%>
         <td class = "text-nowrap">
-            <%=link_with_icon(admins_accountant_path(id:accountant.id),
+            <%=link_with_icon(admins_accountant_path(id:accountant),
                 "delete",
                 "Delete this accountant",
                 "Are you sure you want to delete this accounant?",

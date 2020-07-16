@@ -9,6 +9,8 @@ require("@rails/activestorage").start()
 require("channels")
 require("jquery")
 require("jquery-ui")
+require("chartkick").use(require("highcharts"))
+
 
 
 import "bootstrap"

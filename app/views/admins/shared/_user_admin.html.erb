@@ -64,7 +64,8 @@
         <ul class = "dropdown-menu">
           <!-- FRANCHISE LIST-->  
           <li>
-            <%= link_to "Franchise List" , "#",
+            <%= link_to "Franchise List" ,
+            admins_franchise_list_path, 
               class: "dropdown-item" %>
           </li>
           <li>
@@ -392,27 +393,49 @@
           class: "dropdown-item" %>
       </li>
       <div class="dropdown-divider"></div>
-      <!-- BACKGROUND JOBS-->  
-      <li>
-        <%= link_to "Background Jobs" , "/sidekiq",
-          class: "dropdown-item" %>
-      </li>
-      <!-- SERVER LOGS-->  
-      <li>
-        <%= link_to "Server Logs" , "/logs",
-          class: "dropdown-item" %>
-      </li>
-      <li>
-        <%= link_to "Payment Responses" , "#",
-          class: "dropdown-item" %>
-      </li>
-      <div class="dropdown-divider"></div>
-       <!-- LOGIN AS ANOTHER FRANCHISE-->  
+      <!-- LOGIN AS ANOTHER FRANCHISE-->  
       <li>
         <%= link_to "Log In As ..." , "#",
           class: "dropdown-item" %>
       </li>
+       
       <div class="dropdown-divider"></div>
+      <!-- SYSTEM-->  
+      <li class = "dropdown-submenu">
+        <a class = "dropdown-item dropdown-toggle" 
+        tabindex="-1" href="#">
+          System
+        </a>
+        <ul class = "dropdown-menu">
+          <!-- EVENT LOG-->  
+          <li>
+            <%= link_to "Event Log" , "#",
+              class: "dropdown-item" %>
+          </li>
+          <!-- SERVER LOGS-->  
+          <li>
+            <%= link_to "Server Logs" , "/logs",
+            class: "dropdown-item" %>
+          </li>
+          <!-- AUDIT TRAIL-->  
+          <li>
+            <%= link_to "Audit Trail" , "#",
+            class: "dropdown-item" %>
+          </li>
+          <!-- BACKGROUND JOBS-->  
+          <li>
+            <%= link_to "Background Jobs" , "/sidekiq",
+            class: "dropdown-item" %>
+          </li>
+          <li>
+            <%= link_to "Payment Responses" , "#",
+            class: "dropdown-item" %>
+          </li>
+        </ul>
+      </li>
+
+      <div class="dropdown-divider"></div>
+
       <!-- TOOLS REPORTS-->  
       <li class = "dropdown-submenu">
         <a class = "dropdown-item dropdown-toggle" 
@@ -456,7 +479,7 @@
       </li>
       <!-- Your Profile-->  
       <li>
-        <%= link_to "Your Profile" , "#",
+        <%= link_to "Your Profile" , edit_admin_registration_path(current_admin),
           class: "dropdown-item" %>
       </li>
     </ul>

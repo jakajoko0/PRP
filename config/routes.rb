@@ -5,11 +5,19 @@ require 'sidekiq/cron/web'
 Rails.application.routes.draw do
   # Devise Routes for Admin
   devise_for :admins, path: 'admins', controllers: 
-  {sessions: 'admins/sessions'}
+  {sessions: "admins/sessions",
+   registrations: "admins/registrations"}
+  
   # Devise Routes for Users
   devise_for :users, path: 'users', controllers: 
-  {sessions: 'users/sessions'}
+  {sessions: "users/sessions",
+   registrations: "users/registrations"}
 
+  resources :charts, only:[] do 
+    collection do 
+      get 'all_royalties_by_month'
+    end
+  end
   
   # Custom Routes for Errors
   get '/404', :to => "errors#not_found"
@@ -44,10 +52,25 @@ Rails.application.routes.draw do
     mount Sidekiq::Web => '/sidekiq'
     # Namespace the Admin pages
     namespace :admins do 
+      resources :users
       resources :admins
       resources :franchises
+      get 'franchises/audit/:id' ,to: "franchises#audit", as: 'audit'
       resources :accountants
       resources :insurances
+
+
+
+
+
+      #Reports
+      scope module: :reports do 
+        get '/franchise_list' => 'franchise_list#index'
+        post '/franchise_list/render' => 'franchise_list#report'
+        get '/franchise_list/render' => redirect('/admins/franchise_list')
+
+      end
+
     end
   end
   

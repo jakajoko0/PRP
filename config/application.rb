@@ -33,5 +33,8 @@ module Reap2
     config.generators.system_tests = nil
 
     config.exceptions_app = self.routes
+
+    config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '**', '*.{rb,yml}')]
+    config.i18n.default_locale = :en
   end
 end

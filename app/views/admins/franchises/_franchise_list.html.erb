@@ -17,12 +17,13 @@
         Status
       </th>
       <!-- Region  -->
-      <th width="20%" scope = "col" style="text-align:center">
+      <th width="15%" scope = "col" style="text-align:center">
         Region
       </th>
         
       <% if destination == "franchise_edit"%>
         <!-- For Edit link we have 2 other columns  -->
+        <th width="5%" scope = "col"></th>
         <th width="5%" scope = "col"></th>
         <th width="5%" scope = "col"></th>
       <%else%>
@@ -55,7 +56,7 @@
         <!-- Edit Icon and Link  -->
         <%if can? :edit, franchise%>
           <td width="5%" class = "text-nowrap">
-            <%=link_with_icon(edit_admins_franchise_path(id:franchise.id),
+            <%=link_with_icon(edit_admins_franchise_path(id:franchise),
               "edit",
               "Edit this franchise",
               "",
@@ -71,6 +72,16 @@
             "show",
             "View this Franchise")%>
         </td>
+        
+        <td width = "5%" class = "text-nowrap">
+          <%if franchise.audits.size > 0%>
+            <%=link_with_icon(
+            admins_audit_path(id:franchise),
+            "audit",
+            "View Audit Trail")%>
+          <%end%>    
+        </td>
+        
       <%else%>
         <!-- Continue Button taking user to destination  -->
         <%= destination_button(destination,franchise) %>

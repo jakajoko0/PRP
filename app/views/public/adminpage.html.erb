@@ -1,4 +1,256 @@
-<h1>Public#adminpage</h1>
-<p>Find me in app/views/public/adminpage.html.erb</p>
+<!--FORM TO SELECT CURRENT PERIOD -->
+<%=form_tag root_path, method: :post, class: 'form-inline mb-2' do %>
+<h3 class="mr-2">Period</h3>
+	<%= select_year( @year,
+	options={:field_name => 'target_year',
+			:prefix =>"", start_year: 2000, end_year: 2020},
+			html_options ={:class =>'form-control form-control-sm mr-2'}) %>
+  
+  <%= select_month(@month,
+  options={:field_name => 'target_month',
+  		:prefix =>""},
+  		html_options ={:class =>'form-control form-control-sm mr-3'}) %>
+  
+  <%=submit_tag "Reload",class: 'btn btn-padgett my-1'%>
+<%end%>
+
+<!--BOXES WITH THE DIFFERENT STATS AND NUMBERS -->
+<div class = "card-group row no-gutters mb-2">
+	<!--ACTIVE FRANCHISE COUNT -->
+  <div class = "col-md-2">
+    <div class = "card h-100">
+	  	<div class = "card-header login-header">
+	    	<h6 class="text-center">Franchises</h6>
+      </div>
+	  	<div class = "card-body text-center">
+	    	<h3 class="padgett-text">225
+	    		<span>
+	    		<%=link_to	admins_franchises_path do%>
+	    			<i class="far fa-list-alt  padgett-blue-icon" 
+    				aria-hidden="true" 
+    				data-html = "true" 
+    				data-toggle="tooltip" 
+    				title="Franchise List">
+    				</i>
+    			<%end%>
+    			</span>
+    		</h3>	
+  	  </div>
+		</div>
+  </div>
+  <!--NUMBER OF SUBMITTED REPORTS FOR THIS PERIOD -->
+  <div class = "col-md-2">	
+    <div class = "card h-100">
+      <div class = "card-header login-header">
+	    	<h6 class="text-center">Reports</h6>
+	  	</div>
+	  	<div class = "card-body text-center">
+	  		<h3>183
+	  		<span>
+	    		<%=link_to	admins_franchises_path do%>
+	    		<i class="far fa-list-alt  padgett-blue-icon" 
+    			aria-hidden="true" 
+    			data-html = "true" 
+    			data-toggle="tooltip" 
+    			title="Royalty Reports">
+    			</i>
+    			<%end%>
+    		</span>
+    		</h3>	
+	  	</div>
+  	</div>
+  </div>
+  <!--COLLECTIONS CURRENT AND COMPARISONS -->
+  <div class = "col-md-2">	
+    <div class = "card h-100">
+      <div class = "card-header login-header">
+	  		<h6 class="text-center">Collections</h6>
+	  	</div>
+	  	<div class = "card-body p-1">
+	  		<div class = "row no-gutters">
+	  	  	<div class = "col-md-6">
+	        	<h6 class="text-left">Current</h6>
+	      	</div>
+	      	<div class = "col-md-6">
+						<h6 class="text-right">$967,255.55</h6>
+		  		</div>
+ 	    	</div>
+ 	    	<div class = "row no-gutters">
+	  	  	<div class = "col-md-6">
+	    			<h6 class="text-left">Last Mo</h6>
+	      	</div>
+	      	<div class = "col-md-6">
+						<h6 class="text-right">
+						<span style="color:green">&#9650;</span>$67,255.55
+						</h6>
+  		  	</div>
+ 	    	</div>
+ 	    	<div class = "row no-gutters">
+	  	  	<div class = "col-md-6">
+	        	<h6 class="text-left">Last Yr</h6>
+	      	</div>
+	      	<div class = "col-md-6">
+		    		<h6 class="text-right">
+		    		<span style="color:red">&#9660;</span>$67,255.55
+		    		</h6>
+		  		</div>
+ 	    	</div>
+ 	  	</div>
+		</div>
+	</div>
+  <!--ROYALTIES AND COMPARISON -->
+  <div class = "col-md-2">	
+    <div class = "card h-100">
+	  	<div class = "card-header login-header">
+	  		<h6 class="text-center">Royalties</h6>
+	  	</div>
+	  	<div class = "card-body p-1">
+	  		<div class = "row no-gutters">
+	  	  	<div class = "col-md-6">
+	        	<h6 class="text-left">Current</h6>
+	      	</div>
+	      	<div class = "col-md-6">
+						<h6 class="text-right">$96,255.55</h6>
+		  		</div>
+ 	    	</div>
+ 	    	<div class = "row no-gutters">
+	  	  	<div class = "col-md-6">
+	    			<h6 class="text-left">Last Mo</h6>
+	      	</div>
+	      	<div class = "col-md-6">
+						<h6 class="text-right">
+						<span style="color:green">&#9650;</span>$7,255.55
+						</h6>
+  		  	</div>
+ 	    	</div>
+ 	    	<div class = "row no-gutters">
+	  	  	<div class = "col-md-6">
+	        	<h6 class="text-left">Last Yr</h6>
+	      	</div>
+	      	<div class = "col-md-6">
+		    		<h6 class="text-right">
+		    		<span style="color:red">&#9660;</span>$6,255.55
+		    		</h6>
+		  		</div>
+ 	    	</div>
+ 	  	</div>
+    </div>
+  </div>
+  <!--AVERAGE COLLECTIONS AND COMPARISONS -->
+  <div class = "col-md-2">	
+    <div class = "card h-100">
+	  	<div class = "card-header login-header">
+	  		<h6 class="text-center">Avg Collections</h6>
+	 		</div>
+	  	<div class = "card-body p-1">
+	  		<div class = "row no-gutters">
+	  	  	<div class = "col-md-6">
+	        	<h6 class="text-left">Current</h6>
+	      	</div>
+	      	<div class = "col-md-6">
+						<h6 class="text-right">$967,255.55</h6>
+		  		</div>
+ 	    	</div>
+ 	    	<div class = "row no-gutters">
+	  	  	<div class = "col-md-6">
+	    			<h6 class="text-left">Last Mo</h6>
+	      	</div>
+	      	<div class = "col-md-6">
+						<h6 class="text-right">
+						<span style="color:green">&#9650;</span>$67,255.55
+						</h6>
+  		  	</div>
+ 	    	</div>
+ 	    	<div class = "row no-gutters">
+	  	  	<div class = "col-md-6">
+	        	<h6 class="text-left">Last Yr</h6>
+	      	</div>
+	      	<div class = "col-md-6">
+		    		<h6 class="text-right">
+		    		<span style="color:red">&#9660;</span>$67,255.55
+		    		</h6>
+		  		</div>
+ 	    	</div>
+ 	  	</div>
+    </div>
+  </div>
+  <!--AVERAGE ROYALTIES AND COMPARISONS -->
+  <div class = "col-md-2 no-padding">	
+    <div class = "card h-100">
+	  	<div class = "card-header login-header">
+	  		<h6 class="text-center">Avg Royalties</h6>
+	  	</div>
+	  	<div class = "card-body p-1">
+	  		<div class = "row no-gutters">
+	  	  	<div class = "col-md-6">
+	        	<h6 class="text-left">Current</h6>
+	      	</div>
+	      	<div class = "col-md-6">
+						<h6 class="text-right">$97,255.55</h6>
+		  		</div>
+ 	    	</div>
+ 	    	<div class = "row no-gutters">
+	  	  	<div class = "col-md-6">
+	    			<h6 class="text-left">Last Mo</h6>
+	      	</div>
+	      	<div class = "col-md-6">
+						<h6 class="text-right">
+						<span style="color:green">&#9650;</span>$6,255.55
+						</h6>
+  		  	</div>
+ 	    	</div>
+ 	    	<div class = "row no-gutters">
+	  	  	<div class = "col-md-6">
+	        	<h6 class="text-left">Last Yr</h6>
+	      	</div>
+	      	<div class = "col-md-6">
+		    		<h6 class="text-right">
+		    		<span style="color:red">&#9660;</span>$7,255.55
+		    		</h6>
+		  		</div>
+ 	    	</div>
+ 	  	</div>
+    </div>
+  </div>
+</div>
+
+<!--LINE CHART WITH MONTHLY ROYALTY AMOUNT WITH LAST YEAR COMPARE -->
+<%= all_royalties_by_month(@year)%> 
+
+<!--GEO MAP SHOWING REVENUES BY STATE -->
+<div class = "row">
+	<div class = "col-md-6" style="border-top: 1px solid">
+		<h5 class="text-center">Revenue by State</h5>	
+	
+		<%=geo_chart [["US-GA",5000],["US-AL",3500], ["US-SC",45000],
+								["US-MA",13500],["US-FL",18500],["US-TX",22500],
+								["US-CA",33500],["US-NC",65300]],
+			library: {
+				magnifyingGlass: {enable: true, zoomFactor: 7.5},
+				region: 'US',
+				resolution: 'provinces',
+				displayMode: 'region',
+				colorAxis: {colors: ['#99aacb','#002b7f']},
+				legend: {textstyle:{ color: '#002b7f', fontsize: 16}}
+			}
+		%>
+	</div>
+
+
+	<!--DONUT CHART SHOWING MONTHLY COLLECTIONS BY CATEGORY -->
+	<div class = "col-md-6" 
+			style = "border-top: 1px solid;
+			border-left: 1px solid">
+		<h5 class="text-center">Collections by Category</h5>
+	<%= pie_chart [["Accounting",50000], ["Tax Prep",15000], ["Consultation",5000], ["Backwork",750],["Setup",2500],["Other1",0],["Other2",0],["Excluded",0]], donut: true, colors: ['#7fba00','#002b7f','#FF0000','#ffec21','#7CDDDD','#9552ea','#ff6361','#A9A9A9'], 
+	library: {
+	  plotOptions:{
+	    pie: {
+		  dataLabels: {enabled: false},
+		  showInLegend: true
+			}
+		} }%>
+	</div>
+</div>
 
 

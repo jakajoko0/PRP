@@ -1,6 +1,6 @@
 class Admins::FranchisesController < ApplicationController
   helper_method :sort_column, :sort_direction
-  before_action :set_franchise, only: [:show, :edit, :update]
+  before_action :set_franchise, only: [:show, :edit, :update, :audit]
   
   def index
     # We use the franchise list in other modules to select a franchise before operations
@@ -17,13 +17,17 @@ class Admins::FranchisesController < ApplicationController
     
     @franchises = Franchise.search(params[:search])
                   .order(sort_column + " " + sort_direction)
-                  .paginate(per_page: 10, page: params[:page])
+                  .paginate(per_page: 20, page: params[:page])
     authorize! :read, Franchise
   end 
 
   def new
     @franchise = Franchise.new(area: 1, mast: 0)
     authorize! :new, @franchise
+  end
+
+  def audit 
+    @audits = @franchise.audits.descending
   end
 
   def create
@@ -72,7 +76,7 @@ class Admins::FranchisesController < ApplicationController
   
   # Method that finds and sets the franchiseobject needed for some actions
   def set_franchise
-    @franchise = Franchise.find(params[:id])
+    @franchise = Franchise.friendly.find(params[:id])
   end
 
   

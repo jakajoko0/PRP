@@ -8,7 +8,7 @@ $(document).on("insurances#edit:loaded insurances#new:loaded insurances#create:l
 	showOn: 'button',
     changeYear: true,
     changeMonth: true,
-    yearRange:"-60:+1"});
+    yearRange:"-10:+10"});
 
   $('#insurance_eo_expiration').next('button.ui-datepicker-trigger').css("verticalAlign","middle");
 
@@ -16,7 +16,7 @@ $(document).on("insurances#edit:loaded insurances#new:loaded insurances#create:l
 	showOn: 'button',
     changeYear: true,
     changeMonth: true,
-    yearRange:"-60:+1"});
+    yearRange:"-10:+10"});
 
   $('#insurance_gen_expiration').next('button.ui-datepicker-trigger').css("verticalAlign","middle");
 
@@ -24,7 +24,7 @@ $(document).on("insurances#edit:loaded insurances#new:loaded insurances#create:l
   showOn: 'button',
     changeYear: true,
     changeMonth: true,
-    yearRange:"-60:+1"});
+    yearRange:"-10:+10"});
 
   $('#insurance_other_expiration').next('button.ui-datepicker-trigger').css("verticalAlign","middle");
  

@@ -1,0 +1,55 @@
+<h2 class = "padgett-text"><%="Audit Trail for #{@franchise.number_and_name}"%></h2>
+
+<table id = "audits-list" class="table table-sm table-striped table-dan ">
+  <thead>
+  	<tr>
+      <!-- Type  -->
+      <th width="10%" scope = "col" style="text-align:left">
+       Type
+      </th>
+      <!-- Lastname  -->
+      <th width="15%" scope = "col" style="text-align:left">
+        When
+      </th>
+      <!-- Status (Compliant / Non Compliant, Terminated )  -->
+      <th width="20% "scope = "col" style = "text-align:left">
+        Who
+      </th>
+      <!-- Region  -->
+      <th width="55%" scope = "col" style="text-align:left">
+        Changes
+      </th>
+
+    </tr>
+  </thead>
+  <tbody>
+  <%@audits.each do |audit| %>
+  	<tr>
+  	  <td width = "10%" align="left">
+  	  	<%=audit.action.capitalize%>
+  	  </td>	
+  	  <td width="15%">
+  	  	<%= I18n.l audit.created_at.in_time_zone, format: :prp %>
+  	  </td>
+  	  <td width="20%">
+  	  	<%=audit.user.email%>
+  	  </td>
+  	  <td width = "55%">
+  	  	<%audit.audited_changes.each do |key,val|%>
+  	  	  <strong><%=key.titleize%></strong> was changed
+  	  	  <%if val.class == Array%>
+  	  	    <%=" From '#{val[0]}' to '#{val[1]}'"%>
+  	  	  <%else%>
+  	  	  <%= val %>
+  	  	  <%end%>
+  	  	  <br>
+  	  	<%end%>
+
+  	  </td>
+  	</tr>
+
+  <%end%>
+
+  </tbody>
+</table>
+

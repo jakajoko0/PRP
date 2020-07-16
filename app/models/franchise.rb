@@ -52,13 +52,17 @@
 #t.integer "max_coll_month"
 #t.datetime "created_at"
 #t.datetime "updated_at"
+#t.string "slug"
+extend FriendlyId
 
+friendly_id :number_and_name, use: :slugged
 has_many :users
 has_many :event_logs
 has_many :accountants
 has_one :insurance
 
-audited
+audited except: [:slug, :max_collections, :avg_collections, :max_coll_year, :max_coll_month], on: [:update, :destroy]
+
 
 NULL_ATTRS = %w(start_date renew_date term_date)
 
@@ -164,6 +168,14 @@ after_save :log_rebate_changed, if: :advanced_rebate_changed?
     Franchise.select(:id, "(franchise_number || ' ' || lastname || ' ' || firstname) as name")
     .map{|e| e.attributes.values}
     .inject({}) {|memo,fran| memo[fran[0]] = fran[1]; memo}
+  end
+
+
+  def self.report_franchise_list(sortby,include_inactives)
+    sortby_text = (sortby == 1 ? "franchise_number ASC" : "lastname ASC")
+    where_clause = include_inactives == 1 ? "" : "inactive = 0"
+
+    Franchise.where(where_clause).order(sortby_text)
   end
 
   private

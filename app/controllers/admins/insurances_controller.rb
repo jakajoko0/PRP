@@ -62,7 +62,7 @@ end
 
 private
 	def set_insurance
-		@insurance = Insurance.find(params[:id])
+		@insurance = Insurance.friendly.find(params[:id])
   end
 
   def new_insurance

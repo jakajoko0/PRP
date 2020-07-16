@@ -19,6 +19,8 @@ class Accountant < ApplicationRecord
   #t.integer "advisory_board"
   #t.text "notes"
   #t.index ["franchise_id"], name: "index_accountants_on_franchise_id"
+  extend FriendlyId
+  friendly_id :franchise_accountant_name, use: :slugged
   
   belongs_to :franchise	
 
@@ -42,6 +44,10 @@ class Accountant < ApplicationRecord
 
   def number_and_name
     [accountant_num, lastname].join(" ")
+  end
+
+  def franchise_accountant_name 
+    [franchise.franchise_number,accountant_num,firstname,lastname].join(" ")
   end
 
   def self.search(search)

@@ -5,7 +5,7 @@ class User < ApplicationRecord
   
   devise :database_authenticatable, 
          :recoverable, :rememberable,
-         :validatable, :trackable, :timeoutable
+         :validatable, :trackable, :timeoutable, :registerable
 
   enum role: [:full_control, :can_pay, :data_entry]
 

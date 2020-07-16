@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_18_183135) do
+ActiveRecord::Schema.define(version: 2020_06_25_144243) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -35,6 +35,7 @@ ActiveRecord::Schema.define(version: 2020_06_18_183135) do
     t.integer "agent"
     t.integer "advisory_board"
     t.text "notes"
+    t.string "slug"
     t.index ["accountant_num", "franchise_id"], name: "index_accountants_on_accountant_num_and_franchise_id", unique: true
     t.index ["franchise_id"], name: "index_accountants_on_franchise_id"
   end
@@ -53,6 +54,8 @@ ActiveRecord::Schema.define(version: 2020_06_18_183135) do
     t.integer "role", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "slug"
+    t.string "time_zone", default: "UTC"
     t.index ["email"], name: "index_admins_on_email", unique: true
     t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
   end
@@ -86,6 +89,7 @@ ActiveRecord::Schema.define(version: 2020_06_18_183135) do
     t.string "lastname"
     t.string "email"
     t.string "event_desc"
+    t.string "user_email"
   end
 
   create_table "franchises", force: :cascade do |t|
@@ -140,6 +144,7 @@ ActiveRecord::Schema.define(version: 2020_06_18_183135) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "term_reason"
+    t.string "slug"
     t.index ["area", "mast", "region", "franchise_number", "office", "email", "inactive"], name: "office_index", unique: true
     t.index ["franchise_number", "region", "office"], name: "index_franchises_on_franchise_number_and_region_and_office", unique: true
     t.index ["franchise_number"], name: "franchise_number"
@@ -154,6 +159,7 @@ ActiveRecord::Schema.define(version: 2020_06_18_183135) do
     t.date "eo_expiration"
     t.date "gen_expiration"
     t.date "other_expiration"
+    t.string "slug"
     t.index ["franchise_id"], name: "index_insurances_on_franchise_id"
   end
 
@@ -179,6 +185,8 @@ ActiveRecord::Schema.define(version: 2020_06_18_183135) do
     t.integer "role", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "slug"
+    t.string "time_zone", default: "UTC"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["franchise_id"], name: "index_users_on_franchise_id"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true

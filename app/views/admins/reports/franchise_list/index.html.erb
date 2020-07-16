@@ -1,0 +1,37 @@
+<div class = "card">
+	<div class = "card-header login-header">
+	  <h4>Franchise List</h4>
+	</div>
+
+	<%=form_tag admins_franchise_list_render_path(format: :html),
+	method: "post" do |f|%>
+
+	<div class = "card-body card-background-padgett">
+		<div class = "form-row col-12">
+			<%=sort_by_number_or_name(
+				"sortby",
+				"form-group form-row col-12",
+				"col-form-label col-form-label-sm label-bold
+				 col-4 col-sm-4 col-md-3 col-lg-2",
+				"col-8 col-sm-4 col-md-3
+				 col-lg-3")%>
+		</div>
+				<div class = "form-row col-12">
+			<%=include_inactives(
+				"inactives",
+				"form-group form-row col-12",
+				"col-form-label col-form-label-sm label-bold
+				 col-4 col-sm-4 col-md-3 col-lg-2",
+				"col-8 col-sm-2 col-md-2
+				 col-lg-1")%>
+		</div>
+	</div>
+
+	<div class = "card-footer">
+		<div class = "col-6 col-sm-3 col-md-2 col-lg-2 pl-0">
+			<%=submit_tag "Generate", class: "btn btn-padgett btn-block"%>
+			</div> 
+	</div>
+	<%end%>
+</div>
+

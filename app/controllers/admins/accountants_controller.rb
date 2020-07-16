@@ -75,7 +75,7 @@ end
 
 private
 	def set_accountant
-		@accountant = Accountant.find(params[:id])
+		@accountant = Accountant.friendly.find(params[:id])
   end
 
   def new_accountant

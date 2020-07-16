@@ -1,7 +1,7 @@
 <div class = "row">
-  <div class = "col-4 offset-4">
+  <div class = "col-sm-12 col-md-6 offset-md-3 col-lg-4 offset-lg-4">
   	<div class = "card">
-  	  <div class = "card-header login_header">
+  	  <div class = "card-header login-header">
   	    <h2>Forgot your password?</h2>
   	  </div> 
   	  <div class = "card-body">
@@ -17,9 +17,9 @@
             class: 'form-control' %>
           </div>
 
-          <div class="col-12 actions" >
-            <%= f.submit "Send Reset Password Instructions",
-            class: 'btn btn-padgett btn-block' %>
+          <div class="actions" >
+            <%= f.submit "Reset Password",
+            class: 'btn btn-padgett' %>
           </div>
         <% end %>
       </div>

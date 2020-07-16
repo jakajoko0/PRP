@@ -1,4 +1,6 @@
 class Insurance < ApplicationRecord
+extend FriendlyId
+friendly_id :franchise_name, use: :slugged
 
 belongs_to :franchise
 
@@ -11,6 +13,11 @@ validates :gen_expiration, presence: {if: :gen_entered?, message: "Please provid
 validates :other_expiration, presence: {if: :other_entered?, message: "Please provide expiration date for other insurance"}
 validates :other_description, presence: {if: :other_entered?, message: "Please provide description of other insurance"}
 
+
+def franchise_name 
+  franchise.number_and_name
+end
+
 def self.search(search_text)
   if search_text
     Insurance.joins(:franchise).
@@ -18,7 +25,7 @@ def self.search(search_text)
   		franchises.lastname as lastname, insurances.eo_insurance, insurances.eo_expiration,
   		insurances.gen_insurance, insurances.gen_expiration, 
   		insurances.other_insurance, insurances.other_expiration,
-  		insurances.other_description").
+  		insurances.other_description, insurances.slug").
   	where('lower(franchises.lastname) LIKE ? OR lower(franchises.firstname) LIKE ?', "%#{search_text.downcase}%","%#{search_text.downcase}%")
   else
     Insurance.joins(:franchise).
@@ -26,7 +33,7 @@ def self.search(search_text)
   		franchises.lastname as lastname, insurances.eo_insurance, insurances.eo_expiration,
   		insurances.gen_insurance, insurances.gen_expiration, 
   		insurances.other_insurance, insurances.other_expiration,
-  		insurances.other_description").
+  		insurances.other_description, insurances.slug").
   	where(nil)
 
   end
