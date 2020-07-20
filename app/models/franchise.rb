@@ -55,13 +55,15 @@
 #t.string "slug"
 extend FriendlyId
 
-friendly_id :number_and_name, use: :slugged
 has_many :users
 has_many :event_logs
 has_many :accountants
 has_one :insurance
-
+friendly_id :number_and_name, use: :slugged
 audited except: [:slug, :max_collections, :avg_collections, :max_coll_year, :max_coll_month], on: [:update, :destroy]
+
+
+scope :all_active, -> {where(inactive: 0)}
 
 
 NULL_ATTRS = %w(start_date renew_date term_date)

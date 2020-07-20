@@ -22,6 +22,7 @@ import "jquery-mask-plugin"
 global.$ = jQuery;
 
 require("custom/franchises")
+require("custom/franchises_select")
 require("custom/accountants")
 require("custom/insurances")
 

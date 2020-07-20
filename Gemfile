@@ -37,22 +37,33 @@ gem 'will_paginate', '3.2.1'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.2', require: false
 
+# Enables exceptions to be rescued and sent to an admin
 gem 'exception_notification'
 
 gem 'redis'
+
+# Enables Application Log browsing and reviewing
 gem 'logster'
+# Passing values to Javascript
 gem 'gon'
-
+# To put the App in Maintenance Mode
 gem 'turnout'
-
+# To enable access restrictions on resources
 gem 'cancan'
-
+# To enable API calls 
 gem 'savon' , '2.12.0'
-
+# To process background jobs
 gem 'sidekiq' 
 gem 'sidekiq-cron'
 gem 'rubyzip', '1.3.0'
 
+#PDF Generation
+gem 'wicked_pdf'
+gem 'wkhtmltopdf-binary'
+
+#XLSX EXPORT
+gem 'caxlsx'
+gem 'caxlsx_rails'
 
 
 group :development, :test do

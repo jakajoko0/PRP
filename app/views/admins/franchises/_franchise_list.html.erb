@@ -21,15 +21,11 @@
         Region
       </th>
         
-      <% if destination == "franchise_edit"%>
+
         <!-- For Edit link we have 2 other columns  -->
         <th width="5%" scope = "col"></th>
         <th width="5%" scope = "col"></th>
         <th width="5%" scope = "col"></th>
-      <%else%>
-        <!-- Only one more column if we have a destination  -->
-        <th width="10%" scope = "col"></th>
-      <%end%>
     </tr>
   </thead>
   <!-- Go through our filtered franchises  -->
@@ -52,7 +48,7 @@
         <%=franchise.region_desc%> 
       </td>
 
-      <%if destination == 'franchise_edit' %>
+      
         <!-- Edit Icon and Link  -->
         <%if can? :edit, franchise%>
           <td width="5%" class = "text-nowrap">
@@ -81,11 +77,7 @@
             "View Audit Trail")%>
           <%end%>    
         </td>
-        
-      <%else%>
-        <!-- Continue Button taking user to destination  -->
-        <%= destination_button(destination,franchise) %>
-      <%end%>
+      
     </tr>
   <% end %>
 </table>

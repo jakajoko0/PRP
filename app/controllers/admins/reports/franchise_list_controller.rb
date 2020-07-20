@@ -18,6 +18,18 @@ def report
 
   respond_to do |format|
     format.html
+    format.pdf do 
+      render pdf: "FranchiseList",
+      template: 'admins/reports/franchise_list/report_pdf.html.erb',
+      layout: 'pdf_report' ,
+      page_size: 'Letter',
+      title: "Franchise List",
+      orientation: "landscape",
+      print_media_type: true,
+      disposition:'attachment'
+
+    end
+    format.xlsx{response.headers['Content-Disposition'] = "attachment; filename='FranchiseList.xlsx'"}
   end
 
 end

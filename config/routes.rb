@@ -55,6 +55,7 @@ Rails.application.routes.draw do
       resources :users
       resources :admins
       resources :franchises
+      resources :franchises_select
       get 'franchises/audit/:id' ,to: "franchises#audit", as: 'audit'
       resources :accountants
       resources :insurances

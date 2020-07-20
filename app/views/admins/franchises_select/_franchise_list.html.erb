@@ -1,0 +1,48 @@
+<%= hidden_field_tag :direction, params[:direction] %>
+<%= hidden_field_tag :sort, params[:sort] %>
+
+<table id = "franchise-list" class="table table-sm table-striped table-dan ">
+  <thead>
+    <tr>
+      <!-- Franchise  -->
+      <th width="20%" scope = "col" style="text-align:left">
+        <%=sortable "franchise", "Franchise" %>
+      </th>
+      <!-- Lastname  -->
+      <th width="50%" scope = "col" style="text-align:left">
+        <%=sortable "lastname" , "Name" %>
+      </th>
+
+      <!-- Continue button  -->
+      <th width="20%" scope = "col"></th>
+      <!-- Padding  -->
+      <th width="10%" scope = "col"></th>
+
+    </tr>
+  </thead>
+  <!-- Go through our filtered franchises  -->
+  <% @franchises.each do |franchise| %>
+    <tr>
+      <!-- Franchise  -->
+      <th width="20%" scope="row" align="left" class = "text-nowrap">
+        <%=franchise.franchise_number %> 
+      </td>
+      <!-- Lastname  -->
+      <td width="50%" align="left" class = "text-nowrap">
+        <%=franchise.full_name%> 
+      </td>
+      <!-- Continue Button taking user to destination  -->
+      <%= destination_button(destination,franchise,20) %>
+      <!-- Padding -->
+      <td width="10%" align="left" class = "text-nowrap">
+      </td>
+    </tr>
+  <% end %>
+</table>
+
+<!-- Pagination Links  -->
+<div class = "row justify-content-center">
+  <div class = "flickr_pagination">
+    <%= will_paginate @franchises %>
+  </div>
+</div>

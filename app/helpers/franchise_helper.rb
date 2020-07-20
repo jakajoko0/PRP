@@ -53,31 +53,38 @@ module FranchiseHelper
   
   end
 
-  def destination_button(destination,franchise)
+  def destination_button(destination,franchise, pct_width)
     rtn_html = ""
     route = ""
       case destination 
       when 'add_royalty'
         route = new_remittance_path(franchise_id: franchise.id)
+        button_text = "Enter Royalties"
       when 'add_receivable'
         route = new_receivable_path(franchise_id: franchise.id)
+        button_text = "Add Charge"
       when 'add_invoice'
         route = new_invoice_path(franchise_id: franchise.id)
+        button_text = "Add Invoice"
       when 'add_payment'
         route = new_check_payment_path(franchise_id: franchise.id)
+        button_text = "Enter Check"
       when 'add_credit'
         route = new_franchise_credit_path(franchise_id: franchise.id)
+        button_text = "Enter Credit"
       when 'add_accountant'
         route = new_admins_accountant_path(franchise_id: franchise.id)
+        button_text = "Add Accountant"
       when 'support'
         route = supports_path(franchise_id: franchise.id)
       when 'add_insurance'
         route = new_admins_insurance_path(franchise_id: franchise.id)
+        button_text = "Add Insurance"
       end
 
       rtn_html = <<-HTML     
-        <td class = "text-nowrap" style="text-align:right">
-          <a data-turbolinks="false" href="#{route}" class="btn btn-sm btn-padgett">Continue</a>
+        <td class = "text-nowrap" width="#{pct_width}%" style="text-align:right">
+          <a data-turbolinks="false" href="#{route}" class="btn btn-sm btn-padgett">#{button_text}</a>
         </td>
       HTML
     

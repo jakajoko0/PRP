@@ -1,0 +1,34 @@
+wb = xlsx_package.workbook
+
+wb.styles do |s|
+  @header_title = s.add_style :sz => 18, :b => true, :alignment => {:horizontal => :center}
+  @number = s.add_style :num_fmt => 4, sz: 10
+  @pct = s.add_style :num_fmt => 4, sz: 10
+  @number_bold = s.add_style :num_fmt =>4, sz: 10 , b: true
+  
+  @header_left = s.add_style alignment: {horizontal: :left}, b: true, sz: 10
+  @header_center = s.add_style alignment: {horizontal: :center}, b: true, sz: 10
+  @header_right = s.add_style alignment: {horizontal: :right}, b: true, sz: 10
+  @data_left= s.add_style alignment: {horizontal: :left}, sz: 10
+  @data_center= s.add_style alignment: {horizontal: :center}, sz: 10
+  @data_right= s.add_style alignment: {horizontal: :right},  sz: 10
+end
+
+wb.add_worksheet(name: "Franchise List") do |ws|
+  ws.add_row ["Franchise List"
+  ], :style =>@header_title, :width => [:auto]
+  
+  ws.add_row
+
+  ws.add_row ['Franchise','Name', 'Address', 'Phone', 'Email', 'Firm ID'], :style => [@header_left, @header_left, @header_left, @header_left, @header_left,@header_left], :width => [:auto, :auto, :auto, :auto, :auto, :auto]
+
+  if @franchises.length > 0
+    @franchises.each do |n|
+      ws.add_row [n.franchise_number, n.full_name, n.one_line_address, n.phone, n.email, n.firm_id], :style => [@data_left, @data_left,@data_left,@data_left,@data_left,@data_left], :width => [:auto, :auto,:auto,:auto,:auto,:auto], :types => [:string, :string, :string, :string, :string, :string]
+    end
+  end
+
+  ws.merge_cells "A1:F1"
+  ws.merge_cells "A2:F2"
+end
+
