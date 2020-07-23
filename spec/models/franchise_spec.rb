@@ -138,13 +138,34 @@ RSpec.describe Franchise, type: :model do
         expect(glass.name_has_changed?).to eq(true)
       end
     end
+
+    describe "#set_dates" do 
+      it "should format the dates properly" do 
+      start = Date.new(2020,1,1)
+      renew = Date.new(2020,2,1)
+      term =  Date.new(2020,3,1)
+      glass.set_dates("01/01/2020", "02/01/2020", "03/01/2020")
+      expect(glass.start_date).to eq(start)
+      expect(glass.renew_date).to eq(renew)
+      expect(glass.term_date).to eq(term)
+      end
+
+    end
+
+
   end
 
-  describe "testing the after_create callback" do 
-    it "should add a notice for franchise creation" do 
-      new_franchise = build(:franchise)
-      expect{new_franchise.save}.to change{EventLog.count}.by(1)
+  describe "Test the class methods" do 
+    describe ".search" do 
+      it "should filter down to one franchises properly" do 
+        expect(Franchise.search("Wil")).to contain_exactly(williams)
+      end
+
+      it "should filter down to a few Franchises properly" do 
+        expect(Franchise.search("D")).to contain_exactly(williams,canata)
+      end
     end
   end
+  
 
 end

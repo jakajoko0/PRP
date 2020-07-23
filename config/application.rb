@@ -29,6 +29,7 @@ module Reap2
     # -- all .rb files in that directory are automatically loaded after loading
     # the framework and any gems in your application.
     config.autoload_paths += %W(#{config.root}/lib) # add this line
+    config.autoload_paths += Dir[Rails.root.join('app','interactors','**/')]
     # Don't generate system test files.
     config.generators.system_tests = nil
 

@@ -674,15 +674,15 @@ input:required:focus {
 
 .card-title+h3:before {
   font-family: 'Font Awesome 5 Free' ;
-  font-weight: 400;
+  font-weight: 700;
   content: "\f146";
   padding-right: 5px;
 }
 
 .card-title+h3.collapsed:before {
   font-family: 'Font Awesome 5 Free';
-  font-weight: 400;
   content: "\f0fe";
+  font-weight: 700;
   padding-right: 5px;
 }
 

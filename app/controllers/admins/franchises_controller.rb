@@ -3,18 +3,6 @@ class Admins::FranchisesController < ApplicationController
   before_action :set_franchise, only: [:show, :edit, :update, :audit]
   
   def index
-    # We use the franchise list in other modules to select a franchise before operations
-    if params[:destination] 
-      # If we provided a destination in params, we will use it in the link
-      @destination = params[:destination]
-    else
-      # Otherwise it will be the standard franchise edit link
-      @destination = "franchise_edit"
-    end
-    
-    # Pass the destination to javascript
-    gon.destination = @destination
-    
     @franchises = Franchise.search(params[:search])
                   .order(sort_column + " " + sort_direction)
                   .paginate(per_page: 20, page: params[:page])
@@ -23,7 +11,7 @@ class Admins::FranchisesController < ApplicationController
 
   def new
     @franchise = Franchise.new(area: 1, mast: 0)
-    authorize! :new, @franchise
+    authorize! :new, Franchise
   end
 
   def audit 
@@ -31,13 +19,14 @@ class Admins::FranchisesController < ApplicationController
   end
 
   def create
-    @franchise = Franchise.new(franchise_params)
-    @franchise.set_dates(franchise_params[:start_date], franchise_params[:renew_date], franchise_params[:term_date])
-    authorize! :create, @franchise 
-    if @franchise.save
+    authorize! :create, Franchise
+    result = CreateFranchise.call(params: franchise_params, user: current_authenticated)
+    
+    if result.success?
       flash[:success] = 'Franchise Created Successfully'
       redirect_to admins_franchises_path 
     else
+      @franchise = result.franchise
       render action: :new
     end
   end
@@ -48,13 +37,13 @@ class Admins::FranchisesController < ApplicationController
 
   def update
     authorize! :update, @franchise
-    @franchise.assign_attributes(franchise_params)
-    @franchise.set_dates(franchise_params[:start_date], franchise_params[:renew_date], franchise_params[:term_date])
-
-    if @franchise.save
+    result = UpdateFranchise.call(franchise: @franchise, params: franchise_params, user: current_authenticated)
+    
+    if result.success?
       flash[:success] = "Franchise profile modified successfully"
       redirect_to admins_franchises_path
     else
+      @franchise = result.franchise
       render 'edit'
     end
   end

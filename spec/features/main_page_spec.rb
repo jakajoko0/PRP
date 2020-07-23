@@ -30,7 +30,7 @@ RSpec.feature "Home Page", :type => :feature do
     click_button 'Log In'
     expect(page).to_not have_selector "img#padgett-logo"
     expect(page).to have_link("Sign Out")
-    expect(page).to have_content("Public#adminpage")
+    expect(page).to have_content("Period")
 
   end
 

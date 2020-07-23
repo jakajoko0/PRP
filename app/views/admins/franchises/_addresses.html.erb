@@ -57,6 +57,7 @@
               col-form-label-sm label-bold'%>
             <div class = "col-sm-5 col-md-5 col-lg-5">
               <%= f.text_field :zip_code,
+              value: f.object.zip_code,
               class: "form-control form-control-sm col",
               'data-mask': '00000-0000', required: true%>
             </div>   

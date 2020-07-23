@@ -23,6 +23,6 @@ class Admin < ApplicationRecord
 
     def log_event
       desc = "Admin user #{self.email} added up on PR+P"
-      EventLog.create(event_date: DateTime.now, franchise_id: nil, fran: nil, lastname: "HOME OFFICE", email: self.email, event_desc: desc)
+      EventLog.create(event_date: DateTime.now, fran: nil, lastname: "HOME OFFICE", user_email: self.email, event_desc: desc)
     end    
 end

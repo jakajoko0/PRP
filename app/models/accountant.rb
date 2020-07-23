@@ -20,7 +20,7 @@ class Accountant < ApplicationRecord
   #t.text "notes"
   #t.index ["franchise_id"], name: "index_accountants_on_franchise_id"
   extend FriendlyId
-  friendly_id :franchise_accountant_name, use: :slugged
+  friendly_id :franchise_and_name , use: :slugged
   
   belongs_to :franchise	
 
@@ -34,6 +34,11 @@ class Accountant < ApplicationRecord
   validates :lastname, presence: {message: "Last name cannot be blank"}
   validates :accountant_num, uniqueness: {scope: [:franchise], message: "This accountant number already exists"}
 
+  def should_generate_new_friendly_id?
+    name_or_number_has_changed?
+  end
+
+  
   def full_name
     [firstname,lastname].join(" ")
   end
@@ -42,13 +47,19 @@ class Accountant < ApplicationRecord
     [accountant_num, firstname, lastname].join(" ")
   end
 
+  def franchise_and_name
+    [franchise&.number_and_name, accountant_num, firstname, lastname].join("-")
+  end
+  
+
   def number_and_name
     [accountant_num, lastname].join(" ")
   end
 
-  def franchise_accountant_name 
-    [franchise.franchise_number,accountant_num,firstname,lastname].join(" ")
+  def name_or_number_has_changed?
+    lastname_changed? || firstname_changed? || accountant_num_changed?
   end
+
 
   def self.search(search)
     if search
@@ -69,7 +80,7 @@ class Accountant < ApplicationRecord
 
   def log_new_accountant
     desc = "Accountant #{self.accountant_num} #{self.lastname} was created"
-    EventLog.create(event_date: DateTime.now, franchise_id: self.franchise_id, fran: self.franchise.franchise_number, lastname: self.franchise.lastname, email: self.franchise.email, event_desc: desc)
+    EventLog.create(event_date: DateTime.now, fran: self.franchise.franchise_number, lastname: self.franchise.lastname, user_email: self.franchise.email, event_desc: desc)
   end
 
 

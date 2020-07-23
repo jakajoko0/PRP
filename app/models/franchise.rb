@@ -56,9 +56,9 @@
 extend FriendlyId
 
 has_many :users
-has_many :event_logs
 has_many :accountants
 has_one :insurance
+
 friendly_id :number_and_name, use: :slugged
 audited except: [:slug, :max_collections, :avg_collections, :max_coll_year, :max_coll_month], on: [:update, :destroy]
 
@@ -70,8 +70,6 @@ NULL_ATTRS = %w(start_date renew_date term_date)
 
 before_save :nil_if_blank
 
-after_create :log_new_franchise
-after_save :log_rebate_changed, if: :advanced_rebate_changed?
 #after_save :reset_name_variable, if: :name_has_changed?
 
 #Model Validation
@@ -96,9 +94,15 @@ after_save :log_rebate_changed, if: :advanced_rebate_changed?
   validates :email , format: {with: /\A([\w+\-]\.?)+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/, message: 'Invalid email format'}
   validates :alt_email, format: {with: /\A([\w+\-]\.?)+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/, message: 'Invalid email format'}, allow_blank: true 
 
+
+
   #================================================================= 
   #Instance Methods  
   #=================================================================
+  def should_generate_new_friendly_id?
+    name_has_changed?
+  end
+
   #firstname and lastname with a space
   def full_name
     [firstname , lastname].join(' ')
@@ -125,20 +129,6 @@ after_save :log_rebate_changed, if: :advanced_rebate_changed?
     lastname_changed? || firstname_changed?
   end
   
-  def region_desc
-    case self.region 
-    when 1
-      "Southeast"  
-    when 2
-      "Mid-Atlantic"
-    when 3
-      "Northeast Corridor"
-    when 4
-      "Mid-USA"
-    when 5
-      "West"
-    end
-  end
 
   def set_dates(start_date, renew_date, term_date)
     self.start_date = Date.strptime(start_date,I18n.translate('date.formats.default')) unless start_date.blank?
@@ -185,10 +175,6 @@ after_save :log_rebate_changed, if: :advanced_rebate_changed?
   def nil_if_blank
     NULL_ATTRS.each {|attr| self[attr] = nil if self[attr].blank?}
   end
-
-  def log_new_franchise
-  	desc = "Franchise #{self.franchise_number} #{self.lastname} was Created"
-  	EventLog.create(event_date: DateTime.now, franchise_id: self.id, fran: self.franchise_number, lastname: self.lastname, email: self.email, event_desc: desc)
-  end
+ 
 
 end

@@ -15,7 +15,7 @@ validates :other_description, presence: {if: :other_entered?, message: "Please p
 
 
 def franchise_name 
-  franchise.number_and_name
+  franchise&.number_and_name
 end
 
 def self.search(search_text)

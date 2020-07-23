@@ -1,4 +1,8 @@
 module DisplayHelper
+  REGIONS = {1 => "Southeast", 2 => "Mid-Atlantic", 
+             3 => "Northeast Corridor", 4 => "Mid-USA",
+             5 => "West", 6 => "Processing Center",
+             7 =>  "Corporate", 8 => "Home Office" }
   #Helper that displays the proper payment icon
   #depending on the payment type
   def paid_with_icon(payment)	
@@ -74,6 +78,10 @@ def display_checkmark(value = 0, description = "")
   end
   i_tag.html_safe
 
+end
+
+def region_desc(region)
+  REGIONS.fetch(region)
 end
 
 

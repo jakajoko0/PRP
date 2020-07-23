@@ -23,12 +23,18 @@ gem 'jbuilder', '~> 2.7'
 # gem 'bcrypt', '~> 3.1.7'
 gem 'devise'
 
+
+gem "interactor", "~> 3.0"
+#Gem to help login As another user
 gem 'devise_masquerade'
 
+#Gem to keep audit track of changes
 gem 'audited', '4.9.0'
 
+#Gem to display charts
 gem 'chartkick'
 
+#Gem to show better user friendly urls (slugs) 
 gem 'friendly_id', '~> 5.2.4'
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'

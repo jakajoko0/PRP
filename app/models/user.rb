@@ -40,6 +40,6 @@ class User < ApplicationRecord
 
     def log_event
       desc = "#{self.email} signed up on PR+P"
-      EventLog.create(event_date: DateTime.now, franchise_id: self.franchise_id, fran: self.franchise.franchise_number, lastname: self.franchise.lastname, email: self.email, event_desc: desc)
+      EventLog.create(event_date: DateTime.now, fran: self.franchise.franchise_number, lastname: self.franchise.lastname, user_email: self.email, event_desc: desc)
     end     
 end

@@ -11,29 +11,29 @@ def index
   authorize! :read, Accountant
 end
 
-def new 
-  redirect_to root_url, notice: 'A Franchise was Not Selected' unless params[:franchise_id]
+def new
+  return redirect_to root_url, notice: 'A Franchise was Not Selected' unless params[:franchise_id]
   franchise_id = params[:franchise_id].to_i
-	@accountant = Accountant.new(franchise_id: franchise_id)
-  @franchise = Franchise.find(franchise_id)
+	@franchise = Franchise.find(franchise_id)
+  @accountant = @franchise.accountants.new
 
 	authorize! :new, @accountant
 end
 
 def create
-	@accountant = new_accountant 
-	@accountant.set_dates(accountant_params[:start_date],
-                        accountant_params[:birthdate],
-		                    accountant_params[:spouse_birthdate],
-                        accountant_params[:term_date])
+  authorize! :create, Accountant
+  result = CreateAccountant.call(params: accountant_params, user: current_authenticated)
 
-	authorize! :create, @accountant
-  if @accountant.save 
-  	flash[:success] = "Accountant Created Successfully"
-  	redirect_to admins_accountants_path
+  if result.success?
+    flash[:success] = "Accountant Created Successfully"
+    redirect_to admins_accountants_path
   else
-  	render action: :new 
+    @accountant = result.accountant
+    render action: :new 
   end
+
+	
+  
 end
 
 def edit
@@ -42,15 +42,13 @@ end
 
 def update
 	authorize! :update, @accountant
-	@accountant.assign_attributes(accountant_params)
-	@accountant.set_dates(accountant_params[:start_date],
-                        accountant_params[:birthdate],
-		                    accountant_params[:spouse_birthdate],
-                        accountant_params[:term_date])
-	if @accountant.save 
-		flash[:success] = "Accountant Modified Successfully"
+  result = UpdateAccountant(accountant: @accountant, params: accountant_params, user: current_authenticated)
+	
+  if result.success?
+	 flash[:success] = "Accountant Modified Successfully"
 		redirect_to admins_accountants_path 
 	else
+    @accountant = result.accountant
 		render 'edit'
 	end
 end
