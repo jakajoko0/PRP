@@ -1,52 +1,68 @@
 <%=render 'shared/report_header'%>
 <div class = "row">
 	<div class = "col-12">
-		<h5 class="text-center"><%=@report_info[:title]%></h5>
+		<h5 class="text-center">
+			<%=@report_info[:title]%>
+		</h5>
 	</div>
 </div>
 
-<div id = "table-scroll" class = "table-scroll" style = "height: calc(100vh - 230px)">
-<table id = "main-table" class = "main-table">
-  <thead>
-  	<tr>
-  	<th>Number</th>
-		<th>Name</th>
-		<th>Address</th>
-		<th>Phone</th>
-		<th>Email</th>
-		<th>Firm ID</th>
-	</thead>
-	<%if @franchises.size > 0%>
-	  <tbody>	
-	  <%@franchises.each do |franchise|%>
-	  <tr>
-	    <td data-name="Number">
-		  	<%=franchise.franchise_number%>
-		  </td>
+<div id = "table-scroll" 
+     class = "table-scroll"
+     style = "height: calc(100vh - 240px)">
+  <table id = "main-table">
+    <thead id="report">
+  	  <tr>
+  	    <th>
+  		    <%=I18n.t('reports.franchise_list.number')%>
+ 		    </th>
+		    <th>
+		      <%=I18n.t('reports.franchise_list.name')%>
+	      </th>
+		    <th>
+		      <%=I18n.t('reports.franchise_list.address')%>
+        </th>
+		    <th>
+			    <%=I18n.t('reports.franchise_list.phone')%>
+		    </th>
+		    <th>
+			    <%=I18n.t('reports.franchise_list.email')%>
+		    </th>
+		    <th>
+			    <%=I18n.t('reports.franchise_list.firm_id')%>
+		    </th>
+		  </tr>
+	  </thead>
+	  <%if @franchises.size > 0%>
+	    <tbody>	
+	      <%@franchises.each do |franchise|%>
+	        <tr>
+	          <td data-name="Number">
+		  	      <%=franchise.franchise_number%>
+		        </td>
 		  
-		  <td  data-name="Name">
-		  	<%=franchise.full_name%>
-		  </td>
+		  			<td  data-name="Name">
+		  				<%=franchise.full_name%>
+		  			</td>
 
-		  <td data-name="Address">
-		  	<%=franchise.one_line_address%>
-		  </td>
+		  			<td data-name="Address">
+		  				<%=franchise.one_line_address%>
+		  			</td>
 
-		  <td  data-name="Phone">
-		  	<%=franchise.phone%>
-		  </td>
+		  			<td  data-name="Phone">
+		  				<%=franchise.phone%>
+		  			</td>
 
-		  <td data-name="Email">
-		  	<%=franchise.email%>
-		  </td>
-		  <td data-name="Firm ID">
-		  	<%=franchise.firm_id%>
-		  </td>
-		</tr>
-		<%end%>
-	</tbody>
-
-  <%end%>
-
-</table>
+		  			<td data-name="Email">
+		  				<%=franchise.email%>
+		  			</td>
+		  			
+		  			<td data-name="Firm ID">
+		  				<%=franchise.firm_id%>
+		  			</td>
+					</tr>
+				<%end%>
+			</tbody>
+  	<%end%>
+  </table>
 </div>

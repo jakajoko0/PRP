@@ -2,25 +2,26 @@
   <%=link_to admins_franchises_select_index_path(destination: 'add_insurance'),
      data: {turbolinks: false} do%>
      <button class = 'btn btn-padgett'>
-       Add Insurance
+      <%=I18n.t('insurance.index.add_insurance')%>
      </button>
   <%end%>
 </div>
 
 
 <!-- Form that filters through the franchise list -->
-  <%= form_tag admins_insurances_path, :method => 'get',
-      :id => "insurance_search", class: 'pt-2 pb-2'  do %>
+  <%= form_tag admins_insurances_path,
+      :method => 'get',
+      :id => "insurance_search",
+      class: 'pt-2 pb-2'  do %>
+      
       <div class = "form-group row">
-        
         <div class = "col-sm-6 col-md-6 col-lg-4">
           <%= text_field_tag :search, params[:search],
-         class:'form-control input-sm', placeholder: "Search by first or last name" %>
+         class:'form-control input-sm',
+         placeholder: I18n.t('insurance.index.search')%>
         </div>
-
-       <div class = "col-sm-3 col-md-3 col-lg-2 no-padding">
-         <%= submit_tag "Search", :lastname => nil,
-         class:'btn btn-padgett'%>
+       <div class = "col-sm-3 col-md-3 col-lg-2  
+                     no-padding">
        </div>
       </div>   
   <% end %>

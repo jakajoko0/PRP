@@ -1,91 +1,114 @@
 <%= hidden_field_tag :direction, params[:direction] %>
 <%= hidden_field_tag :sort, params[:sort] %>
+<div id = "table-scroll"
+     class = "table-scroll">
 
-<table id = "franchise-list" class="table table-sm table-striped table-dan ">
-  <thead>
-    <tr>
-      <!-- Franchise  -->
-      <th width="10%" scope = "col" style="text-align:left">
-        <%=sortable "franchise", "Franchise" %>
-      </th>
-      <!-- Lastname  -->
-      <th width="40%" scope = "col" style="text-align:left">
-        <%=sortable "lastname" , "Name" %>
-      </th>
-      <!-- Status (Compliant / Non Compliant, Terminated )  -->
-      <th width="20% "scope = "col" style = "text-align:center">
-        Status
-      </th>
-      <!-- Region  -->
-      <th width="15%" scope = "col" style="text-align:center">
-        Region
-      </th>
+  <table id = "franchise-list" 
+         class="table-striped">
+    <thead id="list">
+      <tr>
+        <!-- Franchise  -->
+        <th scope = "col" 
+            class = "td-left">
+          <%=sortable "franchise",
+          (I18n.t('franchise.index.franchise')) %>
+        </th>
         
-
-        <!-- For Edit link we have 2 other columns  -->
-        <th width="5%" scope = "col"></th>
-        <th width="5%" scope = "col"></th>
-        <th width="5%" scope = "col"></th>
-    </tr>
-  </thead>
-  <!-- Go through our filtered franchises  -->
-  <% @franchises.each do |franchise| %>
-    <tr>
-      <!-- Franchise  -->
-      <th width="10%" scope="row" align="left" class = "text-nowrap">
-        <%=franchise.franchise_number %> 
-      </td>
-      <!-- Lastname  -->
-      <td width="40%" align="left" class = "text-nowrap">
-        <%=franchise.full_name%> 
-      </td>
-      <!-- Status, calls a helper to display proper icons  -->
-      <td width="20%" align="center" class = "text-nowrap">
-        <%=franchise_status(franchise)%>
-      </td>
-      <!-- Region description  -->
-      <td width="20%" align="center" class = "text-nowrap">
-        <%=region_desc(franchise.region)%> 
-      </td>
-
+        <!-- Lastname  -->
+        <th  scope = "col" class = "td-left">
+          <%=sortable "lastname" ,
+          (I18n.t('franchise.index.name')) %>
+        </th>
+        
+        <!-- Status (Compliant / Non Compliant, Terminated )  -->
+        <th scope = "col" class = "td-center">
+          <%=I18n.t('franchise.index.status')%>
+        </th>
       
-        <!-- Edit Icon and Link  -->
-        <%if can? :edit, franchise%>
-          <td width="5%" class = "text-nowrap">
-            <%=link_with_icon(edit_admins_franchise_path(id:franchise),
-              "edit",
-              "Edit this franchise",
-              "",
-              false)%> 
+        <!-- Region  -->
+        <th scope = "col" class = "td-center">
+          <%=I18n.t('franchise.index.region')%>
+        </th>
+      
+        <!-- For links we have 3 other columns  -->
+        <th  scope = "col" ></th>
+        <th  scope = "col"></th>
+        <th  scope = "col"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- Go through our filtered franchises  -->
+      <% @franchises.each do |franchise| %>
+        <tr>
+          <!-- Franchise  -->
+          <td data-name = "Franchise" 
+              scope = "col" 
+              class = "td-left">
+            <%=franchise.franchise_number %> 
           </td>
-        <%else%>
-          <td width="5%"></td>
+          
+          <!-- Lastname  -->
+          <td data-name="Name"
+              scope="col" 
+              class = "td-left">
+            <%=franchise.full_name%> 
+          </td>
+          
+          <!-- Status, calls a helper to display proper icons  -->
+          <td data-name="Status" 
+              scope = "col" 
+              class = "td-center">
+            <%=franchise_status(franchise)%>
+          </td>
+        
+          <!-- Region description  -->
+          <td data-name="Region" 
+              scope = "col" 
+              class = "td-center">
+            <%=region_desc(franchise.region)%> 
+          </td>
+
+          <!-- Edit Icon and Link  -->
+          <%if can? :edit, franchise%>
+            <td data-name="" class = "td-center">
+              <%=link_with_icon(edit_admins_franchise_path(id:franchise),
+                "edit",
+                (I18n.t('franchise.index.edit_link')),
+                "",
+                false)%> 
+            </td>
+          <%else%>
+            <td data-name="" class = "td-center"></td>
           <%end%>
-        <!-- View Icon and Link  -->
-        <td width="5%" class = "text-nowrap">
-          <%=link_with_icon(
+          
+          <!-- View Icon and Link  -->
+          <td data-name="" class = "td-center">
+            <%=link_with_icon(
             admins_franchise_path(id:franchise),
             "show",
-            "View this Franchise")%>
-        </td>
+            I18n.t('franchise.index.view_link'))%>
+          </td>
         
-        <td width = "5%" class = "text-nowrap">
-          <%if franchise.audits.size > 0%>
-            <%=link_with_icon(
-            admins_audit_path(id:franchise),
-            "audit",
-            "View Audit Trail")%>
-          <%end%>    
-        </td>
-      
-    </tr>
-  <% end %>
-</table>
+          <td data-name="" class = "td-center">
+            <%if franchise.audits.size > 0%>
+              <%=link_with_icon(
+              admins_audit_path(id:franchise),
+              "audit",
+              I18n.t('franchise.index.audit_link'))%>
+            <%end%>    
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
 
 <!-- Pagination Links  -->
 <div class = "row justify-content-center">
   <div class = "flickr_pagination">
-    <%= will_paginate @franchises %>
+    <%= will_paginate @franchises,
+    pervious_label: I18n.t('pagination.prev'),
+    next_label: I18n.t('pagination.next') %>
   </div>
 </div>
 

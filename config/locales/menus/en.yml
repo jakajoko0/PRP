@@ -1,0 +1,104 @@
+en:
+  admin_menu:
+    sign_out: Sign Out
+    user: User
+    franchise: 
+      franchises: Franchises 
+      accountants: Accountants
+      insurance: Insurance 
+      financials: Financials
+      website: Website Preferences
+      supports: Support
+      support:
+        support_history: Support History
+        search_support: Search Support
+      reports: Reports
+      report:
+        franchise_list: Franchise List
+        expiring: Expiring Franchise
+        advanced_rebate: Using Advanced Rebates
+        prior_rebate: Using Prior Rebates
+        payment_methods: Payment Methods
+        missing_methods: Payment Method Missing
+        missing_insurance: Insurance Missing
+        financial_status: Financial Reporting Status
+        financial_agg: Financial Aggregation
+        counts_averages: Client Counts and Fee Averages
+        website_pref: Website Preferences
+        missing_website: Website Preferences Missing
+    royalty:
+      royalties: Royalties
+      royalty_enter: Enter Royalties
+      royalty_review: Review Royalties
+      reports: Reports
+      report:
+        history: Franchise History
+        history_years: Franchise History (Multiple Years)
+        coll_date: Collections by Entry Date
+        coll_date_comp: Collections by Entry Date (Comparison)
+        coll_threshold: Collections Under a Threshold
+        coll_summ_month: Collections Summary by Entry Month
+        coll_summ_year: Collections Summary by Year
+        roy_summ_month: Royalties Summary by Entry Month
+        roy_summ_year: Royalties Summary by Year
+        month_rank: Monthly Rankings
+        performance: Performance Report (Collections or Royalties)
+        sales: Sales Report
+        growth: Growth Report 
+        rank_avg: Yearly Rankings (Averages)
+        rank_tot: Yearly Rankings (Totals)
+        late: Late Royalty Reports
+    charge_receipt:
+      charges_receipts: Charges / Receipts 
+      charges: Charges
+      credits: Credits
+      checks: Checks
+      invoices: Franchise Invoices
+      reports: Reports
+      report:
+        due: Amounts Due
+        delinquent: Delinquents
+        statement: Statement
+        trans_sum: Transactions Summary
+        trans_det: Transactions Detail
+    payment:
+      payments: Payments
+      all: All Payments
+      pending: Pending
+      approved: Approved
+      error: Declined / Errors
+      manage_checks: Manage Check Payments
+      reports: Reports
+      report: 
+        by_method: Payments by Method
+    tool:
+      tools: Tools
+      charges_codes: Manage Charge Codes
+      credit_codes: Manage Credit Codes
+      fran_groups: Franchise Groups
+      login_as: Log In As
+      system:
+        systems: System
+        event_log: Event Log
+        server_log: Server Log
+        audit: Audit Trail
+        jobs: Background Jobs
+        pay_resp: Payment Responses
+      reports: Reports 
+      report:
+        event_log: Event Log
+        users: Portal Users
+        not_using: Franchises Not Signed Up
+    user:
+      users: Users
+      manage: Manage Corporate Users     
+      profile: Your Profile
+
+
+
+
+
+
+
+
+

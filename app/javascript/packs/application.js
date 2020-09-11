@@ -15,7 +15,8 @@ require("chartkick").use(require("highcharts"))
 
 import "bootstrap"
 import "../stylesheets/application"
-import "@fortawesome/fontawesome-free/js/all";
+import "@fortawesome/fontawesome-free/css/all.css";
+import "@fortawesome/fontawesome-free/js/all.js";
 import $ from 'jquery';
 import "jquery-mask-plugin"
  

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_22_153718) do
+ActiveRecord::Schema.define(version: 2020_09_03_145438) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -36,6 +36,7 @@ ActiveRecord::Schema.define(version: 2020_07_22_153718) do
     t.integer "advisory_board"
     t.text "notes"
     t.string "slug"
+    t.string "ptin", limit: 8
     t.index ["accountant_num", "franchise_id"], name: "index_accountants_on_accountant_num_and_franchise_id", unique: true
     t.index ["franchise_id"], name: "index_accountants_on_franchise_id"
   end
@@ -158,6 +159,9 @@ ActiveRecord::Schema.define(version: 2020_07_22_153718) do
     t.date "gen_expiration"
     t.date "other_expiration"
     t.string "slug"
+    t.integer "other2_insurance", default: 0
+    t.string "other2_description"
+    t.date "other2_expiration"
     t.index ["franchise_id"], name: "index_insurances_on_franchise_id"
   end
 

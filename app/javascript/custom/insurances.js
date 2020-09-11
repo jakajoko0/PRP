@@ -27,6 +27,14 @@ $(document).on("insurances#edit:loaded insurances#new:loaded insurances#create:l
     yearRange:"-10:+10"});
 
   $('#insurance_other_expiration').next('button.ui-datepicker-trigger').css("verticalAlign","middle");
+   
+  $('#insurance_other2_expiration').datepicker({
+  showOn: 'button',
+    changeYear: true,
+    changeMonth: true,
+    yearRange:"-10:+10"});
+
+  $('#insurance_other2_expiration').next('button.ui-datepicker-trigger').css("verticalAlign","middle");
  
   
   });

@@ -28,8 +28,16 @@ RSpec.describe Insurance, type: :model do
       expect(build(:insurance, other_insurance: 1, other_expiration: nil )).not_to be_valid  
     end
 
+    it "is invalid when Other2 checked without expiration date" do  
+      expect(build(:insurance, other2_insurance: 1, other2_expiration: nil )).not_to be_valid  
+    end
+
     it "is invalid when Other checked without description" do  
       expect(build(:insurance, other_insurance: 1, other_expiration: Date.today+1.year, other_description: nil )).not_to be_valid  
+    end
+
+    it "is invalid when Other2 checked without description" do  
+      expect(build(:insurance, other2_insurance: 1, other2_expiration: Date.today+1.year, other_description: nil )).not_to be_valid  
     end
 
     it "does not accept duplicate insurance for same franchise" do 
@@ -52,6 +60,12 @@ RSpec.describe Insurance, type: :model do
     end
 
     describe "#other_entered?" do
+      it "should return the proper value" do 
+        expect(glass_insurance.other_entered?).to eq(false)
+      end
+    end
+
+    describe "#other2_entered?" do
       it "should return the proper value" do 
         expect(glass_insurance.other_entered?).to eq(false)
       end

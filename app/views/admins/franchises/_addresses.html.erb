@@ -2,12 +2,12 @@
   <div class ="col-lg-4 no-padding">
     <div class = "card" style="padding:1px; border:0px;">
       <div class = "card-header login-header">
-        Mailing Address
+        <%=I18n.t('franchise.form.mailing_address')%>
       </div>
       <div class = "card-body card-background-padgett">
         <div class = "form-row">
           <div class = "form-group form-row col-12">
-            <%=f.label :address, "Address",
+            <%=f.label :address, 
             class: 'col-md-4 col-sm-4 col-lg-4
               col-form-label-sm label-bold'%>
             <div class = "col-sm-8 col-md-8 col-lg-8">
@@ -29,7 +29,7 @@
         </div>
         <div class = "form-row">
           <div class = "form-group form-row col-12">
-            <%=f.label :city, "City",
+            <%=f.label :city, 
             class: 'col-md-4 col-sm-4 col-lg-4 
               col-form-label-sm label-bold'%>
             <div class = "col-sm-8 col-md-8 col-lg-8">
@@ -40,7 +40,7 @@
         </div>
         <div class = "form-row">
           <div class = "form-group form-row col-12">
-            <%=f.label :state, "State",
+            <%=f.label :state, 
             class: 'col-md-4 col-sm-4 col-lg-4 
               col-form-label-sm label-bold'%>
             <div class = "col-sm-4 col-md-4 col-lg-4">
@@ -52,7 +52,7 @@
         </div>
         <div class = "form-row">
           <div class = "form-group form-row col-12">
-            <%=f.label :zip_code, "Zip",
+            <%=f.label :zip_code, 
             class: 'col-md-4 col-sm-4 col-lg-4 
               col-form-label-sm label-bold'%>
             <div class = "col-sm-5 col-md-5 col-lg-5">
@@ -69,12 +69,12 @@
   <div class = "col-lg-4 no-padding">
     <div class = "card" style="padding:1px;border:0px;">
       <div class = "card-header login-header">
-        Shipping Address
+        <%=I18n.t('franchise.form.shipping_address')%>
       </div>
       <div class = "card-body card-background-padgett">
         <div class = "form-row">
           <div class = "form-group form-row col-12">
-            <%=f.label :ship_address, "Address",
+            <%=f.label :ship_address,
             class: 'col-md-4 col-sm-4 col-lg-4 
               col-form-label-sm label-bold'%>
             <div class = "col-sm-8 col-md-8 col-lg-8">
@@ -96,7 +96,7 @@
         </div>
         <div class = "form-row">
           <div class = "form-group form-row col-12">
-            <%=f.label :ship_city, "City",
+            <%=f.label :ship_city, 
             class: 'col-md-4 col-sm-4 col-lg-4 
               col-form-label-sm label-bold'%>
             <div class = "col-sm-8 col-md-8 col-lg-8">
@@ -107,7 +107,7 @@
         </div>
         <div class = "form-row">
           <div class = "form-group form-row col-12">
-            <%=f.label :ship_state, "State",
+            <%=f.label :ship_state, 
             class: 'col-md-4 col-sm-4 col-lg-4 
               col-form-label-sm label-bold'%>
             <div class = "col-sm-4 col-md-4 col-lg-4">
@@ -119,7 +119,7 @@
         </div>
         <div class = "form-row">
           <div class = "form-group form-row col-12">
-            <%=f.label :ship_zip_code, "Zip",
+            <%=f.label :ship_zip_code,
             class: 'col-md-4 col-sm-4 col-lg-4 
               col-form-label-sm label-bold'%>
             <div class = "col-sm-5 col-md-5 col-lg-5">
@@ -135,12 +135,12 @@
   <div class = "col-lg-4 no-padding">
     <div class = "card" style="padding:1px;border:0px;">
       <div class = "card-header login-header">
-        Home Address
+        <%=I18n.t('franchise.form.home_address')%>
       </div>
       <div class = "card-body card-background-padgett">
         <div class = "form-row">
           <div class = "form-group form-row col-12">
-            <%=f.label :home_address, "Address",
+            <%=f.label :home_address,
             class: 'col-md-4 col-sm-4 col-lg-4 
               col-form-label-sm label-bold'%>
             <div class = "col-sm-8 col-md-8 col-lg-8">
@@ -162,7 +162,7 @@
         </div>
         <div class = "form-row">
           <div class = "form-group form-row col-12">
-            <%=f.label :home_city, "City",
+            <%=f.label :home_city,
             class: 'col-md-4 col-sm-4 col-lg-4 
               col-form-label-sm label-bold'%>
             <div class = "col-sm-8 col-md-8 col-lg-8">
@@ -173,7 +173,7 @@
         </div>
         <div class = "form-row">
           <div class = "form-group form-row col-12">
-            <%=f.label :home_state, "State",
+            <%=f.label :home_state,
             class: 'col-md-4 col-sm-4 col-lg-4 
               col-form-label-sm label-bold'%>
             <div class = "col-sm-4 col-md-4 col-lg-4">
@@ -185,7 +185,7 @@
         </div>
         <div class = "form-row">
           <div class = "form-group form-row col-12">
-            <%=f.label :home_zip_code, "Zip",
+            <%=f.label :home_zip_code,
             class: 'col-md-4 col-sm-4 col-lg-4 
               col-form-label-sm label-bold'%>
             <div class = "col-sm-5 col-md-5 col-lg-5">

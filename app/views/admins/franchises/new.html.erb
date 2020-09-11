@@ -1,7 +1,8 @@
 
 <%= render :partial => "shared/error_handling",
-    :locals => {:the_object => @franchise,
-    	        :objectname => 'Franchise profile'} %>
+  :locals => {:the_object => @franchise,
+    	        :objectname => I18n.t('franchise.object_name')}
+    	        %>
 
 
 <div class = "row">

@@ -175,7 +175,7 @@ RSpec.describe "Admin Franchises Requests", :type => :request do
         
         subject {post admins_franchises_path,params: {franchise: FactoryBot.attributes_for(:franchise, start_date: '01/01/2019', renew_date: '01/01/2024') }} 
  
-        it "creates a Property in the database" do 
+        it "creates a Franchise in the database" do 
           expect {subject}.to change {Franchise.count}.by(1)
         end  
 

@@ -42,7 +42,7 @@ end
 
 def update
 	authorize! :update, @accountant
-  result = UpdateAccountant(accountant: @accountant, params: accountant_params, user: current_authenticated)
+  result = UpdateAccountant.call(accountant: @accountant, params: accountant_params, user: current_authenticated)
 	
   if result.success?
 	 flash[:success] = "Accountant Modified Successfully"
@@ -86,7 +86,7 @@ private
       :firstname, :initial, :salutation, :birthdate,
       :spouse_name, :spouse_birthdate, :spouse_partner,
       :start_date, :inactive, :term_date, :cpa, :mba,
-      :degree, :agent, :advisory_board, :notes)
+      :degree, :agent, :advisory_board, :notes, :ptin)
   end
 
   def sort_column

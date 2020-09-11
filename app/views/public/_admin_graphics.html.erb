@@ -1,0 +1,23 @@
+<!--GEO MAP SHOWING REVENUES BY STATE -->
+<div class = "row">
+	<div class = "col-md-6" 
+	  style="border-top: 1px solid">
+		<h5 class="text-center">
+		  <%=I18n.t('dashboard.admin.revenue_by_state')%>
+		</h5>	
+		<%=revenue_by_state(@year, @month)%>
+	</div>
+
+
+	<!--DONUT CHART SHOWING MONTHLY COLLECTIONS BY CATEGORY -->
+	<div class = "col-md-6" 
+			 style = "border-top: 1px solid;
+			 border-left: 1px solid">
+		<h5 class="text-center">
+		  <%=I18n.t('dashboard.admin.coll_by_category')%>
+	  </h5>
+	  <%= collections_by_category(@year, @month) %>
+	</div>
+</div>
+
+

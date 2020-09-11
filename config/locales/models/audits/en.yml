@@ -1,0 +1,10 @@
+en:
+  audit:
+    title: Audit Trail for %{resource_name}
+    type: Type
+    when: When
+    who: Who
+    changes: Changes
+    from_to: From %{former_value} To %{new_value}
+    
+    was_changed: Was Changed

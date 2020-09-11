@@ -1,67 +1,83 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Padgett Report +Pay</title>
+    <title>
+      <%= I18n.t :application_title%>
+    </title>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-
+    <meta http-equiv="X-UA-Compatible" 
+    content="IE=edge">
     <meta name="viewport" 
-      content="width=device-width, initial-scale=1">
+    content="width=device-width, initial-scale=1">
+    
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-    
-    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_pack_tag 'application', 
+    media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= stylesheet_link_tag '//ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.min.css' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag "https://www.gstatic.com/charts/loader.js" %>
 
     <%= include_gon(:init => true)  %>
+    
     <link rel="shortcut icon" 
       type="image/x-icon" 
       href = <%=asset_pack_path "media/images/padgett.ico"%>>
   </head>
 
-  <body data-controller="<%= controller_name %>" data-action="<%= action_name %>">
-    <!-- HERE WE WILL PUT THE if user_masquerade? -->
+  <body data-controller="<%= controller_name %>"
+        data-action="<%= action_name %>">
 
     <!-- NAVIGATION BAR -->
-    <nav class="navbar navbar-expand-md mb-4"  role="navigation" >
-      <div class = "container-fluid default-padding">
+    <nav class="navbar navbar-expand-md mb-4"  
+         role="navigation" >
+      <div class = "container-fluid 
+                    default-padding">
       <!-- NAVBAR BRAND WITH PADGETT LOGO -->
-          <%=link_to root_path, class: "navbar-brand" do %>
-            <%=image_pack_tag("PadgettIcontrans.png", alt:"Padgett", class: "d-inline-block align-middle") %>
-            PR+P
-            <%end%>
+        <%=link_to root_path, 
+           class: "navbar-brand" do %>
+          <%=image_pack_tag("PadgettIcontrans.png",
+            alt:"Padgett Logo",
+            class: "d-inline-block align-middle") %>
+          PR+P
+        <%end%>
 
-          <button  class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#main-nav-collapse" aria-controls= "main-nav-collapse" aria-expanded="false" aria-label="Toggle navigation">
-            <!-- <span class="navbar-toggler-icon"></span> -->
-            <i class = "fas fa-bars padgett-blue-icon"> </i>
-            
-          </button>
-          
-
+        <button  class="navbar-toggler collapsed" 
+        type="button" 
+        data-toggle="collapse" 
+        data-target="#main-nav-collapse" 
+        aria-controls= "main-nav-collapse" aria-expanded="false" 
+        aria-label="Toggle navigation">
+          <i class = "fas fa-bars padgett-blue-icon"> 
+          </i>
+        </button>
         <!-- MENU CONTENT -->
         <%= render "shared/menubar" %>
      </div> 
     </nav>
-  <!-- MAIN CONTAINER-->
-  <div class = "container-fluid default-padding">  
-    <!-- SHOW FLASH MESSAGES IF ANY -->
-    <div class = "row">
-    <%flash.each do |name,msg| %>
-      <%unless name.to_s == 'timedout'%>
-        <div class='alert alert-<%="#{name}" %> alert-dismissible fade show col-12' role="alert">
-          <%= content_tag :div, msg, :id => "flash_#{name}" if msg.is_a?(String)%>
-          <button type="button" class="close"  data-dismiss='alert' aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-      <%end%>
-    <%end%>
-    <%flash.discard()%>
-  </div>
-  <!-- PAGE CONTENT -->
-  <%= yield %>
-</div>  
-</body>
+    <!-- MAIN CONTAINER-->
+    <div class = "container-fluid default-padding">  
+      <!-- SHOW FLASH MESSAGES IF ANY -->
+      <div class = "row">
+        <%flash.each do |name,msg| %>
+          <%unless name.to_s == 'timedout'%>
+            <div class='alert alert-<%="#{name}" %> alert-dismissible fade show col-12' 
+            role="alert">
+              <%= content_tag :div, msg, 
+                :id => "flash_#{name}" if msg.is_a?(String)%>
+              <button type="button" 
+                      class="close"  
+                      data-dismiss='alert' 
+                      aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+          <%end%>
+        <%end%>
+        <%flash.discard()%>
+      </div>
+      <!-- PAGE CONTENT -->
+      <%= yield %>
+    </div>  
+  </body>
 </html>

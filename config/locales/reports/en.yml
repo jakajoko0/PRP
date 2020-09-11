@@ -1,0 +1,24 @@
+en:
+  reports:
+    general:
+      sort_by: Sort By
+      inc_inactives: Include Inactives
+      btn_generate: Generate
+      sort_by_fran: Franchise Number
+      sort_by_lastname: Last Name
+      choice_no: "No"
+      choice_yes: "Yes"
+      btn_return: Return
+      pdf: PDF
+      excel: Excel
+      format: Format
+      sorted_by: Sorted by %{sortbytext}
+      including_inactives: Including Inactives
+    franchise_list:
+      title: Franchise List
+      number: Number
+      name: Name
+      address: Address
+      phone: Phone
+      email: Email
+      firm_id: Firm ID

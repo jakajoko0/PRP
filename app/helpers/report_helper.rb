@@ -1,18 +1,18 @@
 module ReportHelper
 
-	def sort_by_number_or_name(fieldname,rowclass,labelclass,selectclass)
+	def sort_by_number_or_name(fieldname,rowclass,labelclass,selectclass,options)
+  option_text = "<select id='#{fieldname}' class='form-control form-control-sm col' name='#{fieldname}'>"
+  options.each do |value,text|
+  	option_text += "<option value ='#{value}'>#{text}</option>"
+  end
+  option_text += "</select>"
+
+
     html = <<-HTML
     <div class = "#{rowclass}">
-    	<label class = "#{labelclass}" for="#{fieldname}">Sort By</label>
+    	<label class = "#{labelclass}" for="#{fieldname}">#{I18n.t('reports.general.sort_by')}</label>
     	<div class = "#{selectclass}">
-    	  <select id="#{fieldname}" class="form-control form-control-sm col" name="#{fieldname}">
- 			    <option value="1">
- 			      Franchise Number
- 			    </option>
- 			    <option value = "2">
- 			  	  Last Name
- 			    </option>
- 			  </select>
+    		#{option_text}
  		  </div>
  		</div>
  		HTML
@@ -22,14 +22,14 @@ module ReportHelper
 	def include_inactives(fieldname,rowclass,labelclass,selectclass)
 		html = <<-HTML
 		<div class = "#{rowclass}">
-			<label class = "#{labelclass}" for="#{fieldname}">Include Inactives</label>
+			<label class = "#{labelclass}" for="#{fieldname}">#{I18n.t('reports.general.inc_inactives')}</label>
 			<div class = "#{selectclass}">
 				<select id = "#{fieldname}" class = "form-control form-control-sm col" name = "#{fieldname}">
 					<option value = "0">
-						No 
+						#{I18n.t('reports.general.choice_no')}
 					</option>
 					<option value = "1">
-						Yes
+						#{I18n.t('reports.general.choice_yes')}
 					</option>
 				</select>
 			</div>
@@ -39,5 +39,7 @@ module ReportHelper
 	end
 
 	
-
 end
+
+	
+

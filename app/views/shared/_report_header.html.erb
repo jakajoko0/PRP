@@ -1,18 +1,18 @@
   <div class = "row justify-content-end">
    <div class = "col-4 col-sm-3 col-md-2 col-lg-2">
-    <%=link_to "Return", 'javascript:history.back()', :class=> 'btn btn-padgett btn-block'%>
+    <%=link_to I18n.t('reports.general.btn_return'), 'javascript:history.back()', :class=> 'btn btn-padgett btn-block'%>
    </div>
   
    
    <div class = "col-4 col-sm-3 col-md-3 col-lg-2">
     <%= link_to request.parameters.merge(format: 'pdf'), :method => :post do %>
-      <button class = "btn  btn-block btn-danger float-right"><i class = 'far fa-file-pdf'> </i> PDF <span class="button-text">Format</span></button>
+      <button class = "btn  btn-block btn-danger float-right"><i class = 'far fa-file-pdf'> </i> <%=I18n.t('reports.general.pdf')%> <span class="button-text"><%=I18n.t('reports.general.format')%></span></button>
       <%end%>
   </div>
    
    <div class = "col-4 col-sm-3 col-md-3 col-lg-2">
    <%= link_to request.parameters.merge(format: 'xlsx'), :method => :post do %>
-    <button class = 'btn btn-block btn-success float-right'><i class="far fa-file-excel"></i> Excel <span class="button-text">Format</span></button>
+    <button class = 'btn btn-block btn-success float-right'><i class="far fa-file-excel"></i> <%=I18n.t('reports.general.excel')%> <span class="button-text"><%=I18n.t('reports.general.format')%></span></button>
    <%end%>
   </div>
 </div>

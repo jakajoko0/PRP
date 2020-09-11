@@ -1,68 +1,89 @@
 <!-- PADGETT LOGO IMAGE AND APP TITLE -->
 <div class = "row">
   <div class = "col-12">
-    <%=image_pack_tag("Padgett_CC_S.png",id: "padgett-logo")%>
-      <h1 style="display:inline" 
-        class="padgett-text display-3 align-bottom">
-      Report + Pay
+    <%=image_pack_tag("Padgett_CC_S.png",
+    id: "padgett-logo",
+    alt: "Padgett Logo")%>
+    <h1 style="display:inline" 
+       class="padgett-text display-3 align-bottom">
+      <%=I18n.t :main_page_title%>
+    </h1>
   </div>
 </div>
 
 <div class = "row">
   <!-- LEFT SIDE OF MAIN PAGE WITH PICTURE -->
-  <div class = "container-fluid col-xs-12 col-sm-12 col-md-8 col-lg-8" style="height:calc(100vh - 40vh);padding-right:0px;padding-left:15px">
+  <div class = "container-fluid col-xs-12 
+                col-sm-12 col-md-8 col-lg-8" 
+       style="height:calc(100vh - 40vh);
+              padding-right:0px;
+              padding-left:15px">
       <%=image_pack_tag("report.jpg",
-      style: 'width:100%;height:100%;')%>
+      style: 'width:100%;height:100%;',
+      alt: "Paper reports on table")%>
   </div>
   <!-- RIGHT SIDE OF MAIN PAGE WITH LOGIN FORM -->
   <div class = "container-fluid col-xs-12 
                 col-sm-12 col-md-4 col-lg-4">
-  	<div class = 
-    "card">
+  	<div class = "card">
   	  <div class = "card-header login-header">
-  	    <h5 style="text-align:center">Welcome, Please Sign In</h5>	
+  	    <h5 style="text-align:center">
+          <%=I18n.t :welcome_message%>
+        </h5>	
   	  </div>
-  	  <div class = "card-body">
-  	    <%=form_for(:user, :url=>new_session_path(:user)) do |f|%>
+  	  
+      <div class = "card-body">
+  	    <%=form_for(:user, 
+                    :url=>new_session_path(:user)) do |f|%>
           <!-- EMAIL -->
   	  	  <div class = "form-group">
   	  	    <%=f.email_field :email, 
-  	  	       class: "form-control", placeholder: "Email"%>
+  	  	      class: "form-control", 
+              placeholder: (I18n.t :email_placeholder)%>
   	  	  </div>
+          
           <!-- PASSWORD -->
   	  	  <div class = "form-group">
   	  	    <%=f.password_field :password, 
-  	  	       class: "form-control", placeholder: "Password"%>
+  	  	      class: "form-control", 
+              placeholder: (I18n.t :password_placeholder)%>
           </div>
           <!-- REMEMBER ME CHECKBOX -->
           <div class = "form-check">
             <%=f.check_box :remember_me, 
-        	   class: "form-check-input"%>
-            <%=f.label :remember_me, "Remember me",
-               class: "form-check-label"%>
+        	    class: "form-check-input"%>
+            <%=f.label :remember_me,
+              (I18n.t :remember_me),
+              class: "form-check-label"%>
           </div>
+          
           <br>
           <!-- LOG IN BUTTON -->
-          <%= f.submit 'Log In',
+          <%= f.submit (I18n.t :login_text),
               class: "btn btn-block btn-padgett"%>
           <div align="center">   
-          <br> 
-          <!-- FORGOT PASSWORD LINK -->
-          <%=link_to "Forgot Password",
-          new_user_password_path(:user)%>
-        </div>
+            <br> 
+            <!-- FORGOT PASSWORD LINK -->
+            <%=link_to (I18n.t :forgot_password_text),
+            new_user_password_path(:user)%>
+          </div>
         <%end%>
       </div>
+      
       <br>
+      
       <!-- SIGNUP OPTION -->
       <div class = "card-header signup-header">
-        <h6 style = "text-align:center" class = "padgett-text">
-          Don't have an account yet?
+        <h6 style = "text-align:center" 
+            class = "padgett-text">
+          <%=I18n.t :account_missing%>
         </h6> 
       </div>
+      
       <!-- SIGNUP BUTTON -->
       <div class = "card-body">
-        <%=link_to "Sign Up", signup_path,
+        <%=link_to (I18n.t :signup_text),
+           signup_path,
            id: 'registration_link',
            class: 'btn btn-block btn-padgett'%>
       </div>

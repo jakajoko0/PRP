@@ -1,0 +1,29 @@
+en:
+  helpers:
+    label:
+      insurance:
+        eo_insurance: "E&O Insurance"
+        eo_expiration: Expires On
+        gen_insurance: General Insurance
+        gen_expiration: Expires On
+        other_insurance: Other Insurance
+        other_expiration: Expires On
+        other2_insurance: Other Insurance
+        other2_expiration: Expires On
+  insurance:
+    form:
+      edit_title: Insurance Record for
+      create_title: Create Insurance Record for
+      save: Save Changes
+      return: Return
+    object_name: Insurance record
+    index:
+      add_insurance: Add Insurance
+      search: Search by First or Last Name 
+      franchise: Franchise
+      name: Name
+      eo: E&O Insurance
+      expires: Expires On
+      gen: General Ins.
+      other: Other Ins.
+      edit_link: Edit this insurance record

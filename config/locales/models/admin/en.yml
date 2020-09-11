@@ -1,0 +1,20 @@
+en:
+  admin_profile:
+    edit_profile: Your Profile
+    email: Email
+    password: Password
+    password_min: (6 characters minimum)
+    password_conf: Password Confirmation
+    time_zone: Time Zone
+    current_pass: Current Password
+    current_pass_info: Enter your current password to save any changes
+    save_button: Save Changes
+  admin_login:
+    login_title: Admin Log In
+    login_email: Email
+    login_password: Password
+    login_remember: Remember me
+    login_button: Log In
+    login_forgot_pass: Forgot Password?
+
+

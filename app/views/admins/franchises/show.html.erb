@@ -3,9 +3,9 @@
     <div class = "card">
       <div class = "card-header login-header" style="display:inline">
         <h3 class = "float-left">
-          Franchise: <%=@franchise.full_denomination%>
+          <%=I18n.t('franchise.show.title', franchise_name: @franchise.full_denomination)%>
         </h3>
-        <%= link_to "Return", admins_franchises_path, class: "btn btn-light float-right"%>
+        <%= link_to (I18n.t('franchise.show.return_btn')), admins_franchises_path, class: "btn btn-light float-right"%>
       </div>
     </div>
     <!--FRANCHISE INFORMATION -->
@@ -16,7 +16,7 @@
           id="headingFran">
           <h4 class="card-title">
             <h3 class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseFran" aria-expanded="true" aria-controls="collapseFran">
-              Franchise Information
+              <%=I18n.t('franchise.show.franchise_info')%>
             </h3>
           </h4>
         </div>
@@ -35,7 +35,7 @@
           id="headingAcct">
           <h4 class="card-title">
             <h3 class="collapsed"  role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseAcct" aria-expanded="true" aria-controls="collapseAcct">
-              Accountants
+              <%=I18n.t('franchise.show.accountants')%>
             </h3>
           </h4>
         </div>

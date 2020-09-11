@@ -1,0 +1,239 @@
+<!--BOXES WITH THE DIFFERENT STATS AND NUMBERS -->
+<div class = "card-group row no-gutters mb-2">
+	<!--ACTIVE FRANCHISE COUNT -->
+  <div class = "col-md-2">
+    <div class = "card h-100 stats-card">
+	  	<div class = "card-header login-header">
+	    	<h6 class="text-center">
+	    	  <%=I18n.t('dashboard.admin.franchises')%>
+    	  </h6>
+      </div>
+	  	<div class = "card-body text-center">
+	    	<h3 class="padgett-text">999
+	    		<span>
+	    		<%=link_to	admins_franchises_path do%>
+	    			<i class="far fa-list-alt  padgett-blue-icon" 
+    				aria-hidden="true" 
+    				data-html = "true" 
+    				data-toggle="tooltip" 
+    				title="<%=I18n.t('dashboard.admin.franchise_list')%>">
+    				</i>
+    			<%end%>
+    			</span>
+    		</h3>	
+  	  </div>
+		</div>
+  </div>
+  <!--NUMBER OF SUBMITTED REPORTS FOR THIS PERIOD -->
+  <div class = "col-md-2">	
+    <div class = "card h-100 stats-card">
+      <div class = "card-header login-header">
+	    	<h6 class="text-center">
+	    	  <%=I18n.t('dashboard.admin.reports')%>
+        </h6>
+	  	</div>
+	  	<div class = "card-body text-center">
+	  		<h3>999
+	  		<span>
+	    		<%=link_to	admins_franchises_path do%>
+	    		<i class="far fa-list-alt 
+	    		          padgett-blue-icon" 
+    			aria-hidden="true" 
+    			data-html = "true" 
+    			data-toggle="tooltip" 
+    			title="<%=I18n.t('dashboard.admin.royalty_reports')%>">
+    			</i>
+    			<%end%>
+    		</span>
+    		</h3>	
+	  	</div>
+  	</div>
+  </div>
+  <!--COLLECTIONS CURRENT AND COMPARISONS -->
+  <div class = "col-md-2">	
+    <div class = "card h-100 stats-card" >
+      <div class = "card-header login-header">
+	  		<h6 class="text-center">
+	  			<%=I18n.t('dashboard.admin.collections')%>
+  			</h6>
+	  	</div>
+	  	<div class = "card-body p-1">
+	  		<div class = "row no-gutters">
+	  	  	<div class = "col-5">
+	        	<h6 class="text-left">
+	        		<%=I18n.t('dashboard.admin.current')%>
+        		</h6>
+	      	</div>
+	      	<div class = "col-7">
+						<h6 class="text-right">$999,999.99</h6>
+		  		</div>
+ 	    	</div>
+ 	    	<div class = "row no-gutters">
+	  	  	<div class = "col-5">
+	    			<h6 class="text-left">
+	    				<%=I18n.t('dashboard.admin.last_month')%>
+	    			</h6>
+	      	</div>
+	      	<div class = "col-7">
+						<h6 class="text-right">
+						<span style="color:green">&#9650;</span>$99,999.99
+						</h6>
+  		  	</div>
+ 	    	</div>
+ 	    	<div class = "row no-gutters">
+	  	  	<div class = "col-5">
+	        	<h6 class="text-left">
+	        	  <%=I18n.t('dashboard.admin.last_year')%>
+         	  </h6>
+	      	</div>
+	      	<div class = "col-7">
+		    		<h6 class="text-right">
+		    		<span style="color:red">&#9660;</span>$99,999.99
+		    		</h6>
+		  		</div>
+ 	    	</div>
+ 	  	</div>
+		</div>
+	</div>
+  <!--ROYALTIES AND COMPARISON -->
+  <div class = "col-md-2">	
+    <div class = "card h-100 stats-card">
+	  	<div class = "card-header login-header">
+	  		<h6 class="text-center">
+	  			<%=I18n.t('dashboard.admin.royalties')%>
+	  		</h6>
+	  	</div>
+	  	<div class = "card-body p-1">
+	  		<div class = "row no-gutters">
+	  	  	<div class = "col-5">
+	        	<h6 class="text-left">
+	        	  <%=I18n.t('dashboard.admin.current')%>
+	        	</h6>
+	      	</div>
+	      	<div class = "col-7">
+						<h6 class="text-right">$99,999.99</h6>
+		  		</div>
+ 	    	</div>
+ 	    	<div class = "row no-gutters">
+	  	  	<div class = "col-5">
+	    			<h6 class="text-left">
+	    				<%=I18n.t('dashboard.admin.last_month')%>
+	    			</h6>
+	      	</div>
+	      	<div class = "col-7">
+						<h6 class="text-right">
+						<span style="color:green">&#9650;</span>$9,999.99
+						</h6>
+  		  	</div>
+ 	    	</div>
+ 	    	<div class = "row no-gutters">
+	  	  	<div class = "col-5">
+	        	<h6 class="text-left">
+	        		<%=I18n.t('dashboard.admin.last_year')%>
+	        	</h6>
+	      	</div>
+	      	<div class = "col-7">
+		    		<h6 class="text-right">
+		    		<span style="color:red">&#9660;</span>$9,999.99
+		    		</h6>
+		  		</div>
+ 	    	</div>
+ 	  	</div>
+    </div>
+  </div>
+  <!--AVERAGE COLLECTIONS AND COMPARISONS -->
+  <div class = "col-md-2">	
+    <div class = "card h-100 stats-card">
+	  	<div class = "card-header login-header">
+	  		<h6 class="text-center">
+	  			<%=I18n.t('dashboard.admin.avg_collections')%>
+	  		</h6>
+	 		</div>
+	  	<div class = "card-body p-1">
+	  		<div class = "row no-gutters">
+	  	  	<div class = "col-5">
+	        	<h6 class="text-left">
+	        		<%=I18n.t('dashboard.admin.current')%>
+	        	</h6>
+	      	</div>
+	      	<div class = "col-7">
+						<h6 class="text-right">$999,999.99</h6>
+		  		</div>
+ 	    	</div>
+ 	    	<div class = "row no-gutters">
+	  	  	<div class = "col-5">
+	    			<h6 class="text-left">
+	    				<%=I18n.t('dashboard.admin.last_month')%>
+	    			</h6>
+	      	</div>
+	      	<div class = "col-7">
+						<h6 class="text-right">
+						<span style="color:green">&#9650;</span>$99,999.99
+						</h6>
+  		  	</div>
+ 	    	</div>
+ 	    	<div class = "row no-gutters">
+	  	  	<div class = "col-5">
+	        	<h6 class="text-left">
+	        		<%=I18n.t('dashboard.admin.last_year')%>
+        	  </h6>
+	      	</div>
+	      	<div class = "col-7">
+		    		<h6 class="text-right">
+		    		<span style="color:red">&#9660;</span>$99,999.99
+		    		</h6>
+		  		</div>
+ 	    	</div>
+ 	  	</div>
+    </div>
+  </div>
+  <!--AVERAGE ROYALTIES AND COMPARISONS -->
+  <div class = "col-md-2 no-padding">	
+    <div class = "card h-100 stats-card">
+	  	<div class = "card-header login-header">
+	  		<h6 class="text-center">
+	  			<%=I18n.t('dashboard.admin.avg_royalties')%>
+	  		</h6>
+	  	</div>
+	  	<div class = "card-body p-1">
+	  		<div class = "row no-gutters">
+	  	  	<div class = "col-5">
+	        	<h6 class="text-left">
+	        		<%=I18n.t('dashboard.admin.current')%>
+	        	</h6>
+	      	</div>
+	      	<div class = "col-7">
+						<h6 class="text-right">$99,999.99</h6>
+		  		</div>
+ 	    	</div>
+ 	    	<div class = "row no-gutters">
+	  	  	<div class = "col-5">
+	    			<h6 class="text-left">
+	    			  <%=I18n.t('dashboard.admin.last_month')%>
+    			  </h6>
+	      	</div>
+	      	<div class = "col-7">
+						<h6 class="text-right">
+						<span style="color:green">&#9650;</span>$9,999.99
+						</h6>
+  		  	</div>
+ 	    	</div>
+ 	    	<div class = "row no-gutters">
+	  	  	<div class = "col-5">
+	        	<h6 class="text-left">
+	        	  <%=I18n.t('dashboard.admin.last_year')%>
+	          </h6>
+	      	</div>
+	      	<div class = "col-7">
+		    		<h6 class="text-right">
+		    		  <span style="color:red">&#9660;</span>$9,999.99
+		    		</h6>
+		  		</div>
+ 	    	</div>
+ 	  	</div>
+    </div>
+  </div>
+</div>
+
+<!--LINE CHART WITH MONTHLY ROYALTY AMOUNT WITH LAST YEAR COMPARE -->
+<%= all_royalties_by_month(@year)%> 

@@ -1,0 +1,134 @@
+en:
+  helpers:
+    label:
+      franchise:
+        region: Region
+        franchise_number: Franchise
+        office: Office
+        firm_id: Firm ID
+        salutation: Salutation
+        lastname: Last Name
+        firstname: First Name
+        initial: Middle Initial
+        address: Address
+        city: City
+        state: State
+        zip_code: Zip
+        ship_address: Address
+        ship_city: City
+        ship_state: State
+        ship_zip_code: Zip
+        home_address: Address
+        home_city: City
+        home_state: State
+        home_zip_code: Zip
+        phone: Phone
+        phone2: Alt. Phone
+        mobile: Mobile
+        fax: Fax
+        email: Email
+        alt_email: Alt. Email
+        start_date: Start Date
+        renew_date: Renewal Date
+        salesman: Salesperson
+        territory: Territory
+        non_compliant: Non Compliant 
+        non_compliant_reason: Reason
+        inactive: Inactive
+        term_date: Termination Date
+        term_reason: Reason
+        show_exempt_collect: Exempted Collections
+        prior_year_rebate: Prior Year Rebate
+        advanced_rebate: Advanced Rebate
+  errors:
+    models:
+      franchise:
+        attributes:
+          area:
+            blank: Area cannot be blank
+          mast:
+            blank: Mast cannot be blank
+          region:
+            blank: Region cannot be blank
+          franchise_number:
+            blank: Franchise number cannot be blank 
+            already_exists: This franchise entry already exists     
+          office:
+            blank: Office number cannot be blank  
+          lastname:
+            blank: Last Name cannot be blank
+          firstname:
+            blank: First Name cannot be blank    
+          email:
+            blank: Email cannot be blank  
+            invalid_format: Invalid Email Format
+          phone:
+            blank: Phone cannot be blank
+          start_date:
+            blank: Start Date cannot be blank
+          firm_id:
+            six_characters: Firm ID should be 6 characters long
+          address:
+            blank: Address cannot be blank 
+          city:
+            blank: City cannot be blank
+          state:
+            blank: State cannot be blank
+          zip_code:
+            blank: Zip Code cannot be blank 
+          prior_year_rebate:
+            cannot_exceed: Credit cannot exceed available balance
+          advanced_rebate:
+            no_negative: Negative advanced rebate not allowed
+          alt_email:
+            invalid_format: Invalid Email Format
+  franchise:
+    object_name: Franchise Profile
+    index:
+      create_franchise: Create Franchise       
+      search_by_name: Search by First or Last Name
+      franchise: Franchise
+      name: Name
+      status: Status
+      region: Region
+      edit_link: Edit this Franchise
+      view_link: View this Franchise
+      audit_link: View Audit Trail
+    form:
+      edit_title: Franchise Profile of
+      create_title: Create New Franchise  
+      select_region: Select a Region
+      mailing_address: Mailing Address
+      shipping_address: Shipping Address
+      home_address: Home Address
+      contact_email: Contact Numbers & Emails
+      status: Franchise Status
+      rebates: Rebates
+      save_btn: Save Changes
+      return_btn: Return
+    show:
+      title: "Franchise: %{franchise_name}"
+      franchise_info: Franchise Information
+      accountants: Accountants
+      return_btn: Return
+  franchise_select:
+    title: Select a Franchise
+    search: Search by First or Last Name
+    franchise: Franchise
+    name: Name
+    add_accountant: Add Accountant
+    enter_royalty: Enter Royalty
+    add_charge: Add Charge
+    add_invoice: Add Invoice
+    enter_check: Enter Check
+    enter_credit: Enter Credit
+    add_insurance: Add Insurance
+
+
+
+          
+            
+            
+                    
+
+

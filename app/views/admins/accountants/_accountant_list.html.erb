@@ -1,86 +1,107 @@
 <%= hidden_field_tag :direction, params[:direction] %>
 <%= hidden_field_tag :sort, params[:sort] %>
 
+<div id = "table-scroll"
+     class = "table-scroll">
 
-  <table id = "accountant-list" class="table table-sm table-striped table-dan ">
-    <thead>
+  <table id = "accountant-list" 
+         class="table-striped">
+    <thead id="list">
       <tr>
         <!-- Franchise Number -->
-        <th scope = "col" style="text-align:left">
-          <%=sortable "franchises.franchise_number", "Franchise" %>
+        <th scope = "col" class = "td-left">
+          <%=sortable "franchises.franchise_number", I18n.t('accountant.index.franchise') %>
         </th>
 
         <!-- Accountant  -->
-        <th scope = "col" style="text-align:left">
-          Accountant
+        <th scope = "col" class = "td-left">
+          <%=I18n.t('accountant.index.accountant')%>
         </th>
 
         <!-- Lastname  -->
-        <th scope = "col" style="text-align:left">
-          <%=sortable "lastname" , "Last Name" %>
+        <th scope = "col" class="td-left">
+          <%=sortable "lastname" , I18n.t('accountant.index.lastname') %>
         </th>
-        <th scope = "col" style="text-align:left">
-          <%=sortable "firstname" , "First Name" %>
+      
+        <!-- Firstname  -->
+        <th scope = "col" class = "td-left">
+          <%=sortable "firstname" , I18n.t('accountant.index.firstname') %>
         </th>
+
         <!-- For Edit and Delete link we have 2 other columns  -->
         <th scope = "col"></th>
         <th scope = "col"></th>
-        
       </tr>
     </thead>
-    <!-- Go through our filtered franchises  -->
-    <% @accountants.each do |accountant| %>
-      <tr>
-        <!-- Franchise  -->
-        <th  align="left" class = "text-nowrap">
-          <%=accountant.franchise.franchise_number %>   <%=accountant.franchise.full_name%> 
-        </td>
-        <!-- Accountant Number  -->
-        <td align="left" class = "text-nowrap">
-          <%=accountant.accountant_num%>
+    <tbody>
+      <!-- Go through our filtered franchises  -->
+      <% @accountants.each do |accountant| %>
+        <tr>
+          <!-- Franchise  -->
+          <td  data-name = "Franchise"
+               scope="col" 
+               class = "td-left">
+            <%=accountant.franchise.franchise_number %>   <%=accountant.franchise.full_name%> 
+          </td>
+      
+          <!-- Accountant Number  -->
+          <td data-name = "Accountant"
+              scope="col" 
+              class = "td-left">
+            <%=accountant.accountant_num%>
+          </td>
 
-        </td>
-        <!-- Lastname  -->
-        <td align="left" class = "text-nowrap">
-          <%=accountant.lastname%> 
-        </td>
+          <!-- Lastname  -->
+          <td data-name="Last Name"
+              scope="col"
+              class = "td-left">
+            <%=accountant.lastname%> 
+          </td>
 
-        <!-- Firstname  -->
-        <td align="left" class = "text-nowrap">
-          <%=accountant.firstname%> 
-        </td>
-        <!-- Edit Icon and Link  -->
-        <%if can? :edit, accountant%>
-          <td class = "text-nowrap">
+          <!-- Firstname  -->
+          <td data-name = "First Name"
+              scope = "col"
+              class = "td-left">
+            <%=accountant.firstname%> 
+          </td>
+
+          <!-- Edit Icon and Link  -->
+          <%if can? :edit, accountant%>
+            <td data-name = "" 
+                class = "td-center">
             <%=link_with_icon(edit_admins_accountant_path(id:accountant),
-                "edit",
-                "Edit this accountant",
-                "",
-                false)%> 
-          </td>
-        <%else%>
-          <td></td>
-        <%end%>
-
-        <%if can? :delete, accountant%>
-        <td class = "text-nowrap">
-            <%=link_with_icon(admins_accountant_path(id:accountant),
-                "delete",
-                "Delete this accountant",
-                "Are you sure you want to delete this accounant?",
-                false)%> 
-          </td>
+              "edit",
+              I18n.t('accountant.index.edit_link'),
+              "",
+              false)%> 
+            </td>
           <%else%>
-          <td></td>
-        <%end%>
-      </tr>
-    <% end %>
+            <td></td>
+          <%end%>
+
+          <%if can? :delete, accountant%>
+            <td data-name = ""
+                class = "td-center">
+              <%=link_with_icon(admins_accountant_path(id:accountant),
+              "delete",
+              I18n.t('accountant.index.delete_link'),
+              I18n.t('accountant.index.delete_confirm'),
+              false)%> 
+            </td>
+          <%else%>
+            <td></td>
+          <%end%>
+        </tr>
+      <% end %>
+    </tbody>
   </table>
-  <!-- Pagination Links  -->
-  <div class = "row justify-content-center">
-    <div class = "flickr_pagination">
-      <%= will_paginate @accountants %>
-    </div>
+</div>  
+
+<!-- Pagination Links  -->
+<div class = "row justify-content-center">
+  <div class = "flickr_pagination">
+    <%= will_paginate @accountants,
+    pervious_label: I18n.t('pagination.prev'),
+    next_label: I18n.t('pagination.next') %>
   </div>
-
-
+</div>

@@ -11,7 +11,9 @@ validates :franchise_id, uniqueness: {message: "An insurance record already exis
 validates :eo_expiration, presence: {if: :eo_entered? , message: "Please provide expiration date for E&O insurance"}
 validates :gen_expiration, presence: {if: :gen_entered?, message: "Please provide expiration date for general insurance"}
 validates :other_expiration, presence: {if: :other_entered?, message: "Please provide expiration date for other insurance"}
+validates :other2_expiration, presence: {if: :other2_entered?, message: "Please provide expiration date for other insurance"}
 validates :other_description, presence: {if: :other_entered?, message: "Please provide description of other insurance"}
+validates :other2_description, presence: {if: :other2_entered?, message: "Please provide description of other insurance"}
 
 
 def franchise_name 
@@ -25,7 +27,8 @@ def self.search(search_text)
   		franchises.lastname as lastname, insurances.eo_insurance, insurances.eo_expiration,
   		insurances.gen_insurance, insurances.gen_expiration, 
   		insurances.other_insurance, insurances.other_expiration,
-  		insurances.other_description, insurances.slug").
+  		insurances.other_description, insurances.other2_insurance,
+      insurances.other2_description, insurances.other2_expiration, insurances.slug").
   	where('lower(franchises.lastname) LIKE ? OR lower(franchises.firstname) LIKE ?', "%#{search_text.downcase}%","%#{search_text.downcase}%")
   else
     Insurance.joins(:franchise).
@@ -33,7 +36,8 @@ def self.search(search_text)
   		franchises.lastname as lastname, insurances.eo_insurance, insurances.eo_expiration,
   		insurances.gen_insurance, insurances.gen_expiration, 
   		insurances.other_insurance, insurances.other_expiration,
-  		insurances.other_description, insurances.slug").
+  		insurances.other_description, insurances.other2_insurance,
+      insurances.other2_description, insurances.other2_expiration, insurances.slug").
   	where(nil)
 
   end
@@ -51,10 +55,15 @@ def other_entered?
 	other_insurance == 1
 end
 
-def set_dates(eo_date, gen_date, other_date)
+def other2_entered?
+  other2_insurance == 1
+end
+
+def set_dates(eo_date, gen_date, other_date, other2_date)
   self.eo_expiration = Date.strptime(eo_date, I18n.translate('date.formats.default')) unless eo_date.blank?
   self.gen_expiration = Date.strptime(gen_date, I18n.translate('date.formats.default')) unless gen_date.blank?
   self.other_expiration = Date.strptime(other_date, I18n.translate('date.formats.default')) unless other_date.blank?
+  self.other2_expiration = Date.strptime(other2_date, I18n.translate('date.formats.default')) unless other2_date.blank?
 end
 
 end

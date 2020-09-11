@@ -1,13 +1,13 @@
 <div class = "card">
   <div class = "card-header login-header">
-    Franchise Status
+    <%=I18n.t('franchise.form.status')%>
   </div>
   
   <div class = "card-body card-background-padgett">
     <div class = "form-row col-12">
       <!-- START DATE -->
       <div class = "form-group form-row col-6">
-        <%=f.label :start_date, "Start Date",
+        <%=f.label :start_date, 
         class: "col-md-4 col-sm-4 col-lg-4 
         col-form-label-sm label-bold" %>
         <div class = "col-sm-5 col-md-5 col-lg-4">
@@ -19,7 +19,7 @@
       </div>
       <!-- RENEW DATE -->
       <div class = "form-group form-row col-6">
-        <%=f.label :renew_date, "Renewal Date",
+        <%=f.label :renew_date, 
         class: 'col-md-4 col-sm-4 col-lg-4
           col-form-label-sm label-bold'%>
         <div class = "col-sm-5 col-md-5 col-lg-4">
@@ -32,7 +32,7 @@
     <div class = "form-row col-12">
       <!-- SALESPERSON -->
       <div class = "form-group form-row col-6">
-        <%=f.label :salesman, "Salesperson",
+        <%=f.label :salesman, 
         class: "col-md-4 col-sm-4 col-lg-4 
         col-form-label-sm label-bold" %>
         <div class = "col-sm-7 col-md-7 col-lg-7">
@@ -44,7 +44,7 @@
     <div class = "form-row col-12">
       <!-- TERRITORY -->
       <div class = "form-group form-row col-12">
-        <%=f.label :territory, "Territory",
+        <%=f.label :territory, 
         class: "col-md-2 col-sm-2 col-lg-2 
         col-form-label-sm label-bold" %>
         <div class = "col-8">
@@ -58,7 +58,7 @@
     <div class = "form-row col-12">
       <!-- NON COMPLIANT -->
       <div class = "form-group form-row col-6">
-        <%=f.label :non_compliant, "Non Compliant",
+        <%=f.label :non_compliant, 
         class: "col-md-4 col-sm-4 col-lg-4 
         col-form-label-sm label-bold" %>
         <div class = "col-sm-6 col-md-6 col-lg-6">
@@ -70,7 +70,7 @@
     <div class = "form-row col-12">
       <!-- NON COMPLIANT REASON -->
       <div class = "form-group form-row col-12">
-        <%=f.label :non_compliant_reason, "Reason",
+        <%=f.label :non_compliant_reason, 
         class: "col-md-2 col-sm-2 col-lg-2 
         col-form-label-sm label-bold" %>
         <div class = "col-8">
@@ -84,7 +84,7 @@
     <div class = "form-row col-12">
       <!-- INACTIVE -->
       <div class = "form-group form-row col-6">
-        <%=f.label :inactive, "Inactive",
+        <%=f.label :inactive, 
         class: "col-md-4 col-sm-4 col-lg-4 
         col-form-label-sm label-bold" %>
         <div class = "col-sm-6 col-md-6 col-lg-6">
@@ -96,7 +96,7 @@
     <div class = "form-row col-12">
       <!-- TERM DATE -->
       <div class = "form-group form-row col-6">
-        <%=f.label :term_date, "Termination Date",
+        <%=f.label :term_date, 
         class: "col-md-6 col-sm-6 col-lg-4 
         col-form-label-sm label-bold" %>
         <div class = "col-sm-5 col-md-5 col-lg-4">
@@ -109,7 +109,7 @@
     <div class = "form-row col-12">
       <!-- TERM REASON -->
       <div class = "form-group form-row col-12">
-        <%=f.label :term_reason, "Reason",
+        <%=f.label :term_reason, 
         class: "col-md-2 col-sm-2 col-lg-2 
         col-form-label-sm label-bold" %>
         <div class = "col-8">
@@ -124,7 +124,7 @@
     <div class = "form-row col-12">
       <!-- EXEMPT COLLECTIONS -->
       <div class = "form-group form-row col-6">
-        <%=f.label :show_exempt_collect, "Exempted Collections",
+        <%=f.label :show_exempt_collect, 
         class: "col-md-4 col-sm-4 col-lg-4 
         col-form-label-sm label-bold" %>
         <div class = "col-sm-6 col-md-6 col-lg-6">

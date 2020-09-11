@@ -57,7 +57,7 @@ extend FriendlyId
 
 has_many :users
 has_many :accountants
-has_one :insurance
+has_one  :insurance
 
 friendly_id :number_and_name, use: :slugged
 audited except: [:slug, :max_collections, :avg_collections, :max_coll_year, :max_coll_month], on: [:update, :destroy]
@@ -73,26 +73,26 @@ before_save :nil_if_blank
 #after_save :reset_name_variable, if: :name_has_changed?
 
 #Model Validation
-  validates :area,       presence: {message: "Area cannot be blank"}
-  validates :mast,       presence: {message:  "Mast cannot be blank"}  
-  validates :region,     presence: {message:  "Region cannot be blank"}
-  validates :franchise_number,  presence: {message:  "Franchise number cannot be blank"}  
-  validates :office,     presence: {essage:  "Office number cannot be blank"}  
-  validates :lastname,   presence: {message:  "Last Name cannot be blank"}  
-  validates :firstname,  presence: {message:  "First Name cannot be blank"}  
-  validates :email,      presence: {message:  "Email cannot be blank"}  
-  validates :phone,      presence: {message:  "Phone cannot be blank"}  
-  validates :start_date, presence: {message:  "Start Date cannot be blank"}  
-  validates :firm_id, length: {is: 6, message: "Firm ID should be 6 digits"}, allow_blank: true, allow_nil: true
-  validates :address,    presence: {message:  "Address cannot be blank"}  
-  validates :city,       presence: {message:  "City cannot be blank"}  
-  validates :state,      presence: {message:  "State cannot be blank"}  
-  validates :zip_code,   presence: {message:  "Zip Code cannot be blank"}  
-  validates :prior_year_rebate, numericality: {greater_than_or_equal_to: 0, message: 'Credit cannot exceed available balance'}
-  validates :advanced_rebate, numericality: {greater_than_or_equal_to: 0 ,  message: 'Negative advanced rebate not allowed'}
-  validates :franchise_number, :uniqueness => {:scope => [:region, :office], message: 'This franchise entry already exists'}
-  validates :email , format: {with: /\A([\w+\-]\.?)+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/, message: 'Invalid email format'}
-  validates :alt_email, format: {with: /\A([\w+\-]\.?)+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/, message: 'Invalid email format'}, allow_blank: true 
+  validates :area,       presence: true
+  validates :mast,       presence: true
+  validates :region,     presence: true
+  validates :franchise_number,  presence: true
+  validates :office,     presence: true
+  validates :lastname,   presence: true
+  validates :firstname,  presence: true
+  validates :email,      presence: true
+  validates :phone,      presence: true
+  validates :start_date, presence: true
+  validates :firm_id, length: {is: 6, message: :six_characters}, allow_blank: true, allow_nil: true
+  validates :address,    presence: true
+  validates :city,       presence: true
+  validates :state,      presence: true
+  validates :zip_code,   presence: true
+  validates :prior_year_rebate, numericality: {greater_than_or_equal_to: 0, message: :cannot_exceed}
+  validates :advanced_rebate, numericality: {greater_than_or_equal_to: 0 ,  message: :no_negative}
+  validates :franchise_number, :uniqueness => {:scope => [:region, :office], message: :already_exists }
+  validates :email , format: {with: /\A([\w+\-]\.?)+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/, message: :invalid_format}
+  validates :alt_email, format: {with: /\A([\w+\-]\.?)+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/, message: :invalid_format}, allow_blank: true 
 
 
 
@@ -163,12 +163,6 @@ before_save :nil_if_blank
   end
 
 
-  def self.report_franchise_list(sortby,include_inactives)
-    sortby_text = (sortby == 1 ? "franchise_number ASC" : "lastname ASC")
-    where_clause = include_inactives == 1 ? "" : "inactive = 0"
-
-    Franchise.where(where_clause).order(sortby_text)
-  end
 
   private
 

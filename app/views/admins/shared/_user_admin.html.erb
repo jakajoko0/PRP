@@ -5,33 +5,34 @@
        data-toggle="dropdown" 
        role="button" aria-haspopup = "true" 
        aria-expanded = "false">
-      Franchises
+      <%= I18n.t('admin_menu.franchise.franchises')%>
     </a>
     <ul class = "dropdown-menu multi-level" 
       aria-labelledby="navbarDropdownFranchiseLink">
       <!-- FRANCHISES-->  
       <li>
-        <%= link_to "Franchises" , admins_franchises_path,
+        <%= link_to I18n.t('admin_menu.franchise.franchises'),
+          admins_franchises_path,
         class: "dropdown-item" %>
       </li>
       <!-- ACCOUNTANTS-->  
       <li>
-        <%= link_to "Accountants" , admins_accountants_path,
+        <%= link_to I18n.t('admin_menu.franchise.accountants') , admins_accountants_path,
         class: "dropdown-item" %>
       </li>
       <!-- INSURANCE-->  
       <li>
-        <%= link_to "Insurance" , admins_insurances_path,
+        <%= link_to I18n.t('admin_menu.franchise.insurance') , admins_insurances_path,
         class: "dropdown-item" %>
       </li>
       <!-- FINANCIALS-->  
       <li>
-        <%= link_to "Financials" , '#',
+        <%= link_to I18n.t('admin_menu.franchise.financials') , '#',
         class: "dropdown-item" %>
       </li>
       <!-- WEBSITE PREFERENCE-->  
       <li>
-        <%= link_to "Website Preferences" , '#',
+        <%= link_to I18n.t('admin_menu.franchise.website') , '#',
         class: "dropdown-item" %>
       </li>
       <div class="dropdown-divider"></div>
@@ -39,17 +40,17 @@
       <li class = "dropdown-submenu">
         <a class = "dropdown-item dropdown-toggle" 
           tabindex="-1" href="#">
-          Support
+          <%=I18n.t('admin_menu.franchise.supports')%>
         </a>
         <ul class = "dropdown-menu">
           <!-- SUPPORT HISTORY-->  
           <li>
-            <%= link_to "Support History" , "#",
+            <%= link_to I18n.t('admin_menu.franchise.support.support_history') , "#",
               class: "dropdown-item" %>
             </li>
           <li>
             <!-- SEARCH SUPPORT HISTORY-->  
-            <%= link_to "Search Support" , "#" ,
+            <%= link_to I18n.t('admin_menu.franchise.support.search_support') , "#" ,
               class: "dropdown-item"%>
           </li>
         </ul>
@@ -59,38 +60,38 @@
       <li class = "dropdown-submenu">
         <a class = "dropdown-item dropdown-toggle" 
         tabindex="-1" href="#">
-          Reports
+          <%=I18n.t('admin_menu.franchise.reports')%>
         </a>
         <ul class = "dropdown-menu">
           <!-- FRANCHISE LIST-->  
           <li>
-            <%= link_to "Franchise List" ,
+            <%= link_to I18n.t('admin_menu.franchise.report.franchise_list') ,
             admins_franchise_list_path, 
               class: "dropdown-item" %>
           </li>
           <li>
-            <%= link_to "Expiring Franchises" , "#" ,
+            <%= link_to I18n.t('admin_menu.franchise.report.expiring') , "#" ,
               class: "dropdown-item"%>
           </li>
           <!-- FRANCHISE REBATES-->  
           <li>
-            <%= link_to "Franchise with Advanced Rebates" , "#" ,
+            <%= link_to I18n.t('admin_menu.franchise.report.advanced_rebate') , "#" ,
               class: "dropdown-item"%>
           </li>
           <!-- FRANCHISE PRIOR REBATES-->   
           <li>
-            <%= link_to "Franchise with Prior Rebate" , "#" ,
+            <%= link_to I18n.t('admin_menu.franchise.report.prior_rebate') , "#" ,
               class: "dropdown-item"%>
           </li>
           <div class="dropdown-divider"></div>
           <!-- PAYMENT METHODS-->   
           <li>
-            <%= link_to "Payment Methods" , "#" ,
+            <%= link_to I18n.t('admin_menu.franchise.report.payment_methods') , "#" ,
               class: "dropdown-item"%>
           </li>
           <!-- FRANCHISE MISSING PAYMENT METHODS-->   
           <li>
-            <%= link_to "Franchises Missing Payment Method" ,
+            <%= link_to I18n.t('admin_menu.franchise.report.missing_methods') ,
             "#" ,class: "dropdown-item"%>
           </li>
           <div class="dropdown-divider"></div>
@@ -101,34 +102,34 @@
           </li>
           <!-- FRANCHISE MISSING INSURANCE-->   
           <li>
-            <%= link_to "Franchises Missing Insurance" , "#" ,
+            <%= link_to I18n.t('admin_menu.franchise.report.missing_insurance') , "#" ,
               class: "dropdown-item"%>
           </li>
           <div class="dropdown-divider"></div>
           <!-- FINANCIAL REPORTING STATUS-->   
           <li>
-            <%= link_to "Financial Reporting Status" , "#" ,
+            <%= link_to I18n.t('admin_menu.franchise.report.financial_status') , "#" ,
               class: "dropdown-item"%>
           </li>
           <!-- CLIENT COUNTS AND FEE AVERAGES-->   
           <li>
-            <%= link_to "Client Couints and Fee Averages" , "#" ,
+            <%= link_to I18n.t('admin_menu.franchise.report.counts_averages') , "#" ,
               class: "dropdown-item"%>
           </li>
           <!-- FINANCIAL AGGREGATION-->   
           <li>
-            <%= link_to "Financial Aggregation" , "#" ,
+            <%= link_to I18n.t('admin_menu.franchise.report.financial_agg') , "#" ,
               class: "dropdown-item"%>
           </li>
           <div class="dropdown-divider"></div>
           <!-- Website Preferences-->   
           <li>
-            <%= link_to "Website Preferences" , "#" ,
+            <%= link_to I18n.t('admin_menu.franchise.report.website_pref') , "#" ,
               class: "dropdown-item"%>
           </li>
           <!-- Missing Website Preferences-->   
           <li>
-            <%= link_to "Franchises Missing Website Preferences" , "#" ,
+            <%= link_to I18n.t('admin_menu.franchise.report.missing_website') , "#" ,
               class: "dropdown-item"%>
           </li>
 
@@ -144,107 +145,107 @@
        data-toggle="dropdown" 
        role="button" aria-haspopup = "true" 
        aria-expanded = "false">
-      Royalties
+      <%=I18n.t('admin_menu.royalty.royalties')%>
     </a>
     <ul class = "dropdown-menu multi-level" 
       aria-labelledby="navbarDropdownRoyaltyLink">
       <!-- ENTER ROYALTIES-->  
       <li>
-        <%= link_to "Enter Royalties" , "#", class: "dropdown-item" %>
+        <%= link_to I18n.t('admin_menu.royalty.royalty_enter') , "#", class: "dropdown-item" %>
       </li>
       <!-- REVIEW ROYALTIES-->  
       <li>
-        <%= link_to "Review Royalties" , "#", class: "dropdown-item" %>
+        <%= link_to I18n.t('admin_menu.royalty.royalty_review') , "#", class: "dropdown-item" %>
       </li>
       <div class="dropdown-divider"></div>
       <!-- ROYALTIES REPORTS-->  
       <li class = "dropdown-submenu">
         <a class = "dropdown-item dropdown-toggle" 
         tabindex="-1" href="#">
-          Reports
+          <%=I18n.t('admin_menu.royalty.reports')%>
         </a>
         <ul class = "dropdown-menu">
           <!-- FRANCHISE HISTORY-->  
           <li>
-            <%= link_to "Franchise History" , "#",
+            <%= link_to I18n.t('admin_menu.royalty.report.history') , "#",
               class: "dropdown-item" %>
           </li>
           <!-- FRANCHISE HISTORY MULTIPLE-->  
           <li>
-            <%= link_to "Franchise History (Multiple Years)" ,
+            <%= link_to I18n.t('admin_menu.royalty.report.history_years') ,
             "#" , class: "dropdown-item"%>
           </li>
           <div class="dropdown-divider"></div>
           <!-- COLLECTIONS BY RECEIPT DATE-->  
           <li>
-            <%= link_to "Collections by Receipt Date" , "#" ,
+            <%= link_to I18n.t('admin_menu.royalty.report.coll_date') , "#" ,
               class: "dropdown-item"%>
           </li>
           <!-- COLLECTIONS BY RECEIPT DATE (Comparison)-->   
           <li>
-            <%= link_to "Collections by Receipt Date (Comparison)" ,
+            <%= link_to I18n.t('admin_menu.royalty.report.coll_date_comp') ,
              "#" , class: "dropdown-item"%>
           </li>
           <!-- COLLECTIONS UNDER THRESHOLD-->  
           <li>
-            <%= link_to "Collections Under a Threshold" , "#" ,
+            <%= link_to I18n.t('admin_menu.royalty.report.coll_threshold') , "#" ,
               class: "dropdown-item"%>
           </li>
           <!-- COLLECTIONS SUMMARY BY RECEIPT MONTH-->  
           <li>
-            <%= link_to "Collections Summary by Receipt Month",
+            <%= link_to I18n.t('admin_menu.royalty.report.coll_summ_month'),
              "#" , class: "dropdown-item"%>
           </li>
           <!-- COLLECTIONS SUMMARY BY YEAR-->  
           <li>
-            <%= link_to "Collections Summary by Year" , "#" ,
+            <%= link_to I18n.t('admin_menu.royalty.report.coll_summ_year') , "#" ,
               class: "dropdown-item"%>
           </li>
           <div class="dropdown-divider"></div>
           <!-- ROYALTY SUMMARY BY MONTH-->  
           <li>
-            <%= link_to "Royalty Summary by Receipt Month" , "#" ,
+            <%= link_to I18n.t('admin_menu.royalty.report.roy_summ_month') , "#" ,
               class: "dropdown-item"%>
           </li>
           <!-- ROYALTY SUMMARY BY YEAR-->  
           <li>
-            <%= link_to "Royalty Summary by Year" , "#" ,
+            <%= link_to I18n.t('admin_menu.royalty.report.roy_summ_year') , "#" ,
               class: "dropdown-item"%>
           </li>
           <div class="dropdown-divider"></div>
           <!-- MONTHLY RANKNIGS-->  
           <li>
-            <%= link_to "Monthly Rankings" , "#" ,
+            <%= link_to I18n.t('admin_menu.royalty.report.month_rank') , "#" ,
               class: "dropdown-item"%>
           </li>
           <!-- PERFORMANCE REPORT-->  
           <li>
-            <%= link_to "Performance Report (Collections & Royalties)" , "#" , class: "dropdown-item"%>
+            <%= link_to I18n.t('admin_menu.royalty.report.performance') , "#" , class: "dropdown-item"%>
           </li>
           <!-- SALES REPORT-->  
           <li>
-            <%= link_to "Sales Report" , "#" ,
+            <%= link_to I18n.t('admin_menu.royalty.report.sales') , "#" ,
               class: "dropdown-item"%>
           </li>
           <!-- GROWTH REPORT-->  
           <li>
-            <%= link_to "Growth Report" , "#" ,
+            <%= link_to I18n.t('admin_menu.royalty.report.growth') , "#" ,
               class: "dropdown-item"%>
           </li>
           <!-- YEARLY RANKINGS AVG-->  
           <li>
-            <%= link_to "Yearly Rankings (Averages)" , "#" ,
+            <%= link_to I18n.t('admin_menu.royalty.report.rank_avg') , "#" ,
               class: "dropdown-item"%>
           </li>
           <!-- YEARLY RANKINGS TOTALS-->  
           <li>
-            <%= link_to "Yearly Rankings (Totals)" , "#" ,
+            <%= link_to I18n.t('admin_menu.royalty.report.rank_tot') , "#" ,
               class: "dropdown-item"%>
           </li>
           <div class="dropdown-divider"></div>
           <!-- LATE REPORTS SUBMITTED-->  
           <li>
-            <%= link_to "Late Report Submissions" , "#" ,
+            <%= link_to I18n.t('admin_menu.royalty.report.late') , "#" ,
               class: "dropdown-item"%>
           </li>
         </ul>
@@ -258,58 +259,58 @@
        data-toggle="dropdown" 
        role="button" aria-haspopup = "true" 
        aria-expanded = "false">
-      Charges / Receipts
+      <%=I18n.t('admin_menu.charge_receipt.charges_receipts')%>
     </a>
     <ul class = "dropdown-menu multi-level" 
       aria-labelledby="navbarDropdownReceiptsLink">
       <!-- CHARGES-->  
       <li>
-        <%= link_to "Charges" , "#", class: "dropdown-item" %>
+        <%= link_to I18n.t('admin_menu.charge_receipt.charges') , "#", class: "dropdown-item" %>
       </li>
       <!-- CREDITS-->  
       <li>
-        <%= link_to "Credits" , "#", class: "dropdown-item" %>
+        <%= link_to I18n.t('admin_menu.charge_receipt.credits') , "#", class: "dropdown-item" %>
       </li>
       <!-- CHECKS-->  
       <li>
-        <%= link_to "Checks" , "#", class: "dropdown-item" %>
+        <%= link_to I18n.t('admin_menu.charge_receipt.checks') , "#", class: "dropdown-item" %>
       </li>
-      <!-- FRANCHISE CHARGES-->  
+      <!-- FRANCHISE INVOICES-->  
       <li>
-        <%= link_to "Franchise Charges" , "#", class: "dropdown-item" %>
+        <%= link_to I18n.t('admin_menu.charge_receipt.invoices') , "#", class: "dropdown-item" %>
       </li>
       <div class="dropdown-divider"></div>
       <!-- CHARGES AND RECEIPTS REPORTS-->  
       <li class = "dropdown-submenu">
         <a class = "dropdown-item dropdown-toggle" 
         tabindex="-1" href="#">
-          Reports
+          <%=I18n.t('admin_menu.charge_receipt.reports')%>
         </a>
         <ul class = "dropdown-menu">
           <!-- AMOUNTS DUE-->  
           <li>
-            <%= link_to "Amounts Due" , "#",
+            <%= link_to I18n.t('admin_menu.charge_receipt.report.due') , "#",
               class: "dropdown-item" %>
           </li>
           <!-- DELINQUENT REPORT-->  
           <li>
-            <%= link_to "Delinquent Report" ,
+            <%= link_to I18n.t('admin_menu.charge_receipt.report.delinquent') ,
             "#" , class: "dropdown-item"%>
           </li>
           <!-- STATEMENT-->  
           <li>
-            <%= link_to "Franchise Statement" ,
+            <%= link_to I18n.t('admin_menu.charge_receipt.report.statement') ,
             "#" , class: "dropdown-item"%>
           </li>
           <div class="dropdown-divider"></div>
           <!-- TRANSACTION SUMMARY-->  
           <li>
-            <%= link_to "Transaction Summary" , "#" ,
+            <%= link_to I18n.t('admin_menu.charge_receipt.report.trans_sum') , "#" ,
               class: "dropdown-item"%>
           </li>
           <!-- TRANSACTION DETAIL-->   
           <li>
-            <%= link_to "Transaction Detail" ,
+            <%= link_to I18n.t('admin_menu.charge_receipt.report.trans_det') ,
              "#" , class: "dropdown-item"%>
           </li>
         </ul>
@@ -323,30 +324,30 @@
        data-toggle="dropdown" 
        role="button" aria-haspopup = "true" 
        aria-expanded = "false">
-      Payments
+      <%=I18n.t('admin_menu.payment.payments')%>
     </a>
     <ul class = "dropdown-menu multi-level" 
       aria-labelledby="navbarDropdownPaymentsLink">
       <!-- PENDING-->  
       <li>
-        <%= link_to "Pending" , "#", class: "dropdown-item" %>
+        <%= link_to I18n.t('admin_menu.payment.pending') , "#", class: "dropdown-item" %>
       </li>
       <!-- APPROVED-->  
       <li>
-        <%= link_to "Approved" , "#", class: "dropdown-item" %>
+        <%= link_to I18n.t('admin_menu.payment.approved') , "#", class: "dropdown-item" %>
       </li>
       <!-- DECLINED-->  
       <li>
-        <%= link_to "Declined / Errors" , "#", class: "dropdown-item" %>
+        <%= link_to I18n.t('admin_menu.payment.error') , "#", class: "dropdown-item" %>
       </li>
       <!-- ALL PAYMENTS-->  
       <li>
-        <%= link_to "All Payments" , "#", class: "dropdown-item" %>
+        <%= link_to I18n.t('admin_menu.payment.all') , "#", class: "dropdown-item" %>
       </li>
       <div class="dropdown-divider"></div>
-      <!-- ALL PAYMENTS-->  
+      
       <li>
-        <%= link_to "Manage Check Payments" , "#",
+        <%= link_to I18n.t('admin_menu.payment.manage_checks') , "#",
           class: "dropdown-item" %>
       </li>
       <div class="dropdown-divider"></div>
@@ -354,12 +355,12 @@
       <li class = "dropdown-submenu">
         <a class = "dropdown-item dropdown-toggle" 
         tabindex="-1" href="#">
-          Reports
+          <%=I18n.t('admin_menu.payment.reports')%>
         </a>
         <ul class = "dropdown-menu">
           <!-- PAYMENTS BY TYPE-->  
           <li>
-            <%= link_to "Payments By Type" , "#",
+            <%= link_to I18n.t('admin_menu.payment.report.by_method') , "#",
               class: "dropdown-item" %>
           </li>
         </ul>
@@ -373,29 +374,29 @@
        data-toggle="dropdown" 
        role="button" aria-haspopup = "true" 
        aria-expanded = "false">
-      Tools
+      <%=I18n.t('admin_menu.tool.tools')%>
     </a>
     <ul class = "dropdown-menu multi-level" 
       aria-labelledby="navbarDropdownToolsLink">
       <!-- MANAGE CHARGES CODES-->  
       <li>
-        <%= link_to "Manage Charge Codes" , "#",
+        <%= link_to I18n.t('admin_menu.tool.charges_codes') , "#",
           class: "dropdown-item" %>
       </li>
       <!-- MANAGE CREDIT CODES-->  
       <li>
-        <%= link_to "Manage Credit Codes" , "#",
+        <%= link_to I18n.t('admin_menu.tool.credit_codes') , "#",
           class: "dropdown-item" %>
       </li>
       <!-- MANAGE FRANCHISE GROUPSCREDIT CODES-->  
       <li>
-        <%= link_to "Manage Franchise Groups" , "#",
+        <%= link_to I18n.t('admin_menu.tool.fran_groups') , "#",
           class: "dropdown-item" %>
       </li>
       <div class="dropdown-divider"></div>
       <!-- LOGIN AS ANOTHER FRANCHISE-->  
       <li>
-        <%= link_to "Log In As ..." , "#",
+        <%= link_to I18n.t('admin_menu.tool.login_as') , "#",
           class: "dropdown-item" %>
       </li>
        
@@ -404,31 +405,31 @@
       <li class = "dropdown-submenu">
         <a class = "dropdown-item dropdown-toggle" 
         tabindex="-1" href="#">
-          System
+          <%=I18n.t('admin_menu.tool.system.systems')%>
         </a>
         <ul class = "dropdown-menu">
           <!-- EVENT LOG-->  
           <li>
-            <%= link_to "Event Log" , "#",
+            <%= link_to I18n.t('admin_menu.tool.system.event_log') , "#",
               class: "dropdown-item" %>
           </li>
           <!-- SERVER LOGS-->  
           <li>
-            <%= link_to "Server Logs" , "/logs",
+            <%= link_to I18n.t('admin_menu.tool.system.server_log') , "/logs",
             class: "dropdown-item" %>
           </li>
           <!-- AUDIT TRAIL-->  
           <li>
-            <%= link_to "Audit Trail" , "#",
+            <%= link_to I18n.t('admin_menu.tool.system.audit') , "#",
             class: "dropdown-item" %>
           </li>
           <!-- BACKGROUND JOBS-->  
           <li>
-            <%= link_to "Background Jobs" , "/sidekiq",
+            <%= link_to I18n.t('admin_menu.tool.system.jobs') , "/sidekiq",
             class: "dropdown-item" %>
           </li>
           <li>
-            <%= link_to "Payment Responses" , "#",
+            <%= link_to I18n.t('admin_menu.tool.system.pay_resp') , "#",
             class: "dropdown-item" %>
           </li>
         </ul>
@@ -440,22 +441,22 @@
       <li class = "dropdown-submenu">
         <a class = "dropdown-item dropdown-toggle" 
         tabindex="-1" href="#">
-          Reports
+          <%=I18n.t('admin_menu.tool.reports')%>
         </a>
         <ul class = "dropdown-menu">
           <!-- EVENT LOG-->  
           <li>
-            <%= link_to "Event Log" , "#",
+            <%= link_to I18n.t('admin_menu.tool.report.event_log') , "#",
               class: "dropdown-item" %>
           </li>
           <!-- REGISTERED USERS-->  
           <li>
-            <%= link_to "Registered Users" , "#",
+            <%= link_to I18n.t('admin_menu.tool.report.users') , "#",
               class: "dropdown-item" %>
           </li>
           <!-- MISSING FRANCHISES-->  
           <li>
-            <%= link_to "Franchises Not Registered" , "#",
+            <%= link_to I18n.t('admin_menu.tool.report.not_using') , "#",
               class: "dropdown-item" %>
           </li>
         </ul>
@@ -468,18 +469,18 @@
        data-toggle="dropdown" 
        role="button" aria-haspopup = "true" 
        aria-expanded = "false">
-      Users
+      <%=I18n.t('admin_menu.user.users')%>
     </a>
     <ul class = "dropdown-menu multi-level" 
       aria-labelledby="navbarDropdownUsersLink">
       <!-- Manage Home Office Users-->  
       <li>
-        <%= link_to "Manage Corporate Users" , "#",
+        <%= link_to I18n.t('admin_menu.user.manage') , "#",
           class: "dropdown-item" %>
       </li>
       <!-- Your Profile-->  
       <li>
-        <%= link_to "Your Profile" , edit_admin_registration_path(current_admin),
+        <%= link_to I18n.t('admin_menu.user.profile') , edit_admin_registration_path(current_admin),
           class: "dropdown-item" %>
       </li>
     </ul>

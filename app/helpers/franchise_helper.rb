@@ -59,27 +59,27 @@ module FranchiseHelper
       case destination 
       when 'add_royalty'
         route = new_remittance_path(franchise_id: franchise.id)
-        button_text = "Enter Royalties"
+        button_text = I18n.t('franchise_select.enter_royalty')
       when 'add_receivable'
         route = new_receivable_path(franchise_id: franchise.id)
-        button_text = "Add Charge"
+        button_text = I18n.t('franchise_select.add_charge')
       when 'add_invoice'
         route = new_invoice_path(franchise_id: franchise.id)
-        button_text = "Add Invoice"
+        button_text = I18n.t('franchise_select.add_invoice')
       when 'add_payment'
         route = new_check_payment_path(franchise_id: franchise.id)
-        button_text = "Enter Check"
+        button_text = I18n.t('franchise_select.enter_check')
       when 'add_credit'
         route = new_franchise_credit_path(franchise_id: franchise.id)
-        button_text = "Enter Credit"
+        button_text = I18n.t('franchise_select.enter_credit')
       when 'add_accountant'
         route = new_admins_accountant_path(franchise_id: franchise.id)
-        button_text = "Add Accountant"
+        button_text = I18n.t('franchise_select.add_accountant')
       when 'support'
         route = supports_path(franchise_id: franchise.id)
       when 'add_insurance'
         route = new_admins_insurance_path(franchise_id: franchise.id)
-        button_text = "Add Insurance"
+        button_text = I18n.t('franchise_select.add_insurance')
       end
 
       rtn_html = <<-HTML     

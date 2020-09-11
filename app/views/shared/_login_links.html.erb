@@ -1,27 +1,35 @@
 <ul class="navbar-nav ml-auto">
-  <!-- If User is Logged In, we show the Sign Out button -->
+  <!-- If User ogged In, show the Sign Out button -->
   <% if signed_in? %>
-    <!-- If Franchise, we show the Franchise Sign Out button -->
+    <!-- If Franchise, show Sign Out button -->
     <% if current_user %>
-      <li class="navbar-text" style = "padding-right: 10px">
-        User: <%=current_user.email %>
+      <li class="navbar-text" 
+          style = "padding-right: 10px">
+        <%=I18n.t :menu_user%>: <%=current_user.email %>
       </li>
-      <%= link_to "Sign Out", destroy_user_session_path,
-      method: :delete, class: 'btn btn-padgett navbar-btn' %>
-      
+      <%= link_to (I18n.t :signout_text),
+        destroy_user_session_path,
+        method: :delete,
+        class: 'btn btn-padgett navbar-btn' %>
     <% else %>
-      <!-- If Admin, we show the Admin Sign Out button -->
-      <li class="navbar-text" style = "padding-right: 10px">
-        User: <%=current_admin.email %>  
+      <!-- If Admin, show the Admin Sign Out button -->
+      <li class="navbar-text" 
+          style = "padding-right: 10px">
+        <%=I18n.t :menu_user%>: <%=current_admin.email %>  
       </li>
-      <%= link_to "Sign Out", destroy_admin_session_path,
-      method: :delete, class: 'btn btn-padgett navbar-btn' %>
+      
+      <%= link_to (I18n.t :signout_text), 
+      destroy_admin_session_path,
+      method: :delete,
+      id: "admin-logout",
+      class: 'btn btn-padgett navbar-btn' %>
+    
     <%end%>
   <% else %>
-    
-  
-    <!-- If no one is logged in, show the admin login button -->
-    <%= link_to "Admin", new_admin_session_path, class: 'btn btn-padgett navbar-btn nav-item', method: :get %>
-  
+    <!-- If no one logged in, show admin login btn -->
+    <%= link_to (I18n.t :admin_button), 
+      new_admin_session_path,
+      method: :get,
+      class: 'btn btn-padgett navbar-btn nav-item'%>
   <%end%>
 </ul>

@@ -1,116 +1,168 @@
 <%= hidden_field_tag :direction, params[:direction] %>
 <%= hidden_field_tag :sort, params[:sort] %>
-
-
-  <table id = "insurance-list" class="table table-sm table-striped table-dan ">
-    <thead>
+<div id = "table-scroll"
+     class = "table-scroll">
+  <table id = "insurance-list" 
+       class="table-striped">
+    <thead id = "list">
       <tr>
         <!-- Franchise Number -->
-        <th scope = "col" style="text-align:left">
-          <%=sortable "franchises.franchise_number", "Franchise" %>
+        <th scope = "col" class = "td-left">
+          <%=sortable "franchises.franchise_number", I18n.t('insurance.index.franchise') %>
         </th>
+      
         <!-- Franchise Name  -->
-        <th scope = "col" style="text-align:left">
-          <%=sortable "franchises.lastname" , "Name" %>
+        <th scope = "col" class = "td-left">
+          <%=sortable "franchises.lastname" ,
+          I18n.t('insurance.index.name') %>
         </th>
         
         <!-- EO Insurance -->
-        <th scope = "col" style = "text-align:center">
-          E&amp;O Insurance
+        <th scope = "col" class = "td-center">
+          <%=I18n.t('insurance.index.eo')%>
         </th>
 
         <!-- EO Expiration -->
-        <th scope = "col" style = "text-align:center">
-          Expires On
+        <th scope = "col" class = "td-center">
+          <%=I18n.t('insurance.index.expires')%>
         </th>
 
         <!-- Gen Insurance -->
-        <th scope = "col" style = "text-align:center">
-          General Insurance
+        <th scope = "col" class = "td-center">
+          <%=I18n.t('insurance.index.gen')%>
         </th>
 
         <!-- General Expiration -->
-        <th scope = "col" style = "text-align:center">
-          Expires On
+        <th scope = "col" class = "td-center">
+          <%=I18n.t('insurance.index.expires')%>
         </th>
 
         <!-- Other Insurance -->
-        <th scope = "col" style = "text-align:center">
-          Other Insurance
+        <th scope = "col" class = "td-center">
+          <%=I18n.t('insurance.index.other')%>
         </th>
 
         <!-- Other Expiration -->
-        <th scope = "col" style = "text-align:center">
-          Expires On
+        <th scope = "col" class = "td-center">
+          <%=I18n.t('insurance.index.expires')%>
         </th>        
 
-        <!-- For Edit link we have 2 other columns  -->
-        <th scope = "col"></th>
-        
-      </tr>
-    </thead>
-    <!-- Go through our filtered franchises  -->
-    <% @insurances.each do |insurance| %>
-      <tr>
-        <!-- Franchise  -->
-        <th  align="left" class = "text-nowrap">
-          <%=insurance.franchise_number %> 
-        </td>
-        <!-- Franchise Name  -->
-        <th align="left" class = "text-nowrap">
-          <%=insurance.lastname%> <%=insurance.firstname%>
+        <!-- Other Insurance -->
+        <th scope = "col" class = "td-center">
+          <%=I18n.t('insurance.index.other')%>
         </th>
-        <!-- EO Insurance -->
-        <td align="center" class = "text-nowrap">
-          <%=display_checkmark(insurance.eo_insurance)%>
-        </td>
-
-        <!-- EO Expiration -->
-        <td align="center" class = "text-nowrap">
-          <%=l insurance.eo_expiration if insurance.eo_expiration%>
-        </td>
-
-        <!-- Gen Insurance -->
-        <td align="center" class = "text-nowrap">
-          <%=display_checkmark(insurance.gen_insurance)%>
-        </td>
-
-        <!-- Gen Expiration -->
-        <td align="center" class = "text-nowrap">
-          <%=l insurance.gen_expiration if insurance.gen_expiration%>
-        </td>
-
-         <!-- Other Insurance -->
-        <td align="center" class = "text-nowrap">
-          <%=display_checkmark(insurance.other_insurance, insurance.other_description)%>
-        </td>
 
         <!-- Other Expiration -->
-        <td align="center" class = "text-nowrap">
-          <%=l insurance.other_expiration if insurance.other_expiration%>
-        </td>
+        <th scope = "col" class = "td-center">
+          <%=I18n.t('insurance.index.expires')%>
+        </th>        
 
-        <!-- Edit Icon and Link  -->
-        <%if can? :edit, insurance%>
-          <td class = "text-nowrap">
-            <%=link_with_icon(edit_admins_insurance_path(id: insurance),
+        <!-- For Edit link -->
+        <th scope = "col"></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <!-- Go through our filtered franchises  -->
+      <% @insurances.each do |insurance| %>
+        <tr>
+          <!-- Franchise  -->
+          <td data-name = "Franchise"
+              scope = "col"
+              class = "td-left">
+            <%=insurance.franchise_number %> 
+          </td>
+          
+          <!-- Franchise Name  -->
+          <td data-name = "Name" 
+              scope = "col"
+              class = "td-left">
+            <%=insurance.lastname%> <%=insurance.firstname%>
+          </td>
+          
+          <!-- EO Insurance -->
+          <td data-name = "E&O Ins."
+              class = "td-center"
+              scope = "col">
+            <%=display_checkmark(insurance.eo_insurance)%>
+          </td>
+
+          <!-- EO Expiration -->
+          <td data-name = "Expires On" 
+              scope = "col" 
+              class = "td-center">
+            <%=l insurance.eo_expiration if insurance.eo_expiration%>
+          </td>
+
+          <!-- Gen Insurance -->
+          <td data-name = "General Ins." 
+              scope = "col" 
+              class = "td-center">
+            <%=display_checkmark(insurance.gen_insurance)%>
+          </td>
+
+          <!-- Gen Expiration -->
+          <td data-name = "Expires On" 
+              scope = "col" 
+              class = "td-center">
+            <%=l insurance.gen_expiration if insurance.gen_expiration%>
+          </td>
+
+          <!-- Other Insurance -->
+          <td data-name = "Other Ins." 
+              scope = "col" 
+              class = "td-center">
+            <%=display_checkmark(insurance.other_insurance, insurance.other_description)%>
+          </td>
+
+          <!-- Other Expiration -->
+          <td data-name = "Expires On" 
+              scope = "col" 
+              class = "td-center">
+            <%=l insurance.other_expiration if insurance.other_expiration%>
+          </td>
+
+          <!-- Other Insurance -->
+          <td data-name = "Other Ins." 
+              scope = "col" 
+              class = "td-center">
+            <%=display_checkmark(insurance.other2_insurance, insurance.other2_description)%>
+          </td>
+
+          <!-- Other Expiration -->
+          <td data-name = "Expires On" 
+              scope = "col" 
+              class = "td-center">
+            <%=l insurance.other2_expiration if insurance.other2_expiration%>
+          </td>
+
+          <!-- Edit Icon and Link  -->
+          <%if can? :edit, insurance%>
+            <td data-name = "" 
+                scope = "col" 
+                class = "td-center">
+              <%=link_with_icon(edit_admins_insurance_path(id: insurance),
                 "edit",
-                "Edit this insurance record",
+                I18n.t('insurance.index.edit_link'),
                 "",
                 false)%> 
-          </td>
-        <%else%>
-          <td></td>
-        <%end%>
-        
-      </tr>
-    <% end %>
+            </td>
+          <%else%>
+            <td></td>
+          <%end%>
+        </tr>
+      <% end %>
+   </tbody>   
   </table>
-  <!-- Pagination Links  -->
-  <div class = "row justify-content-center">
-    <div class = "flickr_pagination">
-      <%= will_paginate @insurances %>
-    </div>
+</div>
+
+<!-- Pagination Links  -->
+<div class = "row justify-content-center">
+  <div class = "flickr_pagination">
+    <%= will_paginate @insurances,
+    pervious_label: I18n.t('pagination.prev'),
+    next_label: I18n.t('pagination.next') %>
   </div>
+</div>
 
 

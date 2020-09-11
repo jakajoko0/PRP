@@ -1,39 +1,45 @@
 <div class = "card">
-    <div class = "card-body card-background-padgett">
-      <table class = "table table-sm table-striped table-dan">
-        <thead>
+  <div class = "card-body card-background-padgett">
+    <table class = "table table-sm 
+           table-striped table-dan">
+      <thead>
+        <tr>
+          <th scope="col" 
+              style="text-align:left">
+            <%=I18n.t('helpers.label.accountant.accountant_num')%>
+          </th>
+          <th scope = "col" 
+              style = "text-align:left">
+            <%=I18n.t('helpers.label.accountant.name')%>
+          </th>
+          <th scope = "col" 
+              style = "text-align:left">
+            <%=I18n.t('helpers.label.accountant.notes')%>
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <%franchise.accountants.by_number.each do |acct|%>
           <tr>
-            <th scope="col" style="text-align:left">
-              Accountant
+            <th align = "left" class="text-nowrap">
+              <%=acct.accountant_num%>
             </th>
-            <th scope = "col" style = "text-align:left">
-              Name
-            </th>
-            <th scp[e = "col" style = "text-align:left">
-              Notes
-            </th>
+            <td align="left" class = "text-nowrap">
+              <%=acct.full_name%>
+            </td>
+            <td align="left" class = "text-nowrap">
+              <%=truncate(acct.notes, length: 50)%>
+            </td>
           </tr>
-        </thead>
-        <tbody>
-          <%franchise.accountants.by_number.each do |acct|%>
-            <tr>
-              <th align = "left" class="text-nowrap">
-                <%=acct.accountant_num%>
-              </th>
-              <td align="left" class = "text-nowrap">
-                <%=acct.full_name%>
-              </td>
-              <td align="left" class = "text-nowrap">
-                <%=truncate(acct.notes, length: 50)%>
-              </td>
-            </tr>
-          <%end%>
-        </tbody>
-      </table>
+        <%end%>
+      </tbody>
+    </table>
   </div>
 </div>
 <br />
 <%=link_to new_admins_accountant_path(franchise_id: franchise.id), data: {turbolinks: false} do%>
-  <button class = 'btn btn-padgett'>Add Accountant</button>
+  <button class = 'btn btn-padgett'>
+    <%=I18n.t('accountant.index.add_accountant')%>
+  </button>
 <%end%>
                 

@@ -1,6 +1,8 @@
 <div class = "card">
 	<div class = "card-header login-header">
-	  <h4>Franchise List</h4>
+	  <h4>
+	  	<%=I18n.t('reports.franchise_list.title')%>
+   	</h4>
 	</div>
 
 	<%=form_tag admins_franchise_list_render_path(format: :html),
@@ -14,7 +16,8 @@
 				"col-form-label col-form-label-sm label-bold
 				 col-4 col-sm-4 col-md-3 col-lg-2",
 				"col-8 col-sm-4 col-md-3
-				 col-lg-3")%>
+				 col-lg-3",
+				 {"franchise_number" => I18n.t('reports.general.sort_by_fran'), "lastname" => I18n.t('reports.general.sort_by_lastname')})%>
 		</div>
 				<div class = "form-row col-12">
 			<%=include_inactives(
@@ -28,9 +31,11 @@
 	</div>
 
 	<div class = "card-footer">
-		<div class = "col-6 col-sm-3 col-md-2 col-lg-2 pl-0">
-			<%=submit_tag "Generate", class: "btn btn-padgett btn-block"%>
-			</div> 
+		<div class = "col-6 col-sm-3 col-md-2 
+		              col-lg-2 pl-0">
+			<%=submit_tag (I18n.t('reports.general.btn_generate')),
+			class: "btn btn-padgett btn-block"%>
+		</div> 
 	</div>
 	<%end%>
 </div>

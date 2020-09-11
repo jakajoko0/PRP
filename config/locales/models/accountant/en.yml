@@ -1,0 +1,87 @@
+en:
+  helpers:
+    label:
+      accountant:
+        franchise_id: Franchise
+        accountant_num: Accountant
+        name: Name
+        lastname: Last Name
+        firstname: First Name
+        initial: Middle Initial
+        salutation: Salutation 
+        birthdate: Birth Date
+        start_date: Start Date
+        term_date: Termination Date
+        inactive: Inactive
+        advisory_board: Advisory Board
+        cpa: CPA
+        mba: MBA
+        degree: Accounting Degree
+        ptin: PTIN
+        spouse_name: Name
+        spouse_birthdate: Birth Date
+        spouse_partner: Partner
+        notes: Notes
+  errors:
+    models:
+      accountant:
+        attributes:
+          area:
+            blank: Area cannot be blank
+          mast:
+            blank: Mast cannot be blank
+          region:
+            blank: Region cannot be blank
+          franchise_number:
+            blank: Franchise number cannot be blank 
+            already_exists: This franchise entry already exists     
+          office:
+            blank: Office number cannot be blank  
+          lastname:
+            blank: Last Name cannot be blank
+          firstname:
+            blank: First Name cannot be blank    
+          email:
+            blank: Email cannot be blank  
+            invalid_format: Invalid Email Format
+          phone:
+            blank: Phone cannot be blank
+          start_date:
+            blank: Start Date cannot be blank
+          firm_id:
+            six_characters: Firm ID should be 6 characters long
+          address:
+            blank: Address cannot be blank 
+          city:
+            blank: City cannot be blank
+          state:
+            blank: State cannot be blank
+          zip_code:
+            blank: Zip Code cannot be blank 
+          prior_year_rebate:
+            cannot_exceed: Credit cannot exceed available balance
+          advanced_rebate:
+            no_negative: Negative advanced rebate not allowed
+          alt_email:
+            invalid_format: Invalid Email Format
+  accountant:
+    object_name: Accountant Profile
+    index:
+      add_accountant: Add Accountant
+      search_by_name: Search by First or Last Name
+      franchise: Franchise
+      accountant: Accountant
+      lastname: Last Name
+      firstname: First Name
+      edit_link: Edit this accountant
+      delete_link: Delete this accountant
+      delete_confirm: Are you sure you want to delete this accountant?
+    form:
+      edit_title: Accountant Profile of
+      create_title: Create New Accountant
+      status: Accountant Status
+      education_etc: Education, Certificates, Degrees
+      spouse_info: Spouse Information
+      notes: Notes
+      save: Save Changes
+      return: Return

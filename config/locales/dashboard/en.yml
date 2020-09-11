@@ -1,0 +1,20 @@
+en:
+  dashboard:
+    admin:
+      period: Period
+      reload: Reload
+      franchises: Franchises
+      franchise_list: "Franchise List"
+      reports: Reports 
+      royalty_reports: Royalty Reports 
+      collections: Collections
+      current: Current
+      last_month: Last Mo. 
+      last_year: Last Yr. 
+      royalties: Royalties
+      avg_collections: Avg Collections
+      avg_royalties: Avg Royalties
+      revenue_by_state: Revenue by State
+      coll_by_category: Collections by Category
+      total_royalties_by_month: Total Royalties by Month
+      month: Month

@@ -68,7 +68,7 @@ RSpec.describe "Public Pages", :type => :request do
 
       it "shows the proper content" do 
         get root_path
-        expect(response.body).to include("Public#adminpage")
+        expect(response.body).to include("Period")
       end
     end
 

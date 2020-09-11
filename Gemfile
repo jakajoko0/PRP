@@ -32,7 +32,7 @@ gem 'devise_masquerade'
 gem 'audited', '4.9.0'
 
 #Gem to display charts
-gem 'chartkick'
+gem 'chartkick', '3.4.0'
 
 #Gem to show better user friendly urls (slugs) 
 gem 'friendly_id', '~> 5.2.4'
@@ -59,7 +59,7 @@ gem 'cancan'
 # To enable API calls 
 gem 'savon' , '2.12.0'
 # To process background jobs
-gem 'sidekiq' 
+gem 'sidekiq', '6.1.1' 
 gem 'sidekiq-cron'
 gem 'rubyzip', '1.3.0'
 

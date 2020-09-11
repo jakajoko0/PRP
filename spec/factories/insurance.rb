@@ -11,6 +11,9 @@ FactoryBot.define do
     other_insurance {0}
     other_expiration {nil}
     other_description {nil}
+    other2_insurance {0}
+    other2_expiration {nil}
+    other2_description {nil}
   end
 
 end

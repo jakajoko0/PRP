@@ -26,13 +26,14 @@ class Accountant < ApplicationRecord
 
   audited
   
-  after_create :log_new_accountant
   scope :by_number, -> { order("accountant_num")}
 
   validates :franchise, presence: {message: "Please provide Franchise"}
   validates :firstname, presence: {message: "First name cannot be blank"}
   validates :lastname, presence: {message: "Last name cannot be blank"}
   validates :accountant_num, uniqueness: {scope: [:franchise], message: "This accountant number already exists"}
+  validates :ptin, length: {is: 8, message: :proper_length}, allow_nil: true, allow_blank: true
+  validates :ptin, numericality: {only_integer: true, messenger: :numbers_only}, allow_nil: true, allow_blank: true
 
   def should_generate_new_friendly_id?
     name_or_number_has_changed?
@@ -75,13 +76,4 @@ class Accountant < ApplicationRecord
     self.spouse_birthdate = Date.strptime(spouse_birthdate,I18n.translate('date.formats.default')) unless spouse_birthdate.blank?
     self.term_date = Date.strptime(term_date,I18n.translate('date.formats.default')) unless term_date.blank?
   end
-
-  private  
-
-  def log_new_accountant
-    desc = "Accountant #{self.accountant_num} #{self.lastname} was created"
-    EventLog.create(event_date: DateTime.now, fran: self.franchise.franchise_number, lastname: self.franchise.lastname, user_email: self.franchise.email, event_desc: desc)
-  end
-
-
 end

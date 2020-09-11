@@ -4,10 +4,9 @@ before_action :set_insurance, only: [:edit, :update]
 
 
 def index
-  logger.debug("Params Search: #{params[:search]}")
 	@insurances = Insurance.search(params[:search])
-	               .order(sort_column + " " + sort_direction)
-                 .paginate(per_page: 10, page: params[:page])
+	              .order(sort_column + " " + sort_direction)
+                .paginate(per_page: 10, page: params[:page])
   
   authorize! :read, Insurance
 end
@@ -21,16 +20,14 @@ def new
 end
 
 def create
-	@insurance = new_insurance
-	@insurance.set_dates(insurance_params[:eo_expiration],
-                        insurance_params[:gen_expiration],
-                        insurance_params[:other_expiration])
+  authorize! :create, Insurance
+  result = CreateInsurance.call(params: insurance_params, user: current_authenticated)
 
-	authorize! :create, @insurance
-  if @insurance.save 
+  if result.success?
   	flash[:success] = "Insurance Record Created Successfully"
   	redirect_to admins_insurances_path
   else
+    @insurance = result.insurance
   	render action: :new 
   end
 end
@@ -41,14 +38,16 @@ end
 
 def update
 	authorize! :update, @insurance
-	@insurance.assign_attributes(insurance_params)
-	@insurance.set_dates(insurance_params[:eo_expiration],
-                        insurance_params[:gen_expiration],
-		                    insurance_params[:other_expiration])
-	if @insurance.save 
+  result = UpdateInsurance.call(insurance: @insurance,
+                           params: insurance_params,
+                           user: current_authenticated
+                           )
+	
+	if result.success?
 		flash[:success] = "Insurance Record Modified Successfully"
 		redirect_to admins_insurances_path 
 	else
+    @insurance = result.insurance
 		render 'edit'
 	end
 end
@@ -65,15 +64,14 @@ private
 		@insurance = Insurance.friendly.find(params[:id])
   end
 
-  def new_insurance
-  	Insurance.new(insurance_params)
-  end
 
   def insurance_params
     params.require(:insurance)
     .permit(:franchise_id, :eo_insurance, :gen_insurance,
-    :other_insurance, :other_description, :eo_expiration, :gen_expiration,
-    :other_expiration)
+    :other_insurance, :other_description, :eo_expiration,
+    :gen_expiration, :other_expiration, :other2_insurance,
+    :other2_description, :other2_expiration
+    )
   end
 
   def sort_column
