@@ -1,0 +1,44 @@
+wb = xlsx_package.workbook
+
+styles = set_axlsx_styles(wb)
+
+wb.add_worksheet(name:I18n.t('reports.insurance_missing.title_workbook')) do |ws|
+  ws.add_row [@report_info[:title_excel]],
+  style: styles[:header_title],
+  widths: [:ignore, :auto, :auto, :auto, :auto],
+  height: 60
+  
+  
+  ws.add_row
+
+  ws.add_row [
+  I18n.t('reports.insurance_missing.number'),
+  I18n.t('reports.insurance_missing.name'),
+  I18n.t('reports.insurance_missing.state'),
+  I18n.t('reports.insurance_missing.phone'),
+  I18n.t('reports.insurance_missing.email')],
+  style: [styles[:header_left],styles[:header_left], styles[:header_left],styles[:header_center],
+  styles[:header_left]],
+  width: [:auto, :auto, :auto, :auto, :auto]
+
+  if @franchises.size > 0
+    @franchises.each do |fr|
+      ws.add_row [
+      fr.franchise.franchise_number,
+      fr.franchise.full_name,
+      fr.franchise.state,
+      fr.franchise.phone,
+      fr.franchise.email],
+      style: [styles[:data_left], styles[:data_left],
+      styles[:data_left],styles[:data_center],
+      styles[:data_left]],
+      width: [:auto, :auto,:auto,:auto, :auto],
+      types: [:string, :string, :string, :string, :string]
+    end
+  end
+
+  ws.merge_cells "A1:F1"
+  ws.merge_cells "A2:F2"
+  
+end
+

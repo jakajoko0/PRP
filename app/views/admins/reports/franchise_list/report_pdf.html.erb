@@ -9,12 +9,24 @@
 <table id = "main-table" class = "main-table">
   <thead>
   	<tr>
-  	<th>Number</th>
-		<th>Name</th>
-		<th>Address</th>
-		<th>Phone</th>
-		<th>Email</th>
-		<th>Firm ID</th>
+  	<th>
+  		<%=I18n.t('reports.franchise_list.number')%>
+		</th>
+		<th>
+			<%=I18n.t('reports.franchise_list.name')%>
+		</th>
+		<th>
+			<%=I18n.t('reports.franchise_list.address')%>
+		</th>
+		<th>
+			<%=I18n.t('reports.franchise_list.phone')%>
+		</th>
+		<th>
+			<%=I18n.t('reports.franchise_list.email')%>
+		</th>
+		<th>
+			<%=I18n.t('reports.franchise_list.firm_id')%>
+		</th>
 	</tr>
 	</thead>
 	<%if @franchises.size > 0%>

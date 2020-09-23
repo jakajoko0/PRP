@@ -21,6 +21,7 @@ en:
         payment_methods: Payment Methods
         missing_methods: Payment Method Missing
         missing_insurance: Insurance Missing
+        expiring_insurance: Insurance Expiring
         financial_status: Financial Reporting Status
         financial_agg: Financial Aggregation
         counts_averages: Client Counts and Fee Averages

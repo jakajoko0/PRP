@@ -125,7 +125,7 @@ end
   Capybara.javascript_driver = :selenium_chrome_headless_docker_friendly
     #Capybara.javascript_driver = :selenium_chrome_headless
   else
-    Capybara.javascript_driver = :chrome 
+    Capybara.javascript_driver = :selenium_chrome 
   end
 
 

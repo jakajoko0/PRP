@@ -1,0 +1,67 @@
+<div class = "row">
+	<div class = "col-12">
+		<h5 class="text-center">
+			<%=@report_info[:title]%>
+		</h5>
+	</div>
+</div>
+
+<div id = "table-scroll" 
+     class = "table-scroll">
+  <table id = "main-table">
+    <thead >
+  	  <tr>
+  	    <th>
+  		    <%=I18n.t('reports.insurance_expiration.number')%>
+ 		    </th>
+		    <th>
+		      <%=I18n.t('reports.insurance_expiration.name')%>
+	      </th>
+		    <th>
+		      <%=I18n.t('reports.insurance_expiration.ins_type')%>
+        </th>
+		    <th>
+			    <%=I18n.t('reports.insurance_expiration.expires')%>
+		    </th>
+		    <th>
+			    <%=I18n.t('reports.insurance_expiration.phone')%>
+		    </th>
+		    <th>
+			    <%=I18n.t('reports.insurance_expiration.email')%>
+		    </th>
+		  </tr>
+	  </thead>
+	  <%if @insurances.size > 0%>
+	    <tbody>	
+	      <%@insurances.each do |insurance|%>
+	        <tr>
+	          <td data-name="Number">
+		  	      <%=insurance[:franchise_number]%>
+		        </td>
+		  
+		  			<td  data-name="Name">
+		  				<%=insurance[:full_name]%>
+		  			</td>
+
+		  			<td data-name="Type">
+		  				<%=insurance[:ins_type]%>
+		  			</td>
+
+		  			<td  data-name="Expires On">
+		  				<%=I18n.l(insurance[:expires])%>
+		  			</td>
+
+		  			<td  data-name="Phone">
+		  				<%=insurance[:phone]%>
+		  			</td>
+		  			<td  data-name="Email">
+		  				<%=insurance[:email]%>
+		  			</td>
+
+
+					</tr>
+				<%end%>
+			</tbody>
+  	<%end%>
+  </table>
+</div>

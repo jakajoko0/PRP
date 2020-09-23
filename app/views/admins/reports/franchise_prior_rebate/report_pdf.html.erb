@@ -1,0 +1,48 @@
+
+<div class = "row">
+	<div class = "col-12">
+		<h5 class="text-center">
+			<%=@report_info[:title]%>
+		</h5>
+	</div>
+</div>
+<br>
+<div id = "table-scroll" 
+     class = "table-scroll" >
+  <table id = "main-table">
+    <thead>
+  	  <tr>
+  	    <th>
+  		    <%=I18n.t('reports.franchise_prior_rebate.number')%>
+ 		    </th>
+		    <th>
+		      <%=I18n.t('reports.franchise_prior_rebate.name')%>
+	      </th>
+		    <th class = "td-right">
+		      <%=I18n.t('reports.franchise_prior_rebate.rebate')%>
+        </th>
+
+		  </tr>
+	  </thead>
+	  <%if @franchises.size > 0%>
+	    <tbody>	
+	      <%@franchises.each do |franchise|%>
+	        <tr>
+	          <td data-name="Number">
+		  	      <%=franchise.franchise_number%>
+		        </td>
+		  
+		  			<td  data-name="Name">
+		  				<%=franchise.full_name%>
+		  			</td>
+
+		  			<td data-name="Rebate $"
+		  			    class = "td-right">
+		  				<%=number_to_currency(franchise.prior_year_rebate, precision: 2)%>
+		  			</td>
+				  </tr>
+				<%end%>
+			</tbody>
+  	<%end%>
+  </table>
+</div>

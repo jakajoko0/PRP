@@ -63,14 +63,31 @@ Rails.application.routes.draw do
       resources :insurances
 
 
-
-
-
       #Reports
       scope module: :reports do 
+        #Franchise List
         get '/franchise_list' => 'franchise_list#index'
         post '/franchise_list/render' => 'franchise_list#report'
         get '/franchise_list/render' => redirect('/admins/franchise_list')
+
+        get '/franchise_expiration' => 'franchise_expiration#index'
+        post '/franchise_expiration/render' => 'franchise_expiration#report'
+        get '/franchise_expiration/render' => redirect('/admins/franchise_expiration')
+
+        get '/franchise_advanced_rebate' => 'franchise_advanced_rebate#report'
+        post '/franchise_advanced_rebate' => 'franchise_advanced_rebate#report'
+
+        get '/franchise_prior_rebate' => 'franchise_prior_rebate#report'
+        post '/franchise_prior_rebate' => 'franchise_prior_rebate#report'
+
+        get '/insurance_expiration' => 'insurance_expiration#index'
+        post '/insurance_expiration/render' => 'insurance_expiration#report'
+        get '/insurance_expiration/render' => redirect('/admins/insurance_expiration')
+
+        get '/insurance_missing' => 'insurance_missing#index'
+        post '/insurance_missing/render' => 'insurance_missing#report'
+        get '/insurance_missing/render' => redirect('/admins/insurance_missing')
+
 
       end
 

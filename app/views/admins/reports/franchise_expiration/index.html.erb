@@ -1,0 +1,48 @@
+<div class = "card">
+	<div class = "card-header login-header">
+	  <h4>
+	  	<%=I18n.t('reports.franchise_expiration.title')%>
+   	</h4>
+	</div>
+
+	<%=form_tag admins_franchise_expiration_render_path(format: :html), method: "post" do |f| %>
+	  <div class = "card-body card-background-padgett">
+		  <div class = "form-row">
+		  	<%=month_and_year_dropdowns(
+		  		I18n.t('reports.general.from'),
+		  		"month",
+		  		"year",
+		  		"form-group form-row col-12",
+		  		"col-form-label col-form-label-sm label-bold col-2 col-sm-2 col-md-1
+		  		 col-lg-1",
+		  		"col-6 col-sm-3 col-md-2
+				 col-lg-2",
+				 "col-3 col-sm-2 col-md-2
+				 col-lg-1")%>
+			</div>
+			<div class = "form-row">
+		  	<%=month_and_year_dropdowns(
+		  		I18n.t('reports.general.to'),
+		  		"month2",
+		  		"year2",
+		  		"form-group form-row col-12",
+		  		"col-form-label col-form-label-sm label-bold col-2 col-sm-2 col-md-1
+		  		 col-lg-1",
+		  		"col-6 col-sm-3 col-md-2
+				 col-lg-2",
+				 "col-3 col-sm-2 col-md-2
+				 col-lg-1")%>
+			</div>
+		</div>
+		
+		<div class = "card-footer">
+		<div class = "col-6 col-sm-3 col-md-2 
+		              col-lg-2 pl-0">
+			<%=submit_tag (I18n.t('reports.general.btn_generate')),
+			class: "btn btn-padgett btn-block"%>
+		</div> 
+	</div>
+	<%end%>
+</div>	
+		  	
+

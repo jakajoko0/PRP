@@ -12,10 +12,13 @@ def report
   @franchises = FranchisesQuery.new.franchise_list_sorted(include_inactives,sortby)
   sortby_text = sortby_title(sortby)
   include_text = include_title(include_inactives)
-  title = format_report_title(I18n.t('reports.franchise_list.title'),
+  title = format_report_title([I18n.t('reports.franchise_list.title'),
                               sortby_text,
-                              include_text)
-  @report_info = {title: title }
+                              include_text])
+  title_excel = format_report_title_excel([I18n.t('reports.franchise_list.title'),
+                              sortby_text,
+                              include_text])
+  @report_info = {title: title, title_excel: title_excel }
 
   respond_to do |format|
     format.html

@@ -12,12 +12,6 @@
   
 }
 
-//Overriding some of the variables
-$dropdown-bg:  #e5f1cc;
-$dropdown-link-hover-bg: darken(#e5f1cc,10%);
-$dropdown-link-active-bg: darken(#e5f1cc,10%);
-$dropdown-link-color: var(--padgett-blue);
-
 
 .padgett-blue-icon {
  color: var(--padgett-blue);
@@ -37,9 +31,6 @@ $dropdown-link-color: var(--padgett-blue);
   }
 }
 
-.padgett-blue-icon:hover{
-  color: lighten(#002b7f,20%);
-}
 
 
 @import "~bootstrap/scss/bootstrap";
@@ -244,9 +235,7 @@ table.table.table-dan td {
   border-collapse: separate;
   border-spacing: 0;
 }
-.table-scroll th {
-  border: 1px solid #ccc;
-}
+
 
 
 
@@ -257,13 +246,15 @@ table.table.table-dan td {
 }
 
 .table-scroll thead th {
-  background: #f5f7fa;
-  
+  background: white;
+  font-size: 1rem;
   font-weight:bold;
   position: -webkit-sticky;
   position: sticky; 
   top: 0px;
-  border: 1px solid;
+  border-width: 1px 0px 1px 0px;
+  border-style: solid;
+  border-color: black;
 }
 
 .table-scroll tfoot,
@@ -283,40 +274,10 @@ table.table.table-dan td {
 
 
 
-.field_with_errors {
-  display: inline;
-}
-
-.field_with_errors input{
-  border: 1px solid red !important;
-}
-
-.field_with_errors select{
-  border: 1px solid red !important;
-}
 
 
 .form-horizontal .control-label{
 text-align:left;
-}
-
-select.select-date {
-  width: 30%;
-  margin-right: 10px;
-  float: left;
-}
-
-.select-date-wrapper{
-  select:first-of-type{
-    width: 25%;
-  }
-  select:nth-of-type(2){
-    width: 25%;
-  }
-  select:last-of-type{
-    margin-right: 0;
-    width: 25%;
-  }
 }
 
 
@@ -358,176 +319,10 @@ select.select-date {
   border-top: .5rem solid #f00;
 }
 
-input:required {
-  background-color: rgba(0, 200, 0, 0.05);
-}
-
-select:required{
- background-color: rgba(0, 200, 0, 0.05); 
-}
-
-input:required:focus {
-  border: 1px solid green;
-  outline: none;
-}
-
-.card-title+h3:before {
-  font-family: 'Font Awesome 5 Free' ;
-  font-weight: 400;
-  content: "\f146";
-  padding-right: 5px;
-}
-
-.card-title+h3.collapsed:before {
-  font-family: 'Font Awesome 5 Free';
-  font-weight: 400;
-  content: "\f0fe";
-  padding-right: 5px;
-}
-
-.panel-title+h3:before {
-  font-family: FontAwesome;
-  content: "\f056";
-  padding-right: 5px;
-}
-
-.panel-title+h3.collapsed:before {
-  font-family: FontAwesome;
-  content: "\f055";
-  padding-right: 5px;
-}
-
-// style input elements that have a required
-// attribute and a hover state
-input:required:hover {
-  opacity: 1;
-}
 
 
 
-/*********************************************/
-// CSS for Rankings on Main Page
-/*********************************************/
-.sectionClass {
-  padding: 0px 0px 20px 0px;
-  position: relative;
-  display: block;
-}
 
-.fullWidth {
-  width: 100% !important;
-  display: table;
-  float: none;
-  padding: 0;
-  min-height: 1px;
-  height: 100%;
-  position: relative;
-}
-
-.proposalFactsWrap{
-  display: flex;
-  margin-top: 30px;
-  flex-direction: row;
-  flex-wrap: wrap;
-}
-
-#proposalFacts .fullWidth{
-  padding: 0;
-}
-
-.proposalFactsWrap .item{
-  width: 20%;
-  height: 172px;
-  padding: 10px 0px;
-  text-align: center;
-}
-
-.proposalFactsWrap .item:nth-child(1){
-  background: rgb(16, 31, 46);
-}
-
-.proposalFactsWrap .item:nth-child(2){
-  background: rgb(18, 34, 51);
-}
-
-.proposalFactsWrap .item:nth-child(3){
-  background: rgb(21, 38, 56);
-}
-
-.proposalFactsWrap .item:nth-child(4){
-  background: rgb(23, 44, 66);
-}
-
-.proposalFactsWrap .item:nth-child(5){
-  background: rgb(25, 48, 69);
-}
-.proposalFactsWrap .item:nth-child(6){
-  background: rgb(25, 48, 69);
-}
-
-.proposalFactsWrap .item p.number{
-  font-size: 20px;
-  padding: 0;
-  font-weight: bold;
-}
-
-.proposalFactsWrap .item p{
-  color: rgba(255, 255, 255, 0.8);
-  font-size: 18px;
-  margin: 0;
-  padding: 10px;
-  font-family: 'Open Sans';
-}
-
-
-.proposalFactsWrap .item span{
-  width: 100px;
-  background: rgba(255, 255, 255, 0.8);
-  height: 2px;
-  display: block;
-  margin: 0 auto;
-}
-
-
-.proposalFactsWrap .item i{
-  vertical-align: middle;
-  font-size: 50px;
-  color: rgba(255, 255, 255, 0.8);
-}
-
-
-.proposalFactsWrap .item:hover i, .proposalFactsWrap .item:hover p{
-  color: white;
-}
-
-.proposalFactsWrap .item:hover span{
-  background: white;
-}
-
-@media (max-width: 786px){
-  .proposalFactsWrap .item {
-     flex: 0 0 50%;
-  }
-}
-
-.sectiontitle {
-  background-position: center;
-  margin: 30px 0 0px;
-  text-align: center;
-  min-height: 20px;
-}
-
-.sectiontitle h2 {
-  font-size: 30px;
-  color: #222;
-  margin-bottom: 0px;
-  padding-right: 10px;
-  padding-left: 10px;
-}
-
-.accordion-padgett {
-  margin-bottom: 10px;
-}
 
 
 

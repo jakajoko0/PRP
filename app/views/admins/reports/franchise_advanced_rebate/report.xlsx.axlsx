@@ -1,0 +1,34 @@
+wb = xlsx_package.workbook
+
+styles = set_axlsx_styles(wb)
+
+wb.add_worksheet(name: I18n.t('reports.franchise_advanced_rebate.title_workbook')) do |ws|
+  ws.add_row [@report_info[:title_excel]],
+  style: styles[:header_title],
+  widths:  [:ignore, :auto, :auto], height: 30
+  
+  
+  ws.add_row
+
+  ws.add_row [
+  I18n.t('reports.franchise_advanced_rebate.number'),
+  I18n.t('reports.franchise_advanced_rebate.name'),
+  I18n.t('reports.franchise_advanced_rebate.rebate')], style: [styles[:header_left],styles[:header_left], styles[:header_right]],
+  width: [:auto, :auto, :auto]
+
+  if @franchises.length > 0
+    @franchises.each do |fr|
+      ws.add_row [
+      fr.franchise_number, 
+      fr.full_name, 
+      fr.advanced_rebate],
+      style: [styles[:data_left], styles[:data_left],styles[:pct]],
+      width: [:ignore, :auto, :auto],
+      types: [:string, :string, :string, :float]
+    end
+  end
+
+  ws.merge_cells "A1:C1"
+  
+end
+

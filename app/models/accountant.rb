@@ -28,12 +28,12 @@ class Accountant < ApplicationRecord
   
   scope :by_number, -> { order("accountant_num")}
 
-  validates :franchise, presence: {message: "Please provide Franchise"}
-  validates :firstname, presence: {message: "First name cannot be blank"}
-  validates :lastname, presence: {message: "Last name cannot be blank"}
-  validates :accountant_num, uniqueness: {scope: [:franchise], message: "This accountant number already exists"}
+  validates :franchise, presence: true 
+  validates :firstname, presence: true
+  validates :lastname, presence: true
+  validates :accountant_num, uniqueness: {scope: [:franchise], message: :already_exists}
   validates :ptin, length: {is: 8, message: :proper_length}, allow_nil: true, allow_blank: true
-  validates :ptin, numericality: {only_integer: true, messenger: :numbers_only}, allow_nil: true, allow_blank: true
+  validates :ptin, numericality: {only_integer: true, message: :numbers_only}, allow_nil: true, allow_blank: true
 
   def should_generate_new_friendly_id?
     name_or_number_has_changed?

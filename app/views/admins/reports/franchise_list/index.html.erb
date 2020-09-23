@@ -9,7 +9,7 @@
 	method: "post" do |f|%>
 
 	<div class = "card-body card-background-padgett">
-		<div class = "form-row col-12">
+		<div class = "form-row">
 			<%=sort_by_number_or_name(
 				"sortby",
 				"form-group form-row col-12",
@@ -17,9 +17,9 @@
 				 col-4 col-sm-4 col-md-3 col-lg-2",
 				"col-8 col-sm-4 col-md-3
 				 col-lg-3",
-				 {"franchise_number" => I18n.t('reports.general.sort_by_fran'), "lastname" => I18n.t('reports.general.sort_by_lastname')})%>
+				 {"franchises.franchise_number" => I18n.t('reports.general.sort_by_fran'), "franchises.lastname" => I18n.t('reports.general.sort_by_lastname')})%>
 		</div>
-				<div class = "form-row col-12">
+				<div class = "form-row">
 			<%=include_inactives(
 				"inactives",
 				"form-group form-row col-12",

@@ -7,13 +7,13 @@ belongs_to :franchise
 audited
 
 validates :franchise_id, presence: {message: "Please provide Franchise"}	
-validates :franchise_id, uniqueness: {message: "An insurance record already exists for this Franchise"}
-validates :eo_expiration, presence: {if: :eo_entered? , message: "Please provide expiration date for E&O insurance"}
-validates :gen_expiration, presence: {if: :gen_entered?, message: "Please provide expiration date for general insurance"}
-validates :other_expiration, presence: {if: :other_entered?, message: "Please provide expiration date for other insurance"}
-validates :other2_expiration, presence: {if: :other2_entered?, message: "Please provide expiration date for other insurance"}
-validates :other_description, presence: {if: :other_entered?, message: "Please provide description of other insurance"}
-validates :other2_description, presence: {if: :other2_entered?, message: "Please provide description of other insurance"}
+validates :franchise_id, uniqueness: {message: :already_there}
+validates :eo_expiration, presence: {if: :eo_entered? }
+validates :gen_expiration, presence: {if: :gen_entered?}
+validates :other_expiration, presence: {if: :other_entered?}
+validates :other2_expiration, presence: {if: :other2_entered?}
+validates :other_description, presence: {if: :other_entered?}
+validates :other2_description, presence: {if: :other2_entered?}
 
 
 def franchise_name 

@@ -1,0 +1,56 @@
+<%=render 'shared/report_header'%>
+<div class = "row">
+	<div class = "col-12">
+		<h5 class="text-center">
+			<%=@report_info[:title]%>
+		</h5>
+	</div>
+</div>
+
+<div id = "table-scroll" 
+     class = "table-scroll"
+     style = "height: calc(100vh - 240px)">
+  <table id = "main-table">
+    <thead id="report">
+  	  <tr>
+  	    <th>
+  		    <%=I18n.t('reports.franchise_expiration.number')%>
+ 		    </th>
+		    <th>
+		      <%=I18n.t('reports.franchise_expiration.name')%>
+	      </th>
+		    <th>
+		      <%=I18n.t('reports.franchise_expiration.start_date')%>
+        </th>
+		    <th>
+			    <%=I18n.t('reports.franchise_expiration.renewal_date')%>
+		    </th>
+		  </tr>
+	  </thead>
+	  <%if @franchises.size > 0%>
+	    <tbody>	
+	      <%@franchises.each do |franchise|%>
+	        <tr>
+	          <td data-name="Number">
+		  	      <%=franchise.franchise_number%>
+		        </td>
+		  
+		  			<td  data-name="Name">
+		  				<%=franchise.full_name%>
+		  			</td>
+
+		  			<td data-name="Start Date">
+		  				<%=I18n.l(franchise.start_date)%>
+		  			</td>
+
+		  			<td  data-name="Renewal Date">
+		  				<%=I18n.l(franchise.renew_date)%>
+		  			</td>
+
+
+					</tr>
+				<%end%>
+			</tbody>
+  	<%end%>
+  </table>
+</div>

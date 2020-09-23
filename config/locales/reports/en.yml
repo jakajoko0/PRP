@@ -6,9 +6,13 @@ en:
       btn_generate: Generate
       sort_by_fran: Franchise Number
       sort_by_lastname: Last Name
+      sort_by_state: State
       choice_no: "No"
       choice_yes: "Yes"
       btn_return: Return
+      from: From
+      to: To
+      thru: thru
       pdf: PDF
       excel: Excel
       format: Format
@@ -16,9 +20,53 @@ en:
       including_inactives: Including Inactives
     franchise_list:
       title: Franchise List
+      title_workbook: Franchises
       number: Number
       name: Name
       address: Address
       phone: Phone
       email: Email
       firm_id: Firm ID
+    franchise_expiration:
+      title: Expiring Franchises
+      title_workbook: Expiring Franchises
+      number: Franchise Number
+      name: Name
+      start_date: Start Date
+      renewal_date: Renewal Date
+    franchise_advanced_rebate:
+      title: Franchise Using Advanced Rebates
+      title_workbook: Advanced Rebates
+      number: Franchise Number
+      name: Name
+      rebate: Rebate %
+    franchise_prior_rebate:
+      title: Franchises With Rebate Balance  
+      title_workbook: Prior Rebates
+      number: Franchise Number
+      name: Name
+      rebate: Rebate $
+    insurance_expiration:
+      title: Insurance Expiring on or Before %{target_date}
+      title_excel: Insurance Expiring
+      title_workbook: Insurance Expiration
+      number: Franchise Number
+      name: Name
+      ins_type: Type
+      expires: Expires On
+      phone: Phone
+      email: Email
+      eo_label: E&O
+      gen_label: General
+      other_label: Other (%{desc})
+    insurance_missing:
+      title: Franchises with No Insurance Records 
+      title_excel: Franchises with No Insurance 
+      title_workbook: Franchise No Insurance
+      number: Franchise Number
+      name: Name
+      state: State
+      phone: Phone
+      email: Email
+
+

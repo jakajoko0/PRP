@@ -27,3 +27,23 @@ en:
       gen: General Ins.
       other: Other Ins.
       edit_link: Edit this insurance record
+  activerecord:
+    errors:
+      models:
+        insurance:
+          attributes:
+            franchise_id:
+              blank: Please provide a Franchise
+              already_there: An insurance record already exists for this Franchise
+            eo_expiration:
+              blank: Please provide expiration date for E&O Insurance  
+            gen_expiration:
+              blank: Please provide expiration date for General Insurance
+            other_expiration:
+              blank: Please provide expiration date for Other Insurance
+            other2_expiration:
+              blank: Please provide expiration date for Other Insurance
+            other_description:
+              blank: Please provide description for Other Insurance
+            other2_description:
+              blank: Please provice description for Other Insurance      

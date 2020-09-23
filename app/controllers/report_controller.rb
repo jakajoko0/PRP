@@ -5,10 +5,12 @@ class ReportController < ApplicationController
 
   def sortby_text(value)
     case value
-    when 'franchise_number'
+    when 'franchises.franchise_number'
       "Franchise Number"
-    when 'lastname'
+    when 'franchises.lastname'
       "Last Name"
+    when 'franchises.state'  
+      "State"     
     end
   end
 
@@ -16,11 +18,13 @@ class ReportController < ApplicationController
     flag == 1 ? I18n.t('reports.general.including_inactives') : ""  
   end
 
-  def format_report_title(*title_text)
-    html = ""
-    title_text.each do |text|
-      html = html+text+"<br>" if !text.blank?
-    end
+  def format_report_title(title_text)
+    html = title_text.join("<br>")
+    html.html_safe
+  end
+
+  def format_report_title_excel(title_text)
+    html = title_text.join("\r\n")
     html.html_safe
   end
 

@@ -69,18 +69,19 @@
             admins_franchise_list_path, 
               class: "dropdown-item" %>
           </li>
+          <!-- FRANCHISE EXPIRING-->  
           <li>
-            <%= link_to I18n.t('admin_menu.franchise.report.expiring') , "#" ,
+            <%= link_to I18n.t('admin_menu.franchise.report.expiring') , admins_franchise_expiration_path ,
               class: "dropdown-item"%>
           </li>
           <!-- FRANCHISE REBATES-->  
           <li>
-            <%= link_to I18n.t('admin_menu.franchise.report.advanced_rebate') , "#" ,
+            <%= link_to I18n.t('admin_menu.franchise.report.advanced_rebate') , admins_franchise_advanced_rebate_path ,
               class: "dropdown-item"%>
           </li>
           <!-- FRANCHISE PRIOR REBATES-->   
           <li>
-            <%= link_to I18n.t('admin_menu.franchise.report.prior_rebate') , "#" ,
+            <%= link_to I18n.t('admin_menu.franchise.report.prior_rebate') , admins_franchise_prior_rebate_path ,
               class: "dropdown-item"%>
           </li>
           <div class="dropdown-divider"></div>
@@ -97,12 +98,12 @@
           <div class="dropdown-divider"></div>
           <!-- EXPIRING INSURANCE-->   
           <li>
-            <%= link_to "Expiring Insurance" , "#" ,
+            <%= link_to I18n.t('admin_menu.franchise.report.expiring_insurance') , admins_insurance_expiration_path ,
               class: "dropdown-item"%>
           </li>
           <!-- FRANCHISE MISSING INSURANCE-->   
           <li>
-            <%= link_to I18n.t('admin_menu.franchise.report.missing_insurance') , "#" ,
+            <%= link_to I18n.t('admin_menu.franchise.report.missing_insurance') , admins_insurance_missing_path ,
               class: "dropdown-item"%>
           </li>
           <div class="dropdown-divider"></div>

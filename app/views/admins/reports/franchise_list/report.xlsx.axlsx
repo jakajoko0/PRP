@@ -1,30 +1,42 @@
 wb = xlsx_package.workbook
 
-wb.styles do |s|
-  @header_title = s.add_style :sz => 18, :b => true, :alignment => {:horizontal => :center}
-  @number = s.add_style :num_fmt => 4, sz: 10
-  @pct = s.add_style :num_fmt => 4, sz: 10
-  @number_bold = s.add_style :num_fmt =>4, sz: 10 , b: true
-  
-  @header_left = s.add_style alignment: {horizontal: :left}, b: true, sz: 10
-  @header_center = s.add_style alignment: {horizontal: :center}, b: true, sz: 10
-  @header_right = s.add_style alignment: {horizontal: :right}, b: true, sz: 10
-  @data_left= s.add_style alignment: {horizontal: :left}, sz: 10
-  @data_center= s.add_style alignment: {horizontal: :center}, sz: 10
-  @data_right= s.add_style alignment: {horizontal: :right},  sz: 10
-end
+styles = set_axlsx_styles(wb)
 
-wb.add_worksheet(name: "Franchise List") do |ws|
-  ws.add_row ["Franchise List"
-  ], :style =>@header_title, :width => [:auto]
+wb.add_worksheet(
+  name: I18n.t('reports.franchise_list.title_workbook')) do |ws|
+  
+  ws.add_row [@report_info[:title_excel]],
+  style: styles[:header_title],
+  width: [:auto],
+  height: 80
   
   ws.add_row
 
-  ws.add_row ['Franchise','Name', 'Address', 'Phone', 'Email', 'Firm ID'], :style => [@header_left, @header_left, @header_left, @header_left, @header_left,@header_left], :width => [:auto, :auto, :auto, :auto, :auto, :auto]
+  ws.add_row [
+  I18n.t('reports.franchise_list.number'),
+  I18n.t('reports.franchise_list.name'),
+  I18n.t('reports.franchise_list.address'),
+  I18n.t('reports.franchise_list.phone'),
+  I18n.t('reports.franchise_list.email'),
+  I18n.t('reports.franchise_list.firm_id')],
+  style: [styles[:header_left],styles[:header_left],
+  styles[:header_left],styles[:header_left],
+  styles[:header_left],styles[:header_left]],
+  width: [:auto, :auto, :auto, :auto, :auto, :auto]
 
   if @franchises.length > 0
-    @franchises.each do |n|
-      ws.add_row [n.franchise_number, n.full_name, n.one_line_address, n.phone, n.email, n.firm_id], :style => [@data_left, @data_left,@data_left,@data_left,@data_left,@data_left], :width => [:auto, :auto,:auto,:auto,:auto,:auto], :types => [:string, :string, :string, :string, :string, :string]
+    @franchises.each do |fr|
+      ws.add_row [
+      fr.franchise_number,
+      fr.full_name,
+      fr.one_line_address,
+      fr.phone,
+      fr.email,
+      fr.firm_id],
+      style: [styles[:data_left],styles[:data_left],
+      styles[:data_left],styles[:data_left],
+      styles[:data_left],styles[:data_left]],
+      width: [:auto, :auto,:auto,:auto,:auto,:auto], types: [:string, :string, :string, :string, :string, :string]
     end
   end
 
