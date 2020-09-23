@@ -31,6 +31,7 @@
         <!-- For Edit and Delete link we have 2 other columns  -->
         <th scope = "col"></th>
         <th scope = "col"></th>
+        <th scope = "col"></th>
       </tr>
     </thead>
     <tbody>
@@ -91,6 +92,18 @@
           <%else%>
             <td></td>
           <%end%>
+
+          <td data-name="" class = "td-center">
+            <%if accountant.audits.size > 0%>
+              <%=link_with_icon(
+              admins_accountant_audit_path(id:accountant),
+              "audit",
+              I18n.t('franchise.index.audit_link'),
+              "",
+              false)%>
+            <%end%>    
+          </td>
+
         </tr>
       <% end %>
     </tbody>

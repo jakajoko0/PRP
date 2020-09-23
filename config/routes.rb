@@ -58,9 +58,11 @@ Rails.application.routes.draw do
       resources :admins
       resources :franchises
       resources :franchises_select
-      get 'franchises/audit/:id' ,to: "franchises#audit", as: 'audit'
+      get 'franchises/audit/:id' ,to: "franchises#audit", as: 'franchise_audit'
       resources :accountants
+      get 'accountants/audit/:id' ,to: "accountants#audit", as: 'accountant_audit'
       resources :insurances
+      get 'insurances/audit/:id' ,to: "insurances#audit", as: 'insurance_audit'
 
 
       #Reports

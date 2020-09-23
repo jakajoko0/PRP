@@ -1,6 +1,6 @@
 class Admins::InsurancesController < ApplicationController
 helper_method :sort_column, :sort_direction
-before_action :set_insurance, only: [:edit, :update]
+before_action :set_insurance, only: [:audit, :edit, :update]
 
 
 def index
@@ -57,6 +57,10 @@ end
 
 def show 
 	authorize! :read, @accountant
+end
+
+def audit
+  @audits = @insurance.audits.descending
 end
 
 private

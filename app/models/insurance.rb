@@ -4,7 +4,8 @@ friendly_id :franchise_name, use: :slugged
 
 belongs_to :franchise
 
-audited
+audited except: [:slug], on: [:update]
+
 
 validates :franchise_id, presence: {message: "Please provide Franchise"}	
 validates :franchise_id, uniqueness: {message: :already_there}

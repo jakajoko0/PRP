@@ -6,5 +6,5 @@ en:
     who: Who
     changes: Changes
     from_to: From %{former_value} To %{new_value}
-    
+    to: To %{value}
     was_changed: Was Changed

@@ -24,7 +24,7 @@ class Accountant < ApplicationRecord
   
   belongs_to :franchise	
 
-  audited
+  audited except: [:slug], on: [:update, :destroy]
   
   scope :by_number, -> { order("accountant_num")}
 

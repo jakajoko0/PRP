@@ -55,7 +55,10 @@ document.addEventListener("turbolinks:load", () => {
     $( this ).toggleClass('open');
      });
 
-  $('[data-toggle="tooltip"]').tooltip()
+  $('[data-toggle="tooltip"]').tooltip({
+    trigger: 'hover'}).on('click', function() {
+      $(this).tooltip('hide')
+    })
   $('[data-toggle="popover"]').popover()
 
   

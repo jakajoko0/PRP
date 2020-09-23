@@ -59,6 +59,7 @@
 
         <!-- For Edit link -->
         <th scope = "col"></th>
+        <th scope = "col"></th>
       </tr>
     </thead>
 
@@ -150,6 +151,17 @@
           <%else%>
             <td></td>
           <%end%>
+
+          <td data-name="" class = "td-center">
+            <%if insurance.audits.size > 0%>
+              <%=link_with_icon(
+              admins_insurance_audit_path(id:insurance),
+              "audit",
+              I18n.t('franchise.index.audit_link'),
+              "",
+              false)%>
+            <%end%>    
+          </td>
         </tr>
       <% end %>
    </tbody>   

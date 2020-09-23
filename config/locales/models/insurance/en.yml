@@ -22,10 +22,10 @@ en:
       search: Search by First or Last Name 
       franchise: Franchise
       name: Name
-      eo: E&O Insurance
-      expires: Expires On
-      gen: General Ins.
-      other: Other Ins.
+      eo: E&O
+      expires: Expires
+      gen: General
+      other: Other
       edit_link: Edit this insurance record
   activerecord:
     errors:

@@ -85,4 +85,21 @@ def region_desc(region)
 end
 
 
+def format_audited_events(audits)
+  html = ""
+  audits.audited_changes.each do |key,val|
+    html = html += "<strong>#{key.titleize}</strong>"
+    html = html += " #{I18n.t('audit.was_changed')} "
+    if val.class == Array 
+      html = html += "#{I18n.t('audit.from_to', former_value: val[0], new_value: val[1])}"
+    else
+      html = html += "#{I18n.t('audit.to', value: val)}"
+    end
+    html = html += "<br>"
+  end
+
+  html.html_safe
+end
+
+
 end

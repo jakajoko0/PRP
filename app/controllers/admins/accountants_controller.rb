@@ -1,6 +1,6 @@
 class Admins::AccountantsController < ApplicationController
 helper_method :sort_column, :sort_direction
-before_action :set_accountant, only: [:show, :edit, :update, :destroy]
+before_action :set_accountant, only: [:audit,:show, :edit, :update, :destroy]
 
 
 def index
@@ -67,6 +67,10 @@ end
 
 def show 
 	authorize! :read, @accountant
+end
+
+def audit 
+  @audits = @accountant.audits.descending
 end
 
 

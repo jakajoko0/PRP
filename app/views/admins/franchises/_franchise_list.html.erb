@@ -86,15 +86,19 @@
             <%=link_with_icon(
             admins_franchise_path(id:franchise),
             "show",
-            I18n.t('franchise.index.view_link'))%>
+            I18n.t('franchise.index.view_link'),
+            "",
+            false)%>
           </td>
         
           <td data-name="" class = "td-center">
             <%if franchise.audits.size > 0%>
               <%=link_with_icon(
-              admins_audit_path(id:franchise),
+              admins_franchise_audit_path(id:franchise),
               "audit",
-              I18n.t('franchise.index.audit_link'))%>
+              I18n.t('franchise.index.audit_link'),
+              "",
+              false)%>
             <%end%>    
           </td>
         </tr>
