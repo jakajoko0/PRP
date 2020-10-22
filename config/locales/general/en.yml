@@ -5,9 +5,9 @@ en:
   welcome_message: Welcome, Please Sign In 
   email_placeholder: Email
   password_placeholder: Password
+  forgot_password_text: Forgot Password
   remember_me: Remember me
   login_text: Log In
-  forgot_password_text: Forgot Password
   account_missing: Don't have an account yet?
   signup_text: Sign Up
   menu_user: User
@@ -82,6 +82,7 @@ en:
   cookies_address_state: "Georgia"
   cookies_address_zip: "30606"
   
+  franchise_not_selected: Please Select a Franchise
   pagination:
     next: Next
     prev: Previous

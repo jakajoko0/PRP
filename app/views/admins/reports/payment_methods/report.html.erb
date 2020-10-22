@@ -1,0 +1,63 @@
+<%=render 'shared/report_header'%>
+<div class = "row">
+	<div class = "col-12">
+		<h5 class="text-center">
+			<%=@report_info[:title]%>
+		</h5>
+	</div>
+</div>
+
+<div id = "table-scroll" 
+     class = "table-scroll"
+     style = "height: calc(100vh - 240px)">
+  <table id = "main-table">
+    <thead id="report">
+  	  <tr>
+  	    <th>
+  		    <%=I18n.t('reports.payment_method.number')%>
+ 		    </th>
+		    <th>
+		      <%=I18n.t('reports.payment_method.name')%>
+	      </th>
+		    <th>
+		      <%=I18n.t('reports.payment_method.type')%>
+        </th>
+		    <th>
+			    <%=I18n.t('reports.payment_method.entity')%>
+		    </th>
+		    <th>
+			    <%=I18n.t('reports.payment_method.last_four')%>
+		    </th>
+		  </tr>
+	  </thead>
+	  <%if @franchises.size > 0%>
+	    <tbody>	
+	      <%@franchises.each do |franchise|%>
+	        <tr>
+	          <td data-name="Number">
+		  	      <%=franchise.franchise_number%>
+		        </td>
+		  
+		  			<td  data-name="Name">
+		  				<%=franchise.full_name%>
+		  			</td>
+
+		  			<td data-name="Type">
+		  				<%=payment_method_type(franchise.type)%>
+		  			</td>
+
+		  			<td  data-name="Entity">
+		  				<%=payment_method_name(franchise.type,franchise.name)%>
+		  			</td>
+
+		  			<td data-name="Last 4 Digits">
+		  				<%=franchise.last_four%>
+		  			</td>
+		  			
+
+					</tr>
+				<%end%>
+			</tbody>
+  	<%end%>
+  </table>
+</div>

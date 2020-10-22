@@ -17,6 +17,10 @@ en:
       save: Save Changes
       return: Return
     object_name: Insurance record
+    create:
+      confirm: Insurance Record Created Successfully
+    update:
+      confirm: Insurance Record Updated Successfully
     index:
       add_insurance: Add Insurance
       search: Search by First or Last Name 

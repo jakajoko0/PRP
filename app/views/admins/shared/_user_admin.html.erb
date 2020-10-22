@@ -87,13 +87,14 @@
           <div class="dropdown-divider"></div>
           <!-- PAYMENT METHODS-->   
           <li>
-            <%= link_to I18n.t('admin_menu.franchise.report.payment_methods') , "#" ,
+            <%= link_to I18n.t('admin_menu.franchise.report.payment_methods') , admins_payment_methods_path ,
               class: "dropdown-item"%>
           </li>
           <!-- FRANCHISE MISSING PAYMENT METHODS-->   
           <li>
             <%= link_to I18n.t('admin_menu.franchise.report.missing_methods') ,
-            "#" ,class: "dropdown-item"%>
+            admins_payment_methods_missing_path ,
+            class: "dropdown-item"%>
           </li>
           <div class="dropdown-divider"></div>
           <!-- EXPIRING INSURANCE-->   

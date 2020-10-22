@@ -38,9 +38,13 @@ Rails.application.routes.draw do
   # Authenticate users before accessing these routes
   authenticate :user do  
     resources :users
-    resources :franchises, only: [:edit]
+    resources :franchises, only: [:edit, :update]
     resources :accountants, only: [:show]
     resources :insurances, only: [:show]
+    resources :bank_accounts
+    resources :credit_cards
+
+    get '/bank_routings/bank_name' => 'bank_routings#bank_name'
   end
   
   # Authenticated route to show specific Dashboard for admins
@@ -89,6 +93,14 @@ Rails.application.routes.draw do
         get '/insurance_missing' => 'insurance_missing#index'
         post '/insurance_missing/render' => 'insurance_missing#report'
         get '/insurance_missing/render' => redirect('/admins/insurance_missing')
+
+        get '/payment_methods' => 'payment_methods#index'
+        post '/payment_methods/render' => 'payment_methods#report'
+        get '/payment_methods/render' => redirect('/admins/payment_methods')
+
+        get 'payment_methods_missing' => 'payment_methods_missing#index'
+        post '/payment_methods_missing/render' => 'payment_methods_missing#report'
+        get '/payment_methods_missing/render' => redirect('/admins/payment_methods_missing')
 
 
       end

@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.feature "Adding Insurance", :type => :feature do 
+RSpec.feature "Feature - Adding Insurance", :type => :feature do 
   let!(:admin) {create(:admin)}	
   let!(:franchise) {create(:franchise)}
 

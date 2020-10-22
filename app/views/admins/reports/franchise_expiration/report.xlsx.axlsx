@@ -5,7 +5,7 @@ styles = set_axlsx_styles(wb)
 wb.add_worksheet(name:I18n.t('reports.franchise_expiration.title_workbook')) do |ws|
   ws.add_row [@report_info[:title_excel]],
   style: styles[:header_title],
-  widths: [:ignore, :auto, :auto, :auto],
+  widths: [:ignore],
   height: 80
   
   
@@ -24,8 +24,8 @@ wb.add_worksheet(name:I18n.t('reports.franchise_expiration.title_workbook')) do 
       ws.add_row [
       fr.franchise_number,
       fr.full_name,
-      I18n.l fr.start_date,
-      I18n.l fr.renew_date],
+      (I18n.l fr.start_date),
+      (I18n.l fr.renew_date)],
       style: [styles[:data_left], styles[:data_left],
       styles[:data_left],styles[:data_left]],
       width: [:auto, :auto,:auto,:auto],

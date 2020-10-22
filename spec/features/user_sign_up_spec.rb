@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.feature "User Signing Up", :type => :feature do
+RSpec.feature "Feature User Signing Up", :type => :feature do
   let!(:franchise) {create(:franchise)}
   let!(:franchise2) {create(:franchise)}
   let!(:user) {create(:user, email: franchise.email)}

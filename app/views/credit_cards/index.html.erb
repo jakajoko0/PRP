@@ -1,0 +1,17 @@
+<div class = "row col-12 pb-3">
+  <%=link_to new_credit_card_path,
+     data: {turbolinks: false} do%>
+     <button class = 'btn btn-padgett'>
+       <%=I18n.t('credit_card.index.add_credit_card')%>
+     </button>
+  <%end%>
+</div>
+
+<div class = "row">
+	<div id = "credit_cards" class = "col">
+		<%=render partial: 'credit_card_list'%>
+	</div>
+</div>
+
+
+

@@ -1,4 +1,47 @@
 en:
+  user_menu:
+    sign_out: Sign Out
+    user: User
+    account:
+      account_text: Account
+      user_profile: User Profile
+      setup: 
+        setup_text: Franchise Setup
+        franchise: Franchise
+        accountants: Accountants
+        insurance: Insurance
+        website: Website Preferences
+        payment_methods: 
+          payment_method_text: Payment Methods
+          bank_account: Bank Accounts
+          credit_cards: Credit Cards
+    reporting:
+      reporting_text: Reporting
+      royalties: Royalties
+      financials: Financials      
+    deposits: Deposits
+    other_charges: Other Charges
+    payments:
+      payments_text: Payments
+      payment_history: Payment History
+      make_payment:
+        make_payment_text: Make a Payment
+        with_bank: With a Bank Account
+        with_card: With a Credit Card
+        with_check: With a Check  
+    tools:
+      tools_text: Tools
+      franchise_directory: Franchise Directory
+      routing_number: Find Routing Number
+      exit_masquerade: Logout
+      reports:
+        reports_text: Reports
+        statement: Statement
+        payments: Payments
+    about:
+      about_text: About
+      cookies: Cookie Policy
+      version: PR+P 2.0      
   admin_menu:
     sign_out: Sign Out
     user: User

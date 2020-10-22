@@ -27,6 +27,7 @@ require("custom/franchises_select")
 require("custom/accountants")
 require("custom/insurances")
 require("custom/insurance_expiring")
+require("custom/bank_accounts")
 
 require.context('../images',true, /\.(?:png|jpg|gif|ico|svg)$/)
 

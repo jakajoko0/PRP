@@ -21,6 +21,7 @@ class Accountant < ApplicationRecord
   #t.index ["franchise_id"], name: "index_accountants_on_franchise_id"
   extend FriendlyId
   friendly_id :franchise_and_name , use: :slugged
+
   
   belongs_to :franchise	
 

@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.feature "Deleting Accountants", :type => :feature do 
+RSpec.feature "Feature - Deleting Accountants", :type => :feature do 
   let!(:admin) {create(:admin)}	
   let!(:franchise) {create(:franchise)}
   let!(:accountants) {create_list(:accountant,10, franchise: franchise)}

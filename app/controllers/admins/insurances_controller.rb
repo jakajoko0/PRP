@@ -12,7 +12,7 @@ def index
 end
 
 def new 
-  redirect_to root_url, notice: 'A Franchise was Not Selected' unless params[:franchise_id]
+  redirect_to root_url, notice: I18n.t('franchise_not_selected') unless params[:franchise_id]
   franchise_id = params[:franchise_id].to_i
 	@insurance = Insurance.new(franchise_id: franchise_id)
 
@@ -24,7 +24,7 @@ def create
   result = CreateInsurance.call(params: insurance_params, user: current_authenticated)
 
   if result.success?
-  	flash[:success] = "Insurance Record Created Successfully"
+  	flash[:success] = I18n.t('insurance.create.confirm')
   	redirect_to admins_insurances_path
   else
     @insurance = result.insurance
@@ -44,7 +44,7 @@ def update
                            )
 	
 	if result.success?
-		flash[:success] = "Insurance Record Modified Successfully"
+		flash[:success] = I18n.t('insurance.update.confirm')
 		redirect_to admins_insurances_path 
 	else
     @insurance = result.insurance
@@ -70,7 +70,7 @@ private
 
 
   def insurance_params
-    params.require(:insurance)
+     params.require(:insurance)
     .permit(:franchise_id, :eo_insurance, :gen_insurance,
     :other_insurance, :other_description, :eo_expiration,
     :gen_expiration, :other_expiration, :other2_insurance,

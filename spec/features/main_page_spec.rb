@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.feature "Home Page", :type => :feature do
+RSpec.feature "Feature - Home Page", :type => :feature do
   let!(:user) {create(:user)}
   let!(:admin) {create(:admin)}
 

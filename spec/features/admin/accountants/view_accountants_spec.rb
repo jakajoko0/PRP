@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.feature "Viewing Accountants", :type => :feature do 
+RSpec.feature "Feature - Viewing Accountants", :type => :feature do 
   let!(:admin) {create(:admin)}	
   let!(:franchise) {create(:franchise)}
   data = [{firstname: "AAAA", lastname: "BBBB"},{firstname: "BBBB", lastname: "AAAA"}, {firstname: "AAAB", lastname: "BBBA"} ]

@@ -1,0 +1,17 @@
+<div class = "row col-12 pb-3">
+  <%=link_to new_bank_account_path,
+     data: {turbolinks: false} do%>
+     <button class = 'btn btn-padgett'>
+       <%=I18n.t('bank_account.index.add_bank_account')%>
+     </button>
+  <%end%>
+</div>
+
+<div class = "row">
+	<div id = "bank_accounts" class = "col">
+		<%=render partial: 'bank_account_list'%>
+	</div>
+</div>
+
+
+

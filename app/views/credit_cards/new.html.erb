@@ -1,0 +1,12 @@
+<div class = "row justify-content-center">
+  <div class = "col-12 col-sm-12 col-md-10 col-lg-10">
+
+  	<%= render :partial => "shared/error_handling",
+    :locals => {:the_object => @credit_card,
+    	        :objectname => I18n.t('credit_card.object_name')} %>
+
+  	<%=render partial: 'form',
+  	locals: { credit_card: @credit_card,
+  				    action: 'new'} %>
+  </div>
+</div>   	        

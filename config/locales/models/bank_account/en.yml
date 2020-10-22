@@ -1,0 +1,59 @@
+en:
+  activerecord:
+    errors:
+      models:
+        bank_account:
+          attributes:
+            franchise:
+              blank: Franchise cannot be blank
+            routing:
+              blank: Routing Number cannot be blank
+            account_number:
+              blank: Account Number cannot be blank  
+            type_of_account:
+              blank: Account Type cannot be blank
+            name_on_account:
+              blank: Name on the Account cannot be blank  
+            bank_name:
+              blank: Bank Name cannot be blank  
+  helpers:
+    label:
+      bank_account:
+        account_type: Account Type
+        routing_number: Routing Number
+        account_number: Account Number
+        name_on_account: Owner Name
+        type_of_account: Account Type
+        bank_name: Bank Name
+
+  bank_account:
+    object_name: Bank Account
+    create:
+      confirm: Bank Account Created Successfully
+    update:
+      confirm: Bank Account Updated Successfully
+    delete:
+      confirm: Bank Account Deleted Successfully
+      error: A Problem Occured Deleting Bank Account  
+    routing_invalid: Invalid Routing Number
+    ending_in: ending in
+    index:
+      add_bank_account: Add Bank Account            
+      bank_name: Bank Name
+      account_type: Account Type
+      ending_in: Account Ending In
+      edit_link: Edit this Bank Account
+      delete_link: Delete this Bank Account
+      delete_confirm: Are you sure you want to Delete this Bank Account?
+    form:
+      edit_title: "%{bank_name} %{acct_type} account ending in %{last_four}"
+      create_title: Add New Bank Account
+      checking_type: C 
+      checking_desc: Checking
+      savings_type: S
+      savings_desc: Savings
+      save: Save
+      discard: Discard
+      
+
+

@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.feature "Adding Franchises", :type => :feature do 
+RSpec.feature "Feature - Adding Franchises", :type => :feature do 
   let!(:admin) {create(:admin)}	
 
   scenario "Admin User Click Create Franchise", js: true do 

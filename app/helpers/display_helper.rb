@@ -85,6 +85,7 @@ def region_desc(region)
 end
 
 
+
 def format_audited_events(audits)
   html = ""
   audits.audited_changes.each do |key,val|
@@ -99,6 +100,26 @@ def format_audited_events(audits)
   end
 
   html.html_safe
+end
+
+
+
+def payment_method_type(type)
+  type == 'C' ? "Credit Card" : "ACH"
+end
+
+def payment_method_name(type,name)
+  type == 'B' ? name : credit_card_type(name)
+end
+
+
+def credit_card_type(type)
+  case type
+      when 'V' then 'Visa'
+      when 'M' then 'MasterCard'
+      when 'I' then 'Discover'  
+      when 'A' then 'American Express'
+    end
 end
 
 

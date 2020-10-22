@@ -23,7 +23,7 @@ class Admins::FranchisesController < ApplicationController
     result = CreateFranchise.call(params: franchise_params, user: current_authenticated)
     
     if result.success?
-      flash[:success] = 'Franchise Created Successfully'
+      flash[:success] =  I18n.t('franchise.create.confirm')
       redirect_to admins_franchises_path 
     else
       @franchise = result.franchise
@@ -40,7 +40,7 @@ class Admins::FranchisesController < ApplicationController
     result = UpdateFranchise.call(franchise: @franchise, params: franchise_params, user: current_authenticated)
     
     if result.success?
-      flash[:success] = "Franchise profile modified successfully"
+      flash[:success] = I18n.t('franchise.update.confirm')
       redirect_to admins_franchises_path
     else
       @franchise = result.franchise

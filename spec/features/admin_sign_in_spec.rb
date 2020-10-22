@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.feature "Admin Log In", :type => :feature do
+RSpec.feature "Feature - Admin Log In", :type => :feature do
   let!(:admin) {create(:admin)}  
   scenario "From Admin Log In page with valid Info" do
     visit root_path

@@ -1,12 +1,23 @@
 class FranchisesController < ApplicationController
-  before_action :validate_franchise, only: [:edit, :update]
   before_action :set_franchise, only: [:edit, :update]
 
 
   def edit
+    authorize! :edit, @franchise
   end
 
   def update
+    authorize! :update, @franchise
+    result = UpdateFranchise.call(franchise: @franchise, params: franchise_params, user: current_authenticated)
+
+    if result.success?
+      flash[:success] = "Franchise profile modified successfully"
+      redirect_to root_path
+    else
+      @franchise = result.franchise
+      render 'edit'
+    end
+
   end
 
 
@@ -14,18 +25,19 @@ class FranchisesController < ApplicationController
 
   #Franchise Users can only modify the advanced rebate field
   def franchise_params
-    params.require(:franchise).permit(:advanced_rebate)
+    params.require(:franchise)
+    .permit(:lastname, :firstname, :initial, :salutation,
+      :address, :address2, :city, :state, :zip_code,
+      :ship_address, :ship_address2, :ship_city, :ship_state, :ship_zip_code,
+      :home_address, :home_address2, :home_city, :home_state, :home_zip_code,
+      :phone, :phone2, :mobile, :fax, :email, :alt_email, :advanced_rebate  )
   end
   
-  #Make sure a franchise cannot edit another franchise record
-  def validate_franchise
-  	fran = Franchise.find(params[:id])
-  	redirect_to (root_url) unless (fran.id == current_user.franchise_id)
-  end
+  
 
   #Set the franchise instance variable for use in different methods
   def set_franchise
-  	@franchise = Franchise.find(params[:id])
+  	@franchise = Franchise.friendly.find(params[:id])
   end
 
 end

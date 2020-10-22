@@ -85,6 +85,10 @@ en:
               invalid_format: Invalid Email Format
   franchise:
     object_name: Franchise Profile
+    create:
+      confirm: Franchise Created Successfully
+    update:
+      confirm: Franchise Profile Updated Successfully
     index:
       create_franchise: Create Franchise       
       search_by_name: Search by First or Last Name
@@ -111,6 +115,7 @@ en:
       title: "Franchise: %{franchise_name}"
       franchise_info: Franchise Information
       accountants: Accountants
+      payment_methods: Payment Methods
       return_btn: Return
   franchise_select:
     title: Select a Franchise

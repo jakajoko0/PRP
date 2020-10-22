@@ -1,7 +1,7 @@
 require "rails_helper"
 
 
-RSpec.describe "Public Pages", :type => :request do 
+RSpec.describe "Requests - Public Pages", :type => :request do 
   
   describe 'User Not Signed In' do 
     describe 'GET #root' do 

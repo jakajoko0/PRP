@@ -1,0 +1,18 @@
+<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <soap:Body>
+    <TokenInputResponse xmlns="https://www.gms-operations.com/webservices/ACHPayorService/">
+      <TokenInputResult>
+        <Token>26397A74-D387-41C3-803F-F926EEBE9574</Token>
+        <req_record_type>V</req_record_type>
+        <crd_expiration_mm>01</crd_expiration_mm>
+        <crd_expiration_yy>25</crd_expiration_yy>
+        <req_record_name>FirstName LastName</req_record_name>
+        <req_record_PAN>1881</req_record_PAN>
+        <op_address>1234 Some Street</op_address>
+        <op_city>Athens</op_city>
+        <op_state>GA</op_state>
+        <op_zip>30606</op_zip>
+      </TokenInputResult>
+    </TokenInputResponse>
+  </soap:Body>
+</soap:Envelope>

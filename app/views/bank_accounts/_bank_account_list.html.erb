@@ -1,0 +1,80 @@
+<div id = "table-scroll"
+	   class = "table-scroll">
+	<table id = "bank-account-list"
+	       class = "table-striped">
+	  <thead id = "list">
+      <tr>
+        <!-- Bank Name -->
+        <th scope = "col" class = "td-left">
+        	<%=I18n.t('bank_account.index.bank_name')%>
+        </th>
+
+        <!-- Account Type -->
+        <th scope = "col" class = "td-left">
+        	<%=I18n.t('bank_account.index.account_type')%>
+        </th>
+
+        <!-- Ending In -->
+        <th scope = "col" class = "td-left">
+        	<%=I18n.t('bank_account.index.ending_in')%>
+        </th>
+
+        <th></th>
+
+        <th></th>
+      </tr>
+    </thead>
+
+    <% if @bank_accounts.size > 0 %>
+      <tbody>    
+    	  <%@bank_accounts.each do |account|%>
+    	    <tr>
+    	  	  <td data-name = "Bank Name"
+    	  	    	scope = "col"
+    	  	    	class = "td-left">
+    	  	   	<%=account.bank_name%>
+    	  		</td>
+
+    	  		<td data-name = "Account Type"
+    	  	    	scope = "col"
+    	  	    	class = "td-left">
+    	  	    <%=account.account_type.capitalize%>
+    	  		</td>
+
+    	  		<td data-name = "Ending In" 
+    	  	    	scope = "col"
+    	  	    	class = "td-left">
+    	  	    <%=account.last_four%>
+    	  		</td>
+    	  	
+    	  		<%if can? :edit, account %>
+    	  			<td data-name = ""
+    	  	    		class = "td-center">
+    	  	    	<%=link_with_icon(edit_bank_account_path(account),
+    	  	    	"edit",
+    	  	    	I18n.t('bank_account.index.edit_link'),
+    	  	    	"",
+    	  	    	false)%>
+    	  	    </td>
+    	  		<%else%>   
+    	  			<td></td>
+    	  		<%end%>
+
+    	  		<%if can? :delete, account%>
+    	  	  	<td data-name = ""
+    	  	      	class = "td-center">
+    	  	      <%=link_with_icon(bank_account_path(id: account),
+    	  	      	"delete",
+    	  	      	I18n.t('bank_account.index.delete_link'),
+    	  	      	I18n.t('bank_account.index.delete_confirm'),
+    	  	      	false)%>
+    	  	   	</td>
+    	  		<%else%>
+    	  			<td></td>
+    	  		<%end%>
+    	  	</tr>
+   	  	<%end%>
+    	</tbody>
+  	<%end%>
+  </table>
+</div>  	

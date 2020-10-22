@@ -1,0 +1,29 @@
+en:
+  user_profile:
+    edit_profile: Your Profile
+    email: Email
+    new_password: New Password
+    password: Password
+    password_min: (6 characters minimum)
+    password_conf: Password Confirmation
+    time_zone: Time Zone
+    current_pass: Current Password
+    current_pass_info: Enter your current password to save any changes
+    save_button: Save Changes
+  user_login:
+    login_title: User Log In
+    login_email: Email
+    login_password: Password
+    login_remember: Remember me
+    login_button: Log In  
+    login_forgot_pass: Forgot Password?
+  user_forgot_pass:  
+    title: Forgot your Password?
+    password_text: Please enter your Email below
+    reset_password_btn: Reset Password
+  user_reset_pass:
+    title: Choose Your New Password  
+    new: New Password
+    min_chars: (6 characters minimum)
+    confirm: Confirm New Password
+    change_btn: Change Password  
