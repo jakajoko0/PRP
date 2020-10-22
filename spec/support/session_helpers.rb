@@ -28,5 +28,10 @@ module Features
       fill_in 'Password', with: admin.password
       click_button 'Log In'
     end
+
+    def get_table_cell_text(table_id,row,col)
+      css = "##{table_id} tbody tr:nth-child(#{row}) td:nth-child(#{col})"
+      page.find(css).text
+    end
   end
 end

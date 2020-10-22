@@ -12,7 +12,7 @@ def index
 end
 
 def new
-  return redirect_to root_url, notice: 'A Franchise was Not Selected' unless params[:franchise_id]
+  return redirect_to root_url, notice: I18n.t('franchise_not_selected') unless params[:franchise_id]
   franchise_id = params[:franchise_id].to_i
 	@franchise = Franchise.find(franchise_id)
   @accountant = @franchise.accountants.new
@@ -25,7 +25,7 @@ def create
   result = CreateAccountant.call(params: accountant_params, user: current_authenticated)
 
   if result.success?
-    flash[:success] = "Accountant Created Successfully"
+    flash[:success] = I18n.t('accountant.create.confirm')
     redirect_to admins_accountants_path
   else
     @accountant = result.accountant
@@ -45,7 +45,7 @@ def update
   result = UpdateAccountant.call(accountant: @accountant, params: accountant_params, user: current_authenticated)
 	
   if result.success?
-	 flash[:success] = "Accountant Modified Successfully"
+	 flash[:success] = I18n.t('accountant.update.confirm')
 		redirect_to admins_accountants_path 
 	else
     @accountant = result.accountant
@@ -56,7 +56,7 @@ end
 def destroy 
 	authorize! :destroy, @accountant
 	if @accountant.destroy
-    flash[:success] = 'Accountant Deleted Successfully'
+    flash[:success] = I18n.t('accountant.delete.confirm')
     redirect_to admins_accountants_path
   else
     flash[:error] = @accountant.errors.full_messages.to_sentence

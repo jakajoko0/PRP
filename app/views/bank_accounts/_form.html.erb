@@ -1,0 +1,107 @@
+<div class = "card">
+  <div class = "card-header login-header">
+    <h4>
+      <%if action == "edit"%>
+        <%=I18n.t('bank_account.form.edit_title',
+        { bank_name: bank_account.bank_name,
+          acct_type: bank_account.account_type,
+          last_four: bank_account.last_four})%>
+      <%else%>
+        <%=I18n.t('bank_account.form.create_title')%>
+      <%end%>
+    </h4>
+  </div>
+  
+  <%= form_for bank_account do |f| %>
+    <div class = "card-body card-background-padgett">
+      <div class = "form-row col-12">
+        <%=f.hidden_field :franchise_id, value: f.object.franchise_id%>
+        <!-- ACCOUNT TYPE -->   
+        <div class = "form-group form-row col-12">
+  	      <%=f.label :type_of_account,
+  	        class: "col-md-3 col-sm-4 col-lg-3
+                    col-form-label-sm 
+                    label-bold" %>
+  	      <div class = "col-sm-4 col-md-4 col-lg-3">
+  		      <%=f.select(:type_of_account, [["Checking","C"],["Savings","S"]],{},
+  		        {class: 'form-control form-control-sm col',
+               required: true})%>
+          </div>
+        </div>
+      </div>
+     
+      <div class = "form-row col-12">
+  	    <!-- ROUTING NUMBER -->
+  	    <div class = "form-group form-row col-12">
+  	      <%=f.label :routing,
+            class: 'col-md-3 col-sm-4 col-lg-3
+                    col-form-label-sm label-bold'%>
+          <div class = "col-sm-4 col-md-4 col-lg-3">
+      	    <%= f.text_field :routing,
+      	      class: "form-control form-control-sm col",
+              required: true, maxlength: 9%>
+          </div>   
+  	    </div>
+      </div>
+
+      <div class = "form-row col-12">
+  	    <!-- ACCOUNT NUMBER -->
+  	    <div class = "form-group form-row col-12">
+  	      <%=f.label :account_number, 
+            class: 'col-md-3 col-sm-4 col-lg-3
+                    col-form-label-sm label-bold'%>
+          <div class = "col-sm-5 col-md-4 col-lg-4">
+      	    <%= f.text_field :account_number,
+              class: "form-control form-control-sm col",
+                required: true%>
+          </div>   
+  	    </div>
+      </div>
+
+      <div class = "form-row col-12">
+        <!-- BANK NAME -->
+        <div class = "form-group form-row col-12">
+          <%=f.label :bank_name, 
+            class: 'col-md-3 col-sm-4 col-lg-3
+                    col-form-label-sm label-bold'%>
+          <div class = "col-sm-5 col-md-5 col-lg-5">
+            <%= f.text_field :bank_name,
+              class: "form-control form-control-sm col"%>
+          </div>   
+        </div>
+      </div>
+
+      <div class = "form-row col-12">
+        <!-- OWNER NAME -->
+        <div class = "form-group form-row col-12">
+          <%=f.label :name_on_account, 
+            class: 'col-md-3 col-sm-4 col-lg-3
+                    col-form-label-sm label-bold'%>
+          <div class = "col-sm-5 col-md-5 col-lg-5">
+            <%= f.text_field :name_on_account,
+              class: "form-control form-control-sm col",
+                required: true%>
+          </div>   
+        </div>
+      </div>
+    </div>
+
+</div>  
+
+<br>
+
+<div class = "row col-12">
+  <%=f.submit (I18n.t('bank_account.form.save')),
+    class: 'btn btn-padgett col-4 col-sm-4 col-md-3 col-lg-3',
+    name: "submit" %>
+  <div class = "col-1 col-sm-1 col-md-1 col-lg-1">
+  </div>
+  
+  <%=link_to (I18n.t('bank_account.form.discard')),
+    bank_accounts_path,
+    class: 'btn btn-padgett col-4 col-sm-4 col-md-3 col-lg-3' %>
+</div>
+
+  <%end%>  
+
+

@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.feature "User Log In", :type => :feature do
+RSpec.feature "Feature User Log In", :type => :feature do
   let!(:user) {create(:user)}  
   scenario "From Home Page with Valid Info" do
     visit root_path

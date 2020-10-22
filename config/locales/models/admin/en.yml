@@ -16,5 +16,15 @@ en:
     login_remember: Remember me
     login_button: Log In
     login_forgot_pass: Forgot Password?
+  admin_forgot_pass:
+    title: Forgot your Password?
+    password_text: Please enter your Email below  
+    reset_password_btn: Reset Password
+  admin_reset_pass:
+    title: Choose Your New Password  
+    new: New Password
+    min_chars: (6 characters minimum)
+    confirm: Confirm New Password
+    change_btn: Change Password
 
 

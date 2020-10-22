@@ -1,0 +1,49 @@
+<div class = "card">
+  <div class = "card-body card-background-padgett">
+    <table class = "table
+           table-striped table-in-card">
+      <thead>
+        <tr>
+          <th scope="col" 
+              style="text-align:left">
+            <%=I18n.t('credit_card.index.card_type')%>
+          </th>
+          <th scope = "col" 
+              style = "text-align:left">
+            <%=I18n.t('credit_card.index.ending_in')%>
+          </th>
+          <th scope = "col" 
+              style = "text-align:center">
+            <%=I18n.t('credit_card.index.expiring')%>
+          </th>
+          <th scope = "col" 
+              style = "text-align:center">
+          </th>
+
+        </tr>
+      </thead>
+      <tbody>
+        <%franchise.credit_cards.each do |card|%>
+          <tr>
+            <td class="td-left">
+              <%=content_tag(:i, '',class: card.card_icon+" fa-3x")%>
+            </td>
+            <td class="td-left">
+              <%=card.last_four%>
+            </td>
+            <td  class = "td-center">
+              <%=card.expiring_data%>
+            </td>
+            <td class = "td-center">
+              <%=card_status(card)%>
+            </td>
+          </tr>
+        <%end%>
+      </tbody>
+    </table>
+  </div>
+</div>
+<br />
+
+
+                

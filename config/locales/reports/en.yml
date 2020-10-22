@@ -68,5 +68,22 @@ en:
       state: State
       phone: Phone
       email: Email
+    payment_method:
+      title: Franchises Payment Methods
+      title_excel: Payment Methods
+      title_workbook: Payment Methods
+      number: Franchise Number
+      name: Name
+      type: Type
+      entity: Bank / Card Type
+      last_four: Last 4 digits
+    payment_method_missing:
+      title: Franchises Without Payment Methods 
+      title_excel: Franchies Without Payment Methods
+      title_workbook: No Payment Methods
+      number: Franchise Number
+      name: Name
+      phone: Phone
+      email: Email
 
 

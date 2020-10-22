@@ -85,4 +85,22 @@ def region_desc(region)
 end
 
 
+def payment_method_type(type)
+  type == 'C' ? "Credit Card" : "ACH"
+end
+
+def payment_method_name(type,name)
+  type == 'B' ? name : credit_card_type(name)
+end
+
+
+def credit_card_type(type)
+  case type
+      when 'V' then 'Visa'
+      when 'M' then 'MasterCard'
+      when 'I' then 'Discover'  
+      when 'A' then 'American Express'
+    end
+end
+
 end

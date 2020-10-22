@@ -1,0 +1,106 @@
+<!-- ACCOUNT MENU DROPDOWN -->
+<ul class="navbar-nav mr-auto">
+  <%=main_dropdown_menu(I18n.t('user_menu.account.account_text'))%>
+    <!-- FRANCHISE SETUP -->
+    <%=dropdown_item(
+      I18n.t('user_menu.account.user_profile'),
+      edit_registration_path(current_user))%>
+    
+    <li class="dropdown-divider"></li>
+    
+    <!-- FRANCHISE SETUP -->
+    <%=dropdown_submenu(
+    I18n.t('user_menu.account.setup.setup_text'))%>
+      <!-- FRANCHISE -->
+      <%=dropdown_item(
+        I18n.t('user_menu.account.setup.franchise'),
+        edit_franchise_path(current_user.franchise))%>
+      <!-- ACCOUNTANT -->
+      <%=dropdown_item(
+        I18n.t('user_menu.account.setup.accountants'),
+        "#")%>
+      <!-- INSURANCE -->
+      <%=dropdown_item(
+        I18n.t('user_menu.account.setup.insurance'),
+        "#")%>
+      <!-- WEBSITE -->
+      <%=dropdown_item(
+        I18n.t('user_menu.account.setup.website'),
+        "#")%>
+      
+      <li class="dropdown-divider"></li>
+      
+        <!-- BANK ACCOUNTS -->
+        <%=dropdown_item(
+          I18n.t('user_menu.account.setup.payment_methods.bank_account'),bank_accounts_path)%>
+              
+        <!-- CREDIT CARDS -->
+        <%=dropdown_item(
+          I18n.t('user_menu.account.setup.payment_methods.credit_cards') ,credit_cards_path)%>
+          
+      <%=close_dropdown_submenu%>
+  <%=close_main_dropdown%>
+ 
+  <!-- REPORTING -->
+  <%=main_dropdown_menu(I18n.t('user_menu.reporting.reporting_text'))%>
+    <!-- ROYALTIES -->
+    <%=dropdown_item(
+      I18n.t('user_menu.reporting.royalties') ,"#")%>
+
+    <li class="dropdown-divider"></li>
+    
+    <!-- FINANCIALS -->
+    <%=dropdown_item(
+      I18n.t('user_menu.reporting.financials') ,"#")%>
+
+  <%=close_main_dropdown%>
+
+  <!-- DEPOSITS -->
+  <li class = "nav-item">
+    <%= link_to I18n.t('user_menu.deposits'),
+    "#", 
+    class: "nav-link" %>
+  </li>
+  
+  <!-- PAYMENTS -->
+  <%=main_dropdown_menu(I18n.t('user_menu.payments.payments_text'))%>
+    <%=dropdown_item(
+    I18n.t('user_menu.payments.payment_history'),"#")%>
+    <li class="dropdown-divider"></li>
+    <%=dropdown_submenu(
+    I18n.t('user_menu.payments.make_payment.make_payment_text'))%>
+
+      <%=dropdown_item(
+      I18n.t('user_menu.payments.make_payment.with_bank'),"#")%>
+      <%=dropdown_item(
+      I18n.t('user_menu.payments.make_payment.with_card'),"#")%>
+      <%=dropdown_item(
+      I18n.t('user_menu.payments.make_payment.with_check'),"#")%>
+    <%=close_dropdown_submenu%>  
+  <%=close_main_dropdown%>
+
+  <!-- TOOLS -->
+  <%=main_dropdown_menu(I18n.t('user_menu.tools.tools_text'))%>
+    <%=dropdown_item(
+    I18n.t('user_menu.tools.franchise_directory'),"#")%>
+    <%=dropdown_item(
+    I18n.t('user_menu.tools.routing_number'),"#")%>
+    <%if user_masquerade?%>
+      <%=dropdown_item(
+      I18n.t('user_menu.tools.exit_masquerade'),"#")%>
+    <%end%>
+    <li class="dropdown-divider"></li>
+    <%=dropdown_submenu(
+    I18n.t('user_menu.tools.reports.reports_text'))%>
+      <%=dropdown_item(
+      I18n.t('user_menu.tools.reports.statement'),"#")%>
+      <%=dropdown_item(
+      I18n.t('user_menu.tools.reports.payments'),"#")%>
+    <%=close_dropdown_submenu%>
+  <%=close_main_dropdown%>  
+  <!-- ABOUT -->
+  <%=main_dropdown_menu(I18n.t('user_menu.about.about_text'))%>
+    <%=dropdown_item(I18n.t('user_menu.about.cookies'),"#")%>
+  <%=close_main_dropdown%>
+
+</ul>

@@ -1,0 +1,13 @@
+ <soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+ 	<soap:Body>
+ 		<TokenOutputResponse xmlns="https://www.gms-operations.com/webservices/ACHPayorService/">
+ 			<TokenOutputResult>
+ 				<Token>26397A74-D387-41C3-803F-F926EEBE9574</Token>
+ 				<req_record_type>C</req_record_type>
+ 				<ach_routing>061119888</ach_routing>
+ 				<req_record_name>Someone</req_record_name>
+ 				<req_record_PAN>1111</req_record_PAN>
+ 			</TokenOutputResult>
+ 		</TokenOutputResponse>
+ 	</soap:Body>
+ </soap:Envelope>"

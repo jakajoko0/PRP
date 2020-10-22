@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_03_145438) do
+ActiveRecord::Schema.define(version: 2020_10_21_174051) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -81,6 +81,47 @@ ActiveRecord::Schema.define(version: 2020_09_03_145438) do
     t.index ["created_at"], name: "index_audits_on_created_at"
     t.index ["request_uuid"], name: "index_audits_on_request_uuid"
     t.index ["user_id", "user_type"], name: "user_index"
+  end
+
+  create_table "bank_accounts", force: :cascade do |t|
+    t.bigint "franchise_id"
+    t.string "bank_name"
+    t.string "last_four"
+    t.string "account_type"
+    t.string "bank_token"
+    t.string "slug"
+    t.index ["franchise_id"], name: "index_bank_accounts_on_franchise_id"
+  end
+
+  create_table "bank_routings", force: :cascade do |t|
+    t.string "routing"
+    t.string "office_code"
+    t.string "fbr"
+    t.string "record_type"
+    t.string "change_date"
+    t.string "new_routing"
+    t.string "name"
+    t.string "address"
+    t.string "city"
+    t.string "state"
+    t.string "zip"
+    t.string "zip_ext"
+    t.string "area_code"
+    t.string "prefix"
+    t.string "suffix"
+    t.string "status_code"
+    t.string "master_state"
+  end
+
+  create_table "credit_cards", force: :cascade do |t|
+    t.bigint "franchise_id"
+    t.string "card_type"
+    t.string "last_four"
+    t.integer "exp_year"
+    t.integer "exp_month"
+    t.string "card_token"
+    t.string "slug"
+    t.index ["franchise_id"], name: "index_credit_cards_on_franchise_id"
   end
 
   create_table "event_logs", force: :cascade do |t|
@@ -195,5 +236,7 @@ ActiveRecord::Schema.define(version: 2020_09_03_145438) do
   end
 
   add_foreign_key "accountants", "franchises"
+  add_foreign_key "bank_accounts", "franchises"
+  add_foreign_key "credit_cards", "franchises"
   add_foreign_key "insurances", "franchises"
 end

@@ -1,25 +1,49 @@
-<h2>Change your password</h2>
+<div class = "row">
+  <div class = "col-sm-12 col-md-8 
+       offset-md-2 col-lg-6 offset-lg-3">
+    <div class = "card">
+      <div class = "card-header login-header">
+        <h2>
+          <%=I18n.t('admin_reset_pass.title')%>
+        </h2>
+      </div>
 
-<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
-  <%= f.hidden_field :reset_password_token %>
+      <div class = "card-body">
+        <%= form_for(resource, as: resource_name,
+        url: password_path(resource_name),
+        html: { method: :put }) do |f| %>
+        <%=devise_error_messages!%>
+        <%= f.hidden_field :reset_password_token %>
+        <div class = "form-group">
+          <%= f.label :password,
+          (I18n.t('admin_reset_pass.new')) %>
+          <% if @minimum_password_length %>
+            <em>
+            <%=I18n.t('admin_reset_pass.min_chars')%>
+            </em>
+            <br />
+          <% end %>
+          <%= f.password_field :password,
+          autofocus: true,
+          autocomplete: "new-password" %>
+        </div>
 
-  <div class="field">
-    <%= f.label :password, "New password" %><br />
-    <% if @minimum_password_length %>
-      <em>(<%= @minimum_password_length %> characters minimum)</em><br />
-    <% end %>
-    <%= f.password_field :password, autofocus: true, autocomplete: "new-password" %>
-  </div>
+        <div class = "form-group">
+          <%= f.label :password_confirmation,
+          (I18n.t('admin_reset_pass.confirm')) %><br />
+          <%= f.password_field :password_confirmation,
+          autocomplete: "new-password" %>
+        </div>
 
-  <div class="field">
-    <%= f.label :password_confirmation, "Confirm new password" %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
+        <div class="actions">
+          <%= f.submit (I18n.t('admin_reset_pass.change_btn')),
+          class: "btn btn-padgett"%>
+        </div>
+        <% end %> 
+      </div>  
+    </div>
+  </div>    
+</div>
+  
 
-  <div class="actions">
-    <%= f.submit "Change my password" %>
-  </div>
-<% end %>
 
-<%= render "admins/shared/links" %>

@@ -1,0 +1,91 @@
+<div id = "table-scroll"
+	 class = "table-scroll">
+  <table id = "credit-card-list"
+         class = "table-striped">
+	<thead id = "list">
+      <tr>
+      
+        <!-- Card Type -->
+        <th scope = "col" class = "td-left">
+        	<%=I18n.t('credit_card.index.card_type')%>
+        </th>
+
+        <!-- Ending In -->
+        <th scope = "col" class = "td-left">
+        	<%=I18n.t('credit_card.index.ending_in')%>
+        </th>
+
+        <!-- Expires -->
+        <th scope = "col" class = "td-center">
+            <%=I18n.t('credit_card.index.expiring')%>
+        </th>        
+            
+        <th></th>
+
+        <th></th>
+
+        <th></th>
+      </tr>
+    </thead>
+
+    <% if @credit_cards.size > 0 %>
+      <tbody>    
+    	<%@credit_cards.each do |card|%>
+    	  <tr>
+    	    <td data-name = "Card Type"
+    	      	scope = "col"
+    	      	class = "td-left">
+    	  	      <%=content_tag(:i, '', 
+                  class: card.card_icon+" fa-3x")%>
+    	  	</td>
+
+
+    	  	<td data-name = "Ending In" 
+    	  	   	scope = "col"
+    	  	   	class = "td-left">
+    	  	      <%=card.last_four%>
+    	  	</td>
+
+            <td data-name = "Expires" 
+                scope = "col"
+                class = "td-center">
+                  <%=card.expiring_data%>
+
+            </td>
+            
+            
+            <td>    
+                <%=card_status(card)%>
+            </td>
+    	  	
+    	  	<%if can? :edit, card %>
+    	  	  <td data-name = ""
+    	  	      class = "td-center">
+    	  	      <%=link_with_icon(edit_credit_card_path(card),
+    	  	      "edit",
+    	  	      I18n.t('credit_card.index.edit_link'),
+    	  	      "",
+    	  	      false)%>
+    	  	  </td>
+    	  	<%else%>   
+    	  	  <td></td>
+    	  	<%end%>
+
+    	  	<%if can? :delete, card%>
+    	  	  <td data-name = ""
+    	  	   	  class = "td-center">
+    	  	      <%=link_with_icon(credit_card_path(id: card),
+    	  	      "delete",
+    	  	      I18n.t('credit_card.index.delete_link'),
+    	  	      I18n.t('credit_card.index.delete_confirm'),
+    	  	      false)%>
+    	  	  </td>
+    	  	<%else%>
+    	  	  <td></td>
+    	  	<%end%>
+    	  </tr>
+   	  	<%end%>
+      </tbody>
+  	<%end%>
+  </table>
+</div>  	

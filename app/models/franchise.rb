@@ -55,9 +55,11 @@
 #t.string "slug"
 extend FriendlyId
 
-has_many :users
 has_many :accountants
+has_many :bank_accounts
+has_many :credit_cards
 has_one  :insurance
+has_many :users
 
 friendly_id :number_and_name, use: :slugged
 audited except: [:slug, :max_collections, :avg_collections, :max_coll_year, :max_coll_month], on: [:update, :destroy]

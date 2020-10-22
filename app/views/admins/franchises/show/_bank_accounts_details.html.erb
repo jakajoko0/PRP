@@ -1,0 +1,42 @@
+<div class = "card">
+  <div class = "card-body card-background-padgett">
+    <table class = "table
+           table-striped table-in-card">
+      <thead>
+        <tr>
+          <th scope="col" 
+              style="text-align:left">
+            <%=I18n.t('bank_account.index.bank_name')%>
+          </th>
+          <th scope = "col" 
+              style = "text-align:left">
+            <%=I18n.t('bank_account.index.account_type')%>
+          </th>
+          <th scope = "col" 
+              style = "text-align:left">
+            <%=I18n.t('bank_account.index.ending_in')%>
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <%franchise.bank_accounts.each do |acct|%>
+          <tr>
+            <th align = "left" class="text-nowrap">
+              <%=acct.bank_name%>
+            </th>
+            <td align="left" class = "text-nowrap">
+              <%=acct.account_type.capitalize%>
+            </td>
+            <td align="left" class = "text-nowrap">
+              <%=acct.last_four%>
+            </td>
+          </tr>
+        <%end%>
+      </tbody>
+    </table>
+  </div>
+</div>
+<br />
+
+
+                

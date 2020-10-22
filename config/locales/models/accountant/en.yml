@@ -40,6 +40,12 @@ en:
               numbers_only: PTIN should contain numbers only
   accountant:
     object_name: Accountant Profile
+    create:
+      confirm: Accountant Created Successfully
+    update:
+      confirm: Accountant Updated Successfully
+    delete:
+      confirm: Accountant Deleted Successfully  
     index:
       add_accountant: Add Accountant
       search_by_name: Search by First or Last Name

@@ -16,22 +16,22 @@ class InsurancesQuery
 
 				if r.eo_insurance == 1 
 					results << {franchise_number: fnum, full_name: fname, ins_type: I18n.t('reports.insurance_expiration.eo_label'), expires: r.eo_expiration, phone: fphone, email: femail }
-					fnum, fname, fphone, pemail = "", "", "", ""
+					fnum, fname, fphone, femail = "", "", "", ""
 				end
 
 				if r.gen_insurance == 1
 					results << {franchise_number: fnum, full_name: fname, ins_type: I18n.t('reports.insurance_expiration.gen_label'), expires: r.gen_expiration, phone: fphone, email: femail }
-					fnum, fname, fphone, pemail = "", "", "", ""
+					fnum, fname, fphone, femail = "", "", "", ""
 				end
 
 				if r.other_insurance == 1
 					results << {franchise_number: fnum, full_name: fname, ins_type: I18n.t('reports.insurance_expiration.other_label',desc: r.other_description), expires: r.other_expiration, phone: fphone, email: femail }
-					fnum, fname, fphone, pemail = "", "", "", ""
+					fnum, fname, fphone, femail = "", "", "", ""
 				end
 
 				if r.other2_insurance == 1
 					results << {franchise_number: fnum, full_name: fname, ins_type: I18n.t('reports.insurance_expiration.other_label',desc: r.other2_description), expires: r.other2_expiration, phone: fphone, email: femail }
-					fnum, fname, fphone, pemail = "", "", "", ""
+					fnum, fname, fphone, femail = "", "", "", ""
 				end
 
 			end

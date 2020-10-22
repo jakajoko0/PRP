@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.feature "Viewing Franchises", :type => :feature do 
+RSpec.feature "Feature - Viewing Franchises", :type => :feature do 
   let!(:admin) {create(:admin)}	
   data = [{firstname: "AAAA", lastname: "BBBB"},{firstname: "BBBB", lastname: "AAAA"}, {firstname: "AAAB", lastname: "BBBA"} ]
   let!(:franchises) {data.map {|d| create(:franchise, d)}}

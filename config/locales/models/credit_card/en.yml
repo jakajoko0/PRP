@@ -1,0 +1,75 @@
+en:
+  activerecord:
+    errors:
+      models:
+        credit_card:
+          attributes:
+            franchise:
+              blank: Franchise cannot be blank
+            cc_number:
+              blank: Card Number cannot be blank
+              wrong_size: Card Number Must be 15 or 16 digits
+            cc_exp_month:
+              blank: Expiration Month cannot be blank  
+            cc_exp_year:
+              blank: Expiration Year cannot be blank
+            cc_type:
+              blank: Card Type cannot be blank
+            cc_name:
+              blank: Card Holder Name cannot be blank
+            cc_address:
+              blank: Address cannot be blank
+            cc_city:
+              blank: City cannot be blank       
+            cc_state:
+              blank: State cannot be blank 
+            cc_zip:
+              blank: Zip Code cannot be blank    
+  helpers:
+    label:
+      credit_card:
+        cc_type: Card Type
+        cc_number: Card Number
+        cc_exp_year: Expiration
+        cc_exp_month: Expiration
+        cc_name: Name on Card
+        cc_address: Address
+        cc_city: City
+        cc_state: State
+        cc_zip: Zip Code
+  credit_card:
+    object_name: Credit Card
+    create:
+      confirm: Credit Card Created Successfully
+    update:
+      confirm: Credit Card Updated Successfully
+    delete:
+      confirm: Credit Card Deleted Successfully
+      error: A Problem Occured Deleting Credit Card
+    ending_in: ending in
+    index:
+      has_expired: This card has expired
+      is_expiring: This card expires soon
+      add_credit_card: Add Credit Card
+      card_type: Card Type
+      ending_in: Ending In
+      expiring: Expiring
+      edit_link: Edit this Credit Card
+      delete_link: Delete this Credit Card
+      delete_confirm: Are you sure you want to Delete this Credit Card?
+    form:
+      edit_title: "%{card_type} ending in %{last_four}"
+      create_title: Add New Credit Card
+      visa_type: V 
+      visa_desc: Visa
+      mastercard_type: M
+      mastercard_desc: MasterCard
+      amex_type: A
+      amex_desc: American Express
+      discover_type: I
+      discover_desc: Discover
+      save: Save
+      discard: Discard
+      
+
+

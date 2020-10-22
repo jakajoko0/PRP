@@ -1,0 +1,1 @@
+<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"><soap:Body><SystemCheckResponse xmlns="https://www.gms-operations.com/webservices/ACHPayorService/"><SystemCheckResult><stat>true</stat></SystemCheckResult></SystemCheckResponse></soap:Body></soap:Envelope>

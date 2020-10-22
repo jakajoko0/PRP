@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.feature "Editing Accountants", :type => :feature do 
+RSpec.feature "Feature - Editing Accountants", :type => :feature do 
   let!(:admin) {create(:admin)}	
   let!(:franchise) {create(:franchise)}
   let!(:accountants) {create_list(:accountant,10, franchise: franchise)}

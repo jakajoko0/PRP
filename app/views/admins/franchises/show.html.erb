@@ -47,6 +47,33 @@
         </div>
       </div>
     </div>
+
+    <!--PAYMENT METHODS -->
+    <div class = "card-group accordion-padgett" id="accordion" role="tablist" 
+         aria-multiselectable="true">
+      <div class = "card">
+        <div class = "card-header card-background-padgett" role="tab"
+          id="headingPmethod">
+          <h4 class="card-title">
+            <h3 class="collapsed"  role="button" data-toggle="collapse" data-parent="#accordion" href="#collapsePmethod" aria-expanded="true" aria-controls="collapsePmethod">
+              <%=I18n.t('franchise.show.payment_methods')%>
+            </h3>
+          </h4>
+        </div>
+        <div id="collapsePmethod" class="collapse" role="tabpanel" 
+          aria-labelledby="headingpmethod">
+
+          <div class="card-body">
+            <h4>Bank Accounts</h4>
+            <%= render :partial => 'admins/franchises/show/bank_accounts_details', :locals => {:franchise => @franchise} %>
+          </div>
+          <div class="card-body">
+            <h4>Credit Cards</h4>
+            <%= render :partial => 'admins/franchises/show/credit_cards_details', :locals => {:franchise => @franchise} %>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>  
   

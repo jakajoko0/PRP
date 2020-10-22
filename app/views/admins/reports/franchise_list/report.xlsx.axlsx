@@ -8,7 +8,7 @@ wb.add_worksheet(
   ws.add_row [@report_info[:title_excel]],
   style: styles[:header_title],
   width: [:auto],
-  height: 80
+  height: 80, widths: [:ignore]
   
   ws.add_row
 
