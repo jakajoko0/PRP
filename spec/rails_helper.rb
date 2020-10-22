@@ -122,8 +122,8 @@ end
       browser_options.args << '--disable-dev-shm-usage'
       Capybara::Selenium::Driver.new(app,browser: :chrome, options: browser_options)
     end
-  Capybara.javascript_driver = :selenium_chrome_headless_docker_friendly
-    Capybara.javascript_driver = :selenium_chrome_headless
+    Capybara.javascript_driver = :selenium_chrome_headless_docker_friendly
+    
   else
     Capybara.javascript_driver = :selenium_chrome 
   end
