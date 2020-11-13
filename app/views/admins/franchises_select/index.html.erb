@@ -1,4 +1,4 @@
-<div class = "row col-12">
+<div class = "col-12">
   <h2 class="padgett-text">
     <%=I18n.t('franchise_select.title')%>
   </h2>
@@ -9,7 +9,7 @@
     :method => 'get',
     :id => "franchise_search",
     class: 'pt-2 pb-2'  do %>
-  <div class = "form-group row">
+  <div class = "form-group row col-12">
     <div class = "col-sm-6 col-md-6 col-lg-4">
       <%= text_field_tag :search, params[:search],
       class:'form-control input-sm',
@@ -18,8 +18,8 @@
   </div>   
 <% end %>
 <!-- Franchise list -->
-<div class = "row">
-  <div id="franchises" class="col" >
+<div class = "col-12">
+  <div id="franchises"  >
     <%=render partial: 'franchise_list', locals: {destination: @destination}%>
   </div>
 </div>

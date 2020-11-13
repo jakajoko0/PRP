@@ -1,0 +1,51 @@
+wb = xlsx_package.workbook
+
+styles = set_axlsx_styles(wb)
+
+wb.add_worksheet(name:I18n.t('reports.website_preferences_list.title_workbook')) do |ws|
+  ws.add_row [@report_info[:title_excel]],
+  style: styles[:header_title],
+  widths: [:ignore, :auto, :auto, :auto, :auto, :auto],
+  height: 60
+  
+  
+  ws.add_row
+
+  ws.add_row [
+  I18n.t('reports.website_preferences_list.number'),
+  I18n.t('reports.website_preferences_list.name'),
+  I18n.t('reports.website_preferences_list.preference'),
+  I18n.t('reports.website_preferences_list.created_at'),
+  I18n.t('reports.website_preferences_list.updated_at'),
+  I18n.t('reports.website_preferences_list.payment_method'),
+  I18n.t('reports.website_preferences_list.active_fee')],
+  style: [styles[:header_left],styles[:header_left], styles[:header_left],styles[:header_center],
+  styles[:header_left],styles[:header_left],styles[:header_right]],
+  width: [:auto, :auto, :auto, :auto, :auto, :auto, :auto]
+
+  if @website_preferences.length > 0
+    @website_preferences.each do |wp|
+      ws.add_row [
+      wp.franchise.franchise_number,
+      wp.franchise.full_name,
+      wp.preference_description,
+      I18n.l(wp.created_at.in_time_zone, format: :prp),
+      I18n.l(wp.updated_at.in_time_zone, format: :prp),
+      wp.paid_with,
+      number_to_currency(wp.current_fee)],
+      style: [styles[:data_left], styles[:data_left],
+      styles[:data_left],styles[:data_center],
+      styles[:data_left],styles[:data_left],styles[:data_right]],
+      width: [:auto, :auto,:auto,:auto, :auto, :auto, :auto],
+      types: [:string, :string, :string, :string, :string, :string, :string]
+    end
+     ws.add_row
+     ws.add_row ["#{I18n.t('reports.website_preferences_list.basic')}: #{@report_info[:basic]}", "", "#{I18n.t('reports.website_preferences_list.custom')}: #{@report_info[:custom]}", "", "#{I18n.t('reports.website_preferences_list.special')}: #{@report_info[:special]}" ], style: [styles[:header_left],styles[:header_left],styles[:header_left],styles[:header_left],styles[:header_left]]
+
+  end
+
+  ws.merge_cells "A1:G1"
+  ws.merge_cells "A2:G2"
+  
+end
+

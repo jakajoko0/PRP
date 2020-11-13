@@ -4,7 +4,6 @@
          class = "table-striped">
 	<thead id = "list">
       <tr>
-      
         <!-- Card Type -->
         <th scope = "col" class = "td-left">
         	<%=I18n.t('credit_card.index.card_type')%>
@@ -32,32 +31,37 @@
       <tbody>    
     	<%@credit_cards.each do |card|%>
     	  <tr>
+            <!-- Card Type -->
     	    <td data-name = "Card Type"
     	      	scope = "col"
     	      	class = "td-left">
-    	  	      <%=content_tag(:i, '', 
-                  class: card.card_icon+" fa-3x")%>
+    	  	    <%=content_tag(:i, '', 
+                class: card.card_icon+" fa-3x")%>
     	  	</td>
 
-
+            <!-- Ending In -->
     	  	<td data-name = "Ending In" 
     	  	   	scope = "col"
     	  	   	class = "td-left">
-    	  	      <%=card.last_four%>
+     	  	    <%=card.last_four%>
     	  	</td>
-
+            
+            <!-- Expiration -->
             <td data-name = "Expires" 
                 scope = "col"
                 class = "td-center">
-                  <%=card.expiring_data%>
-
+                <%=card.expiring_data%>
             </td>
             
             
-            <td>    
-                <%=card_status(card)%>
+            <td> 
+              <!-- Card Status -->   
+              <%=card_status(card)%>
+              <!-- Card being Used for Recurring Payment? -->
+              <%=card_used(card)%>
             </td>
     	  	
+            <!-- Edit Link if User can Edit -->
     	  	<%if can? :edit, card %>
     	  	  <td data-name = ""
     	  	      class = "td-center">
@@ -70,7 +74,8 @@
     	  	<%else%>   
     	  	  <td></td>
     	  	<%end%>
-
+            
+            <!-- Delete Link if User can Delete -->
     	  	<%if can? :delete, card%>
     	  	  <td data-name = ""
     	  	   	  class = "td-center">

@@ -4,6 +4,7 @@ module CreditCardHelper
     if card.expired?
   			rtn_html = <<-HTML
         <i class="fas fa-exclamation-circle fa-2x attention-icon" 
+        style="margin: 0px 5px;" 
         aria-hidden="true" 
         data-html = "true" 
         data-toggle="tooltip" 
@@ -15,6 +16,7 @@ module CreditCardHelper
       if card.expiring?
         rtn_html = <<-HTML
         <i class="fas fa-exclamation-circle fa-2x warning-icon" 
+        style="margin: 0px 5px;" 
         aria-hidden="true" 
         data-html = "true" 
         data-toggle="tooltip" 
@@ -27,6 +29,24 @@ module CreditCardHelper
 
     rtn_html.html_safe    
   
+  end
+
+  def card_used(card)
+    rtn_html = ""
+    if card.used_in_auto_payments?
+    rtn_html = <<-HTML
+        <i class="far fa-calendar fa-2x attention-icon"
+        style="margin: 0px 5px;" 
+        aria-hidden="true" 
+        data-html = "true" 
+        data-toggle="tooltip" 
+        title="#{I18n.t('credit_card.index.used_in_auto_payments')}"
+        data-placement = "right" data-container="body">
+       </i>
+       HTML
+     end
+
+       rtn_html.html_safe
   end
 
   def destination_button(destination,franchise, pct_width)

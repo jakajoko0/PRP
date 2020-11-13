@@ -40,7 +40,7 @@ RSpec.describe "Requests - Public Pages", :type => :request do
 
       it "shows the proper content" do 
         get root_path
-        expect(response.body).to include("Public#userpage")
+        expect(response.body).to include("User Dashboard")
       end
     end
 

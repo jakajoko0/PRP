@@ -7,6 +7,7 @@ class UserAbility
       can [:read, :update], Franchise, id: user.franchise_id
       can :manage, BankAccount, franchise_id: user.franchise_id
       can :manage, CreditCard, franchise_id: user.franchise_id
+      can [:read, :update], WebsitePreference, franchise_id: user.franchise_id
     end    
 
     # Define abilities for the passed in user here. For example:

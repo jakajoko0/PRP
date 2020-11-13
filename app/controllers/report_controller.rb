@@ -10,7 +10,9 @@ class ReportController < ApplicationController
     when 'franchises.lastname'
       "Last Name"
     when 'franchises.state'  
-      "State"     
+      "State"  
+    when 'website_preferences.updated_at'    
+      "Last Modification"
     end
   end
 

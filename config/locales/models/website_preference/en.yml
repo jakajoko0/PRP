@@ -1,0 +1,61 @@
+en:
+  activerecord:
+    errors:
+      models:
+        website_preference:
+          attributes:
+            franchise:
+              blank: Franchise cannot be blank
+              already_there: A Website Preference Already Exists for This Franchise
+            website_preference:
+              blank: Please Select Website Preference 
+            card_token:
+              blank: Please Select a Credit Card
+            bank_token:
+              blank: Please select a Bank Account
+  helpers:
+    label:
+      website_preference:
+        website_preference: Website Preference
+        card_token: Account
+        bank_token: Account
+        payment_method: Payment Method
+        payment_token: Account
+        created_at: Effective Date
+  website_preference:
+    object_name: Website Preference
+    create:
+      confirm: Website Preference Create Successfully
+    update:
+      confirm: Website Preference Updated Successfully
+    delete:
+      confirm: Website Preference Deleted Successfully
+      error: A Problem Occured Deleting Website Preference
+    index:
+      add_website_preference: Add Website Preference
+      title: Website Preferences
+      franchise: Franchise
+      web_preference: Website Preference                      
+      created: Created On
+      modified: Modified
+      paid_with: Paid With
+      active_fee: Active Fee
+      delete_link: Delete This Record
+      delete_confirm: Are You Sure You Want To Delete This Record?
+      edit_link: Edit This Record
+      audit_link: View Audit Trail    
+    form:
+      edit_title: Edit Website Preference for %{franchise}
+      create_title: Add Website Preference for %{franchise}
+      basic_option: Basic
+      basic_desc: Listing Only at $99 per month
+      customized_option: Custom
+      customized_desc: Customized website at $329 per month
+      special_option: Special
+      special_desc: Basic with a Link to Owner Site at $149 per month
+      credit_card_ddw_val: Credit Card
+      bank_account_ddw_val: Bank Account 
+      save: Save Changes
+      return: Return
+
+

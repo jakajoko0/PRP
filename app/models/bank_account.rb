@@ -29,6 +29,8 @@ class BankAccount < ApplicationRecord
 
   validate :routing_format
 
+  before_destroy :verify_if_used
+
   def should_generate_new_friendly_id?
     new_record? || name_or_number_has_changed? || super
   end
@@ -47,6 +49,17 @@ class BankAccount < ApplicationRecord
 
   def token_type 
     self.checking? ? 'C' : 'S'
+  end
+
+  def used_in_auto_payments?
+    WebsitePreference.exists?(payment_token: self.bank_token)
+  end
+
+  def verify_if_used
+    if self.used_in_auto_payments? 
+      errors.add(:base,"This account is being used for a recurring payment.")
+      throw(:abort)
+    end
   end
 
   private

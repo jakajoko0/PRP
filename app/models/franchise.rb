@@ -59,6 +59,7 @@ has_many :accountants
 has_many :bank_accounts
 has_many :credit_cards
 has_one  :insurance
+has_one :website_preference
 has_many :users
 
 friendly_id :number_and_name, use: :slugged

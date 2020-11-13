@@ -1,0 +1,113 @@
+<div class = "card">
+  <div class = "card-header login-header">
+    <h4>
+      <%=I18n.t('website_preference.form.edit_title',
+        franchise: nil)%>
+   </h4>
+  </div>
+  
+  <%=form_for website_preference do |f| %>
+    <div class = "card-body card-background-padgett">
+    	<%=f.hidden_field :franchise_id,
+    	value: f.object.franchise_id	%>
+      
+      <div class = "form-row col-12">
+        <!-- WEBSITE PREFERENCE -->
+        <div class = "form-group form-row col-12">
+          <%=f.label :website_preference,
+          class: "col-md-3 col-sm-3 col-lg-2 col-xl-2 
+                  col-form-label col-form-label-sm 
+                  label-bold"%>
+          <!-- BASIC -->
+          <div class = "col-sm-3 col-md-3 col-lg-2 col-xl-2 radio-toolbar">
+      	    <%=f.radio_button :website_preference, 0, disabled: true %>
+      	    <%=f.label :website_preference,
+      	    I18n.t('website_preference.form.basic_option'),
+      	    value: 0,
+      	    class: "col-form-label col-form-label-sm col-12",
+      	    style: "text-align:center"%>
+    	    </div>
+    	    
+    	    <div style = "max-width: 5%">
+	  	  	</div>
+	  	  	<!-- CUSTOM -->
+	  	  	<div class = "col-sm-3 col-md-3 col-lg-2 col-xl-2 radio-toolbar">
+      	    <%=f.radio_button :website_preference, 1, disabled: true %>
+      	    <%=f.label :website_preference,
+      	      I18n.t('website_preference.form.customized_option'),
+      	      value: 1,
+      	      class: "col-form-label col-form-label-sm col-12 ",
+      	      style: "text-align:center"%>
+      	  </div>
+    	    
+    	    <div style = "max-width: 5%">
+	  	  	</div>
+	  	  	<!-- SPECIAL -->
+	  	  	<div class = "col-sm-3 col-md-3 col-lg-2 col-xl-2 radio-toolbar">
+      	    <%=f.radio_button :website_preference, 2, disabled: true %>
+      	    <%=f.label :website_preference,
+      	      I18n.t('website_preference.form.special_option'),
+      	      value: 2,
+      	      class: "col-form-label col-form-label-sm col-12",
+      	   	  style: "text-align:center" %>
+    	    </div>
+        </div>
+      </div>  	      
+      <!-- Payment Method -->
+      <div class = "form-row col-12">
+        <div class = "form-group form-row col-12">
+          <%=f.label :payment_method,
+          class: "col-md-3 col-sm-3 col-lg-2 col-xl-2 
+                  col-form-label col-form-label-sm
+                  label-bold"%>
+          <div class = "col-8 col-sm-4 col-md-3 col-lg-3 col-xl-2">
+            <%=f.select :payment_method, [[I18n.t('website_preference.form.bank_account_ddw_val'),"ach"], [I18n.t('website_preference.form.credit_card_ddw_val'),"credit_card"]],{},
+            class: "form-control form-control-sm
+                    col" %>
+          </div>
+        </div>
+      </div>
+
+      <div id = "bank_tokens" style="display:none">
+        <!-- Bank Accounts -->
+        <div class = "form-row col-12">
+          <div class = "form-group form-row col-12">
+            <%=f.label :bank_token,
+            class: "col-md-3 col-sm-3 col-lg-2 col-xl-2  
+                  col-form-label col-form-label-sm
+                  label-bold"%>
+            <div class = "col-12 col-sm-8 col-md-6 col-lg-6 col-xl-5">
+              <%=f.select(:bank_token, @bank_array,{include_blank: true},{class: "form-control form-control-sm col"}) %>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id = "card_tokens" style="display:none">
+      	<!-- Credit Cards -->
+        <div class = "form-row col-12">
+          <div class = "form-group form-row col-12">
+            <%=f.label :card_token,
+            class: "col-md-3 col-sm-3 col-lg-2 
+                  col-form-label col-form-label-sm
+                  label-bold"%>
+            <div class = "col-8 col-sm-6 col-md-6 col-lg-6 col-xl-5">
+              <%=f.select(:card_token, @card_array,{include_blank: true},{class: "form-control form-control-sm col"}) %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
+<br />
+  <div class = "row col-8 col-xl-10">
+    <%=f.submit (I18n.t('website_preference.form.save')),
+    class: 'btn btn-padgett col-12 col-sm-4 col-md-3 col-lg-3 col-xl-2',
+	  name: "submit"%>
+    <div class = "col-1 sol-sm-1 col-md-1 col-lg-1"></div>
+      <%=link_to (I18n.t('website_preference.form.return')),
+      admins_website_preferences_path,
+      class: 'btn btn-padgett col-12 col-sm-4 col-md-3 col-lg-3 col-xl-2' %>
+    </div>
+  </div>
+<%end%>

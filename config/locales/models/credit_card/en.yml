@@ -48,6 +48,7 @@ en:
       error: A Problem Occured Deleting Credit Card
     ending_in: ending in
     index:
+      used_in_auto_payments: This card is used for a recurring payment
       has_expired: This card has expired
       is_expiring: This card expires soon
       add_credit_card: Add Credit Card

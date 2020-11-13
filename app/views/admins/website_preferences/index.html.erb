@@ -1,0 +1,23 @@
+<div class = "col-12 pb-3">
+  <!-- Add Website Preference Button -->
+  <%=link_to admins_franchises_select_index_path(destination: 'add_website_preference'),
+     data: {turbolinks: false} do%>
+     <button class = 'btn btn-padgett'>
+      <%=I18n.t('website_preference.index.add_website_preference')%>
+     </button>
+  <%end%>
+</div>
+
+<div class = "col-12 pb-2">
+  <h2 class="padgett-text">
+    <%=I18n.t('website_preference.index.title')%>
+   </h2>
+</div>
+
+
+<!-- Website Preference List -->
+<div class = "col-12">
+  <div id="website_preferences"  >
+    <%=render partial: 'website_preference_list'%>
+  </div>
+</div>

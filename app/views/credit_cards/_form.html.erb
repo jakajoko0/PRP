@@ -18,7 +18,7 @@
         <!-- CARD TYPE -->   
         <div class = "form-group form-row col-12">
   	      <%=f.label :cc_type,
-  	        class: "col-md-3 col-sm-4 col-lg-3
+  	        class: "col-md-3 col-sm-4 col-lg-3 col-xl-2
                     col-form-label-sm 
                     label-bold" %>
 
@@ -28,7 +28,7 @@
             <%=content_tag(:i, '', class: credit_card.card_icon+" fa-2x")%>
           </div>
           <%else%>
-  	      <div class = "col-sm-4 col-md-3 col-lg-3">
+  	      <div class = "col-sm-4 col-md-3 col-lg-3 col-xl-3">
   		      <%=f.select(:cc_type, [["Visa","V"],["MasterCard","M"], ["American Express","A"],["Discover","I"]],{include_blank: false},
   		        {class: 'form-control form-control-sm col',
                })%>
@@ -41,9 +41,9 @@
   	    <!-- NAME ON CARD -->
   	    <div class = "form-group form-row col-12">
   	      <%=f.label :cc_name,
-            class: 'col-md-3 col-sm-4 col-lg-3
+            class: 'col-md-3 col-sm-4 col-lg-3 col-xl-2
                     col-form-label-sm label-bold'%>
-          <div class = "col-sm-5 col-md-5 col-lg-4">
+          <div class = "col-sm-5 col-md-5 col-lg-5 col-xl-4">
       	    <%= f.text_field :cc_name,
       	      class: "form-control form-control-sm col",
               required: true%>
@@ -55,9 +55,9 @@
   	    <!-- CARD NUMBER -->
   	    <div class = "form-group form-row col-12">
   	      <%=f.label :cc_number, 
-            class: 'col-md-3 col-sm-4 col-lg-3
+            class: 'col-md-3 col-sm-4 col-lg-3 col-xl-2
                     col-form-label-sm label-bold'%>
-          <div class = "col-sm-4 col-md-4 col-lg-3">
+          <div class = "col-sm-4 col-md-4 col-lg-4 col-xl-4">
       	    <%= f.text_field :cc_number,
               class: "form-control form-control-sm col",
                 required: true, maxlength: 16%>
@@ -69,9 +69,9 @@
         <!-- EXPIRATION -->
         <div class = "form-group form-row col-12">
           <%=f.label :cc_exp_month, 
-            class: 'col-md-3 col-sm-4 col-lg-3
+            class: 'col-md-3 col-sm-4 col-lg-3 col-xl-2
                     col-form-label-sm label-bold'%>
-          <div class = "col-sm-2 col-md-2 col-lg-1">
+          <div class = "col-sm-2 col-md-2 col-lg-1 col-xl-1">
             <%=f.select(:cc_exp_month, '01'..'12', {},
           html_options ={:class => "form-control form-control-sm text-left col" })%> 
           
@@ -81,7 +81,7 @@
             /
            </div>
 
-          <div class = "col-sm-2 col-md-2 col-lg-1">
+          <div class = "col-sm-2 col-md-2 col-lg-1 col-xl-1">
             <%=f.select(:cc_exp_year, @years, {},
           html_options ={:class => "form-control form-control-sm text-left col" })%> 
           
@@ -93,7 +93,7 @@
         <!-- ADDRESS -->
         <div class = "form-group form-row col-12">
           <%=f.label :cc_address, 
-            class: 'col-md-3 col-sm-4 col-lg-3
+            class: 'col-md-3 col-sm-4 col-lg-3 col-xl-2
                     col-form-label-sm label-bold'%>
           <div class = "col-sm-6 col-md-6 col-lg-5">
             <%= f.text_field :cc_address,
@@ -107,7 +107,7 @@
         <!-- CITY -->
         <div class = "form-group form-row col-12">
           <%=f.label :cc_city, 
-            class: 'col-md-3 col-sm-4 col-lg-3
+            class: 'col-md-3 col-sm-4 col-lg-3 col-xl-2
                     col-form-label-sm label-bold'%>
           <div class = "col-sm-6 col-md-6 col-lg-5">
             <%= f.text_field :cc_city,
@@ -121,9 +121,9 @@
         <!-- STATE -->
         <div class = "form-group form-row col-12">
           <%=f.label :cc_state, 
-            class: 'col-md-3 col-sm-4 col-lg-3
+            class: 'col-md-3 col-sm-4 col-lg-3 col-xl-2
                     col-form-label-sm label-bold'%>
-          <div class = "col-sm-2 col-md-2 col-lg-1">
+          <div class = "col-sm-2 col-md-2 col-lg-1 col-xl-1">
             <%= f.text_field :cc_state,
               class: "form-control form-control-sm col",
                 required: true, maxlength: 16%>
@@ -135,9 +135,9 @@
         <!-- ZIP -->
         <div class = "form-group form-row col-12">
           <%=f.label :cc_zip, 
-            class: 'col-md-3 col-sm-4 col-lg-3
+            class: 'col-md-3 col-sm-4 col-lg-3 col-xl-2
                     col-form-label-sm label-bold'%>
-          <div class = "col-sm-3 col-md-3 col-lg-4">
+          <div class = "col-sm-3 col-md-3 col-lg-3 col-xl-2">
             <%= f.text_field :cc_zip,
               class: "form-control form-control-sm col",
                 required: true, maxlength: 16%>
@@ -154,14 +154,15 @@
 
 <div class = "row col-12">
   <%=f.submit (I18n.t('bank_account.form.save')),
-    class: 'btn btn-padgett col-4 col-sm-4 col-md-3 col-lg-3',
+    class: 'btn btn-padgett col-4 col-sm-4 col-md-3 col-lg-3 col-xl-2',
     name: "submit" %>
   <div class = "col-1 col-sm-1 col-md-1 col-lg-1">
   </div>
   
   <%=link_to (I18n.t('bank_account.form.discard')),
     bank_accounts_path,
-    class: 'btn btn-padgett col-4 col-sm-4 col-md-3 col-lg-3' %>
+    class: 'btn btn-padgett col-4 col-sm-4 col-md-3 col-lg-3 col-xl-2
+      ' %>
 </div>
 
   <%end%>  

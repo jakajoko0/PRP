@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_21_174051) do
+ActiveRecord::Schema.define(version: 2020_11_04_195931) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -235,8 +235,20 @@ ActiveRecord::Schema.define(version: 2020_10_21_174051) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  create_table "website_preferences", force: :cascade do |t|
+    t.bigint "franchise_id"
+    t.integer "website_preference"
+    t.string "payment_token"
+    t.integer "payment_method"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.string "slug"
+    t.index ["franchise_id"], name: "index_website_preferences_on_franchise_id"
+  end
+
   add_foreign_key "accountants", "franchises"
   add_foreign_key "bank_accounts", "franchises"
   add_foreign_key "credit_cards", "franchises"
   add_foreign_key "insurances", "franchises"
+  add_foreign_key "website_preferences", "franchises"
 end

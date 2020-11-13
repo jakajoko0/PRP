@@ -95,127 +95,7 @@ body {
 
 
 
-/***************************************************/
-/* Table Layouts */
-/***************************************************/
 
-/* Table Striped */
-.table-striped>tbody>tr:nth-child(odd)>td, 
-.table-striped>tbody>tr:nth-child(odd)>th {
-   background-color: #E0E0E0;
-
- }
-
-.tablewhite {background-color: White;}
-.tablegray {background-color: LightGray;}
-
-/* Table-dan has less space between rows */
-table.table.table-dan th,
-table.table.table-dan td {
-  vertical-align: middle;
-  padding-top: 5px;
-  padding-bottom: 5px;
-  font-size: 1rem;
-} 
-
-
-// Fixed Header table for reports where you can scroll
-// but dont lose the values 
-
-.fixed_header{
-  width: 100%;
-  border-spacing:0;
-}
-
-.fixed_header thead {
-  display:block;}
-
-.fixed_header tfoot {
-  display:block;}
-
-
-.fixed_header tbody{
-  display:block;}   
-
-.fixed_header tr{
-  display:block;}
-
-.fixed_header th{
-  display:block;}
-
-.fixed_header > thead > tr:last-child > th {
-  border-bottom: 3px solid #ddd;
-}
-
-.fixed_header > tbody > tr:first-child td {
-  border-top: 0px;
-}
-
-.fixed_header td{
-  display:block;
-  border-top: 1px solid #ddd;}
-
-.fixed_header thead tr {
-  width: 97%;
-  width: -webkit-calc(100% - 16px);
-  width:    -moz-calc(100% - 16px);
-  width:         calc(100% - 16px);
-}
-
-
-.fixed_header tfoot tr {
-  width: 97%;
-  width: -webkit-calc(100% - 16px);
-  width:    -moz-calc(100% - 16px);
-  width:         calc(100% - 16px);
-}
-
-.fixed_header tr:after{
-    content: ' ';
-    display: block;
-    visibility: hidden;
-    clear: both;
-}
-
-.fixed_header tbody {
-    height: 450px;
-    overflow-y: auto;
-    overflow-x: hidden;
-}
-
-.fixed_header td{
-    float: left;
-}
-
-.fixed_header th {
-  float: left;
-}
-
-
-.report_table {
-  font-size: 15px;
-  width: 100%;
-  border-collapse: collapse;
-}
-
-.report_table th {
-  background: var(--card-background);
-  font-weight:bold;
-  position: -webkit-sticky;
-  position: sticky; 
-  top: 0px;
-  border: 1px solid;
-}
-.report_table tfoot {
-  position: sticky;
-  position: -webkit-sticky;
-  bottom: calc(100vh-30px);
-}
-
-.report_table td, th {
-  padding: 5px;
-  text-align: left;
-}
 
 
 
@@ -257,6 +137,8 @@ table.table.table-dan td {
   border-color: black;
 }
 
+
+
 .table-scroll tfoot,
 .table-scroll tfoot th,
 .table-scroll tfoot td,
@@ -270,31 +152,6 @@ table.table.table-dan td {
   z-index:2;
 }
 
-
-
-
-
-
-
-.form-horizontal .control-label{
-text-align:left;
-}
-
-
-
-
-/***************************************************/
-// General CSS for wells, inputs etc 
-/***************************************************/
-
-.no-padding{
-  padding: 0px;
-}
-
-.tooltip-inner{
-  max-width: none;
-  white-space: pre-line;
-}
 
 //Positive and negative values
 .pos {color: #000;}
@@ -320,9 +177,9 @@ text-align:left;
 }
 
 
-
-
-
+table {
+  background: red;
+}
 
 
 

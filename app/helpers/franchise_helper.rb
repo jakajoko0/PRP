@@ -60,6 +60,9 @@ module FranchiseHelper
       when 'add_royalty'
         route = new_remittance_path(franchise_id: franchise.id)
         button_text = I18n.t('franchise_select.enter_royalty')
+      when 'add_website_preference'
+        route = new_admins_website_preference_path(franchise_id: franchise.id)
+        button_text = I18n.t('franchise_select.new_website_pref')
       when 'add_receivable'
         route = new_receivable_path(franchise_id: franchise.id)
         button_text = I18n.t('franchise_select.add_charge')

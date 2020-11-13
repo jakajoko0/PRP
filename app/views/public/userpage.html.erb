@@ -1,3 +1,5 @@
-<h1>Public#userpage</h1>
-<p>Find me in app/views/public/userpage.html.erb</p>
-
+<%=render partial: 'user_warnings', locals: {
+	expired_cards: @expired_cards,
+	expiring_cards: @expiring_cards,
+  invalid_payment_token: @invalid_payment_token}%>
+<h1> User Dashboard </h1>

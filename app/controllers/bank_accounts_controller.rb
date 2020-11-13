@@ -49,8 +49,8 @@ class BankAccountsController < ApplicationController
 			flash[:success] = I18n.t('bank_account.delete.confirm')
 			redirect_to bank_accounts_path 
 		else
-			flash[:danger] = I18n.t('bank_account.delete.error')
-			render 'index'
+			flash[:danger] = @bank_account.errors.full_messages.to_sentence
+			redirect_to bank_accounts_path
 		end
 	end
 

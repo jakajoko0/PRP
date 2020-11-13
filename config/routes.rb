@@ -43,6 +43,7 @@ Rails.application.routes.draw do
     resources :insurances, only: [:show]
     resources :bank_accounts
     resources :credit_cards
+    resources :website_preferences, except: :destroy
 
     get '/bank_routings/bank_name' => 'bank_routings#bank_name'
   end
@@ -67,6 +68,8 @@ Rails.application.routes.draw do
       get 'accountants/audit/:id' ,to: "accountants#audit", as: 'accountant_audit'
       resources :insurances
       get 'insurances/audit/:id' ,to: "insurances#audit", as: 'insurance_audit'
+      resources :website_preferences
+      get 'website_preferences/audit/:id', to: "website_preferences#audit", as: 'website_preference_audit'
 
 
       #Reports
@@ -101,6 +104,14 @@ Rails.application.routes.draw do
         get 'payment_methods_missing' => 'payment_methods_missing#index'
         post '/payment_methods_missing/render' => 'payment_methods_missing#report'
         get '/payment_methods_missing/render' => redirect('/admins/payment_methods_missing')
+
+        get '/website_preferences_list' => 'website_preferences_list#index'
+        post '/website_preferences_list/render' => 'website_preferences_list#report'
+        get '/website_preferences_list/render' => redirect('/admins/website_preferences_list')
+
+        get '/website_preferences_missing' => 'website_preferences_missing#index'
+        post '/website_preferences_missing/render' => 'website_preferences_missing#report'
+        get '/website_preferences_missing/render' => redirect('/admins/website_preferences_missing')
 
 
       end

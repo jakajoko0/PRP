@@ -32,7 +32,8 @@
       </li>
       <!-- WEBSITE PREFERENCE-->  
       <li>
-        <%= link_to I18n.t('admin_menu.franchise.website') , '#',
+        <%= link_to I18n.t('admin_menu.franchise.website') ,
+        admins_website_preferences_path,
         class: "dropdown-item" %>
       </li>
       <div class="dropdown-divider"></div>
@@ -126,12 +127,13 @@
           <div class="dropdown-divider"></div>
           <!-- Website Preferences-->   
           <li>
-            <%= link_to I18n.t('admin_menu.franchise.report.website_pref') , "#" ,
+            <%= link_to I18n.t('admin_menu.franchise.report.website_pref') , admins_website_preferences_list_path ,
               class: "dropdown-item"%>
           </li>
           <!-- Missing Website Preferences-->   
           <li>
-            <%= link_to I18n.t('admin_menu.franchise.report.missing_website') , "#" ,
+            <%= link_to I18n.t('admin_menu.franchise.report.missing_website') ,
+            admins_website_preferences_missing_path ,
               class: "dropdown-item"%>
           </li>
 

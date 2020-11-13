@@ -51,8 +51,8 @@ class CreditCardsController < ApplicationController
 			flash[:success] = I18n.t('credit_card.delete.confirm')
 			redirect_to credit_cards_path 
 		else
-			flash[:danger] = I18n.t('credit_card.delete.error')
-			render 'index'
+			flash[:danger] = @credit_card.errors.full_messages.to_sentence
+			redirect_to credit_cards_path
 		end
 	end
 

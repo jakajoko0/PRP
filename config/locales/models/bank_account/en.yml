@@ -42,6 +42,7 @@ en:
       bank_name: Bank Name
       account_type: Account Type
       ending_in: Account Ending In
+      used_in_auto_payments: Cannot Delete Account.Account is used for a recurring payment
       edit_link: Edit this Bank Account
       delete_link: Delete this Bank Account
       delete_confirm: Are you sure you want to Delete this Bank Account?

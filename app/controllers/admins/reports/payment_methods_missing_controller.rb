@@ -31,11 +31,15 @@ def report
       render pdf: "PaymentMethodsMissing",
       template: 'admins/reports/payment_methods_missing/report_pdf.html.erb',
       layout: 'pdf_report' ,
-      page_size: 'Letter',
-      title: I18n.t('reports.payment_methods_missing.title_excel'),
-      orientation: "portrait",
+      page_size: 'A4',
+      title: I18n.t('reports.payment_method_missing.title'),
+      orientation: "landscape",
       print_media_type: true,
-      disposition:'attachment'
+      disposition:'attachment',
+      margin: {top: 10}
+
+      
+
 
     end
     format.xlsx{response.headers['Content-Disposition'] = "attachment; filename='PaymentMethodsMissing.xlsx'"}

@@ -63,6 +63,19 @@ def link_with_icon(link, action, description,confirm="",turbo=true)
   a_tag.html_safe
 end
 
+
+def bubble_help(help_description,location)
+  i_tag = <<-HTML
+  <i class = "far fa-question-circle"
+  data-html="true"
+  data-toggle="tooltip"
+  title ="#{help_description}"
+  data-placement="#{location}"
+  data-container="body">
+  HTML
+  i_tag.html_safe
+end
+
 def display_checkmark(value = 0, description = "")
   if value == 1
     i_tag = <<-HTML 

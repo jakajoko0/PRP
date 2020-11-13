@@ -1,0 +1,38 @@
+<!-- Expiring Credit Cards-->
+<%if expiring_cards.size > 0 %>
+  <div class = "card  bg-warning mb-2"  
+       id = "card_for_expiring_cards">
+    <div class = "card-header"> 
+      <a href = "#", class = 'close ' 
+         data-dismiss = 'alert' 
+         data-target = "#card_for_expiring_cards">
+        &#215;
+      </a>  
+      <% expiring_cards.each do |card| %>
+          The <%=card.card_type_desc%> card ending in <%=card.last_four%> will expire soon<br>
+      <% end %>
+    </div>
+  </div>
+
+<%end%>    
+
+<%if expired_cards.size > 0 || !invalid_payment_token  %>
+  <div class = "card text-white bg-danger mb-2"  
+       id = "card_for_expired_cards">
+    <div class = "card-header"> 
+      <a href = "#", class = 'close text-white' 
+         data-dismiss = 'alert' 
+         data-target = "#card_for_expired_cards">
+        &#215;
+      </a>  
+      <% expired_cards.each do |card| %>
+          The <%=card.card_type_desc%> card ending in <%=card.last_four%> has expired<br>
+      <% end %>
+
+      <%if !invalid_payment_token %>
+      The payment method used for recurring Website payments needs to be updated
+      <%end%>
+    </div>
+  </div>
+<%end%>    
+

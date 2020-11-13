@@ -56,7 +56,7 @@ module ReportHelper
 		<div class = "#{rowclass}">
 			<label class = "#{labelclass}" for="#{fieldname}">#{labelname}</label>
 			<div class = "#{fieldclass}">
-				<input id = "#{fieldname}" class = "form-control form-control-sm col text-center" name = "#{fieldname}" style="display:inline-block; vertical-align: middle; width: 65%; margin: 0 5px 0 0;">
+				<input id = "#{fieldname}" class = "form-control form-control-sm col text-center" name = "#{fieldname}" required = true style="display:inline-block; vertical-align: middle; width: 65%; margin: 0 5px 0 0;">
 			</div>
 		</div>
 		HTML

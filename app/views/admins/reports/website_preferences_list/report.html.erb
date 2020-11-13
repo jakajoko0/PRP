@@ -1,0 +1,104 @@
+<%=render 'shared/report_header'%>
+	<div class = "col-12">
+		<h5 class="text-center">
+			<%=@report_info[:title]%>
+		</h5>
+	</div>
+
+
+<div id = "table-scroll" 
+     class = "table-scroll"
+     style = "height: calc(100vh - 250px)">
+  <table id = "main-table">
+    <thead id="report">
+  	  <tr>
+  	    <th>
+  		    <%=I18n.t('reports.website_preferences_list.number')%>
+ 		    </th>
+		    <th>
+		      <%=I18n.t('reports.website_preferences_list.name')%>
+	      </th>
+		    <th>
+		      <%=I18n.t('reports.website_preferences_list.preference')%>
+        </th>
+		    <th>
+			    <%=I18n.t('reports.website_preferences_list.created_at')%>
+		    </th>
+		    <th>
+			    <%=I18n.t('reports.website_preferences_list.updated_at')%>
+		    </th>
+		    <th>
+			    <%=I18n.t('reports.website_preferences_list.payment_method')%>
+		    </th>
+		    <th class = "td-right">
+			    <%=I18n.t('reports.website_preferences_list.active_fee')%>
+		    </th>
+		  </tr>
+	  </thead>
+	  <%if @website_preferences.size > 0%>
+	    <tbody>	
+	      <%@website_preferences.each do |preference|%>
+	        <tr>
+	          <td data-name="Number">
+		  	      <%=preference.franchise.franchise_number%>
+		        </td>
+		  
+		  			<td  data-name="Name">
+		  				<%=preference.franchise.full_name%>
+		  			</td>
+
+		  			<td data-name="Website Preference">
+		  				<%=preference.preference_description%>
+		  			</td>
+
+		  			<td  data-name="Selected On">
+		  				<%=I18n.l(preference.created_at.in_time_zone, format: :prp)%>
+		  			</td>
+
+		  			<td data-name="Last Modified">
+		  				<%=I18n.l(preference.updated_at.in_time_zone, format: :prp)%>
+		  			</td>
+
+		  			<td data-name="Paid With">
+		  				<%=preference.paid_with%>
+		  			</td>
+
+		  			<td data-name="Active Fee" class = "td-right">
+		  				<%=number_to_currency(preference.current_fee)%>
+		  			</td>
+		  			
+
+					</tr>
+				<%end%>
+			</tbody>
+  	<%end%>
+
+  </table>
+</div>
+<table class="table-scroll">
+<tfoot id="report-footer">
+  		<tr>
+  			<td>
+  				<%="#{I18n.t('reports.website_preferences_list.basic')}: #{@report_info[:basic]}"%>
+  			</td>
+  			<td>
+  				&nbsp;
+  			</td>
+  			<td>
+  				<%="#{I18n.t('reports.website_preferences_list.custom')}: #{@report_info[:custom]}"%>
+  			</td>
+  			<td>
+  				&nbsp;
+  			</td>
+  			<td>
+  				<%="#{I18n.t('reports.website_preferences_list.special')}: #{@report_info[:special]}"%>
+  			</td>
+  			<td>
+  				&nbsp;
+  			</td>
+  			<td>
+  				&nbsp;
+  			</td>
+  		</tr>
+  	</tfoot>
+  </table>

@@ -1,0 +1,10 @@
+<div class = "row justify-content-center">
+  <div class = "col-12 col-sm-12 col-md-12 col-lg-12 col-xl-10">
+    <%= render partial: "shared/error_handling",
+      locals: { the_object: @website_preference,
+                objectname: I18n.t('website_preference.object_name')} %>
+
+    <%=render partial: 'form',
+    locals: {website_preference: @website_preference} %>
+  </div>
+</div>

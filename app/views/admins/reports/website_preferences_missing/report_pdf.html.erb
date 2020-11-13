@@ -1,0 +1,58 @@
+
+<div class = "row">
+	<div class = "col-12">
+		<h5 class="text-center">
+			<%=@report_info[:title]%>
+		</h5>
+	</div>
+</div>
+
+<div id = "table-scroll" 
+     class = "table-scroll"
+     style = "height: calc(100vh - 240px)">
+  <table id = "main-table">
+    <thead>
+  	  <tr>
+  	    <th>
+  		    <%=I18n.t('reports.website_preferences_missing.number')%>
+ 		    </th>
+		    <th>
+		      <%=I18n.t('reports.website_preferences_missing.name')%>
+	      </th>
+		    <th>
+		      <%=I18n.t('reports.website_preferences_missing.phone')%>
+        </th>
+		    <th>
+			    <%=I18n.t('reports.website_preferences_missing.email')%>
+		    </th>
+
+		  </tr>
+	  </thead>
+	  <%if @franchises.size > 0%>
+	    <tbody>	
+	      <%@franchises.each do |franchise|%>
+	        <tr>
+	          <td data-name="Number">
+		  	      <%=franchise.franchise_number%>
+		        </td>
+		  
+		  			<td  data-name="Name">
+		  				<%=franchise.full_name%>
+		  			</td>
+
+		  			<td data-name="Phone">
+		  				<%=franchise.phone%>
+		  			</td>
+
+		  			<td  data-name="Email">
+		  				<%=franchise.email%>
+		  			</td>
+
+		  			
+
+					</tr>
+				<%end%>
+			</tbody>
+  	<%end%>
+  </table>
+</div>

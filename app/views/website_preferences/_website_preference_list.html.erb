@@ -1,0 +1,96 @@
+<div id = "table-scroll"
+     class = "table-scroll">
+  <table id = "website-preference-list" 
+         class="table-striped">
+    <thead id="list">
+      <tr>
+        <!-- Website Preference  -->
+        <th scope = "col" class = "td-left">
+          <%=I18n.t('website_preference.index.web_preference')%>
+        </th>
+
+        <!-- Created On  -->
+        <th scope = "col" class="td-left">
+          <%= I18n.t('website_preference.index.created') %>
+        </th>
+
+        <!-- Modifed Last  -->
+        <th scope = "col" class="td-left">
+          <%= I18n.t('website_preference.index.modified') %>
+        </th>        
+      
+        <!-- Paid With  -->
+        <th scope = "col" class = "td-left">
+          <%= I18n.t('website_preference.index.paid_with') %>
+        </th>
+
+        <!-- Active Fee  -->
+        <th scope = "col" class = "td-right">
+          <%= I18n.t('website_preference.index.active_fee') %>
+        </th>
+
+        <!-- For Edit and Delete link we have 2 other columns  -->
+        <th scope = "col"></th>
+      </tr>
+    </thead>
+    <% if @website_preferences.size > 0 %>
+      <tbody>
+        <!-- Go through our filtered franchises  -->
+        <% @website_preferences.each do |preference| %>
+          <tr>
+            <!-- Website Preference  -->
+            <td data-name = "Website Preference"
+                scope="col" 
+                class = "td-left">
+              <%=preference.preference_description%>
+            </td>
+
+            <!-- Created  -->
+            <td data-name="Created On"
+                scope="col"
+                class = "td-left">
+              <%=I18n.l(preference.created_at.in_time_zone, format: :prp)%> 
+            </td>
+
+            <!-- Modified  -->
+            <td data-name = "Modified"
+                scope = "col"
+                class = "td-left">
+              <%=I18n.l(preference.updated_at.in_time_zone, format: :prp)%> 
+            </td>
+
+            <!-- Paid With  -->          
+            <td data-name = "Paid With"
+                scope = "col"
+                class = "td-left">
+              <%=preference. paid_with%> 
+            </td>
+
+            <!-- Active Price  -->
+            <td data-name = "Active Price"
+                scope = "col"
+                class = "td-right">
+              <%=number_to_currency(preference.current_fee)%> 
+            </td>
+
+            <!-- Edit Icon and Link  -->
+            <%if can? :edit, preference%>
+              <td data-name = "" 
+                  class = "td-center">
+                <%=link_with_icon(edit_website_preference_path(id:preference),
+                "edit",
+                I18n.t('website_preference.index.edit_link'),
+                "",
+                false)%> 
+              </td>
+            <%else%>
+              <td></td>
+            <%end%>
+          </tr>
+        <% end %>
+      </tbody>
+    <%end%>
+  </table>
+</div>  
+
+

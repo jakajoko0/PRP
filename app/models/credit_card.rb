@@ -30,6 +30,8 @@ class CreditCard < ApplicationRecord
   validates :cc_state, presence: true 
   validates :cc_zip, presence: true 
 
+  before_destroy :verify_if_used
+
   def should_generate_new_friendly_id? 
   	new_record? || name_or_number_has_changed? || super
   end
@@ -70,7 +72,7 @@ class CreditCard < ApplicationRecord
   end
 
   def expired?
-    exp_year < Date.today.year % 100 || (exp_year == Date.today.year && exp_month < Date.today.month)
+    self.exp_year < Date.today.year % 100 || (self.exp_year == Date.today.year % 100 && self.exp_month < Date.today.month)
   end
 
   def expiring?
@@ -80,9 +82,36 @@ class CreditCard < ApplicationRecord
     expiration_date = Date.new(2000+exp_year,exp_month,15)
     range_to_check.include?(expiration_date)
   end
-    
 
 
+  def used_in_auto_payments?
+    WebsitePreference.exists?(payment_token: self.card_token)
+  end
 
+  def verify_if_used
+    if self.used_in_auto_payments? 
+      errors.add(:base,"This card is being used for a recurring payment.")
+      throw(:abort)
+    end
+  end
+
+
+  def self.expiring_cards(franchise_id)
+    cards = CreditCard.where("franchise_id = ?", franchise_id)
+    cards.select{ |card| card.expiring? }
+  end
+
+  def self.expired_cards(franchise_id)
+    cards = CreditCard.where("franchise_id = ?", franchise_id)
+    cards.select{ |card| card.expired? }
+  end
+
+  def self.generate_dropdown_values(franchise_id)
+    values = CreditCard.select(:card_token, :card_type, :last_four).where(franchise_id: franchise_id)
+    values.each do |v| 
+      v.card_type = v.card_type_desc
+    end
+    return values
+  end
 
 end
