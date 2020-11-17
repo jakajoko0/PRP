@@ -1,4 +1,4 @@
-class AddInsurance < ActiveRecord::Migration[6.0]
+class AddInsuranceTable < ActiveRecord::Migration[6.0]
   def change
   	create_table :insurances do |t|
   		t.references :franchise, foreign_key: true
