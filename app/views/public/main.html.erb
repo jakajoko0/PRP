@@ -58,9 +58,13 @@
           </div>
           
           <br>
+          <div class = "row justify-content-center">
+          <div class = "col-12 col-sm-12 col-md-8">
           <!-- LOG IN BUTTON -->
           <%= f.submit (I18n.t :login_text),
               class: "btn btn-block btn-padgett"%>
+            </div>
+          </div>
           <div align="center">   
             <br> 
             <!-- FORGOT PASSWORD LINK -->
@@ -81,11 +85,15 @@
       </div>
       
       <!-- SIGNUP BUTTON -->
+      <div class = "row justify-content-center">
+        <div class = "col-12 col-sm-12 col-md-8">
       <div class = "card-body">
         <%=link_to (I18n.t :signup_text),
            signup_path,
            id: 'registration_link',
            class: 'btn btn-block btn-padgett'%>
+         </div>
+       </div>
       </div>
     </div>
   </div>
