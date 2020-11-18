@@ -1,5 +1,5 @@
 # config valid for current version and patch releases of Capistrano
-require 'capistrano/nginx'
+
 lock "~> 3.14.1"
 
 set :application, "prp"
