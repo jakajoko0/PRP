@@ -5,8 +5,8 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-=begin
-(2..20).each do |fnum| 
+begin
+(1..20).each do |fnum| 
   Franchise.create(	
     area: "1",
     mast: "0",
@@ -58,13 +58,13 @@
     max_coll_year: 0,
     max_coll_month: 0)
 end
-=end
+end
 
-=begin
+begin
 Franchise.all.each do |f|
   f.create_insurance(eo_insurance: 0, gen_insurance: 0, other_insurance: 0 , other_description: nil, eo_expiration: nil, gen_expiration: nil, other_expiration: nil)
 end
-=end
+end
 
 Region.create({ "region_id"=>1, "region_number"=>"01", "area"=>"1", "description"=>"Southeast"})
 Region.create({ "region_id"=>2, "region_number"=>"02", "area"=>"1", "description"=>"Mid-Atlantic"})
