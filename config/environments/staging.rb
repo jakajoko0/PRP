@@ -63,10 +63,10 @@ Rails.application.configure do
   config.action_mailer.perform_caching = false
   config.action_mailer.perform_deliveries = true
   config.action_mailer.default_url_options = {host: 'http://ec2-34-195-104-102.compute-1.amazonaws.com/'}
-  config.action_mailer.delivery_method = :file
+  config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
-    address: Rails.application.credentials.dig(:mail_address),
-    port: Rails.application.credentials.dig(:mail_port),
+    address: Rails.application.credentials.dig(:staging,:mail_address),
+    port: Rails.application.credentials.dig(:staging,:mail_port),
     authentication: 'plain',
     enable_starttls_auto: true,
     openssl_verify_mode: 'none'}

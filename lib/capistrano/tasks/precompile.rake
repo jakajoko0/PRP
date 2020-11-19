@@ -10,9 +10,9 @@ namespace :assets do
 		on roles(:web), in: :parallel do |server|
 			run_locally do 
 				execute :rsync,
-				  "--progress -a --delete ./public/packs/ #{"staging18"}:#{shared_path}/public/packs/"
+				  "--progress -a --delete ./public/packs/ #{"staging18"}:#{release_path}/public/packs/"
 				execute :rsync,
-				  "--progress -a --delete ./public/assets/ #{"staging18"}:#{shared_path}/public/assets/"
+				  "--progress -a --delete ./public/assets/ #{"staging18"}:#{release_path}/public/assets/"
 			end
 		end
 
