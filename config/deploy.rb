@@ -11,6 +11,9 @@ set :repo_url, "git@github.com:PBSITProjects/PRP.git"
 # Default deploy_to directory is /var/www/my_app_name
 set :deploy_to, "/home/deploy/prp"
 
+set :sidekiq_service_name, "sidekiq"
+
+
 # Default value for :format is :airbrussh.
 # set :format, :airbrussh
 
@@ -41,3 +44,24 @@ set :keep_releases, 3
 
 #after 'deploy:published', 'nginx:reload'
 #after 'deploy:published', 'nginx:restart'
+
+
+namespace :sidekiq do 
+	desc "Quiet Sidekiq (stop fetching new tasks)"
+	task :quiet do 
+		on roles(:app) do 
+			execute :sudo, :systemctl, :kill, "-s", "TSTP", fetch(:sidekiq_service_name)
+		end
+	end
+
+	desc "Restart Sidekiq service" do 
+		task :restart do 
+			on roles(:app) do 
+				execute :sudo, :systemctl, :restart, fetch(:sidekiq_service_name)
+			end
+		end
+	end
+end
+
+after "deploy:starting", "sidekiq:quiet"
+after "deploy:published", "sidekiq:restart"

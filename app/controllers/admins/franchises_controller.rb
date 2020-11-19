@@ -7,6 +7,8 @@ class Admins::FranchisesController < ApplicationController
                   .order(sort_column + " " + sort_direction)
                   .paginate(per_page: 20, page: params[:page])
     authorize! :read, Franchise
+
+    TestMailWorker.perform_async()
   end 
 
   def new
