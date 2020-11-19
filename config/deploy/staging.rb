@@ -3,6 +3,7 @@
 # Defines a single server with a list of roles and multiple properties.
 # You can define all roles on a single server, or split them:
 set :stage, :staging
+set :rails_env, 'staging'
 server "ec2-34-195-104-102.compute-1.amazonaws.com", user: "deploy", roles: %w{app db web}
 # server "example.com", user: "deploy", roles: %w{app web}, other_property: :other_value
 # server "db.example.com", user: "deploy", roles: %w{db}
