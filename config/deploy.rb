@@ -64,4 +64,5 @@ namespace :sidekiq do
 end
 
 after "deploy:starting", "sidekiq:quiet"
+after "deploy:updated", "assets:precompile"
 after "deploy:published", "sidekiq:restart"

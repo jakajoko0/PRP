@@ -94,6 +94,7 @@ group :development do
   gem 'capistrano-passenger', '~> 0.2.0'
   gem 'capistrano-rbenv', '~> 2.1', '>=2.1.4'
   gem 'capistrano-nginx'
+  gem 'capistrano-local-precompile', '~>1.2.0', require: false
 end
 
 group :test do 
