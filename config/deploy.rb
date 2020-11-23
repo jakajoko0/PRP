@@ -11,9 +11,6 @@ set :repo_url, "git@github.com:PBSITProjects/PRP.git"
 # Default deploy_to directory is /var/www/my_app_name
 set :deploy_to, "/home/deploy/prp"
 
-set :sidekiq_service_name, "sidekiq"
-
-
 # Default value for :format is :airbrussh.
 # set :format, :airbrussh
 
