@@ -46,23 +46,6 @@ set :keep_releases, 3
 #after 'deploy:published', 'nginx:restart'
 
 
-namespace :sidekiq do 
-	desc "Quiet Sidekiq (stop fetching new tasks)"
-	task :quiet do 
-		on roles(:app) do 
-			execute :sudo, :systemctl, :kill, "-s", "TSTP", fetch(:sidekiq_service_name)
-		end
-	end
-
-	desc "Restart Sidekiq service" do 
-		task :restart do 
-			on roles(:app) do 
-				execute :sudo, :systemctl, :restart, fetch(:sidekiq_service_name)
-			end
-		end
-	end
-end
-
-#after "deploy:starting", "sidekiq:quiet"
-#after "deploy:published","sidekiq:restart"
+after "deploy:starting", "sidekiq:quiet"
 after "deploy:updated", "assets:precompile"
+after "deploy:published","sidekiq:restart"
