@@ -45,4 +45,4 @@ set :keep_releases, 3
 
 after "deploy:starting", "sidekiq:quiet"
 after "deploy:updated", "assets:precompile"
-after "deploy:published","sidekiq:restart"
+after "deploy:finishing","sidekiq:restart"

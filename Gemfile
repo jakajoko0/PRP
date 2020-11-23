@@ -71,6 +71,8 @@ gem 'wkhtmltopdf-binary'
 gem 'caxlsx'
 gem 'caxlsx_rails'
 
+gem 'faker'
+
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -101,7 +103,6 @@ group :test do
   gem 'capybara', '3.29.0'	
   gem 'selenium-webdriver', '3.142.6'
   gem 'database_cleaner'
-  gem 'faker'
   gem 'geckodriver-helper'
   gem 'webdrivers', '4.1.2'
 
