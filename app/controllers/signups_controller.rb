@@ -31,7 +31,7 @@ class SignupsController < ApplicationController
           flash[:success] = "Thank you. An email was sent to "+new_user.email + " with instructions to choose your password."
           redirect_to root_url
         else
-          flash[:warning]     = "This email address was alread used to sign up on this site. Click the Log In button to access the site or click on Forgot your password?"
+          flash[:warning]     = "This email address was already used to sign up on this site. Click the Log In button to access the site or click on Forgot your password?"
           redirect_to root_url
         end
       end
