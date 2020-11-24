@@ -67,9 +67,9 @@ Rails.application.configure do
   config.action_mailer.smtp_settings = {
     address: Rails.application.credentials.dig(:staging,:mail_address),
     port: Rails.application.credentials.dig(:staging,:mail_port),
-    #domain: Rails.application.credentials.dig(:staging, :mail_domain),
-    #user_name: Rails.application.credentials.dig(:staging, :mail_user),
-    #password: Rails.application.credentials.dig(:staging, :mail_password),
+    domain: Rails.application.credentials.dig(:staging, :mail_domain),
+    user_name: Rails.application.credentials.dig(:staging, :mail_user),
+    password: Rails.application.credentials.dig(:staging, :mail_password),
     authentication: 'plain',
     enable_starttls_auto: true,
     openssl_verify_mode: 'none'}

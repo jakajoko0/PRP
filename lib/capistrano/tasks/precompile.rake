@@ -17,6 +17,8 @@ namespace :assets do
 		end
 
 		run_locally do 
+			execute :sudo, :chown, "-R dev:dev public/assets" 
+			execute :sudo, :chown, "-R dev:dev public/packs" 
 			execute :rm, '-rf public/assets'
 			execute :rm, '-rf public/packs'
 		end
