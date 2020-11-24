@@ -4,7 +4,7 @@ class CreateBankAccount
 	def call
 		bank_account = BankAccount.new(context.params)
 		if bank_account.valid? && bank_account.errors.empty?
-			gulf = GulfApi::Client.new(Rails.application.credentials.dig(:GULF_API_ID),Rails.application.credentials.dig(:GULF_API_KEY),Rails.application.credentials.dig(:GULF_GMS_ID))
+			gulf = GulfApi::Client.new
 
 			begin 
 			  response = gulf.create_bank_token(bank_account.bank_token,

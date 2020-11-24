@@ -6,7 +6,7 @@ class UpdateCreditCard
 		params = context.params
 		credit_card.assign_attributes(params)
 		if credit_card.valid? && credit_card.errors.empty?
-		gulf = GulfApi::Client.new(Rails.application.credentials.dig(:GULF_API_ID),Rails.application.credentials.dig(:GULF_API_KEY),Rails.application.credentials.dig(:GULF_GMS_ID))
+		gulf = GulfApi::Client.new
 		begin 
       response = gulf.create_card_token(credit_card.card_token,
 				  	                     credit_card.cc_type,

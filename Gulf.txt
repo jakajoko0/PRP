@@ -1,0 +1,6 @@
+app/interactors/bank_accounts/retrieve_bank_account.rb:		gulf = GulfApi::Client.new
+app/interactors/bank_accounts/update_bank_account.rb:		gulf = GulfApi::Client.new
+app/interactors/bank_accounts/create_bank_account.rb:			gulf = GulfApi::Client.new
+app/interactors/credit_cards/update_credit_card.rb:		gulf = GulfApi::Client.new
+app/interactors/credit_cards/create_credit_card.rb:			gulf = GulfApi::Client.new
+app/interactors/credit_cards/retrieve_credit_card.rb:		gulf = GulfApi::Client.new

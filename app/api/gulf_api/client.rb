@@ -24,10 +24,16 @@ module GulfApi
   		HTTPI::SSLError
 		]
 			
-		def initialize(api_id, api_key, gms_id)
-			@api_id = api_id
-			@api_key = api_key
-			@gms_id = gms_id
+		def initialize()
+			if Rails.env.production?
+				@api_id = Rails.application.credentials.dig(:production, :GULF_API_ID)
+				@api_key = Rails.application.credentials.dig(:production, :GULF_API_KEY)
+				@gms_id = Rails.application.credentials.dig(:production, :GULF_GMS_ID)
+			else
+				@api_id = Rails.application.credentials.dig(:GULF_API_ID)
+				@api_key = Rails.application.credentials.dig(:GULF_API_KEY)
+				@gms_id = Rails.application.credentials.dig(:GULF_GMS_ID)
+			end
 		end
 
 		def system_check

@@ -87,7 +87,7 @@ module FranchiseHelper
 
       rtn_html = <<-HTML     
         <td class = "text-nowrap" width="#{pct_width}%" style="text-align:right">
-          <a data-turbolinks="false" href="#{route}" class="btn btn-sm btn-padgett">#{button_text}</a>
+          <a GulfApi::Client.new href="#{route}" class="btn btn-sm btn-padgett">#{button_text}</a>
         </td>
       HTML
     

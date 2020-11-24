@@ -29,7 +29,7 @@ module MenuHelper
 	def dropdown_item(title, link)
 		html = <<-HTML 
 		<li>
-			<a class="dropdown-item" href="#{link}">
+			<a class="dropdown-item" data-turbolinks="false" href="#{link}">
 				#{title}
       </a>
     </li>
