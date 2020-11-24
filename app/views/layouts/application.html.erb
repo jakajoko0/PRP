@@ -58,7 +58,7 @@
     <!-- MAIN CONTAINER-->
     <div class = "container-fluid default-padding">  
       <!-- SHOW FLASH MESSAGES IF ANY -->
-      <div class = "row">
+
         <%flash.each do |name,msg| %>
           <%unless name.to_s == 'timedout'%>
             <div class='alert alert-<%="#{name}" %> alert-dismissible fade show col-12' 
@@ -75,7 +75,7 @@
           <%end%>
         <%end%>
         <%flash.discard()%>
-      </div>
+      
       <!-- PAGE CONTENT -->
       <%= yield %>
     </div>  

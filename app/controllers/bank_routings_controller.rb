@@ -1,8 +1,6 @@
 class BankRoutingsController < ApplicationController
   
   def bank_name
-  	logger.debug "PARAMS!!!"
-  	logger.debug "#{params}"
   	if params.has_key?(:routing_number)
   		bank_name = BankRouting.bank_name_from_routing(params[:routing_number])
   	else
