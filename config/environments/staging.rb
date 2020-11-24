@@ -59,7 +59,7 @@ Rails.application.configure do
   # Use a real queuing backend for Active Job (and separate queues per environment).
    config.active_job.queue_adapter     = :sidekiq
   # config.active_job.queue_name_prefix = "reap2_production"
-  config.action_mailer.raise_delivery_errors = true
+  #config.action_mailer.raise_delivery_errors = true
   config.action_mailer.perform_caching = false
   config.action_mailer.perform_deliveries = true
   config.action_mailer.default_url_options = {host: 'http://ec2-34-195-104-102.compute-1.amazonaws.com/'}
