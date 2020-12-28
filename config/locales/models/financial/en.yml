@@ -1,0 +1,174 @@
+en:
+  activerecord:
+    errors:
+      models:
+        financial:
+          attributes:
+            franchise:
+              blank: Franchise cannot be blank
+            year: 
+              blank: Please provide the year
+              year_unique: The Financial information has already been posted for this year
+            other1_desc:
+              blank: Please provide Other description
+            other2_desc:
+              blank: Please provide Other description
+            other3_desc:
+              blank: Please provide Other description
+          no_negative: Please enter a valid number        
+  helpers:
+    label:
+      financial:
+        franchise_id: Franchise
+        franchise_name: Name
+        year: Year
+        acct_monthly: Accounting Monthly
+        acct_monthly_desc: Receipts from the performance of &#013;monthly, quarterly or annual accounting
+        acct_startup: Setup
+        acct_startup_desc: Receipts from the performance of &#013;a new client setup
+        acct_backwork: Backwork
+        acct_backwork_desc: "Receipts from the performance of &quot;catchup&quot;&#013;accounting to bring a client up to date.&#013;Usually applies to new clients"
+        tax_prep: Tax Preparation
+        tax_prep_desc: Receipts from the performance of tax return preparation&#013;Personal, business and special payroll reporting
+        payroll_processing: Payroll Processing
+        payroll_processing_desc: Receipts from the performance of payroll procssing 
+        other_consult: Consulting
+        other_consult_desc: Receipts from the performance of special project work.&#013;May be ongoing or one time        
+        total_revenues: Total Revenues
+        total_revenues_desc: Total receipts deposited or received for the period
+        payroll_operation: Payroll - Operations
+        payroll_operation_desc: Wages paid to employees
+        owner_wages: Owner - Salary
+        owner_wages_desc: Wages paid to owner and spouse
+        owner_payroll_taxes: Owner - Payroll Taxes
+        owner_payroll_taxes_desc: Employer portion of payroll taxes&#013;for owner and spouse
+        payroll_taxes_ben_ee: Payroll Taxes & Benefits EE
+        payroll_taxes_ben_ee_desc: Employer portion of employees&#013;payroll taxes and other benefits
+        insurance_business: Insurance - Business
+        insurance_business_desc: Health, Workers Comp, Business Liability Insurance&#013;not included in wages
+        supplies: Supplies
+        supplies_desc: Supplies
+        legal_accounting: Legal & Accounting
+        legal_accounting_desc: Legal Fees
+        marketing: Marketing Fees
+        marketing_desc: Marketing Fees
+        rent: Rents
+        rent_desc: Rent Amounts
+        outside_labor: Outside Labor
+        outside_labor_desc: Amounts paid to independent contractors
+        vehicles: Vehicles
+        vehicles_desc: Business use (Not owner). Gasoline, insurance&#013;repairs and maintenance
+        travel: Travel
+        travel_desc: Expenses related to Business travel.&#013;Lodging, Mileage
+        utilities: Utilities
+        utilities_desc: Utilities such as water, electric, gas&#013;garbage collection (except phone and internet)
+        licenses_taxes: Licenses & Taxes
+        licenses_taxes_desc: Licenses & Taxes
+        postage: Postage
+        postage_desc: Expenses related to postage and shipping
+        repairs: Repairs & Maintenance
+        repairs_desc: Building related repairs&#013;and maintenance
+        interests: Interests
+        interests_desc: Interest Paid
+        meals_entertainment: Meals & Entertainment
+        meals_entertainment_desc: Meals and entertainment that is 50% deductible&#013;Put 100% deductible employee meals into office expense
+        bank_charges: Bank Charges
+        bank_charges_desc: Fees incurred for banking&#013;Service charges, Credit card fees
+        contributions: Contributions
+        contributions_desc: Charitable Contributions
+        office: Office
+        office_desc: Answering services, cleaning services.&#013;100% deductible EE meals/holidays
+        miscellaneous: Miscellaneous
+        miscellaneous_desc: Miscellaneous expenses
+        equipment_lease: Equipment Leases
+        equipment_lease_desc: Equipment Leases
+        dues_subscriptions: Dues & Subscriptions
+        dues_subscriptions_desc: Dues & Subscriptions
+        bad_debt: Bad Debts
+        bad_debt_desc: Uncollectable customer A/R.&#013;and bad checks
+        continuing_ed: Continuing Education
+        continuing_ed_desc: CPE/Training/Classes costs.&#013;Do not include travel and meals
+        property_tax: Property Tax
+        property_tax_desc: Property Taxes Paid
+        telephone_data_internet: Telephone - Data - Internet
+        telephone_data_internet_desc: Expenses related to Telecommunications and Internet
+        software: Software
+        software_desc: Off the shelf software.&#013;Anti-virus, OS updates etc
+        royalties: Royalties
+        royalties_desc: Royalties paid to Franchisor
+        marketing_material: Marketing Material
+        marketing_material_desc: Materials and postage used in marketing&#013;campaign promoting your services (except payroll)
+        owner_health_ins: Owner - Health Insurance
+        owner_health_ins_desc: Owner/spouse health insurance benefit
+        owner_vehicle: Owner - Vehicle Use
+        owner_vehicle_desc: Owner/Spouse personal use of company car
+        owner_ira_contrib: Owner - Retirement Contrib.
+        owner_ira_contrib_desc: Owner/Spouse retirement.&#013;plan contributions
+        amortization: Amortization
+        amortization_desc: Amortization
+        depreciation: Depreciation
+        depreciation_desc: Depreciation
+        payroll_process_fees: Payroll Processing Fees
+        payroll_process_fees_desc: Payroll Processing Fees
+        total_expenses: Total Expenses
+        total_expenses_desc: Total Expenses
+        other_income: Other Income
+        other_income_desc: Other income coming from misc. sources
+        interest_income: Interest Income
+        interest_income_desc: Portfolio Interests.&#013;Categorize interest on client debt to Other Income
+        net_gain_asset: Net Gain / Loss Sale of Asset
+        net_gain_asset_desc: Enter negative amount for loss
+        casualty_gain: Casualty Gain/Loss
+        casualty_gain_desc: Enter negative amount for loss
+        other_expense: Other Expenses
+        other_expense_desc: Other Expenses
+        prov_income_tax: Provision for Income Tax.
+        prov_income_tax_desc: Provision for Income Tax
+        other1_desc: Custom 1
+        other2_desc: Custom 2
+        other3_desc: Custom 3
+        monthly_clients: Monthly Clients
+        monthly_clients_desc: Total Number of Monthly Clients
+        total_monthly_fees: Total Monthly Fees
+        total_monthly_fees_desc: Total Fees for One Month
+        quarterly_clients: Quarterly Clients
+        quarterly_clients_desc: Total Number of Quarterly Clients
+        total_quarterly_fees: Total Quarterly Fees
+        total_quarterly_fees_desc: Total Fees for One Quarter
+        custom_accounts_desc: Use this account only if absolutely necessary&#013;Describe how each account is used.
+        client_counts_desc: Enter total monthly and quarterly clients&#013;with respectivetotal fees collected 
+
+
+  financial:
+    object_name: Financial Report
+    create:
+      confirm: Financial Report Created Successfully
+    update:
+      confirm: Financial Report Updated Successfully
+    delete:
+      confirm: Financial Report Deleted Successfully
+      error: A Problem Occured Deleting Financial Report
+    index:
+      add_financial: Add Financial Report
+      franchise: Franchise
+      year: Year
+      received: Received
+      revenues: Revenues
+      expenses: Expenses
+      monthly_clients: Monthly Clients
+      total_monthly_fees: Total Monthly Fees
+      quarterly_clients: Quarterly Clients
+      total_quarterly_fees: Total Quarterly Fees
+      edit_link: Edit this Financial Report
+      delete_link: Delete this Financial Report
+      delete_confirm: Are you sure you want to Delete this Financial Report?
+      audit_link: View Audit Trail
+    form:
+      save: Save
+      discard: Discard
+      edit_title: Edit Financial Report
+      create_title : New Financial Report
+
+
+
+            

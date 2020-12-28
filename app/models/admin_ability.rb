@@ -7,11 +7,13 @@ class AdminAbility
       can :manage, Accountant
       can :manage, Insurance
       can :manage, WebsitePreference
+      can :manage, Financial
     else
       can :read, Franchise
       can :read, Accountant
       can :read, Insurance
       can :read, WebsitePreference
+      can :read, Financial
     end    
     # Define abilities for the passed in user here. For example:
     #

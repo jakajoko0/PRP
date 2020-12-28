@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_04_195931) do
+ActiveRecord::Schema.define(version: 2020_11_30_204806) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -132,6 +132,74 @@ ActiveRecord::Schema.define(version: 2020_11_04_195931) do
     t.string "user_email"
   end
 
+  create_table "financials", force: :cascade do |t|
+    t.bigint "franchise_id"
+    t.integer "year"
+    t.decimal "acct_monthly", precision: 12, scale: 2, default: "0.0"
+    t.decimal "acct_startup", precision: 12, scale: 2, default: "0.0"
+    t.decimal "acct_backwork", precision: 12, scale: 2, default: "0.0"
+    t.decimal "tax_prep", precision: 12, scale: 2, default: "0.0"
+    t.decimal "payroll_processing", precision: 12, scale: 2, default: "0.0"
+    t.decimal "other_consult", precision: 12, scale: 2, default: "0.0"
+    t.decimal "payroll_operation", precision: 12, scale: 2, default: "0.0"
+    t.decimal "owner_wages", precision: 12, scale: 2, default: "0.0"
+    t.decimal "owner_payroll_taxes", precision: 12, scale: 2, default: "0.0"
+    t.decimal "payroll_taxes_ben_ee", precision: 12, scale: 2, default: "0.0"
+    t.decimal "insurance_business", precision: 12, scale: 2, default: "0.0"
+    t.decimal "supplies", precision: 12, scale: 2, default: "0.0"
+    t.decimal "legal_accounting", precision: 12, scale: 2, default: "0.0"
+    t.decimal "marketing", precision: 12, scale: 2, default: "0.0"
+    t.decimal "rent", precision: 12, scale: 2, default: "0.0"
+    t.decimal "outside_labor", precision: 12, scale: 2, default: "0.0"
+    t.decimal "vehicles", precision: 12, scale: 2, default: "0.0"
+    t.decimal "travel", precision: 12, scale: 2, default: "0.0"
+    t.decimal "utilities", precision: 12, scale: 2, default: "0.0"
+    t.decimal "licenses_taxes", precision: 12, scale: 2, default: "0.0"
+    t.decimal "postage", precision: 12, scale: 2, default: "0.0"
+    t.decimal "repairs", precision: 12, scale: 2, default: "0.0"
+    t.decimal "interests", precision: 12, scale: 2, default: "0.0"
+    t.decimal "meals_entertainment", precision: 12, scale: 2, default: "0.0"
+    t.decimal "bank_charges", precision: 12, scale: 2, default: "0.0"
+    t.decimal "contributions", precision: 12, scale: 2, default: "0.0"
+    t.decimal "office", precision: 12, scale: 2, default: "0.0"
+    t.decimal "miscellaneous", precision: 12, scale: 2, default: "0.0"
+    t.decimal "equipment_lease", precision: 12, scale: 2, default: "0.0"
+    t.decimal "dues_subscriptions", precision: 12, scale: 2, default: "0.0"
+    t.decimal "bad_debt", precision: 12, scale: 2, default: "0.0"
+    t.decimal "continuing_ed", precision: 12, scale: 2, default: "0.0"
+    t.decimal "property_tax", precision: 12, scale: 2, default: "0.0"
+    t.decimal "telephone_data_internet", precision: 12, scale: 2, default: "0.0"
+    t.decimal "software", precision: 12, scale: 2, default: "0.0"
+    t.decimal "royalties", precision: 12, scale: 2, default: "0.0"
+    t.decimal "marketing_material", precision: 12, scale: 2, default: "0.0"
+    t.decimal "owner_health_ins", precision: 12, scale: 2, default: "0.0"
+    t.decimal "owner_vehicle", precision: 12, scale: 2, default: "0.0"
+    t.decimal "owner_ira_contrib", precision: 12, scale: 2, default: "0.0"
+    t.decimal "amortization", precision: 12, scale: 2, default: "0.0"
+    t.decimal "depreciation", precision: 12, scale: 2, default: "0.0"
+    t.decimal "payroll_process_fees", precision: 12, scale: 2, default: "0.0"
+    t.decimal "other_income", precision: 12, scale: 2, default: "0.0"
+    t.decimal "interest_income", precision: 12, scale: 2, default: "0.0"
+    t.decimal "net_gain_asset", precision: 12, scale: 2, default: "0.0"
+    t.decimal "casualty_gain", precision: 12, scale: 2, default: "0.0"
+    t.decimal "other_expense", precision: 12, scale: 2, default: "0.0"
+    t.decimal "prov_income_tax", precision: 12, scale: 2, default: "0.0"
+    t.string "other1_desc"
+    t.decimal "other1", precision: 12, scale: 2, default: "0.0"
+    t.string "other2_desc"
+    t.decimal "other2", precision: 12, scale: 2, default: "0.0"
+    t.string "other3_desc"
+    t.decimal "other3", precision: 12, scale: 2, default: "0.0"
+    t.integer "monthly_clients"
+    t.decimal "total_monthly_fees", precision: 12, scale: 2, default: "0.0"
+    t.integer "quarterly_clients"
+    t.decimal "total_quarterly_fees", precision: 12, scale: 2, default: "0.0"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.string "slug"
+    t.index ["franchise_id"], name: "index_financials_on_franchise_id"
+  end
+
   create_table "franchises", force: :cascade do |t|
     t.string "area", null: false
     t.string "mast", null: false
@@ -249,6 +317,7 @@ ActiveRecord::Schema.define(version: 2020_11_04_195931) do
   add_foreign_key "accountants", "franchises"
   add_foreign_key "bank_accounts", "franchises"
   add_foreign_key "credit_cards", "franchises"
+  add_foreign_key "financials", "franchises"
   add_foreign_key "insurances", "franchises"
   add_foreign_key "website_preferences", "franchises"
 end

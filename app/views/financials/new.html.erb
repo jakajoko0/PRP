@@ -1,0 +1,10 @@
+<div class = "row justify-content-center">
+  <div class = "col-12 col-lg-12 col-xl-10">
+    <%= render partial: "shared/error_handling",
+      locals: { the_object: @financial,
+                objectname: I18n.t('financial.object_name')} %>
+
+    <%=render partial: 'form',
+    locals: {financial: @financial, action: 'new'} %>
+  </div>
+</div>

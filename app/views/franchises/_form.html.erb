@@ -15,88 +15,88 @@
     <div class = "card-body card-background-padgett">
       <div class = "form-row col-12">
         <!-- REGION -->
-        <div class = "form-group form-row col-6">
-  	      <%=f.label :region,
-  	      class: "col-md-4 col-sm-4 col-lg-4 
+        <div class = "form-group form-row col-lg-6 col-md-6 col-sm-6">
+          <%=f.label :region,
+          class: "col-md-4 col-sm-4 col-lg-4 
             col-form-label col-form-label-sm label-bold" %>
-  	      <div class = "col-sm-5 col-md-5 col-lg-4">
-  		    <%=f.collection_select :region,
-  		    Region.by_area('1'),
-  		    :region_id,
-  		    :description,
+          <div class = "col-sm-5 col-md-5 col-lg-4">
+          <%=f.collection_select :region,
+          Region.by_area('1'),
+          :region_id,
+          :description,
           {prompt: I18n.t('franchise.form.select_region')},
-  		    {class: 'form-control form-control-sm col', required: true, disabled: true}%>
+          {class: 'form-control form-control-sm col', required: true, disabled: true}%>
           </div>
         </div>
         <!-- FRANCHISE NUMBER -->
-        <div class = "form-group form-row col-6">
+        <div class = "form-group form-row col-lg-6 col-md-6 col-sm-6">
           <%=f.label :franchise_number,
            class: 'col-md-4 col-sm-4 col-lg-4 col-form-label-sm label-bold'%>
           <div class = "col-sm-5 col-md-4 col-lg-3">
-      	    <%= f.text_field :franchise_number,
-      	    class: "form-control form-control-sm col", required: true, disabled: true%>
+            <%= f.text_field :franchise_number,
+            class: "form-control form-control-sm col", required: true, disabled: true%>
           </div>
         </div>
       </div>
       <div class = "form-row col-12">
-  	    <!-- OFFICE -->
-  	    <div class = "form-group form-row col-6">
-  	      <%=f.label :office,
+        <!-- OFFICE -->
+        <div class = "form-group form-row col-sm-6">
+          <%=f.label :office,
           class: 'col-md-4 col-sm-4 col-lg-4 col-form-label-sm label-bold'%>
           <div class = "col-lg-2 col-md-3 col-sm-3">
-      	    <%= f.text_field :office,
-      	    class: "form-control form-control-sm col", required: true, disabled: true%>
+            <%= f.text_field :office,
+            class: "form-control form-control-sm col", required: true, disabled: true%>
           </div>   
-  	    </div>
+        </div>
         <!-- FIRM ID -->
-        <div class = "form-group form-row col-6">
-  	      <%=f.label :firm_id, 
+        <div class = "form-group form-row  col-sm-6">
+          <%=f.label :firm_id, 
            class: 'col-md-4 col-sm-4 col-lg-4 col-form-label-sm label-bold'%>
           <div class = "col-sm-5 col-md-5 col-lg-3">
-      	    <%= f.text_field :firm_id, maxlength: 6, 
-      	    class: "form-control form-control-sm col", required: true, disabled: true%>
+            <%= f.text_field :firm_id, maxlength: 6, 
+            class: "form-control form-control-sm col", required: true, disabled: true%>
           </div>   
-  	    </div>
+        </div>
       </div>
     <div class = "form-row col-12">
-  	  <!-- LAST NAME -->
-  	  <div class = "form-group form-row col-6">
-  	    <%=f.label :lastname, 
+      <!-- LAST NAME -->
+      <div class = "form-group form-row col-6">
+        <%=f.label :lastname, 
           class: 'col-md-4 col-sm-4 col-lg-4 col-form-label-sm label-bold'%>
         <div class = "col-sm-6 col-md-6 col-lg-5">
-      	  <%= f.text_field :lastname,
-      	    class: "form-control form-control-sm col", required: true%>
+          <%= f.text_field :lastname,
+            class: "form-control form-control-sm col", required: true%>
         </div>   
-  	  </div>
-  	  <!-- FIRST NAME -->
-  	  <div class = "form-group form-row col-6">
-  	    <%=f.label :firstname, 
+      </div>
+      <!-- FIRST NAME -->
+      <div class = "form-group form-row col-6">
+        <%=f.label :firstname, 
           class: 'col-md-4 col-sm-4 col-lg-4 col-form-label-sm label-bold'%>
         <div class = "col-sm-6 col-md-6 col-lg-5">
-      	  <%= f.text_field :firstname,
-      	    class: "form-control form-control-sm col", required: true%>
+          <%= f.text_field :firstname,
+            class: "form-control form-control-sm col", required: true%>
         </div>   
-  	  </div>
+      </div>
     </div>
     <div class = "form-row col-12">
-  	  <!-- MIDDLE INITIAL -->
-  	  <div class = "form-group form-row col-6">
-  	    <%=f.label :initial, 
+      <!-- MIDDLE INITIAL -->
+      <div class = "form-group form-row col-6">
+        <%=f.label :initial, 
           class: 'col-md-4 col-sm-4 col-lg-4 col-form-label-sm label-bold'%>
         <div class = "col-sm-3 col-md-3 col-lg-2">
-      	  <%= f.text_field :initial,
-        	  class: "form-control form-control-sm col"%>
+          <%= f.text_field :initial,
+            class: "form-control form-control-sm col"%>
         </div>   
-  	  </div>
-  	  <!-- SALUTATION -->
-  	  <div class = "form-group form-row col-6">
-  	    <%=f.label :salutation, 
+      </div>
+      <!-- SALUTATION -->
+      <div class = "form-group form-row col-6">
+        <%=f.label :salutation, 
           class: 'col-md-4 col-sm-4 col-lg-4 col-form-label-sm label-bold'%>
         <div class = "col-sm-3 col-md-3 col-lg-2">
-      	  <%= f.text_field :salutation,
-      	    class: "form-control form-control-sm col"%>
+          <%= f.text_field :salutation,
+            class: "form-control form-control-sm col"%>
         </div>   
-   	  </div>
+      </div>
     </div>
   
     <br />
@@ -109,19 +109,14 @@
 <br />
 <%=render partial: "rebates", locals: {f: f}%>
 <br />
-<div class = "row col-6">
+<div class = "row col-sm-6">
   <%=f.submit (I18n.t('franchise.form.save_btn')),
-   class: 'btn btn-padgett col-md-3 col-lg-3',
+   class: 'btn btn-padgett col-sm-4 col-md-4 col-lg-3',
     name: "submit" %>
   <div class = "col-md-2 col-lg-2"></div>
   <%=link_to (I18n.t('franchise.form.return_btn')),
     admins_franchises_path,
-    class: 'btn btn-padgett col-md-3 col-lg-3' %>
+    class: 'btn btn-padgett col-sm-4 col-md-4 col-lg-3' %>
 </div>
 
 <%end%>
-
-
-
-
-

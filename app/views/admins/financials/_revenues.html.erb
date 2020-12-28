@@ -1,0 +1,67 @@
+<div class = "card">
+	<div class = "card-header login-header">
+		<h4>
+			Revenues
+		</h4>
+	</div>
+
+	<%label_classes = "col-md-8 col-sm-8 col-lg-7 col-xl-7 col-form-label-sm label-bold"%>
+  <%field_classes = "form-control form-control-sm text-right col-xl-4 col-lg-4 col-md-4 col-sm-4 revenue-sum"%>
+
+  <%mid = (Financial::REVENUE_ATTRIBUTES.length >> 1) - 1%>
+
+	<div class = "card-body card-background-padgett">
+		<div class = "row">
+			<div class = "container-fluid col-sm-6 no-gutters">
+				<div class = "form-row col-12">
+					<%Financial::REVENUE_ATTRIBUTES[0..mid].each do |attrib| %>
+
+					<div class = "form-group form-row col-sm-12">
+						<%=f.label attrib.to_sym , class: "#{label_classes}" do %>
+	  			      <%= I18n.t('helpers.label.financial.'+attrib)%> 
+	  			      <%=bubble_help(I18n.t('helpers.label.financial.'+"#{attrib}_desc"),"right")%>
+	  			  <%end%>
+
+	  			  <%=f.number_field attrib.to_sym, 
+	  			    step: "any", 
+	  			    class: "#{field_classes}",
+	  				  value: (number_with_precision(f.object.send(attrib), precision: 2))%>
+				  </div>
+				  <%end%>
+				</div>
+			</div>
+
+			<div class = "container-fluid col-sm-6 no-gutters">
+				<div class = "form-row col-12">
+					<%Financial::REVENUE_ATTRIBUTES[mid+1..].each do |attrib| %>
+
+					<div class = "form-group form-row col-sm-12">
+						<%=f.label attrib.to_sym , class: "#{label_classes}" do %>
+	  			      <%= I18n.t('helpers.label.financial.'+attrib)%> 
+	  			      <%=bubble_help(I18n.t('helpers.label.financial.'+ "#{attrib}_desc"),"right")%>
+	  			  <%end%>
+
+	  			  <%=f.number_field attrib.to_sym, 
+	  			    step: "any", 
+	  			    class: "#{field_classes}",
+	  				  value: (number_with_precision(f.object.send(attrib), precision: 2))%>
+				  </div>
+				  <%end%>
+
+				  <div class = "form-group form-row col-sm-12">
+						<%=f.label :total_revenues, class: "#{label_classes}" do %>
+	  			      <%= I18n.t('helpers.label.financial.total_revenues')%> 
+	  			      <%=bubble_help(I18n.t('helpers.label.financial.total_revenues_desc'),"right")%>
+	  			  <%end%>
+
+	  			  <%=f.number_field :total_revenues,
+	  			    step: "any", 
+	  			    class: "form-control form-control-sm text-right col-xl-4 col-lg-4 col-md-4 col-sm-4",
+	  			    	value: (number_with_precision(f.object.total_revenues, precision: 2)), disabled: true%>
+				  </div>
+				</div>
+			</div>
+  	</div>
+  
+</div>
+</div>

@@ -1,0 +1,60 @@
+wb = xlsx_package.workbook
+
+styles = set_axlsx_styles(wb)
+
+wb.add_worksheet(name:I18n.t('reports.financial_count_averages.title_workbook')) do |ws|
+  ws.add_row [@report_info[:title_excel]],
+  style: styles[:header_title],
+  widths: [:ignore, :auto, :auto, :auto, :auto, :auto],
+  height: 100
+  
+  
+  ws.add_row
+
+  ws.add_row [
+  I18n.t('reports.financial_count_averages.franchise'),
+  I18n.t('reports.financial_count_averages.monthly_clients'),
+  I18n.t('reports.financial_count_averages.total_month_fees'),
+  I18n.t('reports.financial_count_averages.average_month_fees'),
+  I18n.t('reports.financial_count_averages.quarterly_clients'),
+  I18n.t('reports.financial_count_averages.total_quarterly_fees'),
+  I18n.t('reports.financial_count_averages.average_quarter_fees')],
+  style: [styles[:header_left],styles[:header_center], styles[:header_right],styles[:header_right],
+  styles[:header_center], styles[:header_right],styles[:header_right]],
+  width: [:auto, :auto, :auto,:auto, :auto, :auto, :auto]
+
+  if @average_counts.size > 0
+    @average_counts.each do |s|
+      ws.add_row [
+      (s.franchise_number + " "+s.lastname + " "+s.firstname),
+      s.monthly_clients,
+      number_to_currency(s.total_monthly_fees),
+      number_to_currency(s.average_monthly_fees),
+      s.quarterly_clients,
+      number_to_currency(s.total_quarterly_fees),
+      number_to_currency(s.average_quarterly_fees)],
+      style: [styles[:data_left], styles[:data_center],
+      styles[:data_right],styles[:data_right], styles[:data_center],
+      styles[:data_right],styles[:data_right]],
+      width: [:auto, :auto, :auto, :auto, :auto, :auto, :auto],
+      types: [:string, :string, :string, :string, :string, :string, :string]
+    end
+    
+     ws.add_row
+     ws.add_row [I18n.t('reports.financial_count_averages.totals'),
+     @report_info[:totals].monthly_clients,
+     number_to_currency(@report_info[:totals].total_monthly_fees),
+     number_to_currency(@report_info[:totals].average_monthly_fees),
+     @report_info[:totals].quarterly_clients,
+     number_to_currency(@report_info[:totals].total_quarterly_fees),
+     number_to_currency(@report_info[:totals].average_monthly_fees)], style: [styles[:header_left],styles[:header_center],styles[:header_right],
+     styles[:header_right],styles[:header_center],styles[:header_right],
+     styles[:header_right]]
+  
+  end
+
+  ws.merge_cells "A1:G1"
+  ws.merge_cells "A2:G2"
+  
+end
+

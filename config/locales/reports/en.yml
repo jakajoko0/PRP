@@ -1,6 +1,7 @@
-en:
+ en:
   reports:
     general:
+      franchise: Franchise
       sort_by: Sort By
       inc_inactives: Include Inactives
       btn_generate: Generate
@@ -8,6 +9,10 @@ en:
       sort_by_lastname: Last Name
       sort_by_state: State
       sort_by_modified: Last Modification
+      sort_by_status: Status
+      sort_by_client_count: Total Monthly Clients
+      sort_by_average_fees: Average Monthly Fees 
+      sort_by_total_revenue: Total Revenue
       choice_no: "No"
       choice_yes: "Yes"
       btn_return: Return
@@ -19,6 +24,7 @@ en:
       format: Format
       sorted_by: Sorted by %{sortbytext}
       including_inactives: Including Inactives
+      year: Year
     franchise_list:
       title: Franchise List
       title_workbook: Franchises
@@ -106,6 +112,48 @@ en:
       name: Name
       phone: Phone
       email: Email
+    financial_status:
+      title: Financial Reporting Status 
+      title_year: Calendar Year %{yr} 
+      title_status: "Status: %{statustext}"
+      title_workbook: Financial Reporting Status
+      number: Franchise
+      name: Name
+      status: Status
+      reported: Reported
+      unreported: Unreported
+      all: All
+      total: Total
+    financial_count_averages:
+      title: Financial Client Count and Averages
+      title_workbook: Client count and averages
+      title_year: Calendar Year %{yr}
+      title_all: All Franchises
+      franchise: Franchise
+      monthly_clients: Monthly Clients
+      total_month_fees: Total Monthly Fees
+      average_month_fees: Average Monthly Fees
+      quarterly_clients: Quarterly Clients
+      total_quarterly_fees: Total Quarterly Fees
+      average_quarter_fees: Average Quarterly Fees
+      totals: Totals
+    financial_aggregation:
+      title: Financial Aggregation
+      title_excel: Financial Aggregation
+      title_workbook: Financial Aggregation
+      title_year: Calendar Year %{yr}
+      title_all: All Franchises
+      franchise: Franchise
+      total_revenues: Total Revenue
+      total_expenses: Total Expense
+      non_padgett_revenues: Non Padgett Revenues
+
+
+
+
+
+
+
 
 
 

@@ -1,0 +1,79 @@
+wb = xlsx_package.workbook
+
+styles = set_axlsx_styles(wb)
+
+wb.add_worksheet(name:I18n.t('reports.financial_aggregation.title_workbook')) do |ws|
+  ws.add_row [@report_info[:title_excel]],
+  style: styles[:header_title],
+  widths: [:ignore, :auto, :auto, :auto, :auto, :auto],
+  height: 100
+  
+  
+  ws.add_row
+
+  headers = [I18n.t('reports.financial_aggregation.franchise')]+
+  Financial::REVENUE_DESC+
+  [I18n.t('reports.financial_aggregation.total_revenues')]+
+  Financial::EXPENSE_DESC_REPORT+
+  [I18n.t('reports.financial_aggregation.total_expenses')]+
+  Financial::OTHER_REVENUE_DESC_REPORT+
+  Financial::OTHER_EXPENSE_DESC_REPORT
+  
+  header_styles = [styles[:header_left]]
+  headers.size.times do 
+    header_styles << styles[:header_right]
+  end
+
+  ws.add_row headers, style: header_styles
+  
+
+  if @records.size > 0
+    @records.each do |s|
+      line = [(s.franchise_number + " " +s.lastname + " "+ s.firstname).strip]
+
+      Financial::REVENUE_ATTRIBUTES.each do |attr|
+        line << number_with_precision(s.send(attr), precision: 2)
+      end
+
+      line << number_with_precision(s.total_revenues, precision: 2)
+
+      Financial::EXPENSE_ATTRIBUTES_REPORT.each do |attr|
+        line << number_with_precision(s.send(attr), precision: 2)
+      end
+
+      line << number_with_precision(s.total_expense, precision: 2)
+
+      Financial::OTHER_REVENUES_REPORT.each do |attr|
+        line << number_with_precision(s.send(attr), precision: 2)
+      end
+
+      Financial::OTHER_EXPENSES_REPORT.each do |attr|
+        line << number_with_precision(s.send(attr), precision: 2)
+      end
+
+
+      
+      if s.sort_column == 2
+        data_styles = [styles[:header_left]] 
+        line.size.times do 
+          data_styles << styles[:number_bold]
+        end
+      else
+        data_styles = [styles[:data_left]]
+        line.size.times do 
+          data_styles << styles[:number]
+        end
+      end
+      ws.add_row line, style: data_styles
+      if s.sort_column == 2 
+        ws.add_row
+        end
+    end
+  end  
+
+
+  ws.merge_cells "A1:G1"
+  ws.merge_cells "A2:G2"
+end  
+
+

@@ -67,11 +67,13 @@ end
 def bubble_help(help_description,location)
   i_tag = <<-HTML
   <i class = "far fa-question-circle"
+  aria-hidden="true"
   data-html="true"
   data-toggle="tooltip"
   title ="#{help_description}"
   data-placement="#{location}"
   data-container="body">
+  </i>
   HTML
   i_tag.html_safe
 end

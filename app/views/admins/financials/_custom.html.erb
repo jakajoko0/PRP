@@ -1,0 +1,63 @@
+<div class = "card">
+	<div class = "card-header login-header">
+		<h4>
+			Custom Accounts <%=bubble_help(I18n.t('helpers.label.financial.custom_accounts_desc'),"right")%>
+		</h4>
+	</div>
+
+	<%label_classes = "col-md-3 col-sm-4 col-lg-2 col-xl-2 col-form-label-sm label-bold"%>
+  <%number_classes = "form-control form-control-sm text-right col-xl-2 col-lg-3 col-md-3 col-sm-3"%>
+  <%text_classes = "form-control form-control-sm text-left col-xl-7 col-lg-11 col-md-10 col-sm-10"%>
+
+  
+	<div class = "card-body card-background-padgett">
+		<div class = "row">
+			<div class = "form-row col-12">
+				<div class = "form-group form-row col-sm-12">
+					<%=f.label :other1_desc ,
+						class: "#{label_classes}"%>
+
+	  		  <%=f.text_field :other1_desc, 
+	  		    class: "#{text_classes}"%>
+
+	  		  <div class = "col-xl-1">
+	  		  </div>
+
+	  		  <%=f.number_field :other1, 
+	  		  setp: "any",
+	  		  class: "#{number_classes}"%>
+			  </div>
+
+			  <div class = "form-group form-row col-sm-12">
+					<%=f.label :other2_desc ,
+						class: "#{label_classes}"%>
+
+	  		  <%=f.text_field :other2_desc, 
+	  		    class: "#{text_classes}"%>
+
+	  		  <div class = "col-xl-1">
+	  		  </div>  
+
+	  		  <%=f.number_field :other2, 
+	  		  setp: "any",
+	  		  class: "#{number_classes}"%>
+			  </div>
+
+			  <div class = "form-group form-row col-sm-12">
+					<%=f.label :other3_desc ,
+						class: "#{label_classes}"%>
+
+	  		  <%=f.text_field :other3_desc, 
+	  		    class: "#{text_classes}"%>
+
+	  		  <div class = "col-xl-1">
+	  		  </div>  
+
+	  		  <%=f.number_field :other3, 
+	  		  setp: "any",
+	  		  class: "#{number_classes}"%>
+			  </div>
+			</div>
+  	</div>
+  </div>
+</div>

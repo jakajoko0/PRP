@@ -1,0 +1,69 @@
+	<div class = "col-12">
+		<h5 class="text-center">
+			<%=@report_info[:title]%>
+		</h5>
+	</div>
+
+
+<div id = "table-scroll" 
+     class = "table-scroll"  >
+  <table id = "main-table">
+    <thead>
+  	  <tr>
+  	    <th>
+  		    <%=I18n.t('reports.financial_status.number')%>
+ 		    </th>
+		    <th>
+		      <%=I18n.t('reports.financial_status.name')%>
+	      </th>
+	      <%if @report_info[:status] == 3 %>
+	        <th>
+		    	  <%=I18n.t('reports.financial_status.status')%>
+        	</th>
+        <%end%>
+		  </tr>
+	  </thead>
+	  
+	  <%if @financial_status.size > 0%>
+	    <tbody>	
+	      <%@financial_status.each do |status|%>
+	        <tr>
+	          <td data-name="Number">
+		  	      <%=status.fran%>
+		        </td>
+		  
+		  			<td  data-name="Name">
+		  				<%=status.lastname%> <%=status.firstname%>
+		  			</td>
+
+		  			<%if @report_info[:status]	 == 3 %>
+		  			  <td data-name="Status">
+		  				  <%=status.status == 0 ? I18n.t('reports.financial_status.unreported') : I18n.t('reports.financial_status.reported')%>
+		  			  </td>
+		  			<%end%>
+					</tr>
+				<%end%>
+			</tbody>
+  	<%end%>
+  </table>
+</div>
+
+<%if @report_info[:status] == 3 %>
+	<table class="table-scroll">
+		<tfoot id="report-footer">
+  		<tr>
+  			<td>
+  				<%="#{I18n.t('reports.financial_status.unreported')}: #{@report_info[:unreported]}"%>
+  			</td>
+  			
+  			<td>
+  				<%="#{I18n.t('reports.financial_status.reported')}: #{@report_info[:reported]}"%>
+  			</td>
+
+  			<td>
+  				<%="#{I18n.t('reports.financial_status.total')}: #{@report_info[:total]}"%>
+  			</td>
+  		</tr>
+  	</tfoot>
+  </table>
+<%end%>

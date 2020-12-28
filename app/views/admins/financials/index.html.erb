@@ -1,0 +1,17 @@
+<div class = "row col-12 pb-3">
+  <%=link_to admins_franchises_select_index_path(destination: 'add_financial'),
+     data: {turbolinks: false} do%>
+     <button class = 'btn btn-padgett'>
+       <%=I18n.t('financial.index.add_financial')%>
+     </button>
+  <%end%>
+</div>
+
+<div class = "row">
+	<div id = "financials" class = "col">
+		<%=render partial: 'financial_list'%>
+	</div>
+</div>
+
+
+

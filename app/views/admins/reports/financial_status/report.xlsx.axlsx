@@ -1,0 +1,46 @@
+wb = xlsx_package.workbook
+
+styles = set_axlsx_styles(wb)
+
+wb.add_worksheet(name:I18n.t('reports.financial_status.title_workbook')) do |ws|
+  ws.add_row [@report_info[:title_excel]],
+  style: styles[:header_title],
+  widths: [:ignore, :auto, :auto, :auto, :auto, :auto],
+  height: 100
+  
+  
+  ws.add_row
+
+  ws.add_row [
+  I18n.t('reports.financial_status.number'),
+  I18n.t('reports.financial_status.name'),
+  (@report_info[:status] == 3 ? I18n.t('reports.financial_status.status') : "")],
+  style: [styles[:header_left],styles[:header_left], styles[:header_left],styles[:header_left]],
+  width: [:auto, :auto, :auto]
+
+  if @financial_status.size > 0
+    @financial_status.each do |s|
+      ws.add_row [
+      s.fran,
+      s.lastname,
+      (@report_info[:status] == 3 ? 
+      (s.status == 0 ? I18n.t('reports.financial_status.unreported') : I18n.t('reports.financial_status.reported')): "")],
+      style: [styles[:data_left], styles[:data_left],
+      styles[:data_left]],
+      width: [:auto, :auto,:auto],
+      types: [:string, :string, :string]
+    end
+    if @report_info[:status] == 3
+     ws.add_row
+     ws.add_row ["#{I18n.t('reports.financial_status.unreported')}: #{@report_info[:unreported]}",
+     "#{I18n.t('reports.financial_status.reported')}: #{@report_info[:reported]}",
+     "#{I18n.t('reports.financial_status.total')}: #{@report_info[:total]}" ], style: [styles[:header_left],styles[:header_left],styles[:header_left]]
+    end
+
+  end
+
+  ws.merge_cells "A1:G1"
+  ws.merge_cells "A2:G2"
+  
+end
+

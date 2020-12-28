@@ -27,7 +27,8 @@
       </li>
       <!-- FINANCIALS-->  
       <li>
-        <%= link_to I18n.t('admin_menu.franchise.financials') , '#',
+        <%= link_to I18n.t('admin_menu.franchise.financials') ,
+        admins_financials_path,
         class: "dropdown-item" %>
       </li>
       <!-- WEBSITE PREFERENCE-->  
@@ -111,17 +112,20 @@
           <div class="dropdown-divider"></div>
           <!-- FINANCIAL REPORTING STATUS-->   
           <li>
-            <%= link_to I18n.t('admin_menu.franchise.report.financial_status') , "#" ,
+            <%= link_to I18n.t('admin_menu.franchise.report.financial_status') ,
+            admins_financial_status_path ,
               class: "dropdown-item"%>
           </li>
           <!-- CLIENT COUNTS AND FEE AVERAGES-->   
           <li>
-            <%= link_to I18n.t('admin_menu.franchise.report.counts_averages') , "#" ,
+            <%= link_to I18n.t('admin_menu.franchise.report.counts_averages') ,
+            admins_financial_count_averages_path ,
               class: "dropdown-item"%>
           </li>
           <!-- FINANCIAL AGGREGATION-->   
           <li>
-            <%= link_to I18n.t('admin_menu.franchise.report.financial_agg') , "#" ,
+            <%= link_to I18n.t('admin_menu.franchise.report.financial_agg') , 
+            admins_financial_aggregation_path ,
               class: "dropdown-item"%>
           </li>
           <div class="dropdown-divider"></div>

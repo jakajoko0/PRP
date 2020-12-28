@@ -5,14 +5,23 @@ class ReportController < ApplicationController
 
   def sortby_text(value)
     case value
-    when 'franchises.franchise_number'
+    when 'franchises.franchise_number', 'fran', 'franchise_number'
       "Franchise Number"
-    when 'franchises.lastname'
+    when 'franchises.lastname', 'lastname'
       "Last Name"
     when 'franchises.state'  
       "State"  
     when 'website_preferences.updated_at'    
       "Last Modification"
+    when 'status'  
+      "Status"
+    when "monthly_clients"
+      "Total Monthly Clients"
+    when "average_monthly_fees"
+      "Average Monthly Fees"
+    when "toal_revenue"  
+      "Total Revenue"
+
     end
   end
 

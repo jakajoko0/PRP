@@ -51,6 +51,16 @@ module ReportHelper
 		html.html_safe
 	end
 
+	def year_dropdown(fieldname,rowclass, labelclass,selectclass, min_year, max_year)
+		html = "<div class = '#{rowclass}''>"
+		html += "<label class = '#{labelclass}' for=#{fieldname}>#{I18n.t('reports.general.year')}</label>"
+		html += "<div class = '#{selectclass}'>"
+		html += select_year(Date.today, {start_year: min_year, end_year: max_year, prefix: "#{fieldname}", field_name: "#{fieldname}"}, {class: 'form-control form-control-sm col'})
+    html += '</div>'
+		html += '</div>'
+		html.html_safe
+	end
+
 	def date_argument(labelname,fieldname,rowclass,labelclass,fieldclass)
 	  html = <<-HTML
 		<div class = "#{rowclass}">
@@ -60,6 +70,20 @@ module ReportHelper
 			</div>
 		</div>
 		HTML
+		html.html_safe
+	end
+
+
+	def select_franchise_dropdown(fieldname,rowclass,labelclass,selectclass)
+		html = "<div class = '#{rowclass}''>"
+		html += "<label class = '#{labelclass}' for=#{fieldname}>#{I18n.t('reports.general.franchise')}</label>"
+		html += "<div class = '#{selectclass}'>"
+		html += select_tag 'franchise', options_for_select(Franchise.order('lastname ASC').collect{|f| ["#{f.lastname} #{f.firstname}", f.id]}), {include_blank: '' ,class: 'form-control form-control-sm col'}
+    html += '</div>'
+    html += '<em>(Leave empty for all)</em>'
+		html += '</div>'
+		
+		
 		html.html_safe
 	end
 	

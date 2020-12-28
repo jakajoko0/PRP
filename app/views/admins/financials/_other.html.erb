@@ -1,0 +1,101 @@
+<div class = "card">
+	<div class = "card-header login-header">
+		<h4>
+			Other Revenues / Expenses
+		</h4>
+	</div>
+
+	<%label_classes = "col-md-8 col-sm-9 col-lg-7 col-xl-7 col-form-label-sm label-bold"%>
+  <%field_classes = "form-control form-control-sm text-right col-xl-4 col-lg-4 col-md-4 col-sm-3"%>
+
+  
+	<div class = "card-body card-background-padgett">
+		<div class = "row">
+			<div class = "container-fluid col-sm-6 no-gutters">
+				<div class = "form-row col-12">
+					<div class = "form-group form-row col-sm-12">
+						<%=f.label :other_income ,
+						class: "#{label_classes}" do %>
+	  			      <%= I18n.t('helpers.label.financial.other_income')%> 
+	  			      <%=bubble_help(I18n.t('helpers.label.financial.other_income_desc'),"right")%>
+	  			  <%end%>
+
+	  			  <%=f.number_field :other_income, 
+	  			    step: "any", 
+	  			    class: "#{field_classes}",
+	  				  value: (number_with_precision(f.object.other_income, precision: 2))%>
+				  </div>
+
+				  <div class = "form-group form-row col-sm-12">
+						<%=f.label :interest_income ,
+						class: "#{label_classes}" do %>
+	  			      <%= I18n.t('helpers.label.financial.interest_income')%> 
+	  			      <%=bubble_help(I18n.t('helpers.label.financial.interest_income_desc'),"right")%>
+	  			  <%end%>
+
+	  			  <%=f.number_field :interest_income, 
+	  			    step: "any", 
+	  			    class: "#{field_classes}",
+	  				  value: (number_with_precision(f.object.interest_income, precision: 2))%>
+				  </div>
+
+				  <div class = "form-group form-row col-sm-12">
+						<%=f.label :net_gain_asset ,
+						class: "#{label_classes}" do %>
+	  			      <%= I18n.t('helpers.label.financial.net_gain_asset')%> 
+	  			      <%=bubble_help(I18n.t('helpers.label.financial.net_gain_asset_desc'),"right")%>
+	  			  <%end%>
+
+	  			  <%=f.number_field :net_gain_asset, 
+	  			    step: "any", 
+	  			    class: "#{field_classes}",
+	  				  value: (number_with_precision(f.object.net_gain_asset, precision: 2))%>
+				  </div>
+				</div>
+			</div>
+
+			<div class = "container-fluid col-sm-6 no-gutters">
+				<div class = "form-row col-12">
+				  <div class = "form-group form-row col-sm-12">
+						<%=f.label :casualty_gain, 
+						class: "#{label_classes}" do %>
+	  			      <%= I18n.t('helpers.label.financial.casualty_gain')%> 
+	  			      <%=bubble_help(I18n.t('helpers.label.financial.casualty_gain_desc'),"right")%>
+	  			  <%end%>
+
+	  			  <%=f.number_field :casualty_gain, 
+	  			    step: "any", 
+	  			    class: "form-control form-control-sm text-right col-xl-4 col-lg-4 col-md-4 col-sm-3",
+	  				  value: (number_with_precision(f.object.casualty_gain, precision: 2))%>
+				  </div>
+
+				  <div class = "form-group form-row col-sm-12">
+						<%=f.label :other_expense, 
+						class: "#{label_classes}" do %>
+	  			      <%= I18n.t('helpers.label.financial.other_expense')%> 
+	  			      <%=bubble_help(I18n.t('helpers.label.financial.other_expense_desc'),"right")%>
+	  			  <%end%>
+
+	  			  <%=f.number_field :other_expense, 
+	  			    step: "any", 
+	  			    class: "form-control form-control-sm text-right col-xl-4 col-lg-4 col-md-4 col-sm-3",
+	  				  value: (number_with_precision(f.object.other_expense, precision: 2))%>
+				  </div>
+
+				  <div class = "form-group form-row col-sm-12">
+						<%=f.label :prov_income_tax, 
+						class: "#{label_classes}" do %>
+	  			      <%= I18n.t('helpers.label.financial.prov_income_tax')%> 
+	  			      <%=bubble_help(I18n.t('helpers.label.financial.prov_income_tax_desc'),"right")%>
+	  			  <%end%>
+
+	  			  <%=f.number_field :prov_income_tax, 
+	  			    step: "any", 
+	  			    class: "form-control form-control-sm text-right col-xl-4 col-lg-4 col-md-4 col-sm-3",
+	  				  value: (number_with_precision(f.object.prov_income_tax, precision: 2))%>
+				  </div>
+				</div>
+			</div>
+  	</div>
+  </div>
+</div>

@@ -1,0 +1,113 @@
+<%=render partial: 'shared/report_header', 
+locals: {show_pdf: false, show_excel: true} %>
+	<div class = "col-12">
+		<h5 class="text-center">
+			<%=@report_info[:title]%>
+		</h5>
+	</div>
+	
+
+
+<div id = "table-scroll" 
+     style = "height: calc(100vh - 295px); overflow-x: auto;" >
+  <table id = "main-table" >
+    <thead  id="report" style="background-color: #f5f7fa;">
+  	  <tr>
+  	    <th class = "td-left" style="white-space: nowrap; overflow: hidden; padding-right:20px;" >
+  		    <%=I18n.t('reports.financial_aggregation.franchise')%>
+ 		    </th>
+ 		    <%Financial::REVENUE_DESC.each do |rev|%>
+ 		      <th class = "td-right" style="white-space: nowrap; overflow: hidden; padding-right:20px;">
+  		      <%=rev%>
+ 		      </th>
+ 		    <%end%>
+
+ 		    <th class = "td-right" style="white-space: nowrap; overflow: hidden; padding-right:20px;" >
+  		    <%=I18n.t('reports.financial_aggregation.total_revenues')%>
+ 		    </th>
+
+ 		    <%Financial::EXPENSE_DESC_REPORT.each do |exp| %> 
+ 		      <th class = "td-right" style="white-space: nowrap; overflow: hidden; padding-right:20px;" >
+  		      <%=exp%>
+ 		      </th>
+ 		    <%end%>
+
+ 		    <th class = "td-right" style="white-space: nowrap; overflow: hidden; padding-right:20px;" >
+  		    <%=I18n.t('reports.financial_aggregation.total_expenses')%>
+ 		    </th>
+
+ 		    
+
+ 		    <%Financial::OTHER_REVENUE_DESC_REPORT.each do |other_rev|%>
+ 		      <th class = "td-right" style="white-space: nowrap; overflow: hidden; padding-right:20px;"  >
+  		      <%=other_rev%>
+ 		      </th>
+	      <%end%>
+	      
+
+	      <%Financial::OTHER_EXPENSE_DESC_REPORT.each do |other_exp|%>
+	      <th class = "td-right" style="white-space: nowrap; overflow: hidden; padding-right:20px;"  >
+  		      <%=other_exp%>
+ 		      </th>
+	      <%end%>
+      
+		  </tr>
+	  </thead>
+	  
+	  <%if @records.size > 0%>
+	    <tbody>	
+	      <%@records.each do |record|%>
+	      <%tr_style = record.sort_column == 2 ? 'background-color: aliceblue' : 'background-color: white'%>
+	      <%td_class = record.sort_column == 2 ? 'td-bold' : ''%>
+	      <%td_style = record.sort_column == 2 ? 'padding-top: 10px; padding-bottom: 10px' : ''%>
+
+	        <tr style="<%=tr_style%>">
+	          <td data-name="Franchise" 
+	          style="white-space: nowrap; overflow: hidden; padding-right:20px;<%=td_style%>" class="<%=td_class%> td-left"  >
+		  	      <%=record.franchise_number%> <%=record.lastname%> <%=record.firstname%>
+		        </td>
+
+		        <%Financial::REVENUE_ATTRIBUTES.each_with_index do |exp,idx|%>
+		          <td data-name="#{Financial::REVENUE_DESC[idx]}" 
+		            class="<%=td_class%> td-right" style="white-space: nowrap; overflow: hidden; padding-right:20px;<%=td_style%>"> 
+		            <%=number_with_precision(record.send(exp), precision: 2)%>
+		          </td>
+		        <%end%>
+
+		        <td data-name="I18n.t('reports.financial_aggregation.total_revenues')"
+		  			class = "td-right td-bold" style="white-space: nowrap; overflow: hidden; padding-right:20px;<%=td_style%>">
+		  				<%=number_with_precision(record.total_revenues, precision: 2 )%>
+		  			</td>
+		  
+		  			<%Financial::EXPENSE_ATTRIBUTES_REPORT.each_with_index do |exp,idx|%>
+		  			  <td data-name="#{Financial::EXPENSE_DESC_REPORTS[idx]}" class="<%=td_class%> td-right" style="white-space: nowrap; overflow: hidden; padding-right:20px;<%=td_style%>">
+		  			    <%=number_with_precision(record.send(exp), precision: 2)%>
+		  			  </td>
+		  			<%end%>
+
+		  			<td data-name="I18n.t('reports.financial_aggregation.total_expenses')"
+		  			class = "<%=td_class%> td-right" style="white-space: nowrap; overflow: hidden; padding-right:20px;<%=td_style%>">
+		  				<%=number_with_precision(record.total_expense, precision: 2 )%>
+		  			</td>
+
+		  			
+		  			<%Financial::OTHER_REVENUES_REPORT.each_with_index do |exp,idx|%>
+		  			  <td data-name="#{Financial::OTHER_REVENUE_DESC_REPORT[idx]}" class="<%=td_class%> td-right" style="white-space: nowrap; overflow: hidden; padding-right:20px;<%=td_style%>">
+		  			    <%=number_with_precision(record.send(exp), precision: 2)%>
+		  			  </td>
+		  			<%end%>
+
+		  			<%Financial::OTHER_EXPENSES_REPORT.each_with_index do |exp,idx|%>
+		  			  <td data-name="#{Financial::OTHER_EXPENSE_DESC_REPORT[idx]}" class="<%=td_class%> td-right" style="white-space: nowrap; overflow: hidden; padding-right:20px;<%=td_style%>">
+		  			    <%=number_with_precision(record.send(exp), precision: 2)%>
+		  			  </td>
+		  			<%end%>
+		  			
+	  			
+					</tr>
+				<%end%>
+			</tbody>
+  	<%end%>
+  </table>
+</div>
+

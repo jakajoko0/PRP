@@ -1,0 +1,60 @@
+<div class = "col-12">
+<div class = "card">
+	<div class = "card-header login-header">
+	  <h4>
+	  	<%=I18n.t('reports.financial_status.title')%>
+   	</h4>
+	</div>
+
+	<%=form_tag admins_financial_status_render_path(format: :html),
+	method: "post" do |f|%>
+
+	<div class = "card-body card-background-padgett">
+		<div class = "form-row">
+			<%=year_dropdown(
+				"year",
+				"form-group form-row col-12",
+				"col-form-label col-form-label-sm label-bold col-sm-4 col-md-3 col-lg-2 col-xl-1",
+				"col-sm-4 col-md-3 col-lg-3 col-xl-2",
+				Financial.get_min_year,
+				Financial.get_max_year
+				)%>
+		</div>
+
+		<div class = "form-row">
+			<div class = "form-group form-row col-12">
+				<%= label :status, I18n.t('reports.general.sort_by_status'),
+				class: "col-form-label col-form-label-sm label-bold col-sm-4 col-md-3 col-lg-2 col-xl-1"%>
+				<div class = "col-sm-4 col-md-3 col-lg-3 col-xl-2">
+					<select id="status" class = "form-control form-control-sm col" name="status">
+						<option value = "1">Reported</option>
+						<option value = "2">Unreported</option>
+						<option value = "3">All</option>
+					</select>
+				</div>
+			</div>
+		</div>
+		<div class = "form-row">
+			<%=sort_by_number_or_name(
+				"sortby",
+				"form-group form-row col-12",
+				"col-form-label col-form-label-sm label-bold
+				 col-sm-4 col-md-3 col-lg-2 col-xl-1",
+				"col-sm-4 col-md-3
+				 col-lg-3 col-xl-2",
+				 {"fran" => I18n.t('reports.general.sort_by_fran'), "lastname" => I18n.t('reports.general.sort_by_lastname'), "status" => I18n.t('reports.general.sort_by_status')})%>
+		</div>
+
+	</div>
+
+	<div class = "card-footer">
+		<div class = "col-6 col-sm-3 col-md-2 
+		              col-lg-3 col-xl-1 pl-0">
+			<%=submit_tag (I18n.t('reports.general.btn_generate')),
+			class: "btn btn-padgett btn-block"%>
+		</div> 
+	</div>
+	<%end%>
+</div>
+
+</div>

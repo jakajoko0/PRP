@@ -482,6 +482,7 @@ table.table.table-dan td {
   z-index: 1;
   margin: auto;
   overflow: auto;
+
 }
 
 .table-scroll table {
@@ -496,7 +497,6 @@ table.table.table-dan td {
 
 .table-scroll th {
   border: 1px solid #ccc;
-
 }
 
 .table-scroll th,
@@ -523,6 +523,7 @@ table.table.table-dan td {
   border-width: 1px 0px 1px 0px;
   border-style: solid;
   border-color: black;
+
 }
 
 .table-scroll #report th {
@@ -570,6 +571,10 @@ table.table.table-dan td {
 .td-left {
   text-align: left;
 
+}
+
+.td-bold {
+  font-weight: 700;
 }
 
 @media only screen and (max-width: 760px){

@@ -4,6 +4,7 @@ require 'sidekiq/cron/web'
 
 Rails.application.routes.draw do
   # Devise Routes for Admin
+  
   devise_for :admins, path: 'admins', controllers: 
   {sessions: "admins/sessions",
    registrations: "admins/registrations"}
@@ -44,6 +45,7 @@ Rails.application.routes.draw do
     resources :bank_accounts
     resources :credit_cards
     resources :website_preferences, except: :destroy
+    resources :financials
 
     get '/bank_routings/bank_name' => 'bank_routings#bank_name'
   end
@@ -70,6 +72,8 @@ Rails.application.routes.draw do
       get 'insurances/audit/:id' ,to: "insurances#audit", as: 'insurance_audit'
       resources :website_preferences
       get 'website_preferences/audit/:id', to: "website_preferences#audit", as: 'website_preference_audit'
+      resources :financials
+      get 'financials/audit/:id', to: "financials#audit", as: 'financials_audit'
 
 
       #Reports
@@ -112,6 +116,18 @@ Rails.application.routes.draw do
         get '/website_preferences_missing' => 'website_preferences_missing#index'
         post '/website_preferences_missing/render' => 'website_preferences_missing#report'
         get '/website_preferences_missing/render' => redirect('/admins/website_preferences_missing')
+
+        get '/financial_status' => 'financial_status#index'
+        post '/financial_status/render' => 'financial_status#report'
+        get '/financial_status/render' => redirect('/admins/financial_status')
+
+        get '/financial_count_averages' => 'financial_count_and_averages#index'
+        post '/financial_count_averages/render' => 'financial_count_and_averages#report'
+        get '/financial_count_averages/render' => redirect('/admins/financial_count_averages')
+
+        get '/financial_aggregation' => 'financial_aggregation#index'
+        post '/financial_aggregation/render' => 'financial_aggregation#report'
+        get '/financial_aggregation/render' => redirect('/admins/financial_aggregation')
 
 
       end

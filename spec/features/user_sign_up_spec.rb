@@ -45,7 +45,7 @@ RSpec.feature "Feature User Signing Up", :type => :feature do
     expect(page).to have_button "Sign Me Up"
     fill_in "email", with: user.email
     click_button 'Sign Me Up'
-    expect(page).to have_content "This email address was alread used to sign up on this site. Click the Log In button to access the site or click on Forgot your password?"
+    expect(page).to have_content "This email address was already used to sign up on this site. Click the Log In button to access the site or click on Forgot your password?"
   end
 
 

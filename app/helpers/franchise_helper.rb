@@ -57,6 +57,9 @@ module FranchiseHelper
     rtn_html = ""
     route = ""
       case destination 
+      when 'add_financial'  
+        route = new_admins_financial_path(franchise_id: franchise.id)
+        button_text = I18n.t('franchise_select.enter_financial')
       when 'add_royalty'
         route = new_remittance_path(franchise_id: franchise.id)
         button_text = I18n.t('franchise_select.enter_royalty')
@@ -87,7 +90,7 @@ module FranchiseHelper
 
       rtn_html = <<-HTML     
         <td class = "text-nowrap" width="#{pct_width}%" style="text-align:right">
-          <a GulfApi::Client.new href="#{route}" class="btn btn-sm btn-padgett">#{button_text}</a>
+          <a data-turbolinks="false" href="#{route}" class="btn btn-sm btn-padgett">#{button_text}</a>
         </td>
       HTML
     

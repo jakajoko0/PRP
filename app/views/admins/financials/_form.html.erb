@@ -1,0 +1,109 @@
+<div class = "card">
+	<div class = "card-header login-header">
+		<h4 class="text-center">
+			<%if action == "edit"%>
+			  <%=I18n.t('financial.form.edit_title')%>
+		  <%else%>
+			  <%=I18n.t('financial.form.create_title')%>
+			<%end%>		  
+		</h4>
+	</div>
+</div>
+
+<br/>
+<%=form_for [:admins, financial] do |f| %>
+<div class = "card">
+	<div class = "card-header login-header">
+		<h4>
+			Franchise Information
+		</h4>
+	</div>
+
+
+	
+	  <%=f.hidden_field :franchise_id, value: f.object.franchise_id%>
+	  <div class = "card-body card-background-padgett">
+	  	<div class = "row">
+	  		<!-- FRANCHISE NUMBER -->
+  	  	<div class = "form-row col-12">
+  	  		<div class = "form-group form-row col-sm-12">
+	  			  <%=f.label :franchise_id,
+	  			    class: "col-md-3 col-sm-3 col-lg-2 col-xl-2
+	  			     col-form-label-sm label-bold"%>
+
+	  			    <%=f.text_field :fran_number,
+	  			    class: "form-control form-control-sm col-xl-1 col-lg-1 col-md-1 col-sm-1",
+	  				  value: f.object.franchise.franchise_number,
+	  				  disabled: true%>
+  			  </div>
+  			</div> 
+  			<!-- FRANCHISE NAME --> 
+  			<div class = "form-row col-12">
+  	  	  <div class = "form-group form-row col-sm-12">
+	  		    <%=f.label :franchise_name,
+	  			  class: "col-md-3 col-sm-3 col-lg-2 col-xl-2 col-form-label-sm label-bold"%>
+	  			  <%=f.text_field :franchise_name,
+	  			  class: "form-control form-control-sm col-xl-3 col-lg-3 col-md-4 col-sm-4",
+	  				value: f.object.franchise.full_name,
+	  				disabled: true%>
+  			  </div>
+  			</div>  
+				<!-- YEAR -->
+  			<div class = "form-row col-12">
+  	  	  <div class = "form-group form-row col-sm-12">
+	  		    <%=f.label :year,
+	  			  class: "col-md-3 col-sm-3 col-lg-2 col-xl-2  col-form-label-sm label-bold"%>
+	  			  <%=f.text_field :year,
+	  			  class: "form-control form-control-sm col-xl-1 col-lg-1 col-md-1 col-sm-2",
+	  			  	value: f.object.year%>
+  			  </div>
+  			</div> 
+  			<!-- Warning if needed -->
+  			<div class = "form-row col-12">
+  				<div class = "form-group form-row col-sm-12">
+            <h5 id="year_warning" class="col-form-label col-form-label-sm label-bold">
+            </h5>
+          </div>
+        </div>
+  	  </div>
+  	</div>
+</div>
+
+<br>
+
+<%=render partial: 'revenues',
+    locals: {f: f} %>
+
+ <br>
+
+<%=render partial: 'expenses',
+    locals: {f: f} %>   
+
+<br>
+<%=render partial: 'other',
+    locals: {f: f} %>   
+
+<br>
+
+<%=render partial: 'custom',
+    locals: {f: f} %>  
+<br>
+<%=render partial: 'counts',
+    locals: {f: f}     %>
+
+<br>    
+
+<div class = "row col-12">
+  <%=f.submit (I18n.t('financial.form.save')),
+    class: 'btn btn-padgett col-4 col-sm-4 col-md-3 col-lg-3 col-xl-2',
+    name: "submit" %>
+  <div class = "col-1 col-sm-1 col-md-1 col-lg-1">
+  </div>
+  
+  <%=link_to (I18n.t('financial.form.discard')),
+    financials_path,
+    class: 'btn btn-padgett col-4 col-sm-4 col-md-3 col-lg-3 col-xl-2
+      ' %>
+</div>
+
+<%end%> 

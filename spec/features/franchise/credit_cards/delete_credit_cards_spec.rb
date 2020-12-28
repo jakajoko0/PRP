@@ -4,7 +4,7 @@ RSpec.feature "Feature - Deleting Credit Card", :type => :feature do
   
   let!(:franchise) {create(:franchise)}
   let!(:user) {create(:user, franchise: franchise)} 
-  let!(:credit_card1) {create(:credit_card,card_type: "V",cc_type: "V", cc_exp_month: (Date.today.month+1), exp_month: (Date.today.month+1),franchise: franchise)}
+  let!(:credit_card1) {create(:credit_card,card_type: "V",cc_type: "V",franchise: franchise)}
   let!(:credit_card2) {create(:credit_card,card_type: "M", cc_type: "M",franchise: franchise)}
   
 
@@ -25,7 +25,6 @@ RSpec.feature "Feature - Deleting Credit Card", :type => :feature do
     
     
     expect(get_table_cell_text('credit-card-list',1,2)).to_not have_content(last_four)
-    expect(get_table_cell_text('credit-card-list',1,3)).to_not have_content(expir)
     expect(page.all('#credit-card-list tbody tr').count).to eq(1)
     
   end

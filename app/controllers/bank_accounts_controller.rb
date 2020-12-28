@@ -14,7 +14,7 @@ class BankAccountsController < ApplicationController
 
 	def create
 		authorize! :create, BankAccount
-		result = CreateBankAccount.call(params: bank_account_params, user: current_authenticated)
+    result = CreateBankAccount.call(params: bank_account_params, user: current_authenticated)
 		if result.success?
 			flash[:success] = I18n.t('bank_account.create.confirm')
 			redirect_to bank_accounts_path
@@ -32,7 +32,6 @@ class BankAccountsController < ApplicationController
 
 	def update 
 		authorize! :update, @bank_account
-		@bank_account.assign_attributes(bank_account_params)
 		result = UpdateBankAccount.call(account: @bank_account, params: bank_account_params, user: current_authenticated)
 		if result.success?
 			flash[:success] = I18n.t('bank_account.update.confirm')

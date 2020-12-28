@@ -5,7 +5,7 @@ def index
 end
 
 def report
-  redirect_to admins_franchise_list_path unless params.has_key?(:sortby)
+  redirect_to admins_website_preferences_list_path unless params.has_key?(:sortby)
   sortby = params[:sortby]
 
   @website_preferences = WebsitePreferencesQuery.new.website_preferences_list_sorted(sortby)

@@ -1,0 +1,120 @@
+<%=render 'shared/report_header'%>
+	<div class = "col-12">
+		<h5 class="text-center">
+			<%=@report_info[:title]%>
+		</h5>
+	</div>
+	
+
+
+<div id = "table-scroll" 
+     class = "table-scroll"
+     style = "height: calc(100vh - 295px)">
+  <table id = "main-table">
+    <thead id="report">
+  	  <tr>
+  	    <th class = "td-left"  style="width:20%">
+  		    <%=I18n.t('reports.financial_count_averages.franchise')%>
+ 		    </th>
+ 		    <th class = "td-center" style="width:10%">
+  		    <%=I18n.t('reports.financial_count_averages.monthly_clients')%>
+ 		    </th>
+
+ 		    <th class = "td-right" style="width:10%">
+  		    <%=I18n.t('reports.financial_count_averages.total_month_fees')%>
+ 		    </th>
+
+ 		    <th class = "td-right" style="width:10%">
+  		    <%=I18n.t('reports.financial_count_averages.average_month_fees')%>
+ 		    </th>
+
+ 		    <th class = "td-center" style="width:10%">
+  		    <%=I18n.t('reports.financial_count_averages.quarterly_clients')%>
+ 		    </th>
+
+ 		    <th class = "td-right" style="width:10%">
+  		    <%=I18n.t('reports.financial_count_averages.total_quarterly_fees')%>
+ 		    </th>
+
+ 		    <th class = "td-right" style="width:10%">
+  		    <%=I18n.t('reports.financial_count_averages.average_quarter_fees')%>
+ 		    </th>
+      
+		  </tr>
+	  </thead>
+	  
+	  <%if @average_counts.size > 0%>
+	    <tbody>	
+	      <%@average_counts.each do |count|%>
+	        <tr>
+	          <td data-name="Franchise" style="width:20%">
+		  	      <%=count.franchise_number%> <%=count.lastname%> <%=count.firstname%>
+		        </td>
+		  
+		  			<td  data-name="Monthly Clients" class = "td-center" style="width:10%">
+		  				<%=count.monthly_clients%>
+		  			</td>
+
+		  			<td  data-name="Total Monthly Fees" class = "td-right" style="width:10%">
+		  				<%=number_to_currency(count.total_monthly_fees, precision: 2 )%>
+		  			</td>
+
+		  			<td  data-name="Average Monthly Fees" class = "td-right" style="width:10%">
+		  				<%=number_to_currency(count.average_monthly_fees, precision: 2 )%>
+		  			</td>
+
+		  			<td  data-name="Quarterly Clients" class = "td-center" style="width:10%">
+		  				<%=count.quarterly_clients%>
+		  			</td>
+
+		  			<td  data-name="Total Quarterly Fees" class = "td-right" style="width:10%">
+		  				<%=number_to_currency(count.total_quarterly_fees, precision: 2 )%>
+		  			</td>
+
+		  			<td  data-name="Average Quarterly Fees" class = "td-right" style="width:10%">
+		  				<%=number_to_currency(count.average_quarterly_fees, precision: 2 )%>
+		  			</td>
+	  			
+					</tr>
+				<%end%>
+			</tbody>
+  	<%end%>
+  </table>
+</div>
+
+<%if @report_info[:franchise] == -1 %>
+	<table class="table-scroll">
+		<tfoot id="report-footer">
+  		<tr>
+  			<td style="width:10%">
+  				Totals:
+  			</td>
+  			
+  			<td class = "td-center" style="width:10%">
+  				<%=@report_info[:totals].monthly_clients%>
+  			</td>
+
+  			<td class = "td-right" style="width:10%">
+  				<%=number_to_currency(@report_info[:totals].total_monthly_fees, precision: 2)%>
+  			</td>
+
+  			<td class = "td-right" style="width:10%">
+  				<%=number_to_currency(@report_info[:totals].average_monthly_fees, precision: 2)%>
+  			</td>
+
+  			<td class = "td-center" style="width:10%">
+  				<%=@report_info[:totals].quarterly_clients%>
+  			</td>
+
+  			<td class = "td-right" style="width:10%">
+  				<%=number_to_currency(@report_info[:totals].total_quarterly_fees, precision: 2)%>
+  			</td>
+
+  			<td class = "td-right" style="width:10%">
+  				<%=number_to_currency(@report_info[:totals].average_monthly_fees, precision: 2)%>
+  			</td>
+
+  		</tr>
+  	</tfoot>
+  </table>
+<%end%>

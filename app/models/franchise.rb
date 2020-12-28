@@ -58,6 +58,7 @@ extend FriendlyId
 has_many :accountants
 has_many :bank_accounts
 has_many :credit_cards
+has_many :financials
 has_one  :insurance
 has_one :website_preference
 has_many :users
