@@ -988,3 +988,40 @@ input:required:hover {
 }
 
 
+#cookies-eu-banner {
+    background: var(--padgett-blue);
+    color: #fff;
+    padding: 6px;
+    font-size: 13px;
+    text-align: center;
+}
+
+#cookies-eu-more,
+#cookies-eu-accept,
+#cookies-eu-reject {
+    text-decoration: none;
+    background: var(--padgett-green);
+    color: #fff;
+    border: 1px solid #000;
+    cursor: pointer;
+    padding: 4px 7px;
+    margin: 2px 0;
+    font-size: 13px;
+    font-weight: bold;
+    transition: background 0.07s, color 0.07s, border-color 0.07s;
+}
+#cookies-eu-more:hover,
+#cookies-eu-more:focus,
+#cookies-eu-accept:hover,
+#cookies-eu-accept:focus {
+    background: #fff;
+    color: #222;
+}
+#cookies-eu-more {
+    margin-left: 7px;
+}
+#cookies-eu-accept {
+    margin-left: 7px;
+}
+
+

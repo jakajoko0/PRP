@@ -28,6 +28,11 @@
   <body data-controller="<%= controller_name %>"
         data-action="<%= action_name %>">
 
+    <div id="cookies-eu-banner" style="display:none">
+     Cookies help us deliver our services. By using our services, you agree to our use of cookies. <a href="/cookies" id="cookies-eu-more"> More Info </a>
+     <button  id="cookies-eu-accept">Confirm</button>
+    </div>    
+
     <!-- NAVIGATION BAR -->
     <nav class="navbar navbar-expand-md mb-4"  
          role="navigation" >
@@ -79,5 +84,7 @@
       <!-- PAGE CONTENT -->
       <%= yield %>
     </div>  
+
+    
   </body>
 </html>

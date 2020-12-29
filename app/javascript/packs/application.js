@@ -19,6 +19,7 @@ import "@fortawesome/fontawesome-free/css/all.css";
 import "@fortawesome/fontawesome-free/js/all.js";
 import $ from 'jquery';
 import "jquery-mask-plugin"
+
  
 global.$ = jQuery;
 
@@ -30,6 +31,7 @@ require("custom/insurance_expiring")
 require("custom/bank_accounts")
 require("custom/website_preferences")
 require("custom/financials")
+require("custom/cookie_banner")
 
 require.context('../images',true, /\.(?:png|jpg|gif|ico|svg)$/)
 
