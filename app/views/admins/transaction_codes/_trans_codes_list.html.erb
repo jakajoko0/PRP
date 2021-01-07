@@ -1,0 +1,99 @@
+<div id = "table-scroll"
+     class = "table-scroll">
+
+  <table id = "trans-code-list" 
+         class="table-striped">
+    <thead id="list">
+      <tr>
+        <!-- CODE -->
+        <th scope = "col" class = "td-left">
+          <%=I18n.t('transaction_code.index.code') %>
+        </th>
+
+        <!-- DESCRIPTION -->
+        <th scope = "col" class = "td-left">
+          <%=I18n.t('transaction_code.index.description') %>
+        </th>
+
+        <!-- TRANSACTION TYPE -->
+        <th scope = "col" class="td-left">
+          <%=I18n.t('transaction_code.index.trans_type') %>
+        </th>
+      
+        <!-- ROYALTIES -->
+        <th scope = "col" class = "td-center">
+          <%=I18n.t('transaction_code.index.show_in_roy') %>
+        </th>
+
+        <!-- INVOICE -->
+        <th scope = "col" class = "td-center">
+          <%=I18n.t('transaction_code.index.show_in_invoice') %>
+        </th>
+
+        <!-- For Edit link we have 1 other column  -->
+        <th scope = "col"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% if @transaction_codes.size > 0 %>
+      <!-- Go through our filtered franchises  -->
+      <% @transaction_codes.each do |trans_code| %>
+        <tr>
+        <!-- CODE -->
+          <td  data-name = "Code"
+               scope="col" 
+               class = "td-left">
+            <%=trans_code.code%> 
+          </td>
+      
+        <!-- DESCRIPTION -->
+          <td data-name = "Description"
+              scope="col" 
+              class = "td-left">
+            <%=trans_code.description%> 
+          </td>
+
+        <!-- TRANS TYPE -->
+          <td data-name="Transaction Type"
+              scope="col"
+              class = "td-left">
+            <%=trans_code.trans_type.capitalize%> 
+          </td>
+
+        <!-- SHOW IN ROY -->
+          <td data-name = "Royalties"
+              scope = "col"
+              class = "td-center">
+            <%=display_checkmark(trans_code.show_in_royalties)%> 
+          </td>
+
+        <!-- SHOW IN INVOICING -->
+          <td data-name = "Invoicing"
+              scope = "col"
+              class = "td-center">
+            <%=display_checkmark(trans_code.show_in_invoicing)%> 
+          </td>
+
+
+          <!-- Edit Icon and Link  -->
+          <%if can? :edit, trans_code%>
+            <td data-name = "" 
+                class = "td-center">
+            <%=link_with_icon(edit_admins_transaction_code_path(id:trans_code),
+              "edit",
+              I18n.t('transaction_code.index.edit_link'),
+              "",
+              false)%> 
+            </td>
+          <%else%>
+            <td></td>
+          <%end%>
+
+          
+        </tr>
+      <% end %>
+      <% end %>
+    </tbody>
+  </table>
+</div>  
+

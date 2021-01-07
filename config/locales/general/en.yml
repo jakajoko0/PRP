@@ -14,6 +14,8 @@ en:
   signout_text: Sign Out
   admin_button: Admin
 
+  user_title: User
+  user_type: User Type
 
   #TRANSLATIONS FOR COOKIE POLICY
   cookie_policy: COOKIE POLICY

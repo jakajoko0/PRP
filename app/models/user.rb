@@ -5,7 +5,9 @@ class User < ApplicationRecord
   
   devise :database_authenticatable, 
          :recoverable, :rememberable,
-         :validatable, :trackable, :timeoutable, :registerable
+         :validatable, :trackable,
+         :timeoutable, :registerable,
+         :masqueradable
 
   enum role: [:full_control, :can_pay, :data_entry]
 
@@ -28,11 +30,11 @@ class User < ApplicationRecord
   end
 
 
-  def self.search_user_to_switch(search)
+  def self.filter_user(search)
     if search
-      User.joins(:franchise).where("users.admin = ? AND (lower(lastname) LIKE ?)", 0, "%#{search.downcase}%").order("franchises.lastname") 
+      User.joins(:franchise).where("(lower(lastname) LIKE ?)","%#{search.downcase}%").order("franchises.lastname") 
     else
-      User.joins(:franchise).where("users.admin = ?" , 0).order("franchises.lastname")       
+      User.joins(:franchise).order("franchises.lastname")       
     end
   end
 

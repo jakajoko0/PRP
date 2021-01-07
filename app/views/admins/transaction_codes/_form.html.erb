@@ -1,0 +1,98 @@
+<div class = "card">
+  <div class = "card-header login-header">
+    <h4>
+      <%if action == "edit"%>
+        <%=I18n.t('transaction_code.form.edit_title')%>
+      <%else%>
+        <%=I18n.t('transaction_code.form.create_title')%>
+      <%end%>
+    </h4>
+  </div>
+  <%= form_for [:admins, trans_code] do |f| %>
+    <div class = "card-body card-background-padgett">
+      <div class = "form-row col-12">
+        <!-- CODE -->   
+        <div class = "form-group form-row col-12">
+  	      <%=f.label :code,
+  	      class: "col-md-3 col-sm-3 col-lg-2 col-xl-3
+                  col-form-label col-form-label-sm 
+                  label-bold" %>
+  	      <div class = "col-sm-2 col-md-1 col-lg-1 col-xl-1">
+            <%= f.text_field :code,
+            class: "form-control form-control-sm col",
+            required: true, autofocus: true%>
+          </div>
+        </div>
+      </div>
+
+      <div class = "form-row col-12">  
+        <!-- DESCRIPTION -->   
+        <div class = "form-group form-row col-12">
+          <%=f.label :description,
+           class: 'col-md-3 col-sm-3 col-lg-2 col-xl-3
+                   col-form-label col-form-label-sm label-bold'%>
+          <div class = "col-sm-6 col-md-6 col-lg-6 col-xl-6">
+      	    <%= f.text_field :description,
+      	    class: "form-control form-control-sm col",
+            required: true%>
+          </div>
+        </div>
+      </div>
+     
+      <div class = "form-row col-12">
+  	    <!-- TYPE -->
+  	    <div class = "form-group form-row col-12">
+  	      <%=f.label :trans_type,
+            class: 'col-md-3 col-sm-3 col-lg-2 col-xl-3
+                    col-form-label col-form-label-sm label-bold'%>
+          <div class = "col-sm-3 col-md-2 col-lg-2 col-xl-2">
+      	    <%= f.select(:trans_type, [["Credit",0],["Charge",1]],{include_blank: false},{
+      	      class: "form-control form-control-sm col"})%>
+          </div>   
+  	    </div>
+  	  </div>
+
+      <div class = "form-row col-12">
+        <!-- SHOW IN ROYALTIES -->
+  	    <div class = "form-group form-row col-12">
+  	      <%=f.label :show_in_royalties, 
+            class: 'col-md-3 col-sm-3 col-lg-2 col-xl-3
+                    col-form-label col-form-label-sm label-bold'%>
+          <div class = "col-sm-6 col-md-6 col-lg-5">
+      	    <%= f.check_box :show_in_royalties,
+      	      class: "form-control form-control-sm col",
+               style: "width:15px;vertical-align:middle"%>
+          </div>   
+  	    </div>
+      </div>
+
+      <div class = "form-row col-12">
+        <!-- SHOW IN INVOICES -->
+        <div class = "form-group form-row col-12">
+          <%=f.label :show_in_invoicing, 
+            class: 'col-md-3 col-sm-3 col-lg-2 col-xl-3
+                    col-form-label-sm label-bold'%>
+          <div class = "col-sm-6 col-md-6 col-lg-5">
+            <%= f.check_box :show_in_invoicing,
+              class: "form-control form-control-sm col",
+               style: "width:15px;vertical-align:middle"%>
+          </div>   
+        </div>
+  	    
+      </div>
+    </div>
+ </div>     
+<br/>
+<div class = "row col-12">
+  <%=f.submit (I18n.t('transaction_code.form.save')),
+    class: 'btn btn-padgett col-4 col-sm-4 col-md-3 col-lg-3 col-xl-2',
+    name: "submit" %>
+  <div class = "col-1 col-sm-1 col-md-1 col-lg-1 col-xl-1"></div>
+  <%=link_to (I18n.t('transaction_code.form.return')),
+    admins_transaction_codes_path,
+    class: 'btn btn-padgett col-4 col-sm-4 col-md-3 col-lg-3 col-xl-2' %>
+</div>
+
+<%end%>
+
+

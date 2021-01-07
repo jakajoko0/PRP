@@ -117,8 +117,7 @@ en:
         by_method: Payments by Method
     tool:
       tools: Tools
-      charges_codes: Manage Charge Codes
-      credit_codes: Manage Credit Codes
+      transaction_codes: Manage Transaction Codes
       fran_groups: Franchise Groups
       login_as: Log In As
       system:

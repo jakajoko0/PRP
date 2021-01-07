@@ -1,0 +1,65 @@
+<table id = "user-list" 
+       class="table table-sm table-striped table-dan ">
+  <thead>
+    <tr>
+      <!-- Franchise  -->
+      <th width="25%" scope = "col" 
+          style="text-align:left">
+        <%=I18n.t('franchise_select.franchise') %>
+      </th>
+      
+      <!-- User  -->
+      <th width="25%" scope = "col" 
+          style="text-align:left">
+        <%=I18n.t('user_title') %>
+      </th>
+
+      <!-- User Type -->
+      <th width="20%" scope = "col" 
+          style="text-align:left">
+        <%=I18n.t('user_type') %>
+      </th>
+
+      <!-- Continue button  -->
+      <th width="20%" scope = "col"></th>
+      <!-- Padding  -->
+      <th width="10%" scope = "col"></th>
+
+    </tr>
+  </thead>
+  <!-- Go through our filtered franchises  -->
+  <% if @user_list.size > 0 %>
+    <% @user_list.each do |u| %>
+    <tr>
+      <!-- Franchise  -->
+      <th width="25%" scope="row" 
+          align="left" class = "text-nowrap">
+        <%=u.franchise.full_denomination %> 
+      </td>
+      <!-- User  -->
+      <td width="25%" align="left" 
+          class = "text-nowrap">
+        <%=u.email%> 
+      </td>
+
+      <!-- User Type  -->
+      <td width="20%" align="left" 
+          class = "text-nowrap">
+        <%=u.role%> 
+      </td>
+
+      <td class = "text-nowrap" width="20%"
+      style="text-align:right">
+      <%= link_to "Login As", masquerade_path(u),class: "btn btn-sm btn-padgett"%>
+      </td>
+
+      
+      <!-- Padding -->
+      <td width="10%" align="left" 
+          class = "text-nowrap">
+      </td>
+    </tr>
+  <% end %>
+  <%end%>
+</table>
+

@@ -1,0 +1,17 @@
+
+<!-- If we're looking to edit, we show the create button -->
+<div class = "col-12">
+  <%=link_to new_admins_transaction_code_path, data: {turbolinks: false} do%>
+    <button class = 'btn btn-padgett'>
+      <%=I18n.t('transaction_code.index.create_code')%>
+    </button>
+  <%end%>
+</div>
+
+<br>
+<!-- Transaction Code list -->
+<div class = "col-12">
+  <div id="trans_codes">
+    <%=render partial: 'trans_codes_list'%>
+  </div>
+</div>

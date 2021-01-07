@@ -1,0 +1,39 @@
+en:
+  activerecord:
+    errors:
+      models:
+        transaction_code:
+          attributes:
+            code:
+              blank: Code cannot be blank
+            description: 
+              blank: Description cannot be blank
+            trans_type:
+              blank: Please choose transaction type  
+  helpers:
+    label:
+      transaction_code:
+        code: Code
+        description: Description
+        trans_type: Transaction Type
+        show_in_royalties: Show in Royalties
+        show_in_invoicing: Show in Invoicing
+  transaction_code:
+    object_name: Transaction Code
+    index:
+      create_code: Add Transaction Code 
+      code: Code
+      description: Description
+      trans_type: Transaction Type
+      show_in_roy: Show In Royalties
+      show_in_invoice: Show In Invoices
+      edit_link: Edit this Code
+    form:
+      edit_title: Editing Transaction Code  
+      create_title: New Transaction Code
+      save: Save
+      return: Discard
+    create:
+      confirm: Transaction Code Created Successfully
+    update:
+      confirm: Transaction Code Updated Successfully    

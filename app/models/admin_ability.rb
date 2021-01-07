@@ -8,6 +8,8 @@ class AdminAbility
       can :manage, Insurance
       can :manage, WebsitePreference
       can :manage, Financial
+      can :manage, TransactionCode
+      can :masquerade, User
     else
       can :read, Franchise
       can :read, Accountant

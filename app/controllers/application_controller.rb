@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
   before_action :pass_locale_js
   before_action :prepare_exception_notifier
+  before_action :masquerade!
   before_action :configure_permitted_params, if: :devise_controller?
   around_action :set_time_zone, if: :current_authenticated
   rescue_from CanCan::AccessDenied,with: :access_error 

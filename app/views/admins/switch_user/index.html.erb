@@ -1,0 +1,25 @@
+<div class = "col-12">
+  <h2 class="padgett-text">
+    <%=I18n.t('franchise_select.title')%>
+  </h2>
+</div>
+
+<!-- Form that filters through the franchise list -->
+<%= form_tag admins_switch_user_path,
+    :method => 'get',
+    :id => "switch_user_search",
+    class: 'pt-2 pb-2'  do %>
+  <div class = "form-group row col-12">
+    <div class = "col-sm-6 col-md-6 col-lg-4">
+      <%= text_field_tag :search, params[:search],
+      class:'form-control input-sm',
+      placeholder: I18n.t('franchise_select.search')%>
+    </div>
+  </div>   
+<% end %>
+<!-- Franchise list -->
+<div class = "col-12">
+  <div id="franchises"  >
+    <%=render partial: 'user_list'%>
+  </div>
+</div>

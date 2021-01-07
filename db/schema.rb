@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_30_204806) do
+ActiveRecord::Schema.define(version: 2021_01_05_193935) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -279,6 +279,14 @@ ActiveRecord::Schema.define(version: 2020_11_30_204806) do
     t.string "region_number"
     t.string "area"
     t.string "description"
+  end
+
+  create_table "transaction_codes", force: :cascade do |t|
+    t.string "code"
+    t.integer "trans_type"
+    t.string "description"
+    t.boolean "show_in_royalties", default: false, null: false
+    t.boolean "show_in_invoicing", default: false, null: false
   end
 
   create_table "users", force: :cascade do |t|

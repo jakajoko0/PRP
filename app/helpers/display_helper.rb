@@ -79,7 +79,7 @@ def bubble_help(help_description,location)
 end
 
 def display_checkmark(value = 0, description = "")
-  if value == 1
+  if value == 1 || value == true
     i_tag = <<-HTML 
     <i class="far fa-check-circle fa-2x padgett-green-icon" 
     aria-hidden="true"

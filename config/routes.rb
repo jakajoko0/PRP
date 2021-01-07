@@ -12,7 +12,8 @@ Rails.application.routes.draw do
   # Devise Routes for Users
   devise_for :users, path: 'users', controllers: 
   {sessions: "users/sessions",
-   registrations: "users/registrations"}
+   registrations: "users/registrations",
+   masquerades: "admins/masquerades"}
 
   resources :charts, only:[] do 
     collection do 
@@ -75,7 +76,8 @@ Rails.application.routes.draw do
       get 'website_preferences/audit/:id', to: "website_preferences#audit", as: 'website_preference_audit'
       resources :financials
       get 'financials/audit/:id', to: "financials#audit", as: 'financials_audit'
-
+      resources :transaction_codes
+      get '/switch_user', to: "switch_user#index"
 
       #Reports
       scope module: :reports do 
