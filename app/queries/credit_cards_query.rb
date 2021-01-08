@@ -11,7 +11,7 @@ class CreditCardsQuery
 
 	def no_credit_cards_on_file(inactives,sort)
 		wheretext = inactives == 0 ? 'franchises.inactive = 0' : ''
-		Franchise.left_outer_joins(:credit_cards).where(credit_cards: {id: nil}).where(wheretext).order(sort)
+		Franchise.where(wheretext).where.missing(:credit_cards).order(sort)
   end
 	
 

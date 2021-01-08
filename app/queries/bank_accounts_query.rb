@@ -11,7 +11,7 @@ class BankAccountsQuery
 
 	def no_bank_account_on_file(inactives,sort)
 		wheretext = inactives == 0 ? 'franchises.inactive = 0' : ''
-		Franchise.left_outer_joins(:bank_accounts).where(bank_accounts: {id: nil}).where(wheretext).order(sort)
+		Franchise.where(wheretext).where.missing(:bank_accounts).order(sort)
   end
 
 	
