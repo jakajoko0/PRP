@@ -9,6 +9,7 @@ class AdminAbility
       can :manage, WebsitePreference
       can :manage, Financial
       can :manage, TransactionCode
+      can :manage, PrpTransaction
       can :masquerade, User
     else
       can :read, Franchise

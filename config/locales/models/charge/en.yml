@@ -1,0 +1,30 @@
+en:
+  charge:
+    object_name: Franchise Charge
+    create:
+      confirm: Charge Created Successfully
+    update:
+      confirm: Charge Updated Successfully
+    delete:
+      confirm: Charge Deleted Successfully
+      error: A Problem Occured Deleting Charge
+    index:
+      add_charge: Add Charge
+      franchise: Franchise
+      date_posted: Date Posted
+      trans_code: Description
+      description: Note
+      amount: Amount
+      edit_link: Edit this Charge
+      delete_link: Delete this Charge
+      delete_confirm: Are you sure you want to Delete this Charge?
+      audit_link: See Changes
+    form:
+      charge_title: Editing Charge
+      create_title: Add New Charge
+      save: Save
+      discard: Discard
+      
+
+
+

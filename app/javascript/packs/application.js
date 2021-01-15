@@ -32,6 +32,7 @@ require("custom/bank_accounts")
 require("custom/website_preferences")
 require("custom/financials")
 require("custom/cookie_banner")
+require("custom/credits")
 
 require.context('../images',true, /\.(?:png|jpg|gif|ico|svg)$/)
 

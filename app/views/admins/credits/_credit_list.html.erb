@@ -1,0 +1,130 @@
+<div id = "table-scroll"
+	 class = "table-scroll">
+  <table id = "credit-list"
+         class = "table-striped">
+	<thead id = "list">
+      <tr>
+        <!-- Franchise -->
+        <th scope = "col" class = "td-left">
+            <%=I18n.t('credit.index.franchise')%>
+        </th>
+        <!-- Date Posted -->
+        <th scope = "col" class = "td-left">
+        	<%=I18n.t('credit.index.date_posted')%>
+        </th>
+
+        <!-- Transaction Code -->
+        <th scope = "col" class = "td-left">
+        	<%=I18n.t('credit.index.trans_code')%>
+        </th>
+
+        <!-- Description -->
+        <th scope = "col" class = "td-left">
+            <%=I18n.t('credit.index.description')%>
+        </th>        
+
+        <!-- Amount -->
+        <th scope = "col" class = "td-right">
+            <%=I18n.t('credit.index.amount')%>
+        </th>        
+           
+        <th></th>
+
+        <th></th>
+
+        <th></th>
+
+      </tr>
+    </thead>
+
+    <% if @credits.size > 0 %>
+      <tbody>    
+    	<%@credits.each do |credit|%>
+    	  <tr>
+            <!-- Franchise  -->
+            <td  data-name = "Franchise"
+                 scope="col" 
+                 class = "td-left">
+              <%=credit.franchise.franchise_number %>  <%=credit.franchise.full_name%> 
+            </td>
+            <!-- Date Posted -->
+    	    <td data-name = "Date Posted"
+    	      	scope = "col"
+    	      	class = "td-left">
+    	  	    <%=I18n.l(credit.date_posted.in_time_zone, format: :prp)%>
+    	  	</td>
+
+            <!-- Transaction Code-->
+    	  	<td data-name = "Code" 
+    	  	   	scope = "col"
+    	  	   	class = "td-left">
+     	  	    <%=TransactionCode.description_from_code(credit.trans_code)%>
+    	  	</td>
+            
+            <!-- Note -->
+            <td data-name = "Note" 
+                scope = "col"
+                class = "td-left">
+                <%=credit.trans_description%>
+            </td>
+
+            <!-- Amount -->
+            <td data-name = "Amount" 
+                scope = "col"
+                class = "td-right">
+                <%=number_to_currency(credit.amount)%>
+            </td>
+    	  	
+            <!-- Edit Link if User can Edit -->
+    	  	<%if can? :edit, credit %>
+    	  	  <td data-name = ""
+    	  	      class = "td-center">
+    	  	      <%=link_with_icon(edit_admins_credit_path(credit),
+    	  	      "edit",
+    	  	      I18n.t('credit.index.edit_link'),
+    	  	      "",
+    	  	      false)%>
+    	  	  </td>
+    	  	<%else%>   
+    	  	  <td></td>
+    	  	<%end%>
+            
+            <!-- Delete Link if User can Delete -->
+    	  	<%if can? :delete, credit%>
+    	  	  <td data-name = ""
+    	  	   	  class = "td-center">
+    	  	      <%=link_with_icon(admins_credit_path(id: credit),
+    	  	      "delete",
+    	  	      I18n.t('credit.index.delete_link'),
+    	  	      I18n.t('credit.index.delete_confirm'),false)%>
+    	  	  </td>
+    	  	<%else%>
+    	  	  <td></td>
+    	  	<%end%>
+          <td data-name="" class = "td-center">
+            <%if credit.audits.size > 0%>
+              <%=link_with_icon(
+              admins_credit_audit_path(id:credit),
+              "audit",
+              I18n.t('credit.index.audit_link'),
+              "",
+              false)%>
+            <%end%>    
+          </td>  
+
+             
+    	  </tr>
+   	  	<%end%>
+      </tbody>
+  	<%end%>
+  </table>
+</div>
+
+<!-- Pagination Links  -->
+<div class = "row justify-content-center">
+  <div class = "flickr_pagination">
+    <%= will_paginate @credits,
+    pervious_label: I18n.t('pagination.prev'),
+    next_label: I18n.t('pagination.next') %>
+  </div>
+</div>  	

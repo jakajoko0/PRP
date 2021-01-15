@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe "Interactor - CreateInsurance", :type => :interactor do 
+RSpec.describe "Interactor - CreateInsurance", type: :interactor do 
 	let!(:admin) {create(:admin)}
 	let!(:glass) {create :franchise, lastname: "Glass", firstname: "Forrest"}
 	let!(:params) {FactoryBot.attributes_for(:insurance,franchise_id: glass.id)}

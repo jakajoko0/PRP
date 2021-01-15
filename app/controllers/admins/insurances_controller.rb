@@ -56,7 +56,7 @@ def destroy
 end
 
 def show 
-	authorize! :read, @accountant
+	authorize! :read, @insurance
 end
 
 def audit

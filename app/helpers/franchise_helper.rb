@@ -66,8 +66,8 @@ module FranchiseHelper
       when 'add_website_preference'
         route = new_admins_website_preference_path(franchise_id: franchise.id)
         button_text = I18n.t('franchise_select.new_website_pref')
-      when 'add_receivable'
-        route = new_receivable_path(franchise_id: franchise.id)
+      when 'add_charge'
+        route = new_admins_charge_path(franchise_id: franchise.id)
         button_text = I18n.t('franchise_select.add_charge')
       when 'add_invoice'
         route = new_invoice_path(franchise_id: franchise.id)
@@ -76,7 +76,7 @@ module FranchiseHelper
         route = new_check_payment_path(franchise_id: franchise.id)
         button_text = I18n.t('franchise_select.enter_check')
       when 'add_credit'
-        route = new_franchise_credit_path(franchise_id: franchise.id)
+        route = new_admins_credit_path(franchise_id: franchise.id)
         button_text = I18n.t('franchise_select.enter_credit')
       when 'add_accountant'
         route = new_admins_accountant_path(franchise_id: franchise.id)

@@ -2,15 +2,15 @@
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
 #
-# This file is the source Rails uses to define your schema when running `rails
-# db:schema:load`. When creating a new database, `rails db:schema:load` tends to
+# This file is the source Rails uses to define your schema when running `bin/rails
+# db:schema:load`. When creating a new database, `bin/rails db:schema:load` tends to
 # be faster and is potentially less error prone than running all of your
 # migrations from scratch. Old migrations may fail to apply correctly if those
 # migrations use external dependencies or application code.
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_05_193935) do
+ActiveRecord::Schema.define(version: 2021_01_08_204246) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -274,6 +274,21 @@ ActiveRecord::Schema.define(version: 2021_01_05_193935) do
     t.index ["franchise_id"], name: "index_insurances_on_franchise_id"
   end
 
+  create_table "prp_transactions", force: :cascade do |t|
+    t.bigint "franchise_id"
+    t.datetime "date_posted"
+    t.integer "trans_type", null: false
+    t.string "trans_code", null: false
+    t.string "trans_description"
+    t.decimal "amount", precision: 12, scale: 2, default: "0.0", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.string "transactionable_type"
+    t.bigint "transactionable_id"
+    t.index ["franchise_id"], name: "index_prp_transactions_on_franchise_id"
+    t.index ["transactionable_type", "transactionable_id"], name: "index_prp_transactions_on_transactionable"
+  end
+
   create_table "regions", force: :cascade do |t|
     t.integer "region_id"
     t.string "region_number"
@@ -327,5 +342,6 @@ ActiveRecord::Schema.define(version: 2021_01_05_193935) do
   add_foreign_key "credit_cards", "franchises"
   add_foreign_key "financials", "franchises"
   add_foreign_key "insurances", "franchises"
+  add_foreign_key "prp_transactions", "franchises"
   add_foreign_key "website_preferences", "franchises"
 end

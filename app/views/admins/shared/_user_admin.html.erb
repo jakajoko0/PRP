@@ -273,11 +273,12 @@
       aria-labelledby="navbarDropdownReceiptsLink">
       <!-- CHARGES-->  
       <li>
-        <%= link_to I18n.t('admin_menu.charge_receipt.charges') , "#", class: "dropdown-item" %>
+        <%= link_to I18n.t('admin_menu.charge_receipt.charges') ,
+        admins_charges_path, class: "dropdown-item" %>
       </li>
       <!-- CREDITS-->  
       <li>
-        <%= link_to I18n.t('admin_menu.charge_receipt.credits') , "#", class: "dropdown-item" %>
+        <%= link_to I18n.t('admin_menu.charge_receipt.credits') , admins_credits_path, class: "dropdown-item" %>
       </li>
       <!-- CHECKS-->  
       <li>

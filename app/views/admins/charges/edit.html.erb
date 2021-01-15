@@ -1,0 +1,11 @@
+<%= render partial: "shared/error_handling",
+ locals: { the_object: @charge,
+           objectname: I18n.t('charge.object_name')} %>
+
+<div class = "row">
+  <div class = "col-12">
+    <%=render partial: 'form',
+    locals: {charge: @charge,
+	           action: 'edit'} %>
+  </div>
+</div>

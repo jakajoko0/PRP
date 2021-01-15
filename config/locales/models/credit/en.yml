@@ -1,0 +1,30 @@
+en:
+  credit:
+    object_name: Franchise Credit
+    create:
+      confirm: Credit Created Successfully
+    update:
+      confirm: Credit Updated Successfully
+    delete:
+      confirm: Credit Deleted Successfully
+      error: A Problem Occured Deleting Credit
+    index:
+      add_credit: Add Credit
+      franchise: Franchise
+      date_posted: Date Posted
+      trans_code: Description
+      description: Note
+      amount: Amount
+      edit_link: Edit this Credit
+      delete_link: Delete this Credit
+      delete_confirm: Are you sure you want to Delete this Credit?
+      audit_link: See Changes
+    form:
+      credit_title: Editing Credit
+      create_title: Add New Credit
+      save: Save
+      discard: Discard
+      
+
+
+

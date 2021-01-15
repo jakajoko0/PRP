@@ -1,0 +1,17 @@
+<div class = "row col-12 pb-3">
+  <%=link_to admins_franchises_select_index_path(destination: 'add_credit'),
+     data: {turbolinks: false} do%>
+     <button class = 'btn btn-padgett'>
+       <%=I18n.t('credit.index.add_credit')%>
+     </button>
+  <%end%>
+</div>
+
+<div class = "row">
+	<div id = "credits" class = "col">
+		<%=render partial: 'credit_list'%>
+	</div>
+</div>
+
+
+

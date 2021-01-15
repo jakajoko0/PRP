@@ -49,6 +49,7 @@ Rails.application.routes.draw do
     resources :website_preferences, except: :destroy
     resources :financials
 
+
     get '/bank_routings/bank_name' => 'bank_routings#bank_name'
   end
   
@@ -67,6 +68,10 @@ Rails.application.routes.draw do
       resources :admins
       resources :franchises
       resources :franchises_select
+      resources :credits
+      get 'credits/audit/:id', to: "credits#audit", as: 'credit_audit'
+      resources :charges
+      get 'charges/audit/:id', to: "charges#audit", as: 'charge_audit'
       get 'franchises/audit/:id' ,to: "franchises#audit", as: 'franchise_audit'
       resources :accountants
       get 'accountants/audit/:id' ,to: "accountants#audit", as: 'accountant_audit'

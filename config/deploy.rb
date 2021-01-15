@@ -42,6 +42,8 @@ set :keep_releases, 3
 #after 'deploy:published', 'nginx:reload'
 #after 'deploy:published', 'nginx:restart'
 
+set :bundle_flags, ''
+
 
 after "deploy:starting", "sidekiq:quiet"
 after "deploy:updated", "assets:precompile"

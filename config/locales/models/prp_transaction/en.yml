@@ -1,0 +1,8 @@
+en:
+  helpers:
+    label:
+      prp_transaction:
+        date_posted: Date Posted
+        trans_code: Code   
+        trans_description: Description
+        amount: Amount

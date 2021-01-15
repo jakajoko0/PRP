@@ -8,5 +8,13 @@ FactoryBot.define do
 		trans_type {[0,1].sample}
 		show_in_royalties {false}
 		show_in_invoicing {false}
+
+		trait :credit do 
+			trans_type {0}
+		end
+
+		trait :charge do 
+			trans_type {1}
+		end
 	end
 end
