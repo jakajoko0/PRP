@@ -1,0 +1,94 @@
+<div class = "card">
+  <div class = "card-body card-background-padgett">
+    <table class = "table
+           table-striped table-in-card">
+      <thead>
+        <tr>
+          <th scope="col" 
+              style="text-align:left">
+            <%=I18n.t('insurance.index.eo')%>
+          </th>
+          <th scope = "col" 
+              style = "text-align:left">
+            <%=I18n.t('insurance.index.expires')%>
+          </th>
+
+          <th scope = "col" 
+              style = "text-align:left">
+            <%=I18n.t('insurance.index.gen')%>
+          </th>
+          <th scope = "col" 
+              style = "text-align:left">
+            <%=I18n.t('insurance.index.expires')%>
+          </th>
+          <th scope = "col" 
+              style = "text-align:right">
+            <%=I18n.t('insurance.index.other')%>
+          </th>
+          <th scope = "col" 
+              style = "text-align:left">
+            <%=I18n.t('insurance.index.expires')%>
+          </th>
+          <th scope = "col" 
+              style = "text-align:right">
+            <%=I18n.t('insurance.index.other')%>
+          </th>
+          <th scope = "col" 
+              style = "text-align:left">
+            <%=I18n.t('insurance.index.expires')%>
+          </th>
+          
+          <th>
+          </th>
+          
+        </tr>
+      </thead>
+      <tbody>
+        <% if franchise.insurance%>
+          <%ins = franchise.insurance%>
+          <tr>
+            <th align = "left" class="text-nowrap">
+              <%=display_checkmark(ins.eo_insurance)%>
+            </th>
+            <td align="left" class = "text-nowrap">
+              <%=I18n.l ins.eo_expiration if ins.eo_expiration%>
+            </td>
+            <td align="left" class = "text-nowrap">
+              <%=display_checkmark(ins.gen_insurance)%>
+            </td>
+            <td align="left" class="text-nowrap">
+              <%=I18n.l ins.gen_expiration if ins.gen_expiration%>
+            </td>
+            <td align="right" class="text-nowrap">
+              <%=display_checkmark(ins.other_insurance, ins.other_description)%>
+            </td>
+
+            <td align="left" class="text-nowrap">
+              <%=I18n.l ins.other_expiration if ins.other_expiration%>
+            </td>
+            <td align="right" class="text-nowrap">
+              <%=display_checkmark(ins.other2_insurance, ins.other2_description)%>
+            </td>
+
+            <td align="left" class="text-nowrap">
+              <%=I18n.l ins.other2_expiration if ins.other2_expiration%>
+            </td>
+
+            <%if can? :edit, ins%>
+            <td align="center">
+              <%=link_with_icon(
+                edit_admins_insurance_path(id: ins),
+                "edit",
+                I18n.t('insurance.index.edit_link'),
+                "",
+                false)%>
+            </td>
+            <%end%>
+          </tr>
+        <%end%>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+                

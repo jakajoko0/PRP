@@ -74,6 +74,68 @@
         </div>
       </div>
     </div>
+    <!--WEBSITE PREFERENCE  -->
+    <div class = "card-group accordion-padgett" id="accordion" role="tablist" 
+         aria-multiselectable="true">
+      <div class = "card">
+        <div class = "card-header card-background-padgett" role="tab"
+          id="headingWebsite">
+          <h4 class="card-title">
+            <h3 class="collapsed"  role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseWebsite" aria-expanded="true" aria-controls="collapseWebsite">
+              <%=I18n.t('franchise.show.website_pref')%>
+            </h3>
+          </h4>
+        </div>
+        <div id="collapseWebsite" class="collapse" role="tabpanel" 
+          aria-labelledby="headingWebsite">
+          <div class="card-body">
+            <%= render :partial => 'admins/franchises/show/website_details', :locals => {:franchise => @franchise} %>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!--FINANCIALS  -->
+    <div class = "card-group accordion-padgett" id="accordion" role="tablist" 
+         aria-multiselectable="true">
+      <div class = "card">
+        <div class = "card-header card-background-padgett" role="tab"
+          id="headingFinancial">
+          <h4 class="card-title">
+            <h3 class="collapsed"  role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseFinancial" aria-expanded="true" aria-controls="collapseFinancial">
+              <%=I18n.t('franchise.show.financials')%>
+            </h3>
+          </h4>
+        </div>
+        <div id="collapseFinancial" class="collapse" role="tabpanel" 
+          aria-labelledby="headingFinancial">
+          <div class="card-body">
+            <%= render :partial => 'admins/franchises/show/financial_details', :locals => {:franchise => @franchise} %>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--INSURANCE  -->
+    <div class = "card-group accordion-padgett" id="accordion" role="tablist" 
+         aria-multiselectable="true">
+      <div class = "card">
+        <div class = "card-header card-background-padgett" role="tab"
+          id="headingInsurance">
+          <h4 class="card-title">
+            <h3 class="collapsed"  role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseInsurance" aria-expanded="true" aria-controls="collapseInsurance">
+              <%=I18n.t('franchise.show.insurance')%>
+            </h3>
+          </h4>
+        </div>
+        <div id="collapseInsurance" class="collapse" role="tabpanel" 
+          aria-labelledby="headingInsurance">
+          <div class="card-body">
+            <%= render :partial => 'admins/franchises/show/insurance_details', :locals => {:franchise => @franchise} %>
+          </div>
+        </div>
+      </div>
+    </div>
+
   </div>
 </div>  
   

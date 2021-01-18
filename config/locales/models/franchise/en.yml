@@ -116,6 +116,9 @@ en:
       franchise_info: Franchise Information
       accountants: Accountants
       payment_methods: Payment Methods
+      website_pref: Website Preference
+      financials: Financials
+      insurance: Insurance
       return_btn: Return
   franchise_select:
     title: Select a Franchise

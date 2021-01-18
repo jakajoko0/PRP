@@ -1,0 +1,87 @@
+<div class = "card">
+  <div class = "card-body card-background-padgett">
+    <table class = "table
+           table-striped table-in-card">
+      <thead>
+        <tr>
+          <th scope="col" 
+              style="text-align:left">
+            <%=I18n.t('financial.index.year')%>
+          </th>
+          <th scope = "col" 
+              style = "text-align:left">
+            <%=I18n.t('financial.index.received')%>
+          </th>
+          <th scope = "col" 
+              style = "text-align:right">
+            <%=I18n.t('financial.index.revenues')%>
+          </th>
+          <th scope = "col" 
+              style = "text-align:right">
+            <%=I18n.t('financial.index.expenses')%>
+          </th>
+           <th scope = "col" 
+              style = "text-align:center">
+            <%=I18n.t('financial.index.monthly_clients')%>
+          </th>
+          <th scope = "col" 
+              style = "text-align:right">
+            <%=I18n.t('financial.index.total_monthly_fees')%>
+          </th>
+          <th scope = "col" 
+              style = "text-align:center">
+            <%=I18n.t('financial.index.quarterly_clients')%>
+          </th>
+          <th scope = "col" 
+              style = "text-align:right">
+            <%=I18n.t('financial.index.total_quarterly_fees')%>
+          </th>
+          <th>
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <%franchise.financials.order("year DESC").each do |fin|%>
+          <tr>
+            <th align = "left" class="text-nowrap">
+              <%=fin.year%>
+            </th>
+            <td align="left" class = "text-nowrap">
+              <%=I18n.l(fin.updated_at.in_time_zone, format: :prp)%>
+            </td>
+            <td align="right" class = "text-nowrap">
+              <%=number_to_currency(fin.total_revenues)%>
+            </td>
+            <td align="right" class = "text-nowrap">
+              <%=number_to_currency(fin.total_expenses)%>
+            </td>
+            <td align="center" class = "text-nowrap">
+              <%=fin.monthly_clients%>
+            </td>
+            <td align="right" class = "text-nowrap">
+              <%=number_to_currency(fin.total_monthly_fees)%>
+            </td>
+
+            <td align="center" class = "text-nowrap">
+              <%=fin.quarterly_clients%>
+            </td>
+            <td align="right" class = "text-nowrap">
+              <%=number_to_currency(fin.total_quarterly_fees)%>
+            </td>
+            <%if can? :edit, fin %>
+            <td align="center" class = "text-nowrap">
+              <%=link_with_icon(edit_admins_financial_path(fin),
+                "edit",
+                I18n.t('financial.index.edit_link'),
+                "",
+                false)%>
+            </td>
+            <%end%>
+          </tr>
+        <%end%>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+                
