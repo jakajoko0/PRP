@@ -8,8 +8,9 @@ RSpec.describe "Interactor - UpdateAccountant", :type => :interactor do
 
 	describe ".call" do 
 		context "When given valid attributes" do 
+			subject {UpdateAccountant.call(accountant: glass_accountant,params: changed_attributes, user: admin)}
 			it "should update accountant" do 
-				interactor = UpdateAccountant.call(accountant: glass_accountant,params: changed_attributes, user: admin)
+				interactor = subject
 				expect(interactor).to be_a_success
 				expect(glass_accountant.reload.lastname).to eq changed_attributes[:lastname]
 			end
@@ -17,8 +18,9 @@ RSpec.describe "Interactor - UpdateAccountant", :type => :interactor do
 		end
 
 		context "When given invalid attributes" do 
+			subject {UpdateAccountant.call(accountant: glass_accountant, params: changed_attributes.merge(firstname: nil), user: admin)}
 			it "should not update accountant" do 
-				interactor = UpdateAccountant.call(accountant: glass_accountant, params: changed_attributes.merge(firstname: nil), user: admin)
+				interactor = subject
 				expect(interactor).to be_a_failure
 				expect(glass_accountant.reload.firstname).to_not eq nil
 			end

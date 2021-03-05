@@ -1,0 +1,106 @@
+<div class = "row">
+	<%if remittance.credit1_entered?%>
+	  <!-- CREDIT 1 -->
+	  <div class = "form-row col-6">
+			<div class = "form-group form-row col-12">
+				<div class = "col-xl-8 col-lg-4 col-md-5 col-sm-6">
+				  <div class = "col-form-label-sm label-bold">
+				  	<%=TransactionCode.description_from_code(remittance.credit1)%>
+				  </div>
+				</div>
+			</div>
+		</div>
+
+		<div class = "form-row col-6">
+			<div class = "form-group form-row col-12">
+				<div class = "col-xl-7">
+				</div>
+  		  <div class = "text-right col-xl-4 col-lg-4 col-md-4 col-sm-3">
+  		  	<div class = "form-control-plaintext">
+  		      <%=number_with_precision(remittance.credit1_amount,
+  		         precision: 2)%>
+  		    </div>
+  		  </div>
+			</div>
+		</div>
+	<%end%>
+
+	<!-- CREDIT 2 -->
+	<%if remittance.credit2_entered?%>
+		<div class = "form-row col-6">
+			<div class = "form-group form-row col-12">
+	 		  <div class = "col-xl-8 col-lg-4 col-md-5 col-sm-6">
+				  <div class = "col-form-label-sm label-bold">
+				  	<%=TransactionCode.description_from_code(remittance.credit2)%>
+				  </div>
+				</div>
+			</div>
+		</div>
+
+		<div class = "form-row col-6">
+			<div class = "form-group form-row col-12">
+				<div class = "col-xl-7">
+				</div>
+	 		  <div class = "text-right col-xl-4 col-lg-4 col-md-4 col-sm-3">
+	 		  	<div class = "form-control-plaintext">
+	 		      <%=number_with_precision(remittance.credit2_amount,
+	 		         precision: 2)%>
+  		    </div>
+  		  </div>
+			</div>
+		</div>
+	<%end%>
+
+	<!-- CREDIT 3 -->
+	<%if remittance.credit3_entered?%>
+		<div class = "form-row col-6">
+			<div class = "form-group form-row col-12">
+	 		  <div class = "col-xl-8 col-lg-4 col-md-5 col-sm-6">
+				  <div class = "col-form-label-sm label-bold">
+				  	<%=TransactionCode.description_from_code(remittance.credit3)%>
+				  </div>
+				</div>
+			</div>
+		</div>
+
+		<div class = "form-row col-6">
+			<div class = "form-group form-row col-12">
+				<div class = "col-xl-7">
+				</div>
+	 		  <div class = "text-right col-xl-4 col-lg-4 col-md-4 col-sm-3">
+	 		  	<div class = "form-control-plaintext">
+	 		      <%=number_with_precision(remittance.credit3_amount,
+	 		         precision: 2)%>
+  		    </div>
+ 		    </div>
+			</div>
+		</div>
+	<%end%>
+  
+  <!-- CREDIT 4 -->
+	<%if remittance.credit4_entered?%>
+		<div class = "form-row col-6">
+			<div class = "form-group form-row col-12">
+				<div class = "col-xl-8 col-lg-4 col-md-5 col-sm-6">
+				  <div class = "col-form-label-sm label-bold">
+				  	<%=remittance.credit4%>
+				  </div>
+				</div>
+			</div>
+		</div>
+
+		<div class = "form-row col-6">
+			<div class = "form-group form-row col-12">
+				<div class = "col-xl-7">
+				</div>
+				<div class = "text-right col-xl-4 col-lg-4 col-md-4 col-sm-3">
+  		  	<div class = "form-control-plaintext">
+  		      <%=number_with_precision(remittance.credit4_amount,
+  		         precision: 2)%>
+  		    </div>
+  		  </div>
+			</div>
+		</div>
+	<%end%>
+</div>
+ 

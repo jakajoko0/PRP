@@ -10,6 +10,7 @@ class AdminAbility
       can :manage, Financial
       can :manage, TransactionCode
       can :manage, PrpTransaction
+      can :manage, Remittance
       can :masquerade, User
     else
       can :read, Franchise

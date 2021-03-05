@@ -8,8 +8,12 @@ RSpec.describe "Interactor - UpdateCredit", type: :interactor do
 
 	describe ".call" do 
 		context "When given valid attributes" do 
+			subject {UpdateCredit.call(credit: credit_trans,
+				                         params: changed_attributes,
+				                         user: admin)}
+			
 			it "should update credit" do 
-				interactor = UpdateCredit.call(credit: credit_trans,params: changed_attributes, user: admin)
+				interactor = subject
 				expect(interactor).to be_a_success
 				expect(credit_trans.reload.amount).to eq changed_attributes[:amount]
 			end
@@ -17,8 +21,11 @@ RSpec.describe "Interactor - UpdateCredit", type: :interactor do
 		end
 
 		context "When given invalid attributes" do 
+			subject {UpdateCredit.call(credit: credit_trans, 
+				                         params: changed_attributes.merge(amount: -100),
+				                         user: admin)}
 			it "should not update credit" do 
-				interactor = UpdateCredit.call(credit: credit_trans, params: changed_attributes.merge(amount: -100), user: admin)
+				interactor = 
 			  expect(interactor).to be_a_failure
 			  expect(credit_trans.reload.amount).to_not eq -100
 			end

@@ -1,0 +1,96 @@
+<%label_classes = "col-md-8 col-sm-9 col-lg-7 col-xl-7 col-form-label-sm label-bold"%>
+<%field_classes = "text-right col-xl-4 col-lg-4 col-md-4 col-sm-3"%>
+  
+<div class = "row">
+  <div class = "container-fluid col-sm-6 
+			no-gutters negative-right-margin">
+	  <div class = "form-row col-12">
+		  <!-- COLLECTIONS -->
+			<%Remittance::COLLECTIONS_ATTRIBUTES[0..5].each do |attrib| %>
+				<div class = "form-group form-row col-sm-12">
+					<label class = "<%=label_classes%>">
+						<%=I18n.t("helpers.label.remittance.#{attrib}")%>
+	  		  </label>
+	  			<div class = "<%=field_classes%>">
+	  				<div class = "form-control-plaintext">
+	  			 		<%=number_with_precision(remittance.send(attrib),
+	  			 		   precision: 2)%>
+	  			  </div>
+	  			</div>
+	  		</div>
+	  	<%end%>
+		</div>
+	</div>
+
+	<div class = "container-fluid col-sm-6 no-gutters negative-left-margin">
+		<div class = "form-row col-12">
+		  <!-- COLLECTIONS -->
+		  <%Remittance::COLLECTIONS_ATTRIBUTES[6..].each do |attrib| %>
+				<div class = "form-group form-row col-sm-12">
+					<label class="<%=label_classes%>">
+ 			      <%= I18n.t('helpers.label.remittance.'+attrib)%> 
+          </label>
+          <div class = "<%=field_classes%>">
+            <div class = "form-control-plaintext">
+            	<%=number_with_precision(remittance.send(attrib), 
+            	   precision: 2)%>
+            </div>
+          </div>
+        </div>
+		  <%end%>
+	    
+	    <!-- TOTAL COLLECTIONS -->
+			<div class = "form-group form-row col-sm-12">
+				<label class ="<%=label_classes%>">
+	  	    <%= I18n.t('helpers.label.remittance.total_collect')%> 
+        </label>
+
+        <div class = "text-right col-xl-4 col-lg-4 col-md-4 col-sm-3">
+          <div class = "form-control-plaintext"	>
+	  	      <%=number_with_precision(remittance.total_collect || 0.00, precision: 2)%>
+	  		  </div>
+	  		</div>
+		  </div>
+          
+      <!-- CALCULATED ROYALTIES -->
+		  <div class = "form-group form-row col-sm-12">
+		 	  <label class = "<%=label_classes%>">
+				  <%= I18n.t('helpers.label.remittance.calculated_royalty')%> 
+	  		</label>
+
+	  		<div class = "text-right col-xl-4 col-lg-4 col-md-4 col-sm-3"	>
+	  		 	<div class = "form-control-plaintext">
+	  		    <%=number_with_precision(remittance.calculated_royalty,
+	  		     precision: 2)%>
+ 		      </div>
+	  	  </div>
+		  </div>
+          
+      <!-- MINIMUM ROYALTIES -->
+		  <div class = "form-group form-row col-sm-12">
+				<label class="<%=label_classes%>">
+				  <%= I18n.t('helpers.label.remittance.minimum_royalty')%> 
+        </label>
+        <div class = "text-right col-xl-4 col-lg-4 col-md-4 col-sm-3">
+         	<div class = "form-control-plaintext">
+	  		    <%=number_with_precision(remittance.minimum_royalty,
+	  		       precision: 2)%>
+ 			    </div>
+ 			  </div>
+		  </div>
+				  
+			  
+		  <!-- ACTUAL ROYALTY -->
+		  <div class = "form-group form-row col-sm-12">
+				<label class="<%=label_classes%>">
+ 			    <%= I18n.t('helpers.label.remittance.royalty')%> 
+ 			  </label>
+ 			  <div class = " text-right col-xl-4 col-lg-4 col-md-4 col-sm-3">
+	  		 	<div class = "form-control-plaintext">
+	  		 		<%=number_with_precision(remittance.royalty,precision: 2)%>
+	  	  	</div>
+	  	  </div>
+		  </div>
+		</div>
+	</div>
+</div>

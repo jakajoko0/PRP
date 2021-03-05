@@ -1,25 +1,26 @@
 <!--FORM TO SELECT CURRENT PERIOD -->
-<%=form_tag root_path, 
-  method: :post,
+<%=form_tag url_for(controller: 'public', action: 'adminpage'),
   class: 'form-inline mb-2' do %>
-    <h3 class="mr-2">
-    	<%=I18n.t('dashboard.admin.period')%>
-    </h3>
-	  <%=select_year( @year,
+
+  <h3 class="mr-2">
+    <%=I18n.t('dashboard.admin.period')%>
+  </h3>
+	
+  <%=select_year( @year,
 	  options={:field_name => 'target_year',
 	  :prefix =>"",
-	  start_year: 2000,
-	  end_year: 2020},
+	  start_year: Remittance.get_min_year,
+	  end_year: Remittance.get_max_year},
 		html_options = {:class =>'form-control form-control-sm mr-2'}) %>
   
-    <%=select_month(@month,
+  <%=select_month(@month,
     options={:field_name => 'target_month',
     :prefix =>""},
   	html_options = {:class =>'form-control form-control-sm mr-2'}) %>
   
-    <%=submit_tag (I18n.t('dashboard.admin.reload')),
-    class: 'btn btn-padgett my-1'%>
- <%end%> <!-- END OF FORM -->
+  <%=submit_tag (I18n.t('dashboard.admin.reload')),
+  class: 'btn btn-padgett my-1'%>
+<%end%> <!-- END OF FORM -->
 
 <div id="statistics">
   <%=render partial: 'admin_statistics'%>

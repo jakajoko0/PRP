@@ -77,6 +77,11 @@ body {
   color: white
 }
 
+.danger-header{
+  background-color: red;
+  color: white
+}
+
 .padgett-blue-background{
   background-color: var(--padgett-blue);
 }
@@ -91,6 +96,22 @@ body {
 
 .padgett-text{
   color: var(--padgett-blue);
+}
+
+.no-padding-left {
+  padding-left: 0px;
+}
+
+.no-padding-right {
+  padding-right: 0px;
+}
+
+.negative-left-margin {
+  margin-left: -5px;
+}
+
+.negative-right-margin {
+  margin-right: -5px;
 }
 
 /***************************************************/

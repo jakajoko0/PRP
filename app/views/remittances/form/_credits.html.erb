@@ -1,0 +1,103 @@
+<div class = "card">
+	<div class = "card-header login-header">
+		<h4>
+			Credits		
+		</h4>
+	</div>
+
+	<%label_classes = "col-md-8 col-sm-9 col-lg-7 col-xl-7 col-form-label-sm label-bold"%>
+  <%field_classes = "form-control form-control-sm text-right col-xl-4 col-lg-4 col-md-4 col-sm-3 collections-sum"%>
+
+	<div class = "card-body card-background-padgett">
+		<div class = "row">
+			<!-- CREDIT 1 -->
+			<div class = "form-row col-6">
+				<div class = "form-group form-row col-12">
+					<%=f.label :credit1, 
+					class: "col-md-4 col-sm-3 col-lg-3 col-xl-3 col-form-label col-form-label-sm label-bold"%>
+
+	  		  <%=f.collection_select :credit1, TransactionCode.credits_royalty, :code, :description, {prompt: "Select a Credit"}, {class: "form-control form-control-sm col-xl-8 col-lg-4 col-md-5 col-sm-6 remittance_input",tabindex: 17 }%>
+				</div>
+			</div>
+
+			<div class = "form-row col-6">
+				<div class = "form-group form-row col-12">
+					<div class = "col-xl-7">
+					</div>
+	  		  <%=f.number_field :credit1_amount,
+	  		  step: "any",
+	  		  class: "form-control form-control-sm text-right col-xl-4 col-lg-4 col-md-4 col-sm-3 credits-sum remittance_input",
+	  		  value: number_with_precision(f.object.credit1_amount, precision: 2),
+	  		  tabindex: 18 %>
+				</div>
+			</div>
+			<!-- CREDIT 2 -->
+			<div class = "form-row col-6">
+				<div class = "form-group form-row col-12">
+					<%=f.label :credit2, 
+					class: "col-md-4 col-sm-3 col-lg-3 col-xl-3 col-form-label col-form-label-sm label-bold"%>
+
+	  		  <%=f.collection_select :credit2, TransactionCode.credits_royalty, :code, :description, {prompt: "Select a Credit"}, {class: "form-control form-control-sm col-xl-8 col-lg-4 col-md-5 col-sm-6 remittance_input",
+	  		  tabindex: 19 }%>
+				</div>
+			</div>
+
+			<div class = "form-row col-6">
+				<div class = "form-group form-row col-12">
+					<div class = "col-xl-7">
+					</div>
+	  		  <%=f.number_field :credit2_amount,
+	  		  step: "any",
+	  		  class: "form-control form-control-sm text-right col-xl-4 col-lg-4 col-md-4 col-sm-3 credits-sum remittance_input",
+	  		  value: number_with_precision(f.object.credit2_amount, precision: 2),
+	  		  tabindex: 20 %>
+				</div>
+			</div>
+			<!-- CREDIT 3 -->
+			<div class = "form-row col-6">
+				<div class = "form-group form-row col-12">
+					<%=f.label :credit3, 
+					class: "col-md-4 col-sm-3 col-lg-3 col-xl-3 col-form-label col-form-label-sm label-bold"%>
+
+	  		  <%=f.collection_select :credit3, TransactionCode.credits_royalty, :code, :description, {prompt: "Select a Credit"}, {class: "form-control form-control-sm col-xl-8 col-lg-4 col-md-5 col-sm-6 remittance_input" ,
+	  		  tabindex: 21 }%>
+				</div>
+			</div>
+
+			<div class = "form-row col-6">
+				<div class = "form-group form-row col-12">
+					<div class = "col-xl-7">
+					</div>
+	  		  <%=f.number_field :credit3_amount,
+	  		  step: "any",
+	  		  class: "form-control form-control-sm text-right col-xl-4 col-lg-4 col-md-4 col-sm-3 credits-sum remittance_input",
+	  		  value: number_with_precision(f.object.credit3_amount, precision: 2),
+	  		  tabindex: 22 %>
+				</div>
+			</div>
+			<!-- CREDIT 4 -->
+			<div class = "form-row col-6">
+				<div class = "form-group form-row col-12">
+					<%=f.label :credit4, 
+					class: "col-md-4 col-sm-3 col-lg-3 col-xl-3 col-form-label col-form-label-sm label-bold"%>
+
+	  		  <%=f.text_field :credit4, 
+	  		  class: "form-control form-control-sm col-xl-8 col-lg-4 col-md-5 col-sm-6 remittance_input" , value: f.object.credit4,
+	  		  tabindex: 23%>
+				</div>
+			</div>
+
+			<div class = "form-row col-6">
+				<div class = "form-group form-row col-12">
+					<div class = "col-xl-7">
+					</div>
+	  		  <%=f.number_field :credit4_amount,
+	  		  step: "any",
+	  		  class: "form-control form-control-sm text-right col-xl-4 col-lg-4 col-md-4 col-sm-3 credits-sum remittance_input",
+	  		  value: number_with_precision(f.object.credit4_amount, precision: 2),
+	  		  tabindex: 24 %>
+				</div>
+			</div>
+  	</div>
+  </div>
+</div>

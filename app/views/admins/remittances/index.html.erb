@@ -1,0 +1,24 @@
+<div class = "col-12 pb-2">
+	<h2 class="padgett-text">
+		Pending royalties
+	</h2>
+</div>
+<div id = "pending-remittances" class = "col">
+	<%=render partial: 'remittances_list', 
+	locals: {remittances: @pending, type: 'pending'}%>
+</div>
+<br>
+<div class = "col-12 pb-2">
+	<h2 class="padgett-text">
+		Posted royalties
+	</h2>
+</div>
+
+<div id = "posted-remittances" class = "col">
+		<%=render partial: 'remittances_list', 
+		locals: {remittances: @posted, type: 'posted'}%>
+
+</div>
+
+
+

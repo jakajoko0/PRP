@@ -159,11 +159,11 @@
       aria-labelledby="navbarDropdownRoyaltyLink">
       <!-- ENTER ROYALTIES-->  
       <li>
-        <%= link_to I18n.t('admin_menu.royalty.royalty_enter') , "#", class: "dropdown-item" %>
+        <%= link_to I18n.t('admin_menu.royalty.royalty_enter') , admins_franchises_select_index_path(destination: 'add_royalty'), class: "dropdown-item" %>
       </li>
       <!-- REVIEW ROYALTIES-->  
       <li>
-        <%= link_to I18n.t('admin_menu.royalty.royalty_review') , "#", class: "dropdown-item" %>
+        <%= link_to I18n.t('admin_menu.royalty.royalty_review') , admins_remittances_path, class: "dropdown-item" %>
       </li>
       <div class="dropdown-divider"></div>
       <!-- ROYALTIES REPORTS-->  

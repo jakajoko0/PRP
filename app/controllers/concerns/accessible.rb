@@ -13,10 +13,7 @@ module Accessible
   #the sign in page of another user type, we simply redirect
   #them to their corresponding root page 
   def check_user
-    if current_admin
-      flash.clear
-      redirect_to(authenticated_admin_path) && return
-    elsif current_user
+    if current_user
       flash.clear
       redirect_to(authenticated_user_path) && return
     end

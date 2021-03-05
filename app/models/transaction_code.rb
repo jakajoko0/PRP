@@ -12,6 +12,7 @@ enum trans_type: {credit: 0, charge: 1}
 scope :by_code, -> { order("code ASC")}
 scope :credits_only, -> {where(trans_type: 0).order("description ASC")}
 scope :charges_only, -> {where(trans_type: 1).order("description ASC")}
+scope :credits_royalty, -> {where(trans_type: 0, show_in_royalties: true ).order("description ASC")}
 
 def self.description_from_code(r_code)
   @trans_by_code ||= TransactionCode.select(:id, :code, :description).map{|e| e.attributes.values}.inject({}) {|arr , trans_code| arr[trans_code[1]] = trans_code[2]; arr}

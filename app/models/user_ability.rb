@@ -9,6 +9,12 @@ class UserAbility
       can :manage, CreditCard, franchise_id: user.franchise_id
       can [:read, :update], WebsitePreference, franchise_id: user.franchise_id
       can :manage, Financial, franchise_id: user.franchise_id
+      can [:read, :create],  Remittance, franchise_id: user.franchise_id
+      can [:edit], Remittance, franchise_id: user.franchise_id , status: "pending"
+      can [:update],  Remittance, franchise_id: user.franchise_id, status: "pending"
+      can [:destroy], Remittance, franchise_id: user.franchise_id, status: "pending"
+      can [:delete], Remittance, franchise_id: user.franchise_id, status: "pending"
+      
     end    
 
     # Define abilities for the passed in user here. For example:

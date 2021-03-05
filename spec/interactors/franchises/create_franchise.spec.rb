@@ -6,26 +6,28 @@ RSpec.describe "Interactor - CreateFranchise", :type => :interactor do
 
 	describe ".call" do 
 		context "When given valid attributes" do 
+			subject {CreateFranchise.call(params: params, user: admin)}
 			it "should create franchise" do 
-				interactor = CreateFranchise.call(params: params, user: admin)
+				interactor = subject
 				expect(interactor).to be_a_success
 				expect(interactor.franchise).to eq(Franchise.last)
 			end
 
 			it "should log an event" do 
-				expect{CreateFranchise.call(params: params, user: admin)}.to change{EventLog.count}.by(1)
+				expect{subject}.to change{EventLog.count}.by(1)
 			end
 
 		end
 
 		context "When given invalid attributes" do 
+			subject {CreateFranchise.call(params: params.merge(lastname: nil), user: admin)}
 			it "should not create franchise" do 
-				interactor = CreateFranchise.call(params: params.merge(lastname: nil), user: admin)
+				interactor = subject
 				expect(interactor).to be_a_failure
 			end
 
 			it "should not log an event" do 
-				expect{CreateFranchise.call(params: params.merge(lastname: nil), user: admin)}.to_not change{EventLog.count}
+				expect{subject}.to_not change{EventLog.count}
 			end
 
 		end

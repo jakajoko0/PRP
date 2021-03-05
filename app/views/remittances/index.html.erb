@@ -1,0 +1,35 @@
+<div class = "row col-12 pb-3">
+  <%=link_to new_remittance_path,
+     data: {turbolinks: false} do%>
+     <button class = 'btn btn-padgett'>
+       <%=I18n.t('remittance.index.add_royalty')%>
+     </button>
+  <%end%>
+</div>
+
+<div class = "row pb-5">
+  <div class = "col-12">
+	  <h2 class="padgett-text">
+		  Pending royalties
+	  </h2>
+  </div>
+
+  <div id = "pending-remittances" class = "col pb-2">
+	  <%=render partial: 'remittances_list', 
+	  locals: {remittances: @pending, type: 'pending'}%>
+  </div>
+</div>
+
+<div class = "row">
+  <div class = "col-12">
+	  <h2 class="padgett-text">
+		  Posted royalties
+	  </h2>
+  </div>
+  <br>
+  
+  <div id = "posted-remittances" class = "col">
+		<%=render partial: 'remittances_list', 
+		locals: {remittances: @posted, type: 'posted'}%>
+  </div>
+</div>

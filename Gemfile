@@ -26,7 +26,7 @@ gem 'devise', '~> 4.7', '>= 4.7.3'
 
  gem "interactor", "~> 3.0"
 #Gem to help login As another user
-gem 'devise_masquerade'
+gem 'devise_masquerade', '1.3.2'
 
 #Gem to keep audit track of changes
 gem 'audited', '~> 4.10'
@@ -47,6 +47,7 @@ gem 'bootsnap', '>= 1.4.2', require: false
 gem 'exception_notification', '~> 4.4', '>= 4.4.3'
 
 gem 'redis'
+
 
 # Enables Application Log browsing and reviewing
 gem 'logster'

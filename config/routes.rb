@@ -7,7 +7,8 @@ Rails.application.routes.draw do
   
   devise_for :admins, path: 'admins', controllers: 
   {sessions: "admins/sessions",
-   registrations: "admins/registrations"}
+   registrations: "admins/registrations",
+   masquerades: "admins/masquerades"}
   
   # Devise Routes for Users
   devise_for :users, path: 'users', controllers: 
@@ -36,6 +37,7 @@ Rails.application.routes.draw do
   # Authenticated route to show specific Dashboard for users
   authenticated :user do 
   	root to: 'public#userpage', as: "authenticated_user" 
+    post '/' => 'public#userpage'
   end
   
   # Authenticate users before accessing these routes
@@ -48,6 +50,7 @@ Rails.application.routes.draw do
     resources :credit_cards
     resources :website_preferences, except: :destroy
     resources :financials
+    resources :remittances
 
 
     get '/bank_routings/bank_name' => 'bank_routings#bank_name'
@@ -56,6 +59,7 @@ Rails.application.routes.draw do
   # Authenticated route to show specific Dashboard for admins
   authenticated :admin do 
   	root to: 'public#adminpage', as: "authenticated_admin" 
+    post '/' => 'public#adminpage'
   end
   
   # Authenticate admins before accessing these routes
@@ -81,6 +85,8 @@ Rails.application.routes.draw do
       get 'website_preferences/audit/:id', to: "website_preferences#audit", as: 'website_preference_audit'
       resources :financials
       get 'financials/audit/:id', to: "financials#audit", as: 'financials_audit'
+      resources :remittances
+      get 'remittances/audit/:id', to: "remittances#audit", as: 'remittances_audit'
       resources :transaction_codes
       get '/switch_user', to: "switch_user#index"
 

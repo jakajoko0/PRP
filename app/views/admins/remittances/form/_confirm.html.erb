@@ -1,0 +1,67 @@
+<div class = "card">
+	<div class = "card-header login-header">
+		<h4>
+			Confirmation
+		</h4>
+	</div>
+
+	<div class = "card-body card-background-padgett">
+		<div class = "row" id="late_fees" 
+         style="display:none;">
+      <div class = "form-row col-6">
+        <div class = "form-group form-row col-12">
+          <h5 class="label-bold">Late Fees</h5>
+        </div>
+      </div>
+      <!-- LATE FEES (IF ANY) -->
+      <div class = "form-row col-6">
+        <div class = "form-group form-row col-12">
+          <div class = "col-md-8 col-sm-9 col-lg-7 col-xl-7 ">
+          </div>
+          <%=f.number_field :late_fees, 
+              step: "any", 
+              class: "form-control form-control-sm text-right col-xl-4 col-lg-4 col-md-4 col-sm-3",
+              value: (number_with_precision(f.object.late_fees || 0.00, precision: 2))%>
+        </div>
+      </div>
+    </div>
+    <!-- TOTAL DUE -->
+    <div class = "row">
+  		<div class = "form-row col-6">
+        <div class = "form-group form-row col-12">
+          <h5 class="label-bold"> Total Due </h5>
+        </div>
+  		</div>
+  		<div class = "form-row col-6">
+  		  <div class = "form-group form-row col-12">
+  		  	<div class = "col-md-8 col-sm-9 col-lg-7 col-xl-7 ">
+          </div>
+  		  	<%=f.number_field :total_due, 
+              step: "any", 
+              class: "form-control form-control-sm text-right col-xl-4 col-lg-4 col-md-4 col-sm-3",
+              value: (number_with_precision(f.object.total_due || 0.00, precision: 2)), readonly: true%>
+  		  </div>
+  		</div>
+    </div>  
+    <!-- CONFIRMATION FLAG -->
+    <div class = "row">
+  		<div class = "form-row col-6">
+  		  <div class = "form-group form-row col-12">
+  		  	<h5 class="label-bold">
+            <%=I18n.t('helpers.label.remittance.confirmation')   %>
+          </h5>
+  		  </div>
+  		</div> 
+  		<div class = "form-row col-6"> 
+  		  <div class = "form-group form-row col-12">
+  		  	<div class = "col-md-8 col-sm-9 col-lg-7 col-xl-7 ">
+          </div>
+  		  	
+  		  	<%=f.check_box :confirmation,
+            class: 'form-control form-control-sm col col-xl-4 col-lg-4 col-md-4 col-sm-3 remittance_input',
+          tabindex: 26%>
+  		  </div>
+  		</div>
+  	</div>
+  </div>	
+</div>

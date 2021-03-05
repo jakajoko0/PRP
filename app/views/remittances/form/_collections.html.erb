@@ -1,0 +1,117 @@
+<div class = "card">
+	<div class = "card-header login-header">
+		<h4>
+			Collections		
+		</h4>
+	</div>
+
+	<%label_classes = "col-md-8 col-sm-9 col-lg-7 col-xl-7 col-form-label-sm label-bold"%>
+  <%field_classes = "form-control form-control-sm text-right col-xl-4 col-lg-4 col-md-4 col-sm-3 collections-sum remittance_input"%>
+  <%tab_index = 6%>
+
+	<div class = "card-body card-background-padgett">
+		<div class = "row">
+			<div class = "container-fluid col-sm-6 no-gutters negative-right-margin">
+				<div class = "form-row col-12">
+					<!-- COLLECTIONS -->
+					<%Remittance::COLLECTIONS_ATTRIBUTES[0..5].each do |attrib| %>
+					<div class = "form-group form-row col-sm-12">
+						<%=f.label attrib.to_sym , class: "#{label_classes}" do %>
+	  			    <%= I18n.t('helpers.label.remittance.'+attrib)%> 
+	  			    <%=bubble_help(I18n.t('helpers.label.remittance.accounting_desc'),"right")%>
+	  			  <%end%>
+
+	  			  <%=f.number_field attrib.to_sym, 
+	  			    step: "any", 
+	  			    class: "#{field_classes}",
+	  				  value: (number_with_precision(f.object.send(attrib), precision: 2)),
+	  				  tabindex: "#{tab_index}"%>
+				  </div>
+				  <%tab_index = tab_index + 1%>
+				  <%end%>
+				</div>
+			</div>
+
+			<div class = "container-fluid col-sm-6 no-gutters negative-left-margin">
+				<div class = "form-row col-12">
+					<!-- COLLECTIONS -->
+					<%Remittance::COLLECTIONS_ATTRIBUTES[6..].each do |attrib| %>
+
+					<div class = "form-group form-row col-sm-12">
+						<%=f.label attrib.to_sym , 
+						class: "#{label_classes}" do %>
+	  			      <%= I18n.t('helpers.label.remittance.'+attrib)%> 
+	  			      <%=bubble_help(I18n.t('helpers.label.remittance.accounting_desc'),"right")%>
+	  			  <%end%>
+
+	  			  <%=f.number_field attrib.to_sym, 
+	  			    step: "any", 
+	  			    class: "#{field_classes}",
+	  				  value: (number_with_precision(f.object.send(attrib), precision: 2)),
+	  				  tabindex: "#{tab_index}"%>
+				  </div>
+				  <% tab_index =  tab_index + 1%>
+				  <%end%>
+				  <!-- TOTAL COLLECTIONS -->
+				  <div class = "form-group form-row col-sm-12">
+						<%=f.label :total_collect, 
+						class: "#{label_classes}" do %>
+	  			    <%= I18n.t('helpers.label.remittance.total_collect')%> 
+  			      <%=bubble_help(I18n.t('helpers.label.remittance.total_collect_desc'),"right")%>
+  			    <%end%>
+
+	  			  <%=f.number_field :total_collect, 
+	  			    step: "any", 
+	  			    class: "form-control form-control-sm text-right col-xl-4 col-lg-4 col-md-4 col-sm-3",
+	  				  value: (number_with_precision(f.object.total_collect || 0.00, precision: 2)), disabled: true%>
+				  </div>
+          
+          <!-- CALCULATED ROYALTIES -->
+				  <div class = "form-group form-row col-sm-12">
+						<%=f.label :calculated_royalty, 
+						class: "#{label_classes}" do %>
+	  			    <%= I18n.t('helpers.label.remittance.calculated_royalty')%> 
+	  			    <%=bubble_help(I18n.t('helpers.label.remittance.total_collect_desc'),"right")%>
+	  			  <%end%>
+
+	  			  <%=f.number_field :calculated_royalty, 
+	  			    step: "any", 
+	  			    class: "form-control form-control-sm text-right col-xl-4 col-lg-4 col-md-4 col-sm-3",
+	  				  value: (number_with_precision(f.object.calculated_royalty, precision: 2)), readonly: true%>
+				  </div>
+          
+          <!-- MINIMUM ROYALTIES -->
+				  <div class = "form-group form-row col-sm-12">
+						<%=f.label :minimum_royalty, 
+						class: "#{label_classes}" do %>
+	  			    <%= I18n.t('helpers.label.remittance.minimum_royalty')%> 
+	  			    <%=bubble_help(I18n.t('helpers.label.remittance.total_collect_desc'),"right")%>
+	  			  <%end%>
+
+	  			  <%=f.number_field :minimum_royalty, 
+	  			    step: "any", 
+	  			    class: "form-control form-control-sm text-right col-xl-4 col-lg-4 col-md-4 col-sm-3 remittance_input",
+	  				  value: (number_with_precision(f.object.minimum_royalty, precision: 2)),
+	  				  tabindex: "#{tab_index}"%>
+				  </div>
+				  <%tab_index = tab_index + 1%>
+				  
+				  <!-- ACTUAL ROYALTY -->
+				  <div class = "form-group form-row col-sm-12">
+						<%=f.label :royalty, 
+						class: "#{label_classes}" do %>
+	  			    <%= I18n.t('helpers.label.remittance.royalty')%> 
+	  			    <%=bubble_help(I18n.t('helpers.label.remittance.total_collect_desc'),"right")%>
+	  			  <%end%>
+
+	  			  <%=f.number_field :royalty, 
+	  			    step: "any", 
+	  			    class: "form-control form-control-sm text-right col-xl-4 col-lg-4 col-md-4 col-sm-3 remittance_input",
+	  				  value: (number_with_precision(f.object.royalty, precision: 2)),
+	  				  tabindex: "#{tab_index}", readonly: true%>
+				  </div>
+				</div>
+			</div>
+  	</div>
+  </div>
+</div>

@@ -1,0 +1,93 @@
+
+<div class = "card">
+	<div class = "card-header login-header">
+		<h4 class="text-center">
+			<%if action == "edit"%>
+			  <%=I18n.t('remittance.form.edit_title')%>
+		  <%else%>
+			  <%=I18n.t('remittance.form.create_title')%>
+			<%end%>		  
+		</h4>
+	</div>
+</div>
+
+<br/>
+<%=form_for [:admins, remittance] do |f| %>
+<div class = "card">
+	<div class = "card-header login-header">
+		<h4>
+			Franchise Information
+		</h4>
+	</div>
+	
+	<%=f.hidden_field :franchise_id,
+	                  value: f.object.franchise_id%>
+	<div class = "card-body card-background-padgett">
+		<div class = "row">
+	 		<!-- FRANCHISE NUMBER -->
+    	<div class = "form-row col-12 col-sm-6">
+    		<div class = "form-group form-row col-12">
+	 			  <%=f.label :franchise_id,
+	  			    class: "col-md-4 col-sm-4 col-lg-4 col-xl-4
+	  			     col-form-label-sm label-bold"%>
+
+	  		  <%=f.text_field :fran_number,
+	  			    class: "form-control form-control-sm col-xl-2 col-lg-2 col-md-3 col-sm-3 text-center",
+	  				  value: f.object.franchise.franchise_number,
+	  				  disabled: true%>
+  			</div>
+  		</div>
+  		<!-- FRANCHISE NAME -->
+  		<div class = "form-row col 12 col-sm-6">
+  	    <div class = "form-group form-row col-12">
+	  	    <%=f.label :franchise_name,
+	  			  class: "col-md-4 col-sm-4 col-lg-4 col-xl-4 col-form-label-sm label-bold"%>
+	  			<%=f.text_field :franchise_name,
+	  			  class: "form-control form-control-sm col-xl-8 col-lg-8 col-md-8 col-sm-8",
+	  				value: f.object.franchise.full_name,
+	  				disabled: true%>
+  			</div>
+  		</div>  
+  	</div>
+ 	</div>
+</div>
+<br>
+<!-- SECTION ABOUT THE PERIOD AND LATENESS -->
+<%=render partial: 'admins/remittances/form/period',
+locals: {f: f}%>
+<br>
+<!-- SECTION ABOUT COLLECTIONS AND ROYALTY AMOUNTS -->
+<%=render partial: 'admins/remittances/form/collections',
+locals: {f: f}%>
+<br>
+<!-- SECTION ABOUT CREDITS -->
+<%=render partial: 'admins/remittances/form/credits',
+locals: {f: f}%>
+<br>
+<!-- SECTION ABOUT LATE FEES AND CONFIRMATION FLAG -->
+<%=render partial: 'admins/remittances/form/confirm',
+locals: {f: f}%>
+<br>
+
+<!-- SAVE OR DISCARD BUTTONS -->
+<div class = "row col-12">
+	<!-- SAVE AND POST -->
+  <%=f.submit (I18n.t('remittance.form.save')),
+    class: 'btn btn-padgett col-4 col-sm-4 col-md-3 col-lg-3 col-xl-2',
+    name: "submit", id:"save_post", data:{disable_with:false} %>
+  <div class = "col-1 col-sm-1 col-md-1 col-lg-1">
+  </div>
+  <!-- SAVE FOR LATER -->
+   <%=f.submit (I18n.t('remittance.form.save_later')),
+    class: 'btn btn-padgett col-4 col-sm-4 col-md-3 col-lg-3 col-xl-2',
+    name: "submit", id:"save_later",data:{disable_with:false}  %>
+  <div class = "col-1 col-sm-1 col-md-1 col-lg-1">
+  </div>
+  <!-- SAVE FOR LATERDISCARD -->
+  <%=link_to (I18n.t('remittance.form.discard')),
+    admins_remittances_path,
+    class: 'btn btn-padgett col-4 col-sm-4 col-md-3 col-lg-3 col-xl-2
+      ' %>
+</div>
+
+<%end%> 

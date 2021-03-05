@@ -29,8 +29,10 @@
         data-action="<%= action_name %>">
    <% if user_masquerade? %>
     <div class="alert-warning text-center" style="margin-bottom: 0px">
-      You're logged in as Someone Else
-
+      You're masquerading as <%= current_user.franchise.lastname %>.
+      <%= link_to back_masquerade_path(current_user) do %>
+        Logout 
+      <%end%>
     </div>
   <% end %>
 

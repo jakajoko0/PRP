@@ -8,26 +8,28 @@ RSpec.describe "Interactor - CreateInsurance", type: :interactor do
 
 	describe ".call" do 
 		context "When given valid attributes" do 
+			subject {CreateInsurance.call(params: params, user: admin)}
 			it "should create insurance" do 
-				interactor = CreateInsurance.call(params: params, user: admin)
+				interactor = subject
 				expect(interactor).to be_a_success
 				expect(interactor.insurance).to eq(Insurance.last)
 			end
 
 			it "should log an event" do 
-				expect{CreateInsurance.call(params: params, user: admin)}.to change{EventLog.count}.by(1)
+				expect{subject}.to change{EventLog.count}.by(1)
 			end
 
 		end
 
 		context "When given invalid attributes" do 
+			subject {CreateInsurance.call(params: params.merge(other_insurance: 1, other_description: nil), user: admin)}
 			it "should not create insurance" do 
-				interactor = CreateInsurance.call(params: params.merge(other_insurance: 1, other_description: nil), user: admin)
+				interactor = subject
 				expect(interactor).to be_a_failure
 			end
 
 			it "should not log an event" do 
-				expect{CreateInsurance.call(params: params.merge(other_insurance: 1, other_description: nil), user: admin)}.to_not change{EventLog.count}
+				expect{subject}.to_not change{EventLog.count}
 			end
 
 		end

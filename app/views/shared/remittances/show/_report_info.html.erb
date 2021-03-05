@@ -1,0 +1,130 @@
+<form>
+  <div class = "row">
+    <!-- FRANCHISE NUMBER -->
+    <div class = "form-row col-12 col-sm-6">
+      <div class = "form-group form-row col-12">
+        <label class = "col-md-4 col-sm-4 col-lg-4 col-xl-4
+                col-form-label-sm label-bold">
+          <%=I18n.t('helpers.label.remittance.franchise_id')%>
+        </label>
+
+        <div class = "col-xl-2 col-lg-2 col-md-3 col-sm-3">
+          <div class = "form-control-plaintext">
+            <%=remittance.franchise.franchise_number%>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- FRANCHISE NAME -->
+    <div class = "form-row col 12 col-sm-6">
+      <div class = "form-group form-row col-12">
+        <label class = "col-md-4 col-sm-4 col-lg-4 col-xl-4 col-form-label-sm label-bold">
+          <%=I18n.t('helpers.label.remittance.franchise_name')%>
+        </label>
+        <div class = "col-xl-8 col-lg-8 col-md-8 col-sm-8">
+          <div class = "form-control-plaintext">
+            <%=remittance.franchise.full_name%>
+          </div>
+        </div>
+      </div>
+    </div>  
+  </div>
+
+  <div class = "row">
+    <!-- YEAR -->
+    <div class = "form-row col-12 col-sm-6">
+      <div class = "form-group form-row col-12">
+        <label class = "col-md-4 col-sm-4 col-lg-4 col-xl-4
+                 col-form-label-sm label-bold">
+          <%=I18n.t('helpers.label.remittance.year')%>
+        </label>
+
+        <div class = "col-xl-2 col-lg-2 col-md-3 col-sm-3">
+          <div class = "form-control-plaintext">
+            <%=remittance.year%>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- MONTH -->
+    <div class = "form-row col 12 col-sm-6">
+      <div class = "form-group form-row col-12">
+        <label class = "col-md-4 col-sm-4 col-lg-4 col-xl-4 col-form-label-sm label-bold">
+          <%=I18n.t('helpers.label.remittance.month')%>
+        </label>
+        <div class = "col-xl-8 col-lg-8 col-md-8 col-sm-8">
+          <div class = "form-control-plaintext">
+            <%=Date::MONTHNAMES[remittance.month]%>
+          </div>
+        </div>
+      </div>
+    </div>  
+  </div>
+
+  <div class = "row">
+    <!-- RECEIVED -->
+    <div class = "form-row col-12 col-sm-6">
+      <div class = "form-group form-row col-12">
+        <label class = "col-md-4 col-sm-4 col-lg-4 col-xl-4
+              col-form-label-sm label-bold">
+          <%=I18n.t('helpers.label.remittance.date_received')%>
+        </label>
+
+        <div class = "col-xl-2 col-lg-2 col-md-3 col-sm-3">
+          <div class = "form-control-plaintext">
+            <%=I18n.l(remittance.date_posted, format: :notime)%>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- POSTED -->
+    <div class = "form-row col 12 col-sm-6">
+      <div class = "form-group form-row col-12">
+        <label class = "col-md-4 col-sm-4 col-lg-4 col-xl-4 col-form-label-sm label-bold">
+          <%=I18n.t('helpers.label.remittance.date_posted')%>
+        </label>
+        <div class = "col-xl-8 col-lg-8 col-md-8 col-sm-8">
+          <div class = "form-control-plaintext">
+            <%=I18n.l(remittance.date_received, format: :notime)%>
+          </div>
+        </div>
+      </div>
+    </div>  
+  </div>
+  
+  <%if remittance.late? %>
+    <div class = "row">
+      <!-- LATE? -->
+      <div class = "form-row col-12 col-sm-6">
+        <div class = "form-group form-row col-12">
+          <label class = "col-md-4 col-sm-4 col-lg-4 col-xl-4
+                col-form-label-sm label-bold">
+            Late?
+          </label>
+
+          <div class = "col-xl-2 col-lg-2 col-md-3 col-sm-3">
+            <div class = "form-control-plaintext">
+              Yes
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- REASON -->
+      <div class = "form-row col 12 col-sm-6">
+        <div class = "form-group form-row col-12">
+          <label class = "col-md-4 col-sm-4 col-lg-4 col-xl-4 col-form-label-sm label-bold">
+              <%=I18n.t('helpers.label.remittance.late_reason')%>
+          </label>
+          <div class = "col-xl-8 col-lg-8 col-md-8 col-sm-8">
+            <div class = "form-control-plaintext">
+              <%=remittance.late_reason%>
+            </div>
+          </div>
+        </div>
+      </div>  
+    </div>
+  <%end%>
+<br />

@@ -1,0 +1,108 @@
+en:
+  activerecord:
+    errors:
+      models:
+        remittance:
+          attributes:
+            franchise:
+              blank: Franchise cannot be blank
+            year: 
+              blank: Please provide the year
+              year_unique: The Royalty report has already been posted for this month and year
+            month:
+              blank: Please provide the month  
+              month_unique: The Royalty report has already been posted for this month and year
+            status:
+              blank: This status is blank
+            date_received:
+              blank: Please provide the received date
+            date_posted:
+              blank: Please provide the posted date  
+            credit1:
+              blank: Please provide the type of credit
+            credit2:
+              blank: Please provide the type of credit
+            credit3:
+              blank: Please provide the type of credit 
+            credit4:
+              blank: Please enter credit description
+            payroll_credit_desc:
+              blank: Please enter the cedit description  
+            late_reason:
+              blank: Please enter a reason for submitting a late report  
+          no_negative: Please enter a valid number        
+          must_confirm: Please check the confirmation flag before posting
+  helpers:
+    label:
+      remittance:
+        franchise_id: Franchise
+        franchise_name: Name
+        year: Year
+        month: Collections for
+        status: Status
+        date_received: Date Created
+        date_posted: Date Posted
+        accounting: Accounting
+        accounting_desc: Receipts from the performance of blablabl
+        backwork: Backwork
+        consulting: Consulting
+        excluded: Excluded
+        other1: Other 1
+        other2: Other 2
+        payroll: Payroll 
+        setup: Setup
+        tax_preparation: Tax Preparation
+        total_collect: Total Collections
+        total_collect_desc: Blablablabla
+        calculated_royalty: Calculated Royalty
+        minimum_royalty: Minimum Royalty
+        royalty: Actual Royalty
+        credit1: Type
+        credit2: Type 
+        credit3: Type 
+        credit4: Other
+        late_reason: Why Late?
+        late_fees: Late Fees
+        confirmation: By checking this box, I affirm that this royalty report is correct and complete
+  remittance:
+    object_name: Royalty Report
+    create:
+      confirm: Royalty Report Created Successfully
+    update:
+      confirm: Royalty Report Updated Successfully
+    delete:
+      confirm: Royalty Report Deleted Successfully
+      error: A Problem Occured Deleting Royalty Report
+    index:
+      add_royalty: Add Royalty Report
+      franchise: Franchise
+      received: Received
+      posted: Posted
+      year_month: Year / Month
+      collections: Collections
+      royalty: Royalty
+      credits: Credits
+      total_due: Total Due
+      edit_link: Edit this Royalty Report
+      delete_link: Delete this Royalty Report
+      delete_confirm: Are you sure you want to Delete this Royalty Report?
+      audit_link: View Audit Trail
+      view_link: Review this Royalty Report
+    show:
+      title: Royalty for %{franchise} %{period}  
+      return_btn: Return
+      report_info: Report Information
+      collections: Collections
+      credits: Credits
+      summary: Summary
+
+    form:
+      save: Save and Post
+      save_later: Save for Later
+      discard: Discard
+      edit_title: Edit Royalty Report
+      create_title : New Royalty Report
+
+
+
+            

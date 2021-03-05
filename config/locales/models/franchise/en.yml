@@ -115,6 +115,7 @@ en:
       title: "Franchise: %{franchise_name}"
       franchise_info: Franchise Information
       accountants: Accountants
+      remittances: Royalty Reports
       payment_methods: Payment Methods
       website_pref: Website Preference
       financials: Financials

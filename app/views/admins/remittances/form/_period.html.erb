@@ -1,0 +1,88 @@
+<div class = "card">
+	<div id = "period-header" class = "card-header login-header">
+		<h4 id="period_title">
+			Period
+		</h4>
+	</div>
+
+	<div class = "card-body card-background-padgett">
+		<div class = "row">
+      <!-- YEAR -->
+  		<div class = "form-row col-12 col-sm-6">
+  		  <div class = "form-group form-row col-12">
+  		  	<%=f.label :year, 
+  		  	class: "col-md-4 col-sm-4 col-lg-4 col-xl-4 col-form-label col-form-label-sm label-bold"%>
+  		  	<%=f.number_field :year, class: "form-control form-control-sm col-xl-2 col-lg-2 col-md-2 col-sm-2 text-center remittance_input", value: f.object.year, tabindex: 1, autofocus: true %>
+  		  </div>
+  		</div>
+      <!-- MONTH -->
+  		<div class = "form-row col-12 col-sm-6">
+  		  <div class = "form-group form-row col-12">
+  		  	<%=f.label :month, 
+  		  	class: "col-md-4 col-sm-4 col-lg-4 col-xl-4 col-form-label col-form-label-sm label-bold"%>
+  		  	<%=select_month(f.object.month, options={field_name: 'month', prefix: 'remittance'}, html_options={tabindex: 2, class: "form-control form-control-sm col-xl-4 col-lg-4 col-md-5 col-sm-6 remittance_input" })%>
+  		  </div>
+  		</div>
+      <!-- DATE RECEIVED -->
+  		<div class = "form-row col-12 col-sm-6">
+  		  <div class = "form-group form-row col-12">
+  		  	<%=f.label :date_received, 
+  		  	class: "col-md-4 col-sm-4 col-lg-4 col-xl-4 col-form-label col-form-label-sm label-bold"%>
+  		  	
+  		  	<%=f.text_field :date_received,
+  		  	value: (I18n.l f.object.date_received, format: :notime if f.object.date_received), tabindex: 3, class: "form-control form-control-sm col text-center col-sm-4 col-md-4 col-lg-3 col-xl-2 remittance_input",
+  		  	id: "remittance_date_received",
+  		  	style: "display:inline-block; vertical-align:middle;width: 60%; margin: 0 5px 0 0;"%>
+  		  </div>
+  		</div>
+      <!-- DATE POSTED --> 
+  		<div class = "form-row col-12 col-sm-6"> 
+  		  <div class = "form-group form-row col-12">
+  		  	<%=f.label :date_posted, 
+  		  	class: "col-md-4 col-sm-4 col-lg-4 col-xl-4 col-form-label col-form-label-sm label-bold"%>
+  		  	
+  		  	<%=f.text_field :date_posted,
+  		  	value: (I18n.l f.object.date_posted, format: :notime if f.object.date_posted),tabindex: 4, class: "form-control form-control-sm col text-center col-md-4 col-sm-4 col-lg-3 col-xl-2 remittance_input",
+  		  	id: "remittance_date_posted",
+  		  	style: "display:inline-block; vertical-align:middle;width: 60%; margin: 0 5px 0 0;"%>
+  		  </div>
+  		</div>
+      <!-- LATE SECTION -->
+      <div id="late" class = "form-row col-12"
+           style="display:none"> 
+        <!-- REASON FOR BEING LATE -->
+        <div class = "form-group form-row col-12">
+          <div class = "form-row col-12 col-sm-2">
+          <%=f.label :late_reason, 
+          class: "col-form-label col-form-label-sm label-bold"%>
+        </div>
+          
+        <div class = "col-12 col-sm-10">
+          <%=f.text_field :late_reason,
+          value: f.object.late_reason,
+          tabindex: 5,
+          class: "form-control form-control-sm col-md-10 col-sm-10 col-lg-10 col-xl-12 remittance_input"%>
+          </div>
+          <%=f.hidden_field :late,
+        :value => f.object.late%>
+        </div>
+        
+      </div>
+      <!-- LATE MESSAGE -->
+      <div id="late_msg" 
+           class = "form-row col-12"
+           style = "display:none"> 
+        <div class="form-group form-row col-12">
+          <div class="form-row col-2">
+          </div>
+          <div class = "form-row col-12 col-sm-10">
+          <%=f.label :late_reason,
+          "Being late may cause you to lose 1/3 of your Royalty rebate", 
+          class: " col-form-label col-form-label-sm label-bold col-md-10 col-sm-10 col-lg-10 col-xl-12"%>
+          </div>
+        </div>
+      </div>
+
+  	</div>
+  </div>	
+</div>

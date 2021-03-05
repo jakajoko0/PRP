@@ -62,6 +62,7 @@ has_many :financials
 has_one  :insurance
 has_one :website_preference
 has_many :users
+has_many :remittances
 
 friendly_id :number_and_name, use: :slugged
 audited except: [:slug, :max_collections, :avg_collections, :max_coll_year, :max_coll_month], on: [:update, :destroy]
@@ -164,6 +165,15 @@ before_save :nil_if_blank
     Franchise.select(:id, "(franchise_number || ' ' || lastname || ' ' || firstname) as name")
     .map{|e| e.attributes.values}
     .inject({}) {|memo,fran| memo[fran[0]] = fran[1]; memo}
+  end
+
+  def self.rebates(franchise_id)
+    Franchise.select('advanced_rebate, prior_year_rebate').where("id = ?", franchise_id)
+  end
+
+  def self.prior_year_balance(franchise_id)
+    result = Franchise.select('prior_year_rebate').where(id: franchise_id ).first
+    return result.prior_year_rebate
   end
 
 

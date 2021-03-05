@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_08_204246) do
+ActiveRecord::Schema.define(version: 2021_01_20_214639) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -296,6 +296,49 @@ ActiveRecord::Schema.define(version: 2021_01_08_204246) do
     t.string "description"
   end
 
+  create_table "remittances", force: :cascade do |t|
+    t.bigint "franchise_id"
+    t.integer "year"
+    t.integer "month"
+    t.integer "status"
+    t.datetime "date_received"
+    t.datetime "date_posted"
+    t.decimal "accounting", precision: 10, scale: 2, default: "0.0"
+    t.decimal "backwork", precision: 10, scale: 2, default: "0.0"
+    t.decimal "consulting", precision: 10, scale: 2, default: "0.0"
+    t.decimal "excluded", precision: 10, scale: 2, default: "0.0"
+    t.decimal "other1", precision: 10, scale: 2, default: "0.0"
+    t.decimal "payroll", precision: 10, scale: 2, default: "0.0"
+    t.decimal "setup", precision: 10, scale: 2, default: "0.0"
+    t.decimal "tax_preparation", precision: 10, scale: 2, default: "0.0"
+    t.decimal "calculated_royalty", precision: 10, scale: 2, default: "0.0"
+    t.decimal "minimum_royalty", precision: 10, scale: 2, default: "0.0"
+    t.decimal "royalty", precision: 10, scale: 2, default: "0.0"
+    t.string "credit1"
+    t.decimal "credit1_amount", precision: 10, scale: 2, default: "0.0"
+    t.string "credit2"
+    t.decimal "credit2_amount", precision: 10, scale: 2, default: "0.0"
+    t.string "credit3"
+    t.decimal "credit3_amount", precision: 10, scale: 2, default: "0.0"
+    t.string "credit4"
+    t.decimal "credit4_amount", precision: 10, scale: 2, default: "0.0"
+    t.integer "late"
+    t.string "late_reason"
+    t.decimal "late_fees", precision: 10, scale: 2, default: "0.0"
+    t.string "payroll_credit_desc"
+    t.decimal "payroll_credit_amount", precision: 10, scale: 2
+    t.integer "confirmation"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.decimal "other2", precision: 10, scale: 2, default: "0.0"
+    t.string "slug"
+    t.decimal "total_due", precision: 10, scale: 2, default: "0.0"
+    t.index ["franchise_id", "year", "month"], name: "index_remittances_on_franchise_id_and_year_and_month", unique: true
+    t.index ["franchise_id"], name: "index_remittances_on_franchise_id"
+    t.index ["month"], name: "index_remittances_on_month"
+    t.index ["year"], name: "index_remittances_on_year"
+  end
+
   create_table "transaction_codes", force: :cascade do |t|
     t.string "code"
     t.integer "trans_type"
@@ -343,5 +386,6 @@ ActiveRecord::Schema.define(version: 2021_01_08_204246) do
   add_foreign_key "financials", "franchises"
   add_foreign_key "insurances", "franchises"
   add_foreign_key "prp_transactions", "franchises"
+  add_foreign_key "remittances", "franchises"
   add_foreign_key "website_preferences", "franchises"
 end

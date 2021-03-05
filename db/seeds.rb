@@ -74,3 +74,4 @@ Region.create({ "region_id"=>5, "region_number"=>"05", "area"=>"1", "description
 Region.create({ "region_id"=>19, "region_number"=>"19", "area"=>"1", "description"=>"Processing Centers"})
 Region.create({ "region_id"=>20, "region_number"=>"20", "area"=>"1", "description"=>"Corporate"})
 Region.create({ "region_id"=>0, "region_number"=>"00", "area"=>"1", "description"=>"Home Office"})
+

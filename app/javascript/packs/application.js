@@ -22,7 +22,6 @@ import "jquery-mask-plugin"
 
  
 global.$ = jQuery;
-
 require("custom/franchises")
 require("custom/franchises_select")
 require("custom/accountants")
@@ -33,6 +32,7 @@ require("custom/website_preferences")
 require("custom/financials")
 require("custom/cookie_banner")
 require("custom/credits")
+require("custom/remittances")
 
 require.context('../images',true, /\.(?:png|jpg|gif|ico|svg)$/)
 
@@ -67,11 +67,13 @@ document.addEventListener("turbolinks:load", () => {
     })
   $('[data-toggle="popover"]').popover()
 
-  
-
-
  
 })
+
+
+
+
+
 
 
 

@@ -48,6 +48,26 @@
       </div>
     </div>
 
+    <!--LATEST ROYALTY -->
+    <div class = "card-group accordion-padgett" id="accordion" role="tablist"     aria-multiselectable="true">
+      <div class = "card">
+        <div class = "card-header card-background-padgett" role="tab"
+          id="headingRoy">
+          <h4 class="card-title">
+            <h3 class="collapsed"  role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseRoy" aria-expanded="true" aria-controls="collapseRoy">
+              <%=I18n.t('franchise.show.remittances')%>
+            </h3>
+          </h4>
+        </div>
+        <div id="collapseRoy" class="collapse" role="tabpanel" 
+          aria-labelledby="headingRoy">
+          <div class="card-body">
+            <%= render :partial => 'admins/franchises/show/remittances', :locals => {:franchise => @franchise} %>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <!--PAYMENT METHODS -->
     <div class = "card-group accordion-padgett" id="accordion" role="tablist" 
          aria-multiselectable="true">
