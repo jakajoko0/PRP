@@ -34,6 +34,7 @@ require("custom/cookie_banner")
 require("custom/credits")
 require("custom/remittances")
 
+
 require.context('../images',true, /\.(?:png|jpg|gif|ico|svg)$/)
 
 

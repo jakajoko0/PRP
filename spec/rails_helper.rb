@@ -92,23 +92,6 @@ RSpec.configure do |config|
   # config.filter_gems_from_backtrace("gem name")
 end
 
-
-  # Capybara.register_driver :selenium_remote_chrome do |app|
-  #   Capybara::Selenium::Driver.new(
-  #     app,
-  #     browser: :remote,
-  #     desired_capabilities: Selenium::WebDriver::Remote::Capabilities.chrome(
-  #       chromeOptions: {
-  #         args: [
-  #           "window-size=1024,768"
-  #         ]
-  #       }
-  #     ),
-  #     url: ENV['selenium_remote_url'])
-  # end
-
-  # Capybara.javascript_driver = :selenium_remote_chrome
-
   
 
   case ENV['HEADLESS']

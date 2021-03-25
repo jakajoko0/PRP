@@ -14,7 +14,7 @@ RSpec.feature "Feature - Adding Remittance", type: :feature do
     expect(page).to have_content("New Royalty Report")
     expect(page).to have_field("remittance_year")
     expect(page).to_not have_field("remittance_date_received")
-   
+    fill_in 'Year', with: (Date.today.year)+1 
     fill_in "Accounting", with: "1000.00"
     fill_in "Backwork", with: "1000.00"
     fill_in "Consulting", with: "1000.00"
@@ -45,7 +45,7 @@ RSpec.feature "Feature - Adding Remittance", type: :feature do
     expect(page).to have_content("New Royalty Report")
     expect(page).to have_field("remittance_year")
     expect(page).to_not have_field("remittance_date_received")
-   
+    fill_in 'Year', with: (Date.today.year)+1
     fill_in "Accounting", with: "1000.00"
     fill_in "Backwork", with: "1000.00"
     fill_in "Consulting", with: "1000.00"

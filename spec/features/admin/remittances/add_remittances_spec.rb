@@ -30,6 +30,8 @@ RSpec.feature "Feature - Adding Remittance", type: :feature do
     expect(page).to have_field("remittance_date_received", with: Date.today.strftime("%m/%d/%Y"))
     expect(page).to have_field("remittance_date_posted", with: Date.today.strftime("%m/%d/%Y"))
     #Fill In some Collections
+    #Make sure the report is never late
+    fill_in 'Year', with: (Date.today.year)+1
     fill_in 'Accounting', with: 1000
     fill_in 'Backwork', with: 1000
     fill_in 'Consulting', with: 1000
@@ -75,6 +77,7 @@ RSpec.feature "Feature - Adding Remittance", type: :feature do
     expect(page).to have_field("remittance_date_received", with: Date.today.strftime("%m/%d/%Y"))
     expect(page).to have_field("remittance_date_posted", with: Date.today.strftime("%m/%d/%Y"))
     #Fill In some Collections
+    fill_in 'Year', with: (Date.today.year)+1
     fill_in 'Accounting', with: 1000
     fill_in 'Backwork', with: 1000
     fill_in 'Consulting', with: 1000

@@ -23,7 +23,7 @@ RSpec.describe "Interactor - CreateAccountant", :type => :interactor do
 
 		context "When given invalid attributes" do 
 			subject {CreateAccountant.call(params: params.merge(lastname: nil), user: admin)}
-			it "should not create insurance" do 
+			it "should not create accountant" do 
 				interactor = subject
 				expect(interactor).to be_a_failure
 			end
