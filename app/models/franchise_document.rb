@@ -13,6 +13,6 @@ class FranchiseDocument < ApplicationRecord
 
 
 	scope :for_franchise, -> (fran_id) {where(franchise_id: fran_id).order("created_at DESC")}
-	scope :all_ordered, -> {FranchiseDocument.includes(:franchise).order("created_at DESC")}
+	scope :all_ordered, -> {FranchiseDocument.includes(:franchise, document_attachment: :blob).order("created_at DESC")}
 	
 end

@@ -3,6 +3,7 @@ class FranchiseDocumentsController < ApplicationController
 
   def index
   	@franchise_documents = FranchiseDocument.for_franchise(current_user.franchise_id)
+                           .paginate(per_page: 20, page: params[:page])
   	authorize! :read, FranchiseDocument
   end
 

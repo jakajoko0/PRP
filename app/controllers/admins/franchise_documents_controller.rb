@@ -4,6 +4,7 @@ class Admins::FranchiseDocumentsController < ApplicationController
 
   def index
     @franchise_documents = FranchiseDocument.all_ordered
+                            .paginate(per_page: 20, page: params[:page])
     authorize! :read, FranchiseDocument
   end
 

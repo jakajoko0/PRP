@@ -104,4 +104,14 @@
       </tbody>
   	<%end%>
   </table>
-</div>  	
+</div>  
+
+<!-- Pagination Links  -->
+<div class = "row justify-content-center">
+  <div class = "flickr_pagination">
+    <%= will_paginate @franchise_documents,
+    pervious_label: I18n.t('pagination.prev'),
+    next_label: I18n.t('pagination.next') %>
+  </div>
+</div>
+	

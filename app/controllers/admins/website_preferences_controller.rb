@@ -3,7 +3,7 @@ before_action :set_website_preference, only: [:audit, :edit, :update, :destroy]
 
 
 def index
-  @website_preferences = WebsitePreference.includes("franchise")
+  @website_preferences = WebsitePreference.all
   .order("website_preferences.created_at DESC")
   .paginate(per_page: 20, page: params[:page])
   
