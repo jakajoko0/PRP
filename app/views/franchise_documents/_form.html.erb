@@ -44,15 +44,26 @@
       <div class = "form-row col-12">
   	    <!-- FILE TO UPLOAD -->
   	    <div class = "form-group form-row col-12">
-  	      <%=f.label :document,
+          <%=f.label :document,
             class: 'col-md-3 col-sm-3 col-lg-2 col-xl-3
                     col-form-label col-form-label-sm
                     label-bold'%>
+                    
           <div class = "col-sm-6 col-md-6 col-lg-6 col-xl-6">
-      	    <%= f.file_field :document, 
-            class: "form-control form-control-sm col",
-              required: true%>
-          </div>   
+            <label class="btn btn-padgett"
+                   for="franchise_document_document">
+            
+              <input id="franchise_document_document" type="file" style="display:none" 
+              onchange="$('#upload-file-info').text(this.files[0].name)">
+              Select File
+            </label>
+            &nbsp;
+            <span class='label label-info'
+            id="upload-file-info">
+              No File Selected
+            </span>
+          </div>            
+  	      
   	    </div>
      </div>
     </div>
