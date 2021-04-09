@@ -1,0 +1,67 @@
+<div class = "card">
+  <div class = "card-body card-background-padgett">
+    <table class = "table
+           table-striped table-in-card">
+      <thead>
+        <tr>
+          <th scope="col" 
+              style="text-align:left">
+            <%=I18n.t('franchise_document.index.uploaded')%>
+          </th>
+          <th scope = "col" 
+              style = "text-align:left">
+            <%=I18n.t('franchise_document.index.document_type')%>
+          </th>
+          <th scope = "col" 
+              style = "text-align:left">
+            <%=I18n.t('franchise_document.index.description')%>
+          </th>
+          <th scope = "col" 
+              style = "text-align:right">
+            <%=I18n.t('franchise_document.index.size')%>
+          </th>
+           <th scope = "col" 
+              style = "text-align:left">
+            <%=I18n.t('franchise_document.index.document_file')%>
+          </th>
+          
+          <th>
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <%franchise.franchise_documents.order("created_at DESC").each do |fdoc|%>
+          <tr>
+            <th align = "left" class="text-nowrap">
+              <%=I18n.l(fdoc.created_at.in_time_zone, format: :prp)%>
+            </th>
+            <td align="left" class = "text-nowrap">
+              <%=fdoc.document_type.capitalize%>
+            </td>
+            <td align="left" class = "text-nowrap">
+              <%=fdoc.description%>
+            </td>
+            <td align="right" class = "text-nowrap">
+              <%=number_to_human_size(fdoc.document.byte_size)%>
+            </td>
+            <td align="left" class = "text-nowrap">
+              <%=link_to (fdoc.document.filename), fdoc.document.service_url(disposition: 'attachment')%>
+            </td>
+
+            <%if can? :delete, fdoc %>
+            <td align="center" class = "text-nowrap">
+              <%=link_with_icon(admins_franchise_document_path(id: fdoc.id),
+                "delete",
+                I18n.t('franchise_document.index.delete_link'),
+                I18n.t('franchise_document.index.delete_confirm'),
+                false)%>
+            </td>
+            <%end%>
+          </tr>
+        <%end%>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+                

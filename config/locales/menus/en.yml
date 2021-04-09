@@ -19,6 +19,7 @@ en:
       reporting_text: Reporting
       royalties: Royalties
       financials: Financials      
+      franchise_documents: Documents
     deposits: Deposits
     other_charges: Other Charges
     payments:
@@ -50,6 +51,7 @@ en:
       accountants: Accountants
       insurance: Insurance 
       financials: Financials
+      documents: Documents
       website: Website Preferences
       supports: Support
       support:

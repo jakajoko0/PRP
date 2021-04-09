@@ -14,6 +14,7 @@ class UserAbility
       can [:update],  Remittance, franchise_id: user.franchise_id, status: "pending"
       can [:destroy], Remittance, franchise_id: user.franchise_id, status: "pending"
       can [:delete], Remittance, franchise_id: user.franchise_id, status: "pending"
+      can :manage, FranchiseDocument, franchise_id: user.franchise_id
       
     end    
 

@@ -18,51 +18,59 @@ gem 'turbolinks', '~> 5'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.7'
 
-# Use Redis adapter to run Action Cable in production
-# gem 'redis', '~> 4.0'
-# Use Active Model has_secure_password
-# gem 'bcrypt', '~> 3.1.7'
+# Gems to use Action Cable and background jobs
+gem 'redis'
+gem 'sidekiq', '6.1.1' 
+gem 'sidekiq-cron'
+
+
+#Gems to handle authentication
 gem 'devise', '~> 4.7', '>= 4.7.3'
-
-gem "interactor", "~> 3.0"
-
-#Gem to help login As another user
 gem 'devise_masquerade', '1.3.2'
 
 #Gem to keep audit track of changes
 gem 'audited', '~> 4.10'
 
-#Gem to display charts
-gem 'chartkick', '3.4.0'
-
 #Gem to show better user friendly urls (slugs) 
 gem 'friendly_id', '~> 5.4', '>= 5.4.2'
-# Use Active Storage variant
-# gem 'image_processing', '~> 1.2'
 
-gem 'will_paginate', '3.2.1'
-# Reduces boot times through caching; required in config/boot.rb
-gem 'bootsnap', '>= 1.4.2', require: false
+# Enables Application Log browsing and reviewing
+gem 'logster'
+
+# To enable access restrictions on resources
+gem 'cancan'
 
 # Enables exceptions to be rescued and sent to an admin
 gem 'exception_notification', '~> 4.4', '>= 4.4.3'
 
-gem 'redis'
+#Gem to paginate big results
+gem 'will_paginate', '3.2.1'
 
+#Gem to manage and streamline interactors
+gem "interactor", "~> 3.0"
 
-# Enables Application Log browsing and reviewing
-gem 'logster'
-# Passing values to Javascript
-gem 'gon'
 # To put the App in Maintenance Mode
 gem 'turnout'
-# To enable access restrictions on resources
-gem 'cancan'
-# To enable API calls 
+
+#Gem to display charts
+gem 'chartkick', '3.4.0'
+
+#Gem to validate attachment sizes, content-type
+gem 'active_storage_validations'
+gem 'image_processing', '~> 1.2'
+# Enables Application to Communicate with AWS S3
+gem 'aws-sdk-s3', require: false
+
+# Reduces boot times through caching; required in config/boot.rb
+gem 'bootsnap', '>= 1.4.2', require: false
+
+# Passing values to Javascript
+gem 'gon'
+
+
+# To make and process API calls 
 gem 'savon' , '2.12.0'
-# To process background jobs
-gem 'sidekiq', '6.1.1' 
-gem 'sidekiq-cron'
+
 gem 'rubyzip', '1.3.0'
 
 #PDF Generation
@@ -73,6 +81,7 @@ gem 'wkhtmltopdf-binary'
 gem 'caxlsx'
 gem 'caxlsx_rails'
 
+#gem that creates fake values, mostly for testing
 gem 'faker'
 
 
@@ -98,10 +107,15 @@ group :development do
   gem 'capistrano-rbenv', '~> 2.1', '>=2.1.4'
   gem 'capistrano-nginx'
   gem 'capistrano-local-precompile', '~>1.2.0', require: false
+
+  gem 'brakeman'
+  gem 'bullet'
+  gem 'rubocop', '~> 1.12', require: false
+
 end
 
 group :test do 
-  gem 'capybara', '3.29.0'	
+  gem 'capybara', '3.35.3'	
   gem 'selenium-webdriver', '3.142.6'
   gem 'database_cleaner'
   gem 'geckodriver-helper'

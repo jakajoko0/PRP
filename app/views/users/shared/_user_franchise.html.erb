@@ -1,6 +1,7 @@
 <!-- ACCOUNT MENU DROPDOWN -->
 <ul class="navbar-nav mr-auto">
   <%=main_dropdown_menu(I18n.t('user_menu.account.account_text'))%>
+    
     <!-- FRANCHISE SETUP -->
     <%=dropdown_item(
       I18n.t('user_menu.account.user_profile'),
@@ -13,11 +14,11 @@
     I18n.t('user_menu.account.setup.setup_text'))%>
       <!-- FRANCHISE -->
       <%=dropdown_item(
-        I18n.t('user_menu.account.setup.franchise'),
-        edit_franchise_path(current_user.franchise))%>
+      I18n.t('user_menu.account.setup.franchise'),
+      edit_franchise_path(current_user.franchise))%>
       <!-- ACCOUNTANT -->
       <%=dropdown_item(
-        I18n.t('user_menu.account.setup.accountants'),
+      I18n.t('user_menu.account.setup.accountants'),
         "#")%>
       <!-- INSURANCE -->
       <%=dropdown_item(
@@ -30,30 +31,38 @@
       
       <li class="dropdown-divider"></li>
       
-        <!-- BANK ACCOUNTS -->
-        <%=dropdown_item(
-          I18n.t('user_menu.account.setup.payment_methods.bank_account'),bank_accounts_path)%>
+      <!-- BANK ACCOUNTS -->
+      <%=dropdown_item(
+      I18n.t('user_menu.account.setup.payment_methods.bank_account'),bank_accounts_path)%>
               
-        <!-- CREDIT CARDS -->
-        <%=dropdown_item(
-          I18n.t('user_menu.account.setup.payment_methods.credit_cards') ,credit_cards_path)%>
+      <!-- CREDIT CARDS -->
+      <%=dropdown_item(
+      I18n.t('user_menu.account.setup.payment_methods.credit_cards') ,credit_cards_path)%>
           
-      <%=close_dropdown_submenu%>
+    <%=close_dropdown_submenu%>
   <%=close_main_dropdown%>
  
   <!-- REPORTING -->
   <%=main_dropdown_menu(I18n.t('user_menu.reporting.reporting_text'))%>
+    
     <!-- ROYALTIES -->
     <%=dropdown_item(
-      I18n.t('user_menu.reporting.royalties') ,
-      remittances_path)%>
+    I18n.t('user_menu.reporting.royalties') ,
+    remittances_path)%>
 
     <li class="dropdown-divider"></li>
     
     <!-- FINANCIALS -->
     <%=dropdown_item(
-      I18n.t('user_menu.reporting.financials') ,
-      financials_path)%>
+    I18n.t('user_menu.reporting.financials') ,
+    financials_path)%>
+
+    <li class="dropdown-divider"></li>
+    
+    <!-- DOCUMENTS -->
+    <%=dropdown_item(
+    I18n.t('user_menu.reporting.franchise_documents') ,
+    franchise_documents_path)%>  
 
   <%=close_main_dropdown%>
 

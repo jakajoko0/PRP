@@ -120,6 +120,7 @@ en:
       website_pref: Website Preference
       financials: Financials
       insurance: Insurance
+      documents: Documents
       return_btn: Return
   franchise_select:
     title: Select a Franchise
@@ -135,6 +136,7 @@ en:
     add_insurance: Add Insurance
     new_website_pref: Add Website Preference
     enter_financial: Enter Financials
+    add_document: Add Document
 
 
 

@@ -1,0 +1,44 @@
+en:
+  activerecord:
+    errors:
+      models:
+        franchise_document:
+          attributes:
+            franchise:
+              blank: Franchise cannot be blank
+            description:
+              blank: Please provide a description
+            document_type:
+              blank: Please select the document type
+            document:
+              blank: Please select a document to upload  
+  helpers:
+    label:
+      franchise_document:
+        document_type: Document type 
+        description: Description
+        document: Document File              
+
+  franchise_document:
+    object_name: Document
+    create:
+      confirm: Document Attachment Created Successfully
+    delete:
+      confirm: Document Attachment Deleted Successfully
+      error: A Problem Occured Deleting Document
+    index:
+      add_document: Attach Document
+      franchise: Franchise
+      uploaded: Uploaded On
+      document_type: Document Type
+      description: Description 
+      size: Size
+      document_file: Document File       
+      delete_link: Delete this Document
+      delete_confirm: Are you sure you want to Delete this Document?
+    form:
+      save: Save  
+      discard: Discard
+      create_title: Attach New Document
+      create_title_admin: Attach New Document for %{franchise}
+

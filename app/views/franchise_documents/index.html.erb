@@ -1,0 +1,17 @@
+<div class = "row col-12 pb-3">
+  <%=link_to new_franchise_document_path,
+     data: {turbolinks: false} do%>
+     <button class = 'btn btn-padgett'>
+       <%=I18n.t('franchise_document.index.add_document')%>
+     </button>
+  <%end%>
+</div>
+
+<div class = "row">
+	<div id = "documents" class = "col">
+		<%=render partial: 'document_list'%>
+	</div>
+</div>
+
+
+

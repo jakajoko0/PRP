@@ -86,6 +86,9 @@ module FranchiseHelper
       when 'add_insurance'
         route = new_admins_insurance_path(franchise_id: franchise.id)
         button_text = I18n.t('franchise_select.add_insurance')
+      when 'add_document'  
+        route = new_admins_franchise_document_path(franchise_id: franchise.id)
+        button_text = I18n.t('franchise_select.add_document')
       end
 
       rtn_html = <<-HTML     

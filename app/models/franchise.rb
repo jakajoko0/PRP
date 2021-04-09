@@ -63,7 +63,7 @@ has_one  :insurance
 has_one :website_preference
 has_many :users
 has_many :remittances
-
+has_many :franchise_documents
 friendly_id :number_and_name, use: :slugged
 audited except: [:slug, :max_collections, :avg_collections, :max_coll_year, :max_coll_month], on: [:update, :destroy]
 

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_20_214639) do
+ActiveRecord::Schema.define(version: 2021_03_25_161857) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -39,6 +39,34 @@ ActiveRecord::Schema.define(version: 2021_01_20_214639) do
     t.string "ptin", limit: 8
     t.index ["accountant_num", "franchise_id"], name: "index_accountants_on_accountant_num_and_franchise_id", unique: true
     t.index ["franchise_id"], name: "index_accountants_on_franchise_id"
+  end
+
+  create_table "active_storage_attachments", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "record_type", null: false
+    t.bigint "record_id", null: false
+    t.bigint "blob_id", null: false
+    t.datetime "created_at", null: false
+    t.index ["blob_id"], name: "index_active_storage_attachments_on_blob_id"
+    t.index ["record_type", "record_id", "name", "blob_id"], name: "index_active_storage_attachments_uniqueness", unique: true
+  end
+
+  create_table "active_storage_blobs", force: :cascade do |t|
+    t.string "key", null: false
+    t.string "filename", null: false
+    t.string "content_type"
+    t.text "metadata"
+    t.string "service_name", null: false
+    t.bigint "byte_size", null: false
+    t.string "checksum", null: false
+    t.datetime "created_at", null: false
+    t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
+  end
+
+  create_table "active_storage_variant_records", force: :cascade do |t|
+    t.bigint "blob_id", null: false
+    t.string "variation_digest", null: false
+    t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
   create_table "admins", force: :cascade do |t|
@@ -198,6 +226,15 @@ ActiveRecord::Schema.define(version: 2021_01_20_214639) do
     t.datetime "updated_at", precision: 6, null: false
     t.string "slug"
     t.index ["franchise_id"], name: "index_financials_on_franchise_id"
+  end
+
+  create_table "franchise_documents", force: :cascade do |t|
+    t.bigint "franchise_id"
+    t.string "description", null: false
+    t.integer "document_type", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["franchise_id"], name: "index_franchise_documents_on_franchise_id"
   end
 
   create_table "franchises", force: :cascade do |t|
@@ -381,9 +418,12 @@ ActiveRecord::Schema.define(version: 2021_01_20_214639) do
   end
 
   add_foreign_key "accountants", "franchises"
+  add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "bank_accounts", "franchises"
   add_foreign_key "credit_cards", "franchises"
   add_foreign_key "financials", "franchises"
+  add_foreign_key "franchise_documents", "franchises"
   add_foreign_key "insurances", "franchises"
   add_foreign_key "prp_transactions", "franchises"
   add_foreign_key "remittances", "franchises"

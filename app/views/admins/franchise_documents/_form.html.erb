@@ -1,0 +1,64 @@
+<div class = "card">
+  <div class = "card-header login-header">
+    <h4>
+      <%=I18n.t('franchise_document.form.create_title_admin', franchise: franchise_document.franchise.number_and_name)%>
+    </h4>
+  </div>
+  <%= form_for [:admins, franchise_document] do |f| %>
+    <div class = "card-body card-background-padgett">
+      <div class = "form-row col-12">
+        <%=f.hidden_field :franchise_id,
+        value: f.object.franchise_id%>
+        <!-- TYPE -->
+        <div class = "form-group form-row col-12">
+          <%=f.label :document_type,
+            class: 'col-md-3 col-sm-3 col-lg-2 col-xl-3
+                    col-form-label col-form-label-sm label-bold'%>
+          <div class = "col-sm-3 col-md-2 col-lg-2 col-xl-2">
+            <%= f.select(:document_type, [["Tax Return",1],["Insurance",2],["Other",5]],{include_blank: false},{
+              class: "form-control form-control-sm col"})%>
+          </div>   
+        </div>
+      </div>
+
+      <div class = "form-row col-12">  
+        <!-- DESCRIPTION -->   
+        <div class = "form-group form-row col-12">
+          <%=f.label :description,
+           class: 'col-md-3 col-sm-3 col-lg-2 col-xl-3
+                   col-form-label col-form-label-sm label-bold'%>
+          <div class = "col-sm-6 col-md-6 col-lg-6 col-xl-6">
+      	    <%= f.text_field :description,
+      	    class: "form-control form-control-sm col",
+            required: true%>
+          </div>
+        </div>
+      </div>
+     
+      <div class = "form-row col-12">
+  	    <!-- FILE TO UPLOAD -->
+  	    <div class = "form-group form-row col-12">
+  	      <%=f.label :document,
+            class: 'col-md-3 col-sm-3 col-lg-2 col-xl-3
+                    col-form-label col-form-label-sm label-bold'%>
+          <div class = "col-sm-6 col-md-6 col-lg-6 col-xl-6">
+      	    <%= f.file_field :document, 
+            class: "form-control form-control-sm col"%>
+          </div>   
+  	    </div>
+  	 
+     </div>
+    </div>
+ </div>     
+<br/>
+<div class = "row col-12">
+  <%=f.submit (I18n.t('franchise_document.form.save')),
+    class: 'btn btn-padgett col-4 col-sm-4 col-md-3 col-lg-3 col-xl-2',
+    name: "submit" %>
+  <div class = "col-1 col-sm-1 col-md-1 col-lg-1 col-xl-1"></div>
+  <%=link_to (I18n.t('franchise_document.form.discard')),
+    admins_franchise_documents_path,
+    class: 'btn btn-padgett col-4 col-sm-4 col-md-3 col-lg-3 col-xl-2' %>
+</div>
+
+<%end%>

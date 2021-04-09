@@ -51,6 +51,7 @@ Rails.application.routes.draw do
     resources :website_preferences, except: :destroy
     resources :financials
     resources :remittances
+    resources :franchise_documents, except: [:show, :edit, :update]
 
 
     get '/bank_routings/bank_name' => 'bank_routings#bank_name'
@@ -73,6 +74,7 @@ Rails.application.routes.draw do
       resources :franchises
       resources :franchises_select
       resources :credits
+      resources :franchise_documents
       get 'credits/audit/:id', to: "credits#audit", as: 'credit_audit'
       resources :charges
       get 'charges/audit/:id', to: "charges#audit", as: 'charge_audit'
