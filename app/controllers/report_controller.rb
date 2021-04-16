@@ -19,7 +19,7 @@ class ReportController < ApplicationController
       "Total Monthly Clients"
     when "average_monthly_fees"
       "Average Monthly Fees"
-    when "toal_revenue"  
+    when "total_revenue"  
       "Total Revenue"
 
     end

@@ -190,7 +190,11 @@ class FinancialsQuery
        financials.id as unique_id, 
        franchises.franchise_number as franchise_number, 
        franchises.lastname as lastname, 
-       franchises.firstname as firstname
+       franchises.firstname as firstname,
+       franchises.address as address,
+       franchises.city as city,
+       franchises.state as state,
+       franchises.zip_code as zip_code
        FROM financials,franchises
        WHERE financials.franchise_id = franchises.id
        AND financials.year = #{year}"
@@ -262,7 +266,12 @@ class FinancialsQuery
         aggregation.unique_id,
         aggregation.franchise_number,
         aggregation.lastname,
-        aggregation.firstname
+        aggregation.firstname,
+        aggregation.address,
+        aggregation.city,
+        aggregation.state,
+        aggregation.zip_code,
+        1 as franchise_count
         FROM aggregation
         WHERE #{tier[:filter]}
         UNION 
@@ -325,7 +334,12 @@ class FinancialsQuery
         999999.unique_id,
         '' as franchise_number,
         'Totals for Tier #{tier[:tier_number]}' as lastname,
-        '' as firstname
+        '' as firstname,
+        '' as address,
+        '' as city,
+        '' as state,
+        '' as zip_code,
+        COUNT(*) as franchise_count
         FROM aggregation
         WHERE #{tier[:filter]} UNION "
        end

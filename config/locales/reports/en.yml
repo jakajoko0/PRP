@@ -140,21 +140,16 @@
     financial_aggregation:
       title: Financial Aggregation
       title_excel: Financial Aggregation
-      title_workbook: Financial Aggregation
+      title_aggregation: Financial Report
+      title_sales: Sales by Franachise
+      title_pl: P&L
       title_year: Calendar Year %{yr}
       title_all: All Franchises
+      sales_franchise: Franchise
+      sales_total_rev: Total Revenue
+      sales_total_tax: Tax Preparation
       franchise: Franchise
       total_revenues: Total Revenue
       total_expenses: Total Expense
+      address: Address
       non_padgett_revenues: Non Padgett Revenues
-
-
-
-
-
-
-
-
-
-
-

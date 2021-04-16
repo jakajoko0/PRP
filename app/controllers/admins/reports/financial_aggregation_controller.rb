@@ -12,7 +12,6 @@ def report
   year = yr[:year].to_i
   
   @records = FinancialsQuery.new.aggregation_report(franchise, year,sortby)
-  
   sortby_text = sortby_title(sortby)
   
   title = format_report_title([I18n.t('reports.financial_aggregation.title'),

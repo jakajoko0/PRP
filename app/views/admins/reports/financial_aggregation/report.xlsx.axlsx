@@ -2,56 +2,80 @@ wb = xlsx_package.workbook
 
 styles = set_axlsx_styles(wb)
 
-wb.add_worksheet(name:I18n.t('reports.financial_aggregation.title_workbook')) do |ws|
-  ws.add_row [@report_info[:title_excel]],
-  style: styles[:header_title],
-  widths: [:ignore, :auto, :auto, :auto, :auto, :auto],
-  height: 100
-  
-  
-  ws.add_row
+#***************************************************
+#Financial Report Section
+#***************************************************  
 
-  headers = [I18n.t('reports.financial_aggregation.franchise')]+
+ws = wb.add_worksheet(name:I18n.t('reports.financial_aggregation.title_aggregation'))
+
+ws.add_row [@report_info[:title_excel]],
+style: styles[:header_title],
+widths: [:ignore, :auto, :auto, :auto, :auto, :auto],
+height: 100
+  
+ws.add_row
+
+headers = [I18n.t('reports.financial_aggregation.franchise')]+
   Financial::REVENUE_DESC+
   [I18n.t('reports.financial_aggregation.total_revenues')]+
   Financial::EXPENSE_DESC_REPORT+
   [I18n.t('reports.financial_aggregation.total_expenses')]+
   Financial::OTHER_REVENUE_DESC_REPORT+
-  Financial::OTHER_EXPENSE_DESC_REPORT
+  Financial::OTHER_EXPENSE_DESC_REPORT+[I18n.t('reports.financial_aggregation.address')]
   
   header_styles = [styles[:header_left]]
-  headers.size.times do 
+  
+  (headers.size-1).times do 
     header_styles << styles[:header_right]
   end
 
+  header_styles << styles[:header_left]
+
   ws.add_row headers, style: header_styles
   
+  #***************************************************
+  #Sales By Franchise Section
+  #***************************************************  
+  ws_sales = wb.add_worksheet(name: "Sales")
+
+  ws_sales.add_row ["Franchise", "Total Revenue", "Tax Preparation"],
+  style: [styles[:header_left], styles[:header_right], styles[:header_right]]
+  
+  total_rows = []
 
   if @records.size > 0
     @records.each do |s|
+      #Franchise Number and Name
       line = [(s.franchise_number + " " +s.lastname + " "+ s.firstname).strip]
 
+      #Revenues
       Financial::REVENUE_ATTRIBUTES.each do |attr|
         line << number_with_precision(s.send(attr), precision: 2)
       end
 
       line << number_with_precision(s.total_revenues, precision: 2)
 
+      #Expenses
       Financial::EXPENSE_ATTRIBUTES_REPORT.each do |attr|
         line << number_with_precision(s.send(attr), precision: 2)
       end
 
       line << number_with_precision(s.total_expense, precision: 2)
 
+      #Other Revenues
       Financial::OTHER_REVENUES_REPORT.each do |attr|
         line << number_with_precision(s.send(attr), precision: 2)
       end
 
+      #Other Expenses
       Financial::OTHER_EXPENSES_REPORT.each do |attr|
         line << number_with_precision(s.send(attr), precision: 2)
       end
 
-
+      #Address if not a total line
+      if s.sort_column == 1
+        line << "#{s.address}, #{s.city}, #{s.state}, #{s.zip_code}"
+      end
       
       if s.sort_column == 2
         data_styles = [styles[:header_left]] 
@@ -60,20 +84,629 @@ wb.add_worksheet(name:I18n.t('reports.financial_aggregation.title_workbook')) do
         end
       else
         data_styles = [styles[:data_left]]
-        line.size.times do 
+        (line.size-1).times do 
           data_styles << styles[:number]
         end
+        data_styles << styles[:data_left]
       end
-      ws.add_row line, style: data_styles
+      
+      rtn  = ws.add_row line, style: data_styles
+      
+      if s.sort_column == 1
+        ws_sales.add_row ["#{s.lastname} #{s.firstname}",s.total_revenue, s.tax_prep],
+        style: [styles[:header_left],styles[:number], styles[:number]]
+      end
+
       if s.sort_column == 2 
-        ws.add_row
-        end
+        
+        total_rows << rtn.row_index+1
+        ws.add_row 
+        ws_sales.add_row
+      end
     end
   end  
 
+  #Rails.logger.debug "TOTAL ROWS: #{total_rows.inspect}"
+  ws.merge_cells "A1:J1"
+  ws.merge_cells "A2:J2"
 
-  ws.merge_cells "A1:G1"
-  ws.merge_cells "A2:G2"
-end  
+  #***************************************************
+  #P&L Section
+  #***************************************************
+  #Select only the total lines
+  pl = @records.select{|res| res.sort_column == 2}
+
+  if pl.size > 0
+    ws_pl = wb.add_worksheet(name: I18n.t('reports.financial_aggregation.title_pl'))
+    ws_pl.add_row
+    ws_pl.add_row
+
+    ws_pl.add_row [" ","Adjusted Operating Income", nil,
+    nil,nil,nil," ","Adjusted Operating Income",nil,
+    nil,nil,nil],
+    style: [styles[:data_left], styles[:header_box],
+    styles[:header_box],styles[:header_box],
+    styles[:header_box],styles[:header_box],
+    styles[:data_left],styles[:header_box],
+    styles[:header_box],styles[:header_box],
+    styles[:header_box],styles[:header_box]]
+
+    ws_pl.add_row [" ",nil,"$500,000 +", nil, nil, nil,
+    " ", nil, "$300,000 - $499,000",nil,nil,nil],
+    style: [styles[:data_left],styles[:data_left],
+    styles[:header_box],styles[:header_box],
+    styles[:header_box],styles[:header_box],
+    styles[:data_left],styles[:data_left],
+    styles[:header_box],styles[:header_box],
+    styles[:header_box],styles[:header_box]]
+
+    ws_pl.add_row [" ","Revenue","Cumulative Total", nil,
+    "Average", nil, " ", "Revenue", "Cumulative Total",
+    nil, "Average", nil],
+    style: [styles[:data_left],styles[:data_left],
+    styles[:header_box],styles[:header_box],
+    styles[:header_box],styles[:header_box],
+    styles[:data_left],styles[:data_left],
+    styles[:header_box],styles[:header_box],
+    styles[:header_box],styles[:header_box]]
+
+    ws_pl.add_row
+  
+    ws_pl.add_row [nil,nil,"$","%","$","%"," ",nil,
+    "$","%","$","%"],
+    style: [styles[:data_left],styles[:data_left],
+    styles[:header_right],styles[:header_right],
+    styles[:header_right],styles[:header_right],
+    styles[:data_left],styles[:data_left],
+    styles[:header_right],styles[:header_right],
+    styles[:header_right],styles[:header_right]]
+
+    #Revenues formulas
+    revenues = []
+    r_pcts = []
+    r_avgs = []
+    r_avg_pct = []
+ 
+    rev_desc = ["Financial Reporting",
+                "Tax Preparation",
+                "Payroll Procesisng",
+                "Start Up / Backwork",
+                "Other"]
+
+    revenues << ["='Financial Report'!B#{total_rows[0]}",
+    "='Financial Report'!B#{total_rows[1]}",
+    "='Financial Report'!B#{total_rows[2]}",
+    "='Financial Report'!B#{total_rows[3]}"]            
+
+    r_pcts << ["=C8/C13","=I8/I13", "=C43/C48", 
+               "=I43/I48"]  
+    r_avgs << ["=C8/C36","=I8/I36", "=C43/C71",
+               "=I43/I71" ]
+    r_avg_pct << ["=E8/E13","=K8/K13","=E43/E48",
+                  "=K43/K48"]
+  
+    revenues << ["='Financial Report'!E#{total_rows[0]}",
+    "='Financial Report'!E#{total_rows[1]}",
+    "='Financial Report'!E#{total_rows[2]}",
+    "='Financial Report'!E#{total_rows[3]}"]
+    
+    r_pcts << ["=C9/C13","=I9/I13", "=C44/C48",
+               "=I44/I48"]  
+    r_avgs << ["=C9/C36","=I9/I36", "=C44/C71",
+               "=I44/I71" ]   
+    r_avg_pct << ["=E9/E13","=K9/K13","=E44/E48",
+                  "=K44/K48"]
+
+    revenues << ["='Financial Report'!F#{total_rows[0]}",
+    "='Financial Report'!F#{total_rows[1]}",
+    "='Financial Report'!F#{total_rows[2]}",
+    "='Financial Report'!F#{total_rows[3]}" ]
+
+    r_pcts << ["=C10/C13","=I10/I13","=C45/C48",
+                "=I45/I48"] 
+    r_avgs << ["=C10/C36","=I10/36","=C45/C71",
+                "=I45/I71"]        
+    r_avg_pct << ["=E10/E13","=K10/K13","=E45/E48",
+                   "=K45/K48"]
+
+    revenues << ["='Financial Report'!C#{total_rows[0]} + 
+      'Financial Report'!D#{total_rows[0]}",
+    "='Financial Report'!C#{total_rows[1]} + 
+      'Financial Report'!D#{total_rows[1]}",
+    "='Financial Report'!C#{total_rows[2]} + 
+      'Financial Report'!D#{total_rows[2]}",
+    "='Financial Report'!C#{total_rows[3]} + 
+      'Financial Report'!D#{total_rows[3]}"]
+
+    r_pcts << ["=C11/C13","=I11/I13","=C46/C48",
+               "=I46/I48"]   
+    r_avgs << ["=C11/C36","=I11/I36","=C46/C71",
+               "=I46/I71"]      
+    r_avg_pct << ["=E11/E13","=K11/K13","=E46/E48",
+                  "=K46/K48"]
+
+    revenues << ["='Financial Report'!G#{total_rows[0]}",
+    "='Financial Report'!G#{total_rows[1]}",
+    "='Financial Report'!G#{total_rows[2]}",
+    "='Financial Report'!G#{total_rows[3]}"]
+    
+    r_pcts << ["=C12/C13","=I12/I13","=C47/C48",
+               "=I47/I48"]  
+    r_avgs << ["=C12/C36","=I12/I36","=C47/C71",
+               "=I47/I71"]
+    r_avg_pct << ["=E12/E13","=K12/K13","=E47/E48",
+                  "=K47/K48"]
+
+    #Expenses formulas
+    expenses = []
+    e_pcts = []
+    e_avgs = []
+    e_avg_pct = []
+  
+    expense_categories = ["Salaries",
+                        "Payroll Taxes & Benefits",
+                        "Insurance",
+                        "Supplies",
+                        "Marketing",
+                        "Rents",
+                        "Outside Labor",
+                        "Travel",
+                        "Utilities",
+                        "Licenses & Taxes",
+                        "Postage & Delivery",
+                        "Meals & Entertainment",
+                        "Bank Fees",
+                        "Office Expense",
+                        "Misc. Expense",
+                        "Royalties" ]  
+    
+    expenses << ["='Financial Report'!I#{total_rows[0]}",
+              "='Financial Report'!I#{total_rows[1]}",
+              "='Financial Report'!I#{total_rows[2]}",
+              "='Financial Report'!I#{total_rows[3]}"]
+
+    e_pcts << ["=C16/C13", "=I16/I13","=C51/C48",
+               "=I51/I48"] 
+    e_avgs << ["=C16/C36", "=I16/I36","=C51/C71",
+               "=I51/I71"]
+    e_avg_pct << ["=E16/E13", "=K16/K13","=E51/C48",
+                  "=K51/K48" ]
+  
+    expenses << ["='Financial Report'!L#{total_rows[0]}",
+              "='Financial Report'!L#{total_rows[1]}",
+              "='Financial Report'!L#{total_rows[2]}",
+              "='Financial Report'!L#{total_rows[3]}"]
+    
+    e_pcts << ["=C17/C13", "=I17/I13","=C52/C48",
+               "=I52/I48"] 
+    e_avgs << ["=C17/C36", "=I17/I36","=C52/C71",
+               "=I52/I71"] 
+    e_avg_pct << ["=E17/E13", "=K17/K13","=E52/C48",
+                  "=K52/K48" ]
+
+    expenses << ["='Financial Report'!N#{total_rows[0]}",
+              "='Financial Report'!N#{total_rows[1]}",
+              "='Financial Report'!N#{total_rows[2]}",
+              "='Financial Report'!N#{total_rows[3]}"]
+    
+    e_pcts << ["=C18/C13", "=I18/I13","=C53/C48",
+               "=I53/I48"]
+    e_avgs << ["=C18/C36", "=I18/I36","=C53/C71",
+               "=I53/I71"] 
+    
+    e_avg_pct << ["=E18/E13", "=K18/K13","=E53/C48",
+                  "=K53/K48" ]
+  
+    expenses << ["='Financial Report'!O#{total_rows[0]}",
+              "='Financial Report'!O#{total_rows[1]}",
+              "='Financial Report'!O#{total_rows[2]}",
+              "='Financial Report'!O#{total_rows[3]}"]
+    
+    e_pcts << ["=C19/C13", "=I19/I13","=C54/C48",
+               "=I54/I48"]
+    e_avgs << ["=C19/C36", "=I19/I36","=C54/C71",
+               "=I54/I71"]  
+    e_avg_pct << ["=E19/E13", "=K19/K13","=E54/C48",
+                  "=K54/K48"]
+
+    expenses << ["='Financial Report'!Q#{total_rows[0]}  
+               + 'Financial Report'!AL#{total_rows[0]}",
+               "='Financial Report'!Q#{total_rows[1]} + 'Financial Report'!AL#{total_rows[1]} ",
+               "='Financial Report'!Q#{total_rows[2]} + 'Financial Report'!AL#{total_rows[2]} ",
+               "='Financial Report'!Q#{total_rows[3]} + 'Financial Report'!AL#{total_rows[3]} "]
+    e_pcts << ["=C20/C13", "=I20/I13","=C55/C48",
+               "=I55/I48"]
+    e_avgs << ["=C20/C36", "=I20/I36","=C55/C71",
+               "=I55/I71"]   
+    e_avg_pct << ["=E20/E13", "=K20/K13","=E55/C48",
+                  "=K55/K48"]
+
+    expenses << ["='Financial Report'!R#{total_rows[0]}",
+              "='Financial Report'!R#{total_rows[1]}",
+              "='Financial Report'!R#{total_rows[2]}",
+              "='Financial Report'!R#{total_rows[3]}"]
+    e_pcts << ["=C21/C13", "=I21/I13","=C56/C48",
+               "=I56/I48"]
+  e_avgs << ["=C21/C36", "=I21/I36","=C56/C71", "=I56/I71"]   
+  e_avg_pct << ["=E21/E13", "=K21/K13","=E56/C48", "=K56/K48"]
+
+
+  expenses << ["='Financial Report'!S#{total_rows[0]}",
+              "='Financial Report'!S#{total_rows[1]}",
+              "='Financial Report'!S#{total_rows[2]}",
+              "='Financial Report'!S#{total_rows[3]}"]
+  
+  e_pcts << ["=C22/C13", "=I22/I13","=C57/C48",
+             "=I57/I48"]
+  
+  e_avgs << ["=C22/C36", "=I22/I36","=C57/C71",
+             "=I57/I71"]    
+  
+  e_avg_pct << ["=E22/E13", "=K22/K13","=E57/C48",
+                "=K57/K48"]
+  
+  expenses << ["='Financial Report'!U#{total_rows[0]}",
+              "='Financial Report'!U#{total_rows[1]}",
+              "='Financial Report'!U#{total_rows[2]}",
+              "='Financial Report'!U#{total_rows[3]}"]
+  
+  e_pcts << ["=C23/C13", "=I23/I13","=C58/C48",
+             "=I58/I48"]
+  e_avgs << ["=C23/C36", "=I23/I36","=C58/C71",
+             "=I58/I71"]    
+  e_avg_pct << ["=E23/E13", "=K23/K13","=E58/C48",
+                "=K58/K48"]
+
+  expenses << ["='Financial Report'!V#{total_rows[0]}",
+              "='Financial Report'!V#{total_rows[1]}",
+              "='Financial Report'!V#{total_rows[2]}",
+              "='Financial Report'!V#{total_rows[3]}"]
+  e_pcts << ["=C24/C13", "=I24/I13","=C59/C48",
+             "=I59/I48"]
+  e_avgs << ["=C24/C36", "=I24/I36","=C59/C71",
+             "=I59/I71"]    
+  e_avg_pct << ["=E24/E13", "=K24/K13","=E59/C48",
+                "=K59/K48"]
+  
+  expenses << ["='Financial Report'!W#{total_rows[0]}",
+              "='Financial Report'!W#{total_rows[1]}",
+              "='Financial Report'!W#{total_rows[2]}",
+              "='Financial Report'!W#{total_rows[3]}"]
+  
+  e_pcts << ["=C25/C13", "=I25/I13","=C60/C48",
+             "=I60/I48"]
+  e_avgs << ["=C25/C36", "=I25/I36","=C60/C71",
+             "=I60/I71"]    
+  e_avg_pct << ["=E25/E13", "=K25/K13","=E60/C48",
+                "=K60/K48"]
+  
+  expenses << ["='Financial Report'!X#{total_rows[0]}",
+              "='Financial Report'!X#{total_rows[1]}",
+              "='Financial Report'!X#{total_rows[2]}",
+              "='Financial Report'!X#{total_rows[3]}"]
+  e_pcts << ["=C26/C13", "=I26/I13","=C61/C48",
+             "=I61/I48"]
+  e_avgs << ["=C26/C36", "=I26/I36","=C61/C71", 
+             "=I61/I71"]    
+  e_avg_pct << ["=E26/E13", "=K26/K13",
+                "=E61/C48","=K61/K48"]
+  
+  expenses << ["='Financial Report'!AA#{total_rows[0]}",
+              "='Financial Report'!AA#{total_rows[1]}",
+              "='Financial Report'!AA#{total_rows[2]}",
+              "='Financial Report'!AA#{total_rows[3]}"]
+  e_pcts << ["=C27/C13", "=I27/I13","=C62/C48",
+             "=I62/I48"]
+  e_avgs << ["=C27/C36", "=I27/I36","=C62/C71",
+             "=I62/I71"]    
+  e_avg_pct << ["=E27/E13", "=K27/K13","=E62/C48",
+             "=K62/K48"]
+
+  expenses << ["='Financial Report'!AB#{total_rows[0]}",
+              "='Financial Report'!AB#{total_rows[1]}",
+              "='Financial Report'!AB#{total_rows[2]}",
+              "='Financial Report'!AB#{total_rows[3]}"]
+  
+  e_pcts << ["=C28/C13", "=I28/I13","=C63/C48",
+             "=I63/I48"]
+  
+  e_avgs << ["=C28/C36", "=I28/I36","=C63/C71",
+             "=I63/I71"]    
+  
+  e_avg_pct << ["=E28/E13", "=K28/K13","=E63/C48",
+                "=K63/K48"]
+
+  expenses << ["='Financial Report'!AD#{total_rows[0]} + 'Financial Report'!AF#{total_rows[0]} +
+  'Financial Report'!AJ#{total_rows[0]} +
+  'Financial Report'!Y#{total_rows[0]}",
+  "='Financial Report'!AD#{total_rows[1]} +
+  'Financial Report'!AF#{total_rows[1]} +
+  'Financial Report'!AJ#{total_rows[1]} +
+  'Financial Report'!Y#{total_rows[1]} ",
+  "='Financial Report'!AD#{total_rows[2]} +
+  'Financial Report'!AF#{total_rows[2]} +
+  'Financial Report'!AJ#{total_rows[2]} +
+  'Financial Report'!Y#{total_rows[2]}",
+  "='Financial Report'!AD#{total_rows[3]} +
+  'Financial Report'!AF#{total_rows[3]} +
+  'Financial Report'!AJ#{total_rows[3]} +
+  'Financial Report'!Y#{total_rows[3]} "]
+  
+  e_pcts << ["=C29/C13", "=I29/I13","=C64/C48",
+             "=I64/I48"]
+  
+  e_avgs << ["=C29/C36", "=I29/I36","=C64/C71",
+             "=I64/I71"]     
+  
+  e_avg_pct << ["=E29/E13", "=K29/K13","=E64/C48",
+                "=K64/K48"]
+
+  expenses << ["='Financial Report'!P#{total_rows[0]} + 'Financial Report'!AC#{total_rows[0]} +
+  'Financial Report'!AE#{total_rows[0]} +
+  'Financial Report'!AG#{total_rows[0]} +
+  'Financial Report'!AM#{total_rows[0]} +
+  'Financial Report'!AR#{total_rows[0]} ",
+  "='Financial Report'!P#{total_rows[1]} +
+  'Financial Report'!AC#{total_rows[1]} +
+  'Financial Report'!AE#{total_rows[1]} +
+  'Financial Report'!AG#{total_rows[1]} +
+  'Financial Report'!AM#{total_rows[1]} +
+  'Financial Report'!AR#{total_rows[1]} ",
+  "='Financial Report'!P#{total_rows[2]} +
+  'Financial Report'!AC#{total_rows[2]} +
+  'Financial Report'!AE#{total_rows[2]} +
+  'Financial Report'!AG#{total_rows[2]} +
+  'Financial Report'!AM#{total_rows[2]} +
+  'Financial Report'!AR#{total_rows[2]} ",
+  "='Financial Report'!P#{total_rows[3]} +
+  'Financial Report'!AC#{total_rows[3]} +
+  'Financial Report'!AE#{total_rows[3]} +
+  'Financial Report'!AG#{total_rows[3]} +
+  'Financial Report'!AM#{total_rows[3]} +
+  'Financial Report'!AR#{total_rows[3]} "]
+  
+  e_pcts << ["=C30/C13", "=I30/I13","=C65/C48",
+             "=I65/I48"]
+  
+  e_avgs << ["=C30/C36", "=I30/I36","=C65/C71",
+             "=I65/I71"]     
+  
+  e_avg_pct << ["=E30/E13", "=K30/K13","=E65/C48",
+                "=K65/K48"]
+
+  expenses << ["='Financial Report'!AK#{total_rows[0]}",
+              "='Financial Report'!AK#{total_rows[1]}",
+              "='Financial Report'!AK#{total_rows[2]}",
+              "='Financial Report'!AK#{total_rows[3]}"]
+  
+  e_pcts << ["=C31/C13", "=I31/I13","=C66/C48",
+             "=I66/I48"]
+  
+  e_avgs << ["=C31/C36", "=I31/I36","=C66/C71",
+             "=I66/I71"]     
+  e_avg_pct << ["=E31/E13", "=K31/K13","=E66/C48",
+                "=K66/K48"]
+  
+  rev_desc.each_with_index do |desc,idx| 
+  
+  ws_pl.add_row [" ",
+                desc,
+                revenues[idx][0],
+                r_pcts[idx][0],
+                r_avgs[idx][0],
+                r_avg_pct[idx][0],
+                " ",
+                desc,
+                revenues[idx][1], 
+                r_pcts[idx][1],
+                r_avgs[idx][1],
+                r_avg_pct[idx][1]],
+                style: [styles[:data_left],styles[:data_left],styles[:number_fix],styles[:pct], styles[:number_fix], styles[:pct], styles[:data_left], styles[:data_left], styles[:number_fix], styles[:pct], styles[:number_fix], styles[:pct]]
+  end
+ 
+  ws_pl.add_row [" ",
+                 "Total Revenue",
+                  "=SUM(C8:C12)",
+                  "=C13/C13",
+                  "=C13/C36",
+                  "=E13/E13",
+                  " ",
+                  "Total Revenue",
+                  "=SUM(I8:I12)",
+                  "=I13/I13",
+                  "=I13/I36",
+                  "=K13/K13"],
+                  style: [styles[:data_left], styles[:header_box_left], styles[:number_box], styles[:pct_box],  styles[:number_box],styles[:pct_box],
+                  styles[:data_left],styles[:header_box_left],styles[:number_box],styles[:pct_box],
+                  styles[:number_box],styles[:pct_box]]
+  
+  ws_pl.add_row                  
+  
+  ws_pl.add_row [" ", "Operating Expense", nil, nil, nil,
+  nil, " ", "Operating Expense", nil, nil, nil, nil],
+  style: [styles[:data_left], styles[:header_left], styles[:data_left], styles[:data_left], styles[:data_left], styles[:data_left],styles[:data_left],styles[:data_left]]
+
+  expense_categories.each_with_index do |descr , index|
+    ws_pl.add_row [" ",
+                descr,
+                expenses[index][0],
+                e_pcts[index][0],
+                e_avgs[index][0],
+                e_avg_pct[index][0],
+                " ",
+                descr,
+                expenses[index][1], 
+                e_pcts[index][1],
+                e_avgs[index][1],
+                e_avg_pct[index][1]],
+                style:[styles[:data_left],styles[:data_left],styles[:number],
+                styles[:pct], styles[:number],styles[:pct],styles[:data_left],
+                styles[:data_left],styles[:number], styles[:pct],styles[:number],
+                styles[:pct]]      
+  end
+
+   ws_pl.add_row [" ",
+                 "Total Operating Expense",
+                  "=SUM(C16:C31)",
+                  "=C32/C13",
+                  "=C32/C36",
+                  "=E32/E13",
+                  " ",
+                  "Total Operating Expense",
+                  "=SUM(I16:I31)",
+                  "=I32/I13",
+                  "=I32/I36",
+                  "=K32/K13"],
+                  style: [styles[:data_left], styles[:header_box_left], styles[:number_box], styles[:pct_box],styles[:number_box]  ,styles[:pct_box],
+                  styles[:data_left],styles[:header_box_left],styles[:number_box],styles[:pct_box],
+                  styles[:number_box],styles[:pct_box]]
+  
+  ws_pl.add_row
+
+  ws_pl.add_row [" ",
+                 "Adjusted Operating Income/Loss",
+                  "=C13-C32",
+                  "=C34/C13",
+                  "=C34/C36",
+                  "=E34/E13",
+                  " ",
+                  "Adjusted Operating Income/Loss",
+                  "=I13-I32",
+                  "=I34/I13",
+                  "=I34/I36",
+                  "=K34/K13",],
+                  style: [styles[:data_left],styles[:header_box_left],styles[:number_box],styles[:pct_box],styles[:number_box], styles[:pct_box],
+                  styles[:data_left],styles[:header_box_left],styles[:number_box],styles[:pct_box],styles[:number_box],styles[:pct_box]]                  
+  ws_pl.add_row
+  ws_pl.add_row [" ", "Number of Franchisees",
+  pl[0].franchise_count, nil,nil, nil, nil,
+  "Number of Franchisees", pl[1].franchise_count, nil, nil, nil ],
+  style: [styles[:data_left], styles[:header_box_left], styles[:number_fix_box], styles[:data_left], styles[:data_left], styles[:data_left],styles[:data_left],styles[:header_box_left], styles[:number_fix_box], styles[:data_left],styles[:data_left],styles[:data_left]]
+
+  ws_pl.add_row
+
+  ws_pl.add_row [" ","Adjusted Operating Income", nil,nil,nil,nil," ",
+  "Adjusted Operating Income",nil,nil,nil, nil],
+  style: [styles[:data_left], styles[:header_box],styles[:header_box],styles[:header_box],styles[:header_box],styles[:header_box],styles[:data_left],styles[:header_box],styles[:header_box],styles[:header_box],styles[:header_box],styles[:header_box]]
+  
+  ws_pl.add_row [" ",nil,"$100,000 - $299,999", nil,
+  nil, nil, " ", nil, "<$100,000",nil,nil,nil],
+  style: [styles[:data_left],styles[:data_left],styles[:header_box],styles[:header_box],styles[:header_box],styles[:header_box],styles[:data_left],styles[:data_left],styles[:header_box],styles[:header_box],styles[:header_box],styles[:header_box]]
+  
+  ws_pl.add_row [" ","Revenue","Cumulative Total", nil,
+  "Average", nil, " ", "Revenue", "Cumulative Total",nil, "Average", nil],
+  style: [styles[:data_left],styles[:header_left],styles[:header_box],styles[:header_box],styles[:header_box],styles[:header_box],styles[:data_left],styles[:header_left],styles[:header_box],styles[:header_box],styles[:header_box],styles[:header_box]]
+  
+  ws_pl.add_row
+  
+  ws_pl.add_row [nil,nil,"$","%","$","%"," ",
+  nil, "$","%","$","%"],
+  style: [styles[:data_left],styles[:data_left],styles[:header_right],styles[:header_right],styles[:header_right],
+  styles[:header_right],styles[:data_left],styles[:data_left],styles[:header_right],styles[:header_right],
+  styles[:header_right],styles[:header_right]]
+
+  rev_desc.each_with_index do |desc,idx| 
+  
+    ws_pl.add_row [" ",
+                desc,
+                revenues[idx][2],
+                r_pcts[idx][2],
+                r_avgs[idx][2],
+                r_avg_pct[idx][2],
+                " ",
+                desc,
+                revenues[idx][3], 
+                r_pcts[idx][3],
+                r_avgs[idx][3],
+                r_avg_pct[idx][3]],
+                style: [styles[:data_left],styles[:data_left],styles[:number_fix],styles[:pct], styles[:number_fix], styles[:pct], styles[:data_left], styles[:data_left], styles[:number_fix], styles[:pct], styles[:number_fix], styles[:pct]]
+  end
+
+  ws_pl.add_row [" ",
+                 "Total Revenue",
+                  "=SUM(C43:C47)",
+                  "=C48/C48",
+                  "=C48/C71",
+                  "=E48/E48",
+                  " ",
+                  "Total Revenue",
+                  "=SUM(I43:I47)",
+                  "=I48/I48",
+                  "=I48/I71",
+                  "=K48/K48"],
+                  style: [styles[:data_left], styles[:header_box_left], styles[:number_box], styles[:pct_box],  styles[:number_box],styles[:pct_box],
+                  styles[:data_left],styles[:header_box_left],styles[:number_box],styles[:pct_box],
+                  styles[:number_box],styles[:pct_box]]
+  ws_pl.add_row                  
+  
+  ws_pl.add_row [" ", "Operating Expense", nil, nil,
+  nil, nil, " ", "Operating Expense", nil, nil, nil, nil],
+  style: [styles[:data_left], styles[:header_left], styles[:data_left], styles[:data_left],styles[:data_left], styles[:data_left],styles[:data_left],styles[:header_left]]
+  
+  expense_categories.each_with_index do |descr , index|
+    ws_pl.add_row [" ",
+                descr,
+                expenses[index][2],
+                e_pcts[index][2],
+                e_avgs[index][2],
+                e_avg_pct[index][2],
+                " ",
+                descr,
+                expenses[index][3], 
+                e_pcts[index][3],
+                e_avgs[index][3],
+                e_avg_pct[index][3]],
+                style: [styles[:data_left],styles[:data_left],styles[:number],styles[:pct], styles[:number],styles[:pct],styles[:data_left],styles[:data_left],styles[:number], styles[:pct],styles[:number],styles[:pct]]      
+  end
+
+  ws_pl.add_row [" ",
+                 "Total Operating Expense",
+                  "=SUM(C51:C66)",
+                  "=C67/C48",
+                  "=C67/C71",
+                  "=E67/E48",
+                  " ",
+                  "Total Operating Expense",
+                  "=SUM(I51:I66)",
+                  "=I67/I48",
+                  "=I67/I71",
+                  "=K67/K48"],
+                  style: [styles[:data_left], styles[:header_box_left], styles[:number_box], styles[:pct_box],  styles[:number_box],styles[:pct_box],
+                  styles[:data_left],styles[:header_box_left],styles[:number_box],styles[:pct_box],
+                  styles[:number_box],styles[:pct_box]]
+  
+  ws_pl.add_row
+  
+  ws_pl.add_row [" ",
+                 "Adjusted Operating Income/Loss",
+                  "=C48-C67",
+                  "=C69/C48",
+                  "=C69/C71",
+                  "=E69/E48",
+                  " ",
+                  "Adjusted Operating Income/Loss",
+                  "=I48-I67",
+                  "=I69/I48",
+                  "=I69/I71",
+                  "=K69/K48",],
+                  style: [styles[:data_left],styles[:header_box_left],styles[:number_box],styles[:pct_box],styles[:number_box], styles[:pct_box],
+                  styles[:data_left],styles[:header_box_left],styles[:number_box],styles[:pct_box],styles[:number_box],styles[:pct_box]]                  
+  ws_pl.add_row
+
+  ws_pl.add_row [" ", "Number of Franchisees", pl[2].franchise_count, nil,nil, nil, nil,
+  "Number of Franchisees", pl[3].franchise_count, nil, nil, nil ],
+  style: [styles[:data_left], styles[:header_box_left], styles[:number_fix_box], styles[:data_left], styles[:data_left], styles[:data_left],styles[:data_left],styles[:header_box_left], styles[:number_fix_box], styles[:data_left],styles[:data_left],styles[:data_left]]
+
+  ws_pl.add_row
+
+  ws_pl.add_row [" ", "Total Number of Franchisees",
+  (pl[0].franchise_count+pl[1].franchise_count+pl[2].franchise_count+pl[3].franchise_count), nil,nil, nil, nil],
+  style: [styles[:data_left], styles[:header_box_left], styles[:number_fix_box], styles[:data_left], styles[:data_left], styles[:data_left]]
+
+  ['B3:F3', 'H3:L3' , 'C4:F4', 'I4:L4', 'C5:D5', 'E5:F5', 'I5:J5', 'K5:L5', 
+  'B38:F38', 'H38:L38', 'C39:F39', 'I39:L39', 'C40:D40', 'E40:F40', 'I40:J40', 'K40:L40'].each {|range| 
+  ws_pl.merge_cells(range)}
+  
+  end
 
 
