@@ -1,7 +1,8 @@
 
 <!-- If we're looking to edit, we show the create button -->
 <div class = "col-12">
-  <%=link_to new_admins_franchise_path, data: {turbolinks: false} do%>
+  <%=link_to new_admins_franchise_path,
+  data: {turbolinks: false} do%>
     <button class = 'btn btn-padgett'>
       <%=I18n.t('franchise.index.create_franchise')%>
     </button>
@@ -27,6 +28,6 @@
 <!-- Franchise list -->
 <div class = "col-12">
   <div id="franchises">
-    <%=render partial: 'franchise_list'%>
+    <%=render partial: 'franchise_list' %>
   </div>
 </div>

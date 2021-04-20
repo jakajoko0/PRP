@@ -25,6 +25,8 @@ gem 'redis'
 gem 'sidekiq', '6.1.1'
 gem 'sidekiq-cron'
 
+
+gem 'truemail'
 # Gems to handle authentication
 gem 'devise', '~> 4.7', '>= 4.7.3'
 gem 'devise_masquerade', '1.3.2'
@@ -94,6 +96,7 @@ group :development, :test do
 end
 
 group :development do
+  gem 'benchmark-ips'
   gem 'brakeman'
   gem 'bullet'
   gem 'listen', '>= 3.0.5', '< 3.2'
@@ -103,6 +106,8 @@ group :development do
   gem 'capistrano-passenger', '~> 0.2.0'
   gem 'capistrano-rails', '~> 1.6'
   gem 'capistrano-rbenv', '~> 2.1', '>=2.1.4'
+  gem 'memory_profiler'
+  gem 'pry-rails'
   gem 'rubocop', '~> 1.12', require: false
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'

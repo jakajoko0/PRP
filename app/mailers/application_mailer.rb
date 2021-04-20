@@ -8,11 +8,11 @@ class ApplicationMailer < ActionMailer::Base
     Net::SMTPSyntaxError,
     Net::SMTPFatalError,
     Net::SMTPUnknownError,
-    Errno::ECONNREFUSED
-  ]
+    Errno::ECONNREFUSED]
 
   rescue_from *ERRORS_TO_RESCUE  do |exception|
-  	redirect_to root_path, notice: "An error occured while trying to send email notification"
+  	Rails.logger.debug "Exception: #{exception.inspect}"
+    Rails.logger.debug "Recipients: #{message.to}"
   end
 
 end
