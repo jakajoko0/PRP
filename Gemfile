@@ -26,7 +26,6 @@ gem 'sidekiq', '6.1.1'
 gem 'sidekiq-cron'
 
 
-gem 'truemail'
 # Gems to handle authentication
 gem 'devise', '~> 4.7', '>= 4.7.3'
 gem 'devise_masquerade', '1.3.2'
