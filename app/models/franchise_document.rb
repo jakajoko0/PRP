@@ -12,7 +12,7 @@ class FranchiseDocument < ApplicationRecord
 	enum document_type: {"tax return": 1, "insurance": 2, "other": 5}
 
 
-	scope :for_franchise, -> (fran_id) {where(franchise_id: fran_id).order("created_at DESC")}
+	scope :for_franchise, -> (fran_id) {FranchiseDocument.includes(document_attachment: :blob).where(franchise_id: fran_id).order("created_at DESC")}
 	scope :all_ordered, -> {FranchiseDocument.includes(:franchise, document_attachment: :blob).order("created_at DESC")}
 	
 end

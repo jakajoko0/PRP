@@ -12,9 +12,9 @@ RSpec.feature "Feature - Adding Franchise Document", type: :feature do
     expect(page).to have_content("Attach New Document")
     select("Tax Return", from: "Document type")
     fill_in "Description", with: "My New Tax Return"
-    attach_file('franchise_document_document',Rails.root.join('spec','factories','files','taxreturn2020.xlsx'))
+    attach_file('franchise_document_document', Rails.root.join('spec','factories','files','taxreturn2020.xlsx'), make_visible: true)
     click_button "Save"
-    
+    pp page.body
     expect(get_table_cell_text('document-list',1,2)).to eq("Tax return")
     expect(get_table_cell_text('document-list',1,3)).to eq("My New Tax Return")
 
@@ -28,11 +28,9 @@ RSpec.feature "Feature - Adding Franchise Document", type: :feature do
     expect(page).to have_content("Attach New Document")
     select("Tax Return", from: "Document type")
     fill_in "Description", with: "My New Tax Return"
-    attach_file('franchise_document_document',Rails.root.join('spec','factories','files','TextFile.txt'))
-
+    attach_file('franchise_document_document',Rails.root.join('spec','factories','files','TextFile.txt'), make_visible: true)
     click_button "Save"
-      
     expect(page).to have_selector(:id, 'error_explanation')
-    page.find("#franchise_document_document")[:class].include?('is-invalid')
+    
   end
 end

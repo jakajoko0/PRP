@@ -4,7 +4,8 @@
       <%=I18n.t('franchise_document.form.create_title_admin', franchise: franchise_document.franchise.number_and_name)%>
     </h4>
   </div>
-  <%= form_for [:admins, franchise_document] do |f| %>
+  <%= form_for [:admins, franchise_document],
+    html: {multipart: true} do |f| %>
     <div class = "card-body card-background-padgett">
       <div class = "form-row col-12">
         <%=f.hidden_field :franchise_id,
@@ -15,8 +16,11 @@
             class: 'col-md-3 col-sm-3 col-lg-2 col-xl-3
                     col-form-label col-form-label-sm label-bold'%>
           <div class = "col-sm-3 col-md-2 col-lg-2 col-xl-2">
-            <%= f.select(:document_type, [["Tax Return",1],["Insurance",2],["Other",5]],{include_blank: false},{
-              class: "form-control form-control-sm col"})%>
+            <%= f.select(:document_type,
+              [["Tax Return",1],
+              ["Insurance",2],
+              ["Other",5]],{include_blank: false},
+              {class: "form-control form-control-sm col"})%>
           </div>   
         </div>
       </div>
@@ -45,7 +49,7 @@
       	    <label class="btn btn-padgett"
                    for="franchise_document_document">
             
-              <input id="franchise_document_document" type="file" style="display:none" 
+              <input id="franchise_document_document" type="file" class="hidden_field" name="franchise_document[document]" 
               onchange="$('#upload-file-info').text(this.files[0].name)">
               Select File
             </label>

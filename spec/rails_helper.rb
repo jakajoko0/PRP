@@ -111,6 +111,10 @@ end
     Capybara.javascript_driver = :selenium_chrome 
   end
 
+  #Capybara.javascript_driver = :selenium_chrome 
+
+
+
 
 
 FactoryBot::SyntaxRunner.class_eval do

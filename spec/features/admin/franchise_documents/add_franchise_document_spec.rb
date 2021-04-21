@@ -25,7 +25,7 @@ RSpec.feature "Feature - Adding Franchise Document", type: :feature do
     end
     select("Tax Return", from: "Document type")
     fill_in "Description", with: "My New Tax Return"
-    attach_file('franchise_document_document',Rails.root.join('spec','factories','files','taxreturn2020.xlsx'))
+    attach_file('franchise_document_document',Rails.root.join('spec','factories','files','taxreturn2020.xlsx'), make_visible: true)
     click_button "Save"
     expect(get_table_cell_text('document-list',1,3)).to eq("Tax return")
     expect(get_table_cell_text('document-list',1,4)).to eq("My New Tax Return")

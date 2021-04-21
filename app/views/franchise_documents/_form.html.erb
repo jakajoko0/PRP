@@ -5,7 +5,7 @@
     </h4>
   </div>
   
-  <%= form_for franchise_document do |f| %>
+  <%= form_for franchise_document, html: {multipart: true} do |f| %>
     <div class = "card-body card-background-padgett">
       <div class = "form-row col-12">
         <%=f.hidden_field :franchise_id,
@@ -53,7 +53,7 @@
             <label class="btn btn-padgett"
                    for="franchise_document_document">
             
-              <input id="franchise_document_document" type="file" style="display:none" 
+              <input id="franchise_document_document" type="file" class = "hidden_field" name="franchise_document[document]"  
               onchange="$('#upload-file-info').text(this.files[0].name)">
               Select File
             </label>

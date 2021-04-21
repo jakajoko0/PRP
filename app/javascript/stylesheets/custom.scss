@@ -41,6 +41,10 @@ $dropdown-link-color: var(--padgett-blue);
  color: var(--padgett-green);
 }
 
+.hidden_field {
+  display: none;
+}
+
 .button-text{
   @media only screen and (max-width:490px) {
     display: none;
