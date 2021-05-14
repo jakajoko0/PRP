@@ -12,6 +12,7 @@ class AdminAbility
       can :manage, PrpTransaction
       can :manage, Remittance
       can :manage, FranchiseDocument
+      can :manage, Invoice
       can :masquerade, User
     else
       can :read, Franchise
@@ -19,6 +20,7 @@ class AdminAbility
       can :read, Insurance
       can :read, WebsitePreference
       can :read, Financial
+      can :read, Invoice
     end    
     # Define abilities for the passed in user here. For example:
     #

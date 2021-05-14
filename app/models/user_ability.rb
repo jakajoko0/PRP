@@ -15,7 +15,11 @@ class UserAbility
       can [:destroy], Remittance, franchise_id: user.franchise_id, status: "pending"
       can [:delete], Remittance, franchise_id: user.franchise_id, status: "pending"
       can :manage, FranchiseDocument, franchise_id: user.franchise_id
-      
+      can [:read, :create],  Invoice, franchise_id: user.franchise_id
+      can [:edit], Invoice, franchise_id: user.franchise_id , paid: 0, admin_generated: 0
+      can [:update],  Invoice, franchise_id: user.franchise_id, paid: 0, admin_generated: 0
+      can [:destroy], Invoice, franchise_id: user.franchise_id, paid: 0 ,admin_generated: 0 
+      can [:delete], Invoice, franchise_id: user.franchise_id, paid: 0, admin_generated: 0
     end    
 
     # Define abilities for the passed in user here. For example:

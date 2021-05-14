@@ -72,6 +72,13 @@
     "#", 
     class: "nav-link" %>
   </li>
+
+  <!-- Other Charges -->
+  <li class = "nav-item">
+    <%= link_to I18n.t('user_menu.other_charges'),
+    invoices_path, 
+    class: "nav-link" %>
+  </li>
   
   <!-- PAYMENTS -->
   <%=main_dropdown_menu(I18n.t('user_menu.payments.payments_text'))%>

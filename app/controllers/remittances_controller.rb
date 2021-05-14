@@ -42,7 +42,7 @@ before_action :set_remittance, only: [:edit, :update, :show, :destroy]
     gon.admin = true
     gon.royalty_rate = Remittance::ROYALTY_RATE
  		
- 		result = CreateRemittance.call(params: remittance_params, admin: false, submit_type: submit_type)
+ 		result = CreateRemittance.call(params: remittance_params, admin: false, submit_type: submit_type, user: current_authenticated)
  		if result.success?
  			flash[:success] = I18n.t('remittance.create.confirm')
  			redirect_to remittances_path

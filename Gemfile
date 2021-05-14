@@ -96,6 +96,7 @@ end
 
 group :development do
   gem 'benchmark-ips'
+  gem 'better_errors'
   gem 'brakeman'
   gem 'bullet'
   gem 'listen', '>= 3.0.5', '< 3.2'

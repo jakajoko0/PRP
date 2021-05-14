@@ -1,0 +1,122 @@
+<div id = "table-scroll"
+     class = "table-scroll">
+  <table id = '<%="#{type}-charges-list"%>'
+         class = "table-striped">
+    <thead id = "list">
+      <tr>
+        
+        <!-- Entered -->
+        <th scope = "col" class = "td-left">
+            <%=I18n.t('invoice.index.entered')%>
+        </th>
+        
+        <!-- Posted / Paid -->
+        <%if type == "posted"%>
+          <!-- posted -->
+          <th scope = "col" class = "td-left">
+            <%=I18n.t('invoice.index.paid')%>
+          </th>
+        <%end%>
+        
+        <!-- Note -->
+        <th scope = "col" class = "td-left">
+            <%=I18n.t('invoice.index.note')%>
+        </th>
+        
+        <!-- Total -->
+        <th scope = "col" class = "td-right">
+            <%=I18n.t('invoice.index.total')%>
+        </th>
+                    
+        <th></th>
+
+        <%if type == "posted"%>
+          <th></th>
+        <%end%>
+
+        <th></th>
+
+
+      </tr>
+    </thead>
+
+    <% if invoices.size > 0 %>
+      <tbody>    
+        <%invoices.each do |invoice|%>
+          <tr>
+            
+            <!-- Received -->
+            <td data-name = "Entered"
+                scope = "col"
+                class = "td-left">
+                <%=I18n.l(invoice.date_entered, format: :notime)%>
+            </td>
+
+            <%if type == "posted"%>
+              <!-- Posted -->
+              <td data-name = "Paid"
+                scope = "col"
+                class = "td-left">
+                <%=I18n.l(invoice.date_posted, format: :notime)%>
+              </td>
+            <%end%>  
+
+            <!-- Note  -->
+            <td  data-name = "Note"
+                 scope="col" 
+                 class = "td-left">
+              <%=invoice.note%> 
+            </td>
+
+            <!-- Total -->
+            <td data-name = "Total" 
+                scope = "col"
+                class = "td-right">
+                <%=number_to_currency(invoice.invoice_total, precision: 2)%>
+            </td>
+            <!-- Edit Link if User can Edit -->
+            <%if can? :edit, invoice %>
+              <td data-name = ""
+                  class = "td-center">
+                  <%=link_with_icon(edit_invoice_path(invoice),
+                  "edit",
+                  I18n.t('invoice.index.edit_link'),
+                  "",
+                  false)%>
+              </td>
+            <%else%>   
+              <td></td>
+            <%end%>
+
+            <%if type == "posted"%>
+              <!-- View Link if User can View -->
+              <td data-name="" class = "td-center">
+                <%=link_with_icon(
+                  invoice_path(id:invoice),
+                  "show",
+                  I18n.t('invoice.index.view_link'),
+                  "",
+                  false)%>
+              </td>
+            <%end%>  
+        
+            
+            <!-- Delete Link if User can Delete -->
+            <%if can? :delete, invoice%>
+              <td data-name = ""
+                  class = "td-center">
+                  <%=link_with_icon(invoice_path(id: invoice),
+                  "delete",
+                  I18n.t('invoice.index.delete_link'),
+                  I18n.t('invoice.index.delete_confirm'),false)%>
+              </td>
+            <%else%>
+              <td></td>
+            <%end%>
+           
+          </tr>
+        <%end%>
+      </tbody>
+    <%end%>
+  </table>
+</div>      

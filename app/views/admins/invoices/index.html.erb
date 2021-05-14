@@ -1,0 +1,29 @@
+<div class = "col-12 pb-3">
+	<%=link_to admins_franchises_select_index_path(destination: 'add_invoice'),
+     data: {turbolinks: false} do%>
+     <button class = 'btn btn-padgett'>
+       <%=I18n.t('invoice.index.add_invoice')%>
+     </button>
+  <%end%>
+</div>
+
+<div class = "col-12 pb-2">
+	<h2 class="padgett-text">
+		Pending Invoices
+	</h2>
+</div>
+<div id = "pending-charges" class = "col">
+	<%=render partial: 'charges_list', 
+	locals: {invoices: @pending, type: 'pending'}%>
+</div>
+<br>
+<div class = "col-12 pb-2">
+	<h2 class="padgett-text">
+		Paid Invoices
+	</h2>
+</div>
+
+<div id = "posted-charges" class = "col">
+		<%=render partial: 'charges_list', 
+		locals: {invoices: @posted, type: 'posted'}%>
+</div>

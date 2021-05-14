@@ -70,7 +70,7 @@ module FranchiseHelper
         route = new_admins_charge_path(franchise_id: franchise.id)
         button_text = I18n.t('franchise_select.add_charge')
       when 'add_invoice'
-        route = new_invoice_path(franchise_id: franchise.id)
+        route = new_admins_invoice_path(franchise_id: franchise.id)
         button_text = I18n.t('franchise_select.add_invoice')
       when 'add_payment'
         route = new_check_payment_path(franchise_id: franchise.id)

@@ -51,6 +51,12 @@ class AddRemittance
  		#*********************************************
   	if remittance.save 
   	  context.remittance = remittance 
+      event_info = {fran: remittance.franchise.franchise_number,
+                    lastname: remittance.franchise.lastname,
+                    description: "Royalty Report for #{remittance.month.to_s} / #{remittance.year.to_s} was created",
+                    user_email: context.user.email}
+      context.event_info = event_info
+      context.log_event = true
   	else
   	  context.remittance = remittance
   	  context.fail!

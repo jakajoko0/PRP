@@ -52,6 +52,7 @@ Rails.application.routes.draw do
     resources :financials
     resources :remittances
     resources :franchise_documents, except: [:show, :edit, :update]
+    resources :invoices
 
 
     get '/bank_routings/bank_name' => 'bank_routings#bank_name'
@@ -89,6 +90,8 @@ Rails.application.routes.draw do
       get 'financials/audit/:id', to: "financials#audit", as: 'financials_audit'
       resources :remittances
       get 'remittances/audit/:id', to: "remittances#audit", as: 'remittances_audit'
+      resources :invoices
+      get 'invoices/audit/:id', to: "invoices#audit", as: 'invoices_audit'
       resources :transaction_codes
       get '/switch_user', to: "switch_user#index"
 

@@ -1,0 +1,57 @@
+en:
+  activerecord:
+    errors:
+      models:
+        invoice:
+          attributes:
+            franchise:
+              blank: Franchise cannot be blank
+            date_entered: 
+              blank: Please provide the invoice date
+            note:
+              blank: Please provide a brief description
+            paid:
+              blank: Please provide the status
+        invoice_item:
+          attributes:
+            amount:
+              blank: Please enter an amount
+            code:
+              blank: Please enter a charge item
+          no_negative: Please enter a valid amount    
+  helpers:
+    label:
+      invoice:
+        franchise_id: Franchise
+        franchise_name: Name
+        date_entered: Date
+        note: Description
+  invoice:
+    object_name: Charge
+    create:
+      confirm: Charge Created Successfully
+    update:
+      confirm: Charge Updated Successfully
+    delete:
+      confirm: Charge Deleted Successfully
+      error: A Problem Occured Deleting Charge
+    index:
+      add_invoice: Add Invoice
+      franchise: Franchise
+      entered: Entered
+      note: Note
+      paid: Paid
+      total: Total
+      edit_link: Edit this Charge
+      delete_link: Delete this Charge
+      delete_confirm: Are you sure you want to Delete this Charge?
+      audit_link: View Audit Trail
+      view_link: Review this Charge
+    form:
+      save: Save
+      discard: Discard
+      edit_title: Edit Charge
+      create_title : New Charge
+      charge_items: Charge Items
+      item_title: Item
+      price_title: Price

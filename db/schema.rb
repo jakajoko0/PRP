@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_25_161857) do
+ActiveRecord::Schema.define(version: 2021_04_21_195305) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -311,6 +311,28 @@ ActiveRecord::Schema.define(version: 2021_03_25_161857) do
     t.index ["franchise_id"], name: "index_insurances_on_franchise_id"
   end
 
+  create_table "invoice_items", force: :cascade do |t|
+    t.bigint "invoice_id"
+    t.string "code", null: false
+    t.decimal "amount", precision: 12, scale: 2, default: "0.0", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["invoice_id"], name: "index_invoice_items_on_invoice_id"
+  end
+
+  create_table "invoices", force: :cascade do |t|
+    t.bigint "franchise_id"
+    t.datetime "date_entered"
+    t.datetime "date_posted"
+    t.integer "paid", default: 0
+    t.string "note"
+    t.string "slug"
+    t.integer "admin_generated"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["franchise_id"], name: "index_invoices_on_franchise_id"
+  end
+
   create_table "prp_transactions", force: :cascade do |t|
     t.bigint "franchise_id"
     t.datetime "date_posted"
@@ -425,6 +447,8 @@ ActiveRecord::Schema.define(version: 2021_03_25_161857) do
   add_foreign_key "financials", "franchises"
   add_foreign_key "franchise_documents", "franchises"
   add_foreign_key "insurances", "franchises"
+  add_foreign_key "invoice_items", "invoices"
+  add_foreign_key "invoices", "franchises"
   add_foreign_key "prp_transactions", "franchises"
   add_foreign_key "remittances", "franchises"
   add_foreign_key "website_preferences", "franchises"

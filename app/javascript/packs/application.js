@@ -33,6 +33,7 @@ require("custom/financials")
 require("custom/cookie_banner")
 require("custom/credits")
 require("custom/remittances")
+require("custom/invoices")
 
 
 require.context('../images',true, /\.(?:png|jpg|gif|ico|svg)$/)

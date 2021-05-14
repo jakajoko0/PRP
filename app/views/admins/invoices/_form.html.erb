@@ -1,0 +1,94 @@
+<div class = "card">
+  <div class = "card-header login-header">
+    <h4>
+      <%if action == "edit"%>
+        <%=I18n.t('invoice.form.edit_title')%>
+      <%else%>
+        <%=I18n.t('invoice.form.create_title')%> 
+      <%end%>
+    </h4>
+  </div>
+  
+  <%=form_for [:admins, invoice], 
+     url:(invoice.new_record? ? admins_invoices_path : admins_invoice_path(invoice)) do |f| %>
+    <div class = "card-body card-background-padgett">
+    	<%=f.hidden_field :franchise_id,
+    	   value: f.object.franchise_id	%>
+      <%=f.hidden_field :paid, value: f.object.paid%>   
+      
+      <div class = "form-row col-12">
+        <div class = "form-group form-row col-12">
+          <%=f.label :franchise_id, "Franchise",
+          class: "col-md-2 col-sm-3 col-lg-2 col-xl-2 
+                  col-form-label col-form-label-sm
+                  label-bold"%>
+          <div class = "col-8 col-sm-4 col-md-4 col-lg-3 col-xl-3">
+            <%=invoice.franchise.number_and_name%>
+          </div>
+        </div>        
+      </div>
+      
+      
+      <!-- Date -->
+      <div class = "form-row col-12">
+        <div class = "form-group form-row col-12">
+          <%=f.label :date_entered,
+          class: "col-md-2 col-sm-3 col-lg-2 col-xl-2 
+                  col-form-label col-form-label-sm
+                  label-bold"%>
+          <div class = "col-sm-4 col-md-3 col-lg-3 col-xl-2">
+            <%=f.text_field :date_entered, 
+            value: (I18n.l(f.object.date_entered, format: :notime) if f.object.date_entered),
+            class: "form-control form-control-sm
+                    col text-center", 
+                    id: "invoice_date_entered",
+                    style: "display:inline-block;
+                    vertical-align: middle;
+                    width: 60%; margin: 0 5px 0 0;" %>
+          </div>
+        </div>
+      </div>
+
+      
+        <div class = "form-row col-12">
+          <div class = "form-group form-row col-12">
+            <%=f.label :note,
+            class: "col-md-2 col-sm-3 col-lg-2 col-xl-2  
+                  col-form-label col-form-label-sm
+                  label-bold"%>
+            <div class = "col-sm-8 col-md-7 col-lg-6 col-xl-6">
+              <%=f.text_field :note ,class: "form-control form-control-sm col" %>
+            </div>
+          </div>
+        </div>
+    </div>
+
+</div>
+<br />
+<div class = "card">
+  <div class = "card-header login-header">
+    <h4>
+      Invoice Items
+    </h4>
+  </div>
+  <div class = "card-body card-background-padgett">
+      <%=f.fields_for :invoice_items do |builder| %>
+        <%= render 'invoice_item_fields', f: builder %>
+      <%end%>
+
+      <%= link_to_add_fields "Add Item", f , :invoice_items, "btn btn-padgett" %>
+    </div>
+</div>
+
+<br />
+  <div class = "row col-12 col-xl-10">
+    <%=f.submit (I18n.t('invoice.form.save')),
+    class: 'btn btn-padgett col-5 col-sm-4 col-md-3 col-lg-3 col-xl-2',
+	  name: "submit"%>
+    <div class = "col-1 sol-sm-1 col-md-1 col-lg-1"></div>
+      <%=link_to (I18n.t('invoice.form.discard')),
+      admins_invoices_path,
+      class: 'btn btn-padgett col-5 col-sm-4 col-md-3 col-lg-3 col-xl-2' %>
+    </div>
+  </div>
+<%end%>
