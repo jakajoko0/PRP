@@ -21,6 +21,7 @@ Rails.application.routes.draw do
       get 'all_royalties_by_month'
       get 'revenue_by_state'
       get 'collections_by_category'
+      get 'collections_by_month'
     end
   end
   

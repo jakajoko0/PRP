@@ -1,0 +1,293 @@
+<!--BOXES WITH THE DIFFERENT STATS AND NUMBERS -->
+<div class = "card-group row no-gutters mb-2">
+  <!--COLLECTIONS CURRENT AND COMPARISONS -->
+  <div class = "col-md-2">	
+    <div class = "card h-100 stats-card" >
+      <div class = "card-header login-header">
+	  		<h6 class="text-center">
+	  			<%=I18n.t('dashboard.user.collections')%>
+  			</h6>
+	  	</div>
+	  	<div class = "card-body p-1">
+	  		<div class = "row no-gutters">
+	  	  	<div class = "col-5">
+	        	<h6 class="text-left">
+	        		<%=I18n.t('dashboard.user.current')%>
+        		</h6>
+	      	</div>
+	      	<div class = "col-7">
+						<h6 class="text-right">
+							<%=number_to_currency(@current_collections, precision: 2)%>
+						</h6>
+		  		</div>
+ 	    	</div>
+ 	    	<div class = "row no-gutters">
+	  	  	<div class = "col-5">
+	    			<h6 class="text-left">
+	    				<%=I18n.t('dashboard.user.last_month')%>
+	    			</h6>
+	      	</div>
+	      	<div class = "col-7">
+						<h6 class="text-right">
+						<%=difference_arrow(@prior_coll_class)%><%=number_to_currency(@prior_coll_diff.abs, precision:2)%>
+						</h6>
+  		  	</div>
+ 	    	</div>
+ 	    	<div class = "row no-gutters">
+	  	  	<div class = "col-5">
+	        	<h6 class="text-left">
+	        	  <%=I18n.t('dashboard.user.last_year')%>
+         	  </h6>
+	      	</div>
+	      	<div class = "col-7">
+		    		<h6 class="text-right">
+		    		<%=difference_arrow(@last_year_coll_class)%><%=number_to_currency(@last_year_coll_diff.abs, precision:2)%>
+		    		</h6>
+		  		</div>
+ 	    	</div>
+ 	  	</div>
+		</div>
+	</div>
+  
+  <!--AVERAGE COLLECTIONS -->
+  <div class = "col-md-2">	
+    <div class = "card h-100 stats-card">
+	  	<div class = "card-header login-header">
+	  		<h6 class="text-center">
+	  			<%=I18n.t('dashboard.user.avg_collections')%>
+	  		</h6>
+	 		</div>
+	  	<div class = "card-body p-1">
+	  		<div class = "row no-gutters">
+	  	  	<div class = "col-5">
+	        	<h6 class="text-left">
+	        		<%=I18n.t('dashboard.admin.current')%>
+	        	</h6>
+	      	</div>
+	      	<div class = "col-7">
+						<h6 class="text-right"><%=number_to_currency(@average_collections, precision:2)%></h6>
+		  		</div>
+ 	    	</div>
+
+ 	    	<div class = "row no-gutters">
+	  	  	<div class = "col-5">
+	    			<h6 class="text-left">
+	    				<%=I18n.t('dashboard.user.last_month')%>
+	    			</h6>
+	      	</div>
+	      	<div class = "col-7">
+						<h6 class="text-right">
+						<%=difference_arrow(@prior_avg_class)%><%=number_to_currency(@prior_avg_coll_diff.abs, precision:2)%>
+						</h6>
+  		  	</div>
+ 	    	</div>
+ 	    	<div class = "row no-gutters">
+	  	  	<div class = "col-5">
+	        	<h6 class="text-left">
+	        	  <%=I18n.t('dashboard.user.last_year')%>
+         	  </h6>
+	      	</div>
+	      	<div class = "col-7">
+		    		<h6 class="text-right">
+		    		<%=difference_arrow(@last_year_coll_class)%><%=number_to_currency(@last_year_avg_coll_diff.abs, precision:2)%>
+		    		</h6>
+		  		</div>
+ 	    	</div>
+
+ 	  	</div>
+    </div>
+  </div>
+
+  <!--CURRENT MONTH RANKING -->
+  <div class = "col-md-2">	
+    <div class = "card h-100 stats-card">
+	  	<div class = "card-header login-header">
+	  		<h6 class="text-center">
+	  			<%=I18n.t('dashboard.user.ranking')%>
+	  		</h6>
+	 		</div>
+	  	<div class = "card-body p-1">
+	  		<div class = "row no-gutters">
+	  	  	<div class = "col-5">
+	        	<h6 class="text-left">
+	        		<%=I18n.t('dashboard.user.current')%>
+	        	</h6>
+	      	</div>
+	      	<div class = "col-7">
+						<h6 class="text-right"><%=@current_ranking%></h6>
+		  		</div>
+ 	    	</div>
+ 	    	<div class = "row no-gutters">
+	  	  	<div class = "col-5">
+	    			<h6 class="text-left">
+	    				<%=I18n.t('dashboard.user.last_month')%>
+	    			</h6>
+	      	</div>
+	      	<div class = "col-7">
+						<h6 class="text-right"><%=@prior_ranking%>
+						</h6>
+  		  	</div>
+ 	    	</div>
+ 	    	<div class = "row no-gutters">
+	  	  	<div class = "col-5">
+	        	<h6 class="text-left">
+	        	  <%=I18n.t('dashboard.user.last_year')%>
+         	  </h6>
+	      	</div>
+	      	<div class = "col-7">
+		    		<h6 class="text-right"><%=@last_year_ranking%>
+		    		</h6>
+		  		</div>
+ 	    	</div>
+
+ 	  	</div>
+    </div>
+  </div>
+
+  <!--YTD COLLECTIONS CURRENT AND COMPARISONS -->
+  <div class = "col-md-2">	
+    <div class = "card h-100 stats-card" >
+      <div class = "card-header login-header">
+	  		<h6 class="text-center">
+	  			<%=I18n.t('dashboard.user.ytd_collections')%>
+  			</h6>
+	  	</div>
+	  	<div class = "card-body p-1">
+	  		<div class = "row no-gutters">
+	  	  	<div class = "col-5">
+	        	<h6 class="text-left">
+	        		<%=I18n.t('dashboard.user.current')%>
+        		</h6>
+	      	</div>
+	      	<div class = "col-7">
+						<h6 class="text-right">
+							<%=number_to_currency(@ytd_collections, precision: 2)%>
+						</h6>
+		  		</div>
+ 	    	</div>
+ 	    	<div class = "row no-gutters">
+	  	  	<div class = "col-5">
+	    			<h6 class="text-left">
+	    				<%=I18n.t('dashboard.user.last_month')%>
+	    			</h6>
+	      	</div>
+	      	<div class = "col-7">
+						<h6 class="text-right">
+						<%=difference_arrow(@prior_ytd_class)%><%=number_to_currency(@prior_ytd_diff.abs, precision:2)%>
+						</h6>
+  		  	</div>
+ 	    	</div>
+ 	    	<div class = "row no-gutters">
+	  	  	<div class = "col-5">
+	        	<h6 class="text-left">
+	        	  <%=I18n.t('dashboard.user.last_year')%>
+         	  </h6>
+	      	</div>
+	      	<div class = "col-7">
+		    		<h6 class="text-right">
+		    		<%=difference_arrow(@last_year_ytd_class)%><%=number_to_currency(@last_year_ytd_diff.abs, precision:2)%>
+		    		</h6>
+		  		</div>
+ 	    	</div>
+ 	  	</div>
+		</div>
+	</div>
+  
+  <!--AVERAGE COLLECTIONS -->
+  <div class = "col-md-2">	
+    <div class = "card h-100 stats-card">
+	  	<div class = "card-header login-header">
+	  		<h6 class="text-center">
+	  			<%=I18n.t('dashboard.user.ytd_avg_collections')%>
+	  		</h6>
+	 		</div>
+	  	<div class = "card-body p-1">
+	  		<div class = "row no-gutters">
+	  	  	<div class = "col-5">
+	        	<h6 class="text-left">
+	        		<%=I18n.t('dashboard.admin.current')%>
+	        	</h6>
+	      	</div>
+	      	<div class = "col-7">
+						<h6 class="text-right"><%=number_to_currency(@ytd_avg_collections, precision:2)%></h6>
+		  		</div>
+ 	    	</div>
+ 	    	<div class = "row no-gutters">
+	  	  	<div class = "col-5">
+	    			<h6 class="text-left">
+	    				<%=I18n.t('dashboard.user.last_month')%>
+	    			</h6>
+	      	</div>
+	      	<div class = "col-7">
+						<h6 class="text-right">
+						<%=difference_arrow(@prior_ytd_avg_class)%><%=number_to_currency(@prior_ytd_avg_diff.abs, precision:2)%>
+						</h6>
+  		  	</div>
+ 	    	</div>
+ 	    	<div class = "row no-gutters">
+	  	  	<div class = "col-5">
+	        	<h6 class="text-left">
+	        	  <%=I18n.t('dashboard.user.last_year')%>
+         	  </h6>
+	      	</div>
+	      	<div class = "col-7">
+		    		<h6 class="text-right">
+		    		<%=difference_arrow(@last_year_ytd_avg_class)%><%=number_to_currency(@last_year_ytd_avg_diff.abs, precision:2)%>
+		    		</h6>
+		  		</div>
+ 	    	</div>
+
+ 	  	</div>
+    </div>
+  </div>
+
+  <!--YTD RANKINGS -->
+  <div class = "col-md-2">	
+    <div class = "card h-100 stats-card">
+	  	<div class = "card-header login-header">
+	  		<h6 class="text-center">
+	  			<%=I18n.t('dashboard.user.ytd_ranking')%>
+	  		</h6>
+	 		</div>
+	  	<div class = "card-body p-1">
+	  		<div class = "row no-gutters">
+	  	  	<div class = "col-5">
+	        	<h6 class="text-left">
+	        		<%=I18n.t('dashboard.user.current')%>
+	        	</h6>
+	      	</div>
+	      	<div class = "col-7">
+						<h6 class="text-right"><%=@current_ytd_ranking%></h6>
+		  		</div>
+ 	    	</div>
+ 	    	<div class = "row no-gutters">
+	  	  	<div class = "col-5">
+	    			<h6 class="text-left">
+	    				<%=I18n.t('dashboard.user.last_month')%>
+	    			</h6>
+	      	</div>
+	      	<div class = "col-7">
+						<h6 class="text-right"><%=@prior_ytd_ranking%>
+						</h6>
+  		  	</div>
+ 	    	</div>
+ 	    	<div class = "row no-gutters">
+	  	  	<div class = "col-5">
+	        	<h6 class="text-left">
+	        	  <%=I18n.t('dashboard.user.last_year')%>
+         	  </h6>
+	      	</div>
+	      	<div class = "col-7">
+		    		<h6 class="text-right"><%=@last_year_ytd_ranking%>
+		    		</h6>
+		  		</div>
+ 	    	</div>
+
+ 	  	</div>
+    </div>
+  </div>
+  
+</div>
+
+<!--LINE CHART WITH MONTHLY ROYALTY AMOUNT WITH LAST YEAR COMPARE -->
+<%= collections_by_month(@year)%> 

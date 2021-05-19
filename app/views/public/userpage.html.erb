@@ -1,5 +1,29 @@
-<%=render partial: 'user_warnings', locals: {
-	expired_cards: @expired_cards,
-	expiring_cards: @expiring_cards,
-  invalid_payment_token: @invalid_payment_token}%>
-<h1> User Dashboard </h1>
+<%=form_tag url_for(controller: 'public', action: 'userpage'),
+class: 'form-inline mb-2' do %>
+	<h3 class="mr-2">
+		<%=I18n.t('dashboard.admin.period')%>
+	</h3>
+
+	<%=select_year(@year,
+		options={:field_name => 'target_year',
+			:prefix =>"",
+			start_year: Remittance.get_min_year,
+		  end_year: Remittance.get_max_year},
+		  html_options = {:class => 'form-control form-control-sm mr-2'})%>
+  
+  <%=select_month(@month,
+    options={:field_name => 'target_month',
+    :prefix =>""},
+  	html_options = {:class =>'form-control form-control-sm mr-2'}) %>	
+
+  <%=submit_tag (I18n.t('dashboard.admin.reload')),
+  class: 'btn btn-padgett my-1'%>
+<%end%> <!-- END OF FORM -->
+
+<div id="statistics">
+  <%=render partial: 'user_statistics'%>
+</div>
+
+<div id="graphs">
+		<%=render partial: 'user_graphics'%>
+</div>

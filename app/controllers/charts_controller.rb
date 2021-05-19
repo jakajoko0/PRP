@@ -14,7 +14,28 @@ class ChartsController < ApplicationController
       }
       
     render json: series
+  end
 
+  def collections_by_month
+    
+    this_year = if params[:target_year]
+                  params[:target_year].to_i 
+                else
+                  Date.today.year
+                end
+      
+    last_year = this_year - 1
+    years = []
+    years << this_year
+    years << last_year
+
+    series = years.map { |year|
+      { name: year.to_s,
+        data: (1..12).map { |month| [month, RemittancesQuery.new.total_collections_for_graph(current_user.franchise_id, year, month).to_f] }
+      }
+    }
+
+    render json: series
   end
 
   def revenue_by_state

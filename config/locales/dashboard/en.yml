@@ -18,3 +18,15 @@ en:
       coll_by_category: Collections by Category
       total_royalties_by_month: Total Royalties by Month
       month: Month
+    user:
+      collections: Collections
+      ytd_collections: YTD Collections
+      current: Current
+      last_month: Last Mo. 
+      last_year: Last Yr.
+      avg_collections: Avg Collections
+      ytd_avg_collections: YTD Avg Collections
+      ranking: Ranking
+      ytd_ranking: YTD Ranking
+      collections_by_month: Total Collections by Month
+

@@ -15,6 +15,24 @@ module GraphHelper
 	  }
 	end
 
+	def collections_by_month(target_year)
+	  line_chart collections_by_month_charts_path(target_year: target_year),
+	  height: '300px',
+	  width: '100%',
+	  colors: ["#002b7f","#7fba00"],
+	  decimal: ".",
+	  thousands: " ",
+	  title: I18n.t('dashboard.user.collections_by_month'),
+	  library: {
+	  	chart: {backgroundColor: 'transparent'},
+	  	legend:{position: 'bottom'},
+	  	xAxis: {title: {text: (I18n.t('dashboard.admin.month'))}},
+	  	yAxis: {tickAmount: 6}
+	  }
+	end
+
+
+
 	def revenue_by_state(target_year,target_month)
 		geo_chart revenue_by_state_charts_path(target_year: target_year, target_month: target_month),
 		library: {
