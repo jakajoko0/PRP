@@ -18,7 +18,7 @@
 					<div class = "form-group form-row col-sm-12">
 						<%=f.label attrib.to_sym , class: "#{label_classes}" do %>
 	  			    <%= I18n.t('helpers.label.remittance.'+attrib)%> 
-	  			    <%=bubble_help(I18n.t('helpers.label.remittance.accounting_desc'),"right")%>
+	  			    <%=bubble_help(I18n.t("helpers.label.remittance.#{attrib}_desc"),"right")%>
 	  			  <%end%>
 
 	  			  <%=f.number_field attrib.to_sym, 

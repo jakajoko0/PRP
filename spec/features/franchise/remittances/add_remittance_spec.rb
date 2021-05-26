@@ -10,7 +10,7 @@ RSpec.feature "Feature - Adding Remittance", type: :feature do
     visit '/'	
     simulate_user_sign_in(user)
     visit remittances_path
-    click_button("Add Royalty Report")
+    click_button("Continue")
     expect(page).to have_content("New Royalty Report")
     expect(page).to have_field("remittance_year")
     expect(page).to_not have_field("remittance_date_received")
@@ -41,7 +41,7 @@ RSpec.feature "Feature - Adding Remittance", type: :feature do
     visit '/'   
     simulate_user_sign_in(user)
     visit remittances_path
-    click_button("Add Royalty Report")
+    click_button("Continue")
     expect(page).to have_content("New Royalty Report")
     expect(page).to have_field("remittance_year")
     expect(page).to_not have_field("remittance_date_received")
@@ -72,7 +72,7 @@ RSpec.feature "Feature - Adding Remittance", type: :feature do
     visit '/' 
     simulate_user_sign_in(user)
     visit remittances_path
-    click_button("Add Royalty Report")
+    click_button("Continue")
     expect(page).to have_content("New Royalty Report")
     
     fill_in "Accounting", with: "1000.00"

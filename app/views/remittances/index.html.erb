@@ -1,11 +1,25 @@
-<div class = "row col-12 pb-3">
-  <%=link_to new_remittance_path,
-     data: {turbolinks: false} do%>
-     <button class = 'btn btn-padgett'>
-       <%=I18n.t('remittance.index.add_royalty')%>
-     </button>
-  <%end%>
-</div>
+
+<!--FORM TO SELECT CURRENT PERIOD -->
+<%=form_tag url_for(controller: 'remittances', action: 'new'),
+  class: 'form-inline mb-2' do %>
+
+  <h3 class="mr-2">
+    <%=I18n.t('remittance.index.add_for')%>
+  </h3>
+  
+  <%=select_year( @year,
+    options={:field_name => 'target_year',
+    :prefix =>""},
+    html_options = {:class =>'form-control form-control-sm mr-2'}) %>
+  
+  <%=select_month(@month,
+    options={:field_name => 'target_month',
+    :prefix =>""},
+    html_options = {:class =>'form-control form-control-sm mr-2'}) %>
+  
+  <%=submit_tag (I18n.t('remittance.index.continue')),
+  class: 'btn btn-padgett my-1'%>
+<%end%>
 
 <div class = "row pb-5">
   <div class = "col-12">

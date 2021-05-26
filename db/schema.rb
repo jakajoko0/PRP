@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_21_195305) do
+ActiveRecord::Schema.define(version: 2021_05_20_173551) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -150,6 +150,27 @@ ActiveRecord::Schema.define(version: 2021_04_21_195305) do
     t.string "card_token"
     t.string "slug"
     t.index ["franchise_id"], name: "index_credit_cards_on_franchise_id"
+  end
+
+  create_table "deposit_trackings", force: :cascade do |t|
+    t.bigint "franchise_id"
+    t.integer "year", null: false
+    t.integer "month", null: false
+    t.date "deposit_date", null: false
+    t.decimal "total_deposit", precision: 12, scale: 2, default: "0.0", null: false
+    t.decimal "accounting", precision: 12, scale: 2, default: "0.0", null: false
+    t.decimal "backwork", precision: 12, scale: 2, default: "0.0", null: false
+    t.decimal "consulting", precision: 12, scale: 2, default: "0.0", null: false
+    t.decimal "excluded", precision: 12, scale: 2, default: "0.0", null: false
+    t.decimal "other1", precision: 12, scale: 2, default: "0.0", null: false
+    t.decimal "other2", precision: 12, scale: 2, default: "0.0", null: false
+    t.decimal "payroll", precision: 12, scale: 2, default: "0.0", null: false
+    t.decimal "setup", precision: 12, scale: 2, default: "0.0", null: false
+    t.decimal "tax_preparation", precision: 12, scale: 2, default: "0.0", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.string "slug"
+    t.index ["franchise_id"], name: "index_deposit_trackings_on_franchise_id"
   end
 
   create_table "event_logs", force: :cascade do |t|
@@ -444,6 +465,7 @@ ActiveRecord::Schema.define(version: 2021_04_21_195305) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "bank_accounts", "franchises"
   add_foreign_key "credit_cards", "franchises"
+  add_foreign_key "deposit_trackings", "franchises"
   add_foreign_key "financials", "franchises"
   add_foreign_key "franchise_documents", "franchises"
   add_foreign_key "insurances", "franchises"

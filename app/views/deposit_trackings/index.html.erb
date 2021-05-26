@@ -1,0 +1,37 @@
+<div class = "row col-12 pb-3">
+  <%=link_to new_deposit_tracking_path,
+     data: {turbolinks: false} do%>
+     <button class = 'btn btn-padgett'>
+       <%=I18n.t('deposit_tracking.index.add_deposit')%>
+     </button>
+  <%end%>
+</div>
+
+<form class="form-inline mb-2">
+  <h3 class="mr-2">
+    <%=I18n.t('deposit_tracking.index.deposits_for')%>
+  </h3>
+
+  <%=select_year(@year,
+    options={:field_name => 'target_year',
+      prefix: "",
+      start_year: DepositTracking.min_year,
+      end_year: Date.today.year},
+      html_options = {:class => 'form-control form-control-sm mr-2'})%>
+  
+  <%=select_month(@month,
+    options={:field_name => 'target_month',
+    :prefix =>""},
+    html_options = {:class =>'form-control form-control-sm mr-2'}) %> 
+
+  <input type = "submit", class= "btn btn-padgett my-1" value=<%=(I18n.t('deposit_tracking.index.reload'))%>>
+</form>
+
+<div class = "row pb-5">
+<div id = "monthly_deposits" class = "col pb-2">
+    <%=render partial: 'deposit_list', 
+    locals: {deposit_trackings: @deposits}%>
+</div>
+</div>
+
+  

@@ -1,0 +1,70 @@
+en:
+  activerecord:
+    errors:
+      models:
+        deposit_tracking:
+          attributes:
+            franchise:
+              blank: Franchise cannot be blank
+            year: 
+              blank: Please provide the year
+            month:
+              blank: Please provide the month  
+            deposit_date:
+              blank: Please provide the deposit date
+          no_negative: Please enter a valid number        
+          already_there: There is already a deposit on the same date for the same amount
+  helpers:
+    label:
+      deposit_tracking:
+        franchise_id: Franchise
+        year: Year
+        month: Month
+        deposit_date: Deposit Date
+        accounting: Accounting
+        accounting_desc: Receipts from the performance of blablabl
+        backwork: Backwork
+        backwork_desc: Receipts from the performance of Backwork
+        consulting: Consulting
+        excluded: Excluded
+        other1: Other 1
+        other2: Other 2
+        payroll: Payroll 
+        setup: Setup
+        tax_preparation: Tax Prep
+        total_deposit: Total Deposit
+  deposit_tracking:
+    object_name: Deposit
+    create:
+      confirm: Deposit Created Successfully
+    update:
+      confirm: Deposit Updated Successfully
+    delete:
+      confirm: Deposit Deleted Successfully
+      error: An Error Occured Deleting Deposit
+    index:
+      reload: Reload
+      deposits_for: Deposits For
+      add_deposit: Add Deposit
+      date: Date
+      accounting: Accounting
+      backwork: Backwork
+      consulting: Consulting
+      payroll: Payroll
+      setup: Setup
+      tax_prep: Tax Prep
+      other1: Other1
+      other2: Other2
+      edit_link: Edit this Deposit
+      delete_link: Delete this Deposit
+      delete_confirm: Are you sure you want to Delete this Deposit?
+    form:
+      breakdown: Deposit Breakdown
+      save: Save
+      discard: Discard
+      edit_title: Edit Deposit
+      create_title : New Deposit
+
+
+
+            

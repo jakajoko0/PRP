@@ -1,26 +1,24 @@
+# frozen_string_literal: true
+
 class BankAccount < ApplicationRecord
-  #t.bigint franchise_id
-  #t.string bank_name
-  #t.string last_four
-  #t.string account_type
-  #t.string bank_token
-  #t.string slug
-  enum account_type: {savings: 'S' , checking: "C"}
+  # t.bigint franchise_id
+  # t.string bank_name
+  # t.string last_four
+  # t.string account_type
+  # t.string bank_token
+  # t.string slug
+  enum account_type: { savings: 'S', checking: 'C' }
 
   extend FriendlyId
-  
-  friendly_id :franchise_name_bank_lastfour , use: :slugged
-  belongs_to :franchise	
+
+  friendly_id :franchise_name_bank_lastfour, use: :slugged
+  belongs_to :franchise
 
   audited
 
-  attr_accessor :routing
-  attr_accessor :account_number
-  attr_accessor :type_of_account
-  attr_accessor :name_on_account
-  
-  
-  validates :franchise, presence: true 
+  attr_accessor :routing, :account_number, :type_of_account, :name_on_account
+
+  validates :franchise, presence: true
   validates :routing, presence: true
   validates :account_number, presence: true
   validates :type_of_account, presence: true
@@ -36,39 +34,40 @@ class BankAccount < ApplicationRecord
   end
 
   def franchise_name_bank_lastfour
-    [franchise&.number_and_name, bank_name, last_four].join("-")
+    [franchise&.number_and_name, bank_name, last_four].join('-')
   end
-  
+
   def bank_name_and_number
     "#{bank_name} #{account_type.capitalize} ending in #{last_four}"
   end
 
   def name_or_number_has_changed?
-    self.bank_name_changed? || self.last_four_changed?
+    bank_name_changed? || last_four_changed?
   end
 
-  def token_type 
-    self.checking? ? 'C' : 'S'
+  def token_type
+    checking? ? 'C' : 'S'
   end
 
   def used_in_auto_payments?
-    WebsitePreference.exists?(payment_token: self.bank_token)
+    WebsitePreference.exists?(payment_token: bank_token)
   end
 
   def verify_if_used
-    if self.used_in_auto_payments? 
-      errors.add(:base,"This account is being used for a recurring payment.")
-      throw(:abort)
-    end
+    return unless used_in_auto_payments?
+    
+    errors.add(:base, 'This account is being used for a recurring payment.')
+    throw(:abort)
   end
 
   private
+
   def routing_format
-    digits = self.routing.to_s.split('').map(&:to_i).select{|d| (0..9).include?(d)} 
-    case digits.size 
+    digits = routing.to_s.split('').map(&:to_i).select { |d| (0..9).include?(d) }
+    case digits.size
     when 9
-      checksum = ( ( 3 * (digits[0] + digits[3] + digits[6]))+ 
-                   ( 7 * (digits[1] + digits[4] + digits[7]))+
+      checksum = ((3 * (digits[0] + digits[3] + digits[6])) +
+                   (7 * (digits[1] + digits[4] + digits[7])) +
                          (digits[2] + digits[5] + digits[8])) % 10
       case checksum
       when 0
@@ -82,6 +81,4 @@ class BankAccount < ApplicationRecord
       false
     end
   end
-
-
 end

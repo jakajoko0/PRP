@@ -10,7 +10,7 @@ RSpec.feature "Feature User Log In", :type => :feature do
     click_button 'Log In'
     expect(page).to have_link("Sign Out")
     expect(page).to_not have_selector "img#padgett-logo"
-    expect(page).to have_content("User Dashboard")
+    expect(page).to have_content("Period")
     
   end
 
@@ -56,7 +56,7 @@ RSpec.feature "Feature User Log In", :type => :feature do
     click_button 'Log In'
     expect(page).to have_link("Sign Out")
     expect(page).to_not have_selector "img#padgett-logo"
-    expect(page).to have_content("User Dashboard")
+    expect(page).to have_content("Period")
   end
 
   scenario "Log In Page with Invalid Email" do

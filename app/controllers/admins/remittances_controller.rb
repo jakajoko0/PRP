@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 # For Admins to List, Add, Edit, Delete Remittances
-
 class Admins::RemittancesController < ApplicationController
   before_action :set_remittance, only: %i[audit edit update destroy show]
 

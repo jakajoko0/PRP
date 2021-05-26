@@ -1,4 +1,4 @@
 class UpdateInsurance
-	include Interactor::Organizer
-	organize ModifyInsurance, CreateEventLog
+  include Interactor::Organizer
+  organize ModifyInsurance, CreateEventLog
 end

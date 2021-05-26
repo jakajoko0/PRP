@@ -19,7 +19,7 @@ RSpec.feature "Feature - Home Page", :type => :feature do
   	visit "/"
   	expect(page).to_not have_selector "img#padgett-logo"
     expect(page).to have_link("Sign Out")
-    expect(page).to have_content("User Dashboard")
+    expect(page).to have_content("Period")
     
   end
 

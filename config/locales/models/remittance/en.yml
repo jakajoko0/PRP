@@ -45,6 +45,7 @@ en:
         accounting: Accounting
         accounting_desc: Receipts from the performance of blablabl
         backwork: Backwork
+        backwork_desc: Receipts from the performance of Backwork
         consulting: Consulting
         excluded: Excluded
         other1: Other 1
@@ -74,7 +75,8 @@ en:
       confirm: Royalty Report Deleted Successfully
       error: A Problem Occured Deleting Royalty Report
     index:
-      add_royalty: Add Royalty Report
+      add_for: Add New Report For
+      continue: Continue
       franchise: Franchise
       received: Received
       posted: Posted

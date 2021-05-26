@@ -52,8 +52,10 @@ Rails.application.routes.draw do
     resources :website_preferences, except: :destroy
     resources :financials
     resources :remittances
+    post '/remittances/new' => 'remittances#new'
     resources :franchise_documents, except: [:show, :edit, :update]
     resources :invoices
+    resources :deposit_trackings
 
 
     get '/bank_routings/bank_name' => 'bank_routings#bank_name'
