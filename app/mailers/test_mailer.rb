@@ -1,6 +1,6 @@
 class TestMailer < ApplicationMailer
 
-  def welcome_email
-    mail(to: 'dgrenier@smallbizpros.com', subject: "Welcome to Sidekiq")	
+  def welcome_email(recipients)
+    mail(to: recipients, subject: "Welcome to Sidekiq")	
   end
 end
