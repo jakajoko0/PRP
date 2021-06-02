@@ -1,0 +1,47 @@
+<div class = "col-12">
+  <h2 class = "padgett-text">
+  	<%= I18n.t('franchise_directory.title')%>
+	</h2>
+</div>
+
+<%=form_tag franchise_directory_path,
+   :method => 'get',
+   :id => "franchise_directory_search",
+   class: 'pt-2 pb-2' do %>
+	 
+    <div class ="form-group row col-12">
+      <div class = "col-sm-3 col-md-3 col-lg-3">
+		    <%=text_field_tag :firstname, "",
+		      placeholder: I18n.t('franchise_directory.first'),
+		      class:"form-control input-sm"%>
+	    </div>
+	  
+	    <div class ="col-sm-3 col-md-3 col-lg-3">
+		    <%=text_field_tag :lastname, "", 
+		      placeholder: I18n.t('franchise_directory.last'),
+		      class:"form-control input-sm"%>
+      </div>
+
+	    <div class ="col-sm-2 col-md-2 col-ls-2">
+		    <%=text_field_tag :state, "",
+		      placeholder: I18n.t('franchise_directory.state'),
+		      class:"form-control input-sm",
+		      style:"text-transform:uppercase"%>
+	    </div>
+
+	    <div class = "col-sm-3 col-md-3 col-lg-3" >
+        <%= submit_tag "Search",
+          class:'btn btn-primary'%>
+      </div>
+    </div>  
+<%end%>
+
+
+<div class = "col-12">
+	<div id = "franchises_directory">
+		<%=render partial: 'franchise_directory'%>
+	</div>
+</div>
+
+
+	

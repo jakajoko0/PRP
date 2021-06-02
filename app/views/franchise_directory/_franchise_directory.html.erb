@@ -1,0 +1,64 @@
+
+<div id = "table-scroll" class = "table-scroll">
+  <table id = "franchise_directory_table" class="table-striped">
+    <thead id = "list">
+      <tr>
+        <th scope = "col" class = "td-left">
+          <%=I18n.t('franchise_directory.first')%>
+        </th>
+        <th scope = "col" class = "td-left">
+          <%=I18n.t('franchise_directory.last')%>
+        </th>
+        <th scope = "col" class = "td-left">
+          <%=I18n.t('franchise_directory.address')%>
+        </th>
+        <th scope = "col" class = "td-left">
+          <%=I18n.t('franchise_directory.tel')%>
+        </th>
+        <th scope = "col" class = "td-left">
+          <%=I18n.t('franchise_directory.email')%>
+        </th>
+      </tr>
+    </thead>
+    <%if @franchises.size >0 %>
+      <tbody>
+      <%@franchises.each do |franchise|%>
+        <tr>
+          <td data-name = "First Name"
+              scope = "col"
+              class = "td-left">
+              <%=franchise.firstname%>
+          </td>
+
+          <td data-name = "Last Name"
+              scope = "col"
+              class = "td-left">
+            <%=franchise.lastname%>
+          </td>
+
+          <td data-name = "Address"
+              scope = "col"
+              class = "td-left">
+            <%=franchise.one_line_address%>
+          </td>
+
+          <td data-name = "Phone"
+              scope = "col" 
+              class = "td-left">
+            <%=franchise.phone%></h5> 
+          </td>
+
+          <td data-name = "Email"
+              scope = "col"
+              class = "td-left">
+            <%=franchise.email%>
+          </td>
+        </tr>
+      <%end%>
+      </tbody>
+    <%end%>
+  </table>
+
+</div>      
+
+

@@ -137,6 +137,14 @@ en:
     new_website_pref: Add Website Preference
     enter_financial: Enter Financials
     add_document: Add Document
+  franchise_directory: 
+    title: Search Franchise Directory  
+    first: First Name
+    last: Last Name
+    address: Address
+    tel: Telephone
+    email: Email
+    state: State
 
 
 

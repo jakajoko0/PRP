@@ -57,6 +57,7 @@ Rails.application.routes.draw do
     resources :invoices
     resources :deposit_trackings
 
+    get '/franchise_directory' => 'franchise_directory#index'
 
     get '/bank_routings/bank_name' => 'bank_routings#bank_name'
   end

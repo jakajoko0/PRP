@@ -3,7 +3,7 @@
 class Admins::SwitchUserController < ApplicationController
 
   def index
-    @user_list = User.filter_user(params[:search])
+    @user_list = User.includes(:franchise).filter_user(params[:search])
   end
 
 end

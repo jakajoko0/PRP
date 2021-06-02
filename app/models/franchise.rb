@@ -158,6 +158,21 @@ class Franchise < ApplicationRecord
     end
   end
 
+    def self.directory(last,first,state)
+    scope = Franchise.where("inactive = ?", 0)
+    if last && !last.blank?
+      scope = scope.where("lower(lastname) LIKE ?","%#{last.downcase}%")
+    end
+    if first && !first.blank?
+      scope = scope.where("lower(firstname) LIKE ?","%#{first.downcase}%")
+    end
+    if state && !state.blank?
+      scope = scope.where("upper(state) = ?",state.upcase)
+    end
+    return scope
+  end
+
+
   def self.number_and_name(franchise_id)
     @fran_by_number_and_name ||= compute_number_and_name
     return @fran_by_number_and_name[franchise_id] if @fran_by_number_and_name[franchise_id]
