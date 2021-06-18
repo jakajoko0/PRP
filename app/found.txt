@@ -1,0 +1,1 @@
+helpers/graph_helper.rb:		Rails.logger.debug("THE DATA CALISSE: #{data}")

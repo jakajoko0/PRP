@@ -72,6 +72,21 @@ module GulfApi
       response = request('token_output', {'token' => token})
     end
 
+    #Method that submits a transaction (bank or card) using the reference token of the account
+    def token_transaction( token, amount, transaction_id)
+      response = request('token_transaction',{'token' => token , 'amount' => amount , 'transaction_id' => transaction_id})
+    end
+
+    #Method that calls the transaction response for a specific date
+    def instant_transaction_response_by_date(search_date)
+      response = request('instant_transaction_response_by_date',{'search_date' => search_date})
+    end
+  
+    #Method that calls the transaction response for all pending transactions not processed yet
+    def instant_transaction_response()
+      response = request('instant_transaction_response',{} )
+    end
+
     private 
 
     def client 

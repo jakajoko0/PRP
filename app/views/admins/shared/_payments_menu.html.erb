@@ -1,0 +1,49 @@
+<!-- PAYMENTS MENU DROPDOWN-->   
+  <li class="nav-item dropdown">
+    <a href ="#" class="nav-link dropdown-toggle" 
+       data-toggle="dropdown" 
+       role="button" aria-haspopup = "true" 
+       aria-expanded = "false">
+      <%=I18n.t('admin_menu.payment.payments')%>
+    </a>
+    <ul class = "dropdown-menu multi-level" 
+      aria-labelledby="navbarDropdownPaymentsLink">
+      <!-- PENDING-->  
+      <li>
+        <%= link_to I18n.t('admin_menu.payment.pending') , admins_pending_payments_path, class: "dropdown-item" %>
+      </li>
+      <!-- APPROVED-->  
+      <li>
+        <%= link_to I18n.t('admin_menu.payment.approved') , admins_approved_payments_path, class: "dropdown-item" %>
+      </li>
+      <!-- DECLINED-->  
+      <li>
+        <%= link_to I18n.t('admin_menu.payment.error') , admins_declined_payments_path, class: "dropdown-item" %>
+      </li>
+      <!-- ALL PAYMENTS-->  
+      <li>
+        <%= link_to I18n.t('admin_menu.payment.all') , admins_payments_path, class: "dropdown-item" %>
+      </li>
+      <div class="dropdown-divider"></div>
+      
+      <li>
+        <%= link_to I18n.t('admin_menu.payment.manage_checks') , admins_check_payments_path,
+          class: "dropdown-item" %>
+      </li>
+      <div class="dropdown-divider"></div>
+      <!-- CHARGES AND RECEIPTS REPORTS-->  
+      <li class = "dropdown-submenu">
+        <a class = "dropdown-item dropdown-toggle" 
+        tabindex="-1" href="#">
+          <%=I18n.t('admin_menu.payment.reports')%>
+        </a>
+        <ul class = "dropdown-menu">
+          <!-- PAYMENTS BY TYPE-->  
+          <li>
+            <%= link_to I18n.t('admin_menu.payment.report.by_method') , "#",
+              class: "dropdown-item" %>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>

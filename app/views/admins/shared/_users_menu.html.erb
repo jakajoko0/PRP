@@ -1,0 +1,24 @@
+<!-- USER PROFILE -->
+  <li class="nav-item dropdown">
+    <a href ="#" class="nav-link dropdown-toggle" 
+       data-toggle="dropdown" 
+       role="button" aria-haspopup = "true" 
+       aria-expanded = "false">
+      <%=I18n.t('admin_menu.user.users')%>
+    </a>
+    <ul class = "dropdown-menu multi-level" 
+      aria-labelledby="navbarDropdownUsersLink">
+      <%if can? :manage, Admin%>
+       <!-- Manage Home Office Users-->  
+      <li>
+        <%= link_to I18n.t('admin_menu.user.manage') , admins_admins_path,
+          class: "dropdown-item" %>
+      </li>
+      <%end%>
+      <!-- Your Profile-->  
+      <li>
+        <%= link_to I18n.t('admin_menu.user.profile') , edit_admin_registration_path(current_admin),
+          class: "dropdown-item" %>
+      </li>
+    </ul>
+  </li>

@@ -22,6 +22,7 @@ import "jquery-mask-plugin"
 
  
 global.$ = jQuery;
+require("custom/date_utils")
 require("custom/franchises")
 require("custom/franchises_select")
 require("custom/accountants")
@@ -35,6 +36,10 @@ require("custom/credits")
 require("custom/remittances")
 require("custom/invoices")
 require("custom/deposit_trackings")
+require("custom/bank_payments")
+require("custom/check_payments")
+require("custom/payments")
+
 
 
 require.context('../images',true, /\.(?:png|jpg|gif|ico|svg)$/)

@@ -9,6 +9,7 @@ class Invoice < ApplicationRecord
   has_many :invoice_items, dependent: :destroy
   validates_associated :invoice_items, message: 'Errors were detected in the invoice detail'
   accepts_nested_attributes_for :invoice_items, allow_destroy: true
+  
   audited except: [:slug], on: %i[update destroy]
 
   friendly_id :number_name, use: %i[sequentially_slugged scoped], scope: :franchise_id
@@ -50,6 +51,10 @@ class Invoice < ApplicationRecord
   def paid?
     paid == 1
   end
+
+  #def website_payment?
+  #
+  #end
 
   def invoice_total
     invoice_items.map(&:amount).sum

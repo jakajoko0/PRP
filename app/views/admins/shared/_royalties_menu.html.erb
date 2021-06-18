@@ -1,0 +1,114 @@
+<!-- ROYALTIES MENU DROPDOWN-->   
+  <li class="nav-item dropdown">
+    <a href ="#" class="nav-link dropdown-toggle" 
+       data-toggle="dropdown" 
+       role="button" aria-haspopup = "true" 
+       aria-expanded = "false">
+      <%=I18n.t('admin_menu.royalty.royalties')%>
+    </a>
+    <ul class = "dropdown-menu multi-level" 
+      aria-labelledby="navbarDropdownRoyaltyLink">
+      <!-- ENTER ROYALTIES-->  
+      <li>
+        <%= link_to I18n.t('admin_menu.royalty.royalty_enter') , admins_franchises_select_index_path(destination: 'add_royalty'), class: "dropdown-item" %>
+      </li>
+      <!-- REVIEW ROYALTIES-->  
+      <li>
+        <%= link_to I18n.t('admin_menu.royalty.royalty_review') , admins_remittances_path, class: "dropdown-item" %>
+      </li>
+      <div class="dropdown-divider"></div>
+      <!-- ROYALTIES REPORTS-->  
+      <li class = "dropdown-submenu">
+        <a class = "dropdown-item dropdown-toggle" 
+        tabindex="-1" href="#">
+          <%=I18n.t('admin_menu.royalty.reports')%>
+        </a>
+        <ul class = "dropdown-menu">
+          <!-- FRANCHISE HISTORY-->  
+          <li>
+            <%= link_to I18n.t('admin_menu.royalty.report.history') , "#",
+              class: "dropdown-item" %>
+          </li>
+          <!-- FRANCHISE HISTORY MULTIPLE-->  
+          <li>
+            <%= link_to I18n.t('admin_menu.royalty.report.history_years') ,
+            "#" , class: "dropdown-item"%>
+          </li>
+          <div class="dropdown-divider"></div>
+          <!-- COLLECTIONS BY RECEIPT DATE-->  
+          <li>
+            <%= link_to I18n.t('admin_menu.royalty.report.coll_date') , "#" ,
+              class: "dropdown-item"%>
+          </li>
+          <!-- COLLECTIONS BY RECEIPT DATE (Comparison)-->   
+          <li>
+            <%= link_to I18n.t('admin_menu.royalty.report.coll_date_comp') ,
+             "#" , class: "dropdown-item"%>
+          </li>
+          <!-- COLLECTIONS UNDER THRESHOLD-->  
+          <li>
+            <%= link_to I18n.t('admin_menu.royalty.report.coll_threshold') , "#" ,
+              class: "dropdown-item"%>
+          </li>
+          <!-- COLLECTIONS SUMMARY BY RECEIPT MONTH-->  
+          <li>
+            <%= link_to I18n.t('admin_menu.royalty.report.coll_summ_month'),
+             "#" , class: "dropdown-item"%>
+          </li>
+          <!-- COLLECTIONS SUMMARY BY YEAR-->  
+          <li>
+            <%= link_to I18n.t('admin_menu.royalty.report.coll_summ_year') , "#" ,
+              class: "dropdown-item"%>
+          </li>
+          <div class="dropdown-divider"></div>
+          <!-- ROYALTY SUMMARY BY MONTH-->  
+          <li>
+            <%= link_to I18n.t('admin_menu.royalty.report.roy_summ_month') , "#" ,
+              class: "dropdown-item"%>
+          </li>
+          <!-- ROYALTY SUMMARY BY YEAR-->  
+          <li>
+            <%= link_to I18n.t('admin_menu.royalty.report.roy_summ_year') , "#" ,
+              class: "dropdown-item"%>
+          </li>
+          <div class="dropdown-divider"></div>
+          <!-- MONTHLY RANKNIGS-->  
+          <li>
+            <%= link_to I18n.t('admin_menu.royalty.report.month_rank') , "#" ,
+              class: "dropdown-item"%>
+          </li>
+          <!-- PERFORMANCE REPORT-->  
+          <li>
+            <%= link_to I18n.t('admin_menu.royalty.report.performance') , "#" , class: "dropdown-item"%>
+          </li>
+          <!-- SALES REPORT-->  
+          <li>
+            <%= link_to I18n.t('admin_menu.royalty.report.sales') , "#" ,
+              class: "dropdown-item"%>
+          </li>
+          <!-- GROWTH REPORT-->  
+          <li>
+            <%= link_to I18n.t('admin_menu.royalty.report.growth') , "#" ,
+              class: "dropdown-item"%>
+          </li>
+          <!-- YEARLY RANKINGS AVG-->  
+          <li>
+            <%= link_to I18n.t('admin_menu.royalty.report.rank_avg') , "#" ,
+              class: "dropdown-item"%>
+          </li>
+          <!-- YEARLY RANKINGS TOTALS-->  
+          <li>
+            <%= link_to I18n.t('admin_menu.royalty.report.rank_tot') , "#" ,
+              class: "dropdown-item"%>
+          </li>
+          <div class="dropdown-divider"></div>
+          <!-- LATE REPORTS SUBMITTED-->  
+          <li>
+            <%= link_to I18n.t('admin_menu.royalty.report.late') , "#" ,
+              class: "dropdown-item"%>
+          </li>
+        </ul>
+      </li>
+         
+    </ul>
+  </li>

@@ -36,7 +36,7 @@ class FranchisesQuery
     end
   end
 
-    def get_ytd_ranking(franchise_id, year, month)
+  def get_ytd_ranking(franchise_id, year, month)
     #First we select franchises with the sum of their collections for the  year
     #Ordered by descending collection. 
     res = Franchise.joins("LEFT JOIN remittances ON remittances.franchise_id = franchises.id").select("franchises.id,sum(remittances.accounting + remittances.backwork + remittances.consulting +  remittances.other1 + remittances.other2 + remittances.payroll + remittances.setup + remittances.tax_preparation) as collect").where("year = ? and month <= ? AND status = ?" ,year,month,1).group("franchises.id").order("collect DESC")
@@ -49,6 +49,12 @@ class FranchisesQuery
     else
       return (pos+1).to_s+' / '+(res.length).to_s
     end
+  end
+
+  def get_royalty_balance(franchise_id)
+    credits = PrpTransaction.where(franchise_id: franchise_id, trans_type: ["payment","credit"]).sum(:amount)
+    debits = PrpTransaction.where(franchise_id: franchise_id, trans_type: ["receivable"]).sum(:amount)
+    return debits - credits  
   end
 
 

@@ -1,0 +1,23 @@
+remittances/_remittances_list.html.erb:                <%=I18n.l(royalty.date_posted.in_time_zone, format: :prp)%>
+invoices/_charges_list.html.erb:                <%=I18n.l(invoice.date_posted, format: :notime)%>
+shared/remittances/show/_report_info.html.erb:            <%=I18n.l(remittance.date_posted, format: :notime)%>
+shared/remittances/show/_report_info.html.erb:          <%=I18n.t('helpers.label.remittance.date_posted')%>
+admins/franchises/show/_remittances.html.erb:              <%=I18n.l(rem.date_posted.in_time_zone, format: :prp)%>
+admins/remittances/_remittances_list.html.erb:                <%=I18n.l(royalty.date_posted.in_time_zone, format: :prp)%>
+admins/remittances/form/_period.html.erb:  		  	<%=f.label :date_posted, 
+admins/remittances/form/_period.html.erb:  		  	<%=f.text_field :date_posted,
+admins/remittances/form/_period.html.erb:  		  	value: (I18n.l f.object.date_posted, format: :notime if f.object.date_posted),tabindex: 4, class: "form-control form-control-sm col text-center col-md-4 col-sm-4 col-lg-3 col-xl-2 remittance_input",
+admins/remittances/form/_period.html.erb:  		  	id: "remittance_date_posted",
+admins/invoices/_charges_list.html.erb:                <%=I18n.l(invoice.date_posted, format: :notime)%>
+admins/charges/_charge_list.html.erb:        	<%=I18n.t('charge.index.date_posted')%>
+admins/charges/_charge_list.html.erb:    	  	    <%=I18n.l(charge.date_posted.in_time_zone, format: :prp)%>
+admins/charges/_form.html.erb:          <%=f.label :date_posted,
+admins/charges/_form.html.erb:            <%=f.text_field :date_posted, 
+admins/charges/_form.html.erb:            value: (I18n.l(f.object.date_posted, format: :notime) if f.object.date_posted),
+admins/charges/_form.html.erb:                    id: "prp_transaction_date_posted",
+admins/credits/_credit_list.html.erb:        	<%=I18n.t('credit.index.date_posted')%>
+admins/credits/_credit_list.html.erb:    	  	    <%=I18n.l(credit.date_posted.in_time_zone, format: :prp)%>
+admins/credits/_form.html.erb:          <%=f.label :date_posted,
+admins/credits/_form.html.erb:            <%=f.text_field :date_posted, 
+admins/credits/_form.html.erb:            value: (I18n.l(f.object.date_posted, format: :notime) if f.object.date_posted),
+admins/credits/_form.html.erb:                    id: "prp_transaction_date_posted",

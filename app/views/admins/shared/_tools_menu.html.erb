@@ -1,0 +1,93 @@
+<!-- TOOLS-->   
+  <li class="nav-item dropdown">
+    <a href ="#" class="nav-link dropdown-toggle" 
+       data-toggle="dropdown" 
+       role="button" aria-haspopup = "true" 
+       aria-expanded = "false">
+      <%=I18n.t('admin_menu.tool.tools')%>
+    </a>
+    <ul class = "dropdown-menu multi-level" 
+      aria-labelledby="navbarDropdownToolsLink">
+      <!-- MANAGE TRANSACTION CODES CODES-->  
+      <li>
+        <%= link_to I18n.t('admin_menu.tool.transaction_codes'),
+        admins_transaction_codes_path,
+          class: "dropdown-item" %>
+      </li>
+      
+      <!-- MANAGE FRANCHISE GROUPS-->  
+      <li>
+        <%= link_to I18n.t('admin_menu.tool.fran_groups') , "#",
+          class: "dropdown-item" %>
+      </li>
+      <div class="dropdown-divider"></div>
+      <!-- LOGIN AS ANOTHER FRANCHISE-->  
+      <li>
+        <%= link_to I18n.t('admin_menu.tool.login_as') , admins_switch_user_path,
+          class: "dropdown-item" %>
+      </li>
+       
+      <div class="dropdown-divider"></div>
+      <!-- SYSTEM-->  
+      <li class = "dropdown-submenu">
+        <a class = "dropdown-item dropdown-toggle" 
+        tabindex="-1" href="#">
+          <%=I18n.t('admin_menu.tool.system.systems')%>
+        </a>
+        <ul class = "dropdown-menu">
+          <!-- EVENT LOG-->  
+          <li>
+            <%= link_to I18n.t('admin_menu.tool.system.event_log') , "#",
+              class: "dropdown-item" %>
+          </li>
+          <!-- SERVER LOGS-->  
+          <li>
+            <%= link_to I18n.t('admin_menu.tool.system.server_log') , "/logs",
+            class: "dropdown-item" %>
+          </li>
+          <!-- AUDIT TRAIL-->  
+          <li>
+            <%= link_to I18n.t('admin_menu.tool.system.audit') , "#",
+            class: "dropdown-item" %>
+          </li>
+          <!-- BACKGROUND JOBS-->  
+          <li>
+            <%= link_to I18n.t('admin_menu.tool.system.jobs') , "/sidekiq",
+            class: "dropdown-item" %>
+          </li>
+          <li>
+            <%= link_to I18n.t('admin_menu.tool.system.pay_resp') , "#",
+            class: "dropdown-item" %>
+          </li>
+          
+        </ul>
+      </li>
+
+      <div class="dropdown-divider"></div>
+
+      <!-- TOOLS REPORTS-->  
+      <li class = "dropdown-submenu">
+        <a class = "dropdown-item dropdown-toggle" 
+        tabindex="-1" href="#">
+          <%=I18n.t('admin_menu.tool.reports')%>
+        </a>
+        <ul class = "dropdown-menu">
+          <!-- EVENT LOG-->  
+          <li>
+            <%= link_to I18n.t('admin_menu.tool.report.event_log') , "#",
+              class: "dropdown-item" %>
+          </li>
+          <!-- REGISTERED USERS-->  
+          <li>
+            <%= link_to I18n.t('admin_menu.tool.report.users') , "#",
+              class: "dropdown-item" %>
+          </li>
+          <!-- MISSING FRANCHISES-->  
+          <li>
+            <%= link_to I18n.t('admin_menu.tool.report.not_using') , "#",
+              class: "dropdown-item" %>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>

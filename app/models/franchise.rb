@@ -69,6 +69,10 @@ class Franchise < ApplicationRecord
   has_many :invoices
   has_many :franchise_documents
   has_many :deposit_trackings
+  has_many :payments
+  has_many :bank_payments
+  has_many :card_payments
+  has_many :check_payments
   friendly_id :number_and_name, use: :slugged
   audited except: %i[slug max_collections avg_collections max_coll_year max_coll_month], on: %i[update destroy]
 

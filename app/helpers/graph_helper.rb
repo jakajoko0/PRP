@@ -51,7 +51,6 @@ module GraphHelper
 
 	def collections_by_category(target_year, target_month)
 		data = collections_by_category_charts_path(target_year: target_year, target_month: target_month)
-		Rails.logger.debug("THE DATA CALISSE: #{data}")
 		pie_chart data,
 		donut: true,
     colors: ['#7fba00','#002b7f','#FF0000',

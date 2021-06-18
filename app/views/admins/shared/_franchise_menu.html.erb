@@ -1,0 +1,134 @@
+<!-- FRANCHISE MENU DROPDOWN-->    
+  <li class="nav-item dropdown">
+    <a href ="#" class="nav-link dropdown-toggle" 
+       data-toggle="dropdown" 
+       role="button" aria-haspopup = "true" 
+       aria-expanded = "false">
+      <%= I18n.t('admin_menu.franchise.franchises')%>
+    </a>
+    <ul class = "dropdown-menu multi-level" 
+      aria-labelledby="navbarDropdownFranchiseLink">
+      <!-- FRANCHISES-->  
+      <li>
+        <%= link_to I18n.t('admin_menu.franchise.franchises'),
+          admins_franchises_path,
+        class: "dropdown-item" %>
+      </li>
+      <!-- ACCOUNTANTS-->  
+      <li>
+        <%= link_to I18n.t('admin_menu.franchise.accountants') , admins_accountants_path,
+        class: "dropdown-item" %>
+      </li>
+      <!-- INSURANCE-->  
+      <li>
+        <%= link_to I18n.t('admin_menu.franchise.insurance') , admins_insurances_path,
+        class: "dropdown-item" %>
+      </li>
+      <!-- FINANCIALS-->  
+      <li>
+        <%= link_to I18n.t('admin_menu.franchise.financials') ,
+        admins_financials_path,
+        class: "dropdown-item" %>
+      </li>
+      <!-- DOCUMENTS-->  
+      <li>
+        <%= link_to I18n.t('admin_menu.franchise.documents') ,
+        admins_franchise_documents_path,
+        class: "dropdown-item" %>
+      </li>
+      <!-- WEBSITE PREFERENCE-->  
+      <li>
+        <%= link_to I18n.t('admin_menu.franchise.website') ,
+        admins_website_preferences_path,
+        class: "dropdown-item" %>
+      </li>
+      <div class="dropdown-divider"></div>
+      <!-- FRANCHISE REPORTS-->  
+      <li class = "dropdown-submenu">
+        <a class = "dropdown-item dropdown-toggle" 
+        tabindex="-1" href="#">
+          <%=I18n.t('admin_menu.franchise.reports')%>
+        </a>
+        <ul class = "dropdown-menu">
+          <!-- FRANCHISE LIST-->  
+          <li>
+            <%= link_to I18n.t('admin_menu.franchise.report.franchise_list') ,
+            admins_franchise_list_path, 
+              class: "dropdown-item" %>
+          </li>
+          <!-- FRANCHISE EXPIRING-->  
+          <li>
+            <%= link_to I18n.t('admin_menu.franchise.report.expiring') , admins_franchise_expiration_path ,
+              class: "dropdown-item"%>
+          </li>
+          <!-- FRANCHISE REBATES-->  
+          <li>
+            <%= link_to I18n.t('admin_menu.franchise.report.advanced_rebate') , admins_franchise_advanced_rebate_path ,
+              class: "dropdown-item"%>
+          </li>
+          <!-- FRANCHISE PRIOR REBATES-->   
+          <li>
+            <%= link_to I18n.t('admin_menu.franchise.report.prior_rebate') , admins_franchise_prior_rebate_path ,
+              class: "dropdown-item"%>
+          </li>
+          <div class="dropdown-divider"></div>
+          <!-- PAYMENT METHODS-->   
+          <li>
+            <%= link_to I18n.t('admin_menu.franchise.report.payment_methods') , admins_payment_methods_path ,
+              class: "dropdown-item"%>
+          </li>
+          <!-- FRANCHISE MISSING PAYMENT METHODS-->   
+          <li>
+            <%= link_to I18n.t('admin_menu.franchise.report.missing_methods') ,
+            admins_payment_methods_missing_path ,
+            class: "dropdown-item"%>
+          </li>
+          <div class="dropdown-divider"></div>
+          <!-- EXPIRING INSURANCE-->   
+          <li>
+            <%= link_to I18n.t('admin_menu.franchise.report.expiring_insurance') , admins_insurance_expiration_path ,
+              class: "dropdown-item"%>
+          </li>
+          <!-- FRANCHISE MISSING INSURANCE-->   
+          <li>
+            <%= link_to I18n.t('admin_menu.franchise.report.missing_insurance') , admins_insurance_missing_path ,
+              class: "dropdown-item"%>
+          </li>
+          <div class="dropdown-divider"></div>
+          <!-- FINANCIAL REPORTING STATUS-->   
+          <li>
+            <%= link_to I18n.t('admin_menu.franchise.report.financial_status') ,
+            admins_financial_status_path ,
+              class: "dropdown-item"%>
+          </li>
+          <!-- CLIENT COUNTS AND FEE AVERAGES-->   
+          <li>
+            <%= link_to I18n.t('admin_menu.franchise.report.counts_averages') ,
+            admins_financial_count_averages_path ,
+              class: "dropdown-item"%>
+          </li>
+          <!-- FINANCIAL AGGREGATION-->   
+          <li>
+            <%= link_to I18n.t('admin_menu.franchise.report.financial_agg') , 
+            admins_financial_aggregation_path ,
+              class: "dropdown-item"%>
+          </li>
+          <div class="dropdown-divider"></div>
+          <!-- Website Preferences-->   
+          <li>
+            <%= link_to I18n.t('admin_menu.franchise.report.website_pref') , admins_website_preferences_list_path ,
+              class: "dropdown-item"%>
+          </li>
+          <!-- Missing Website Preferences-->   
+          <li>
+            <%= link_to I18n.t('admin_menu.franchise.report.missing_website') ,
+            admins_website_preferences_missing_path ,
+              class: "dropdown-item"%>
+          </li>
+
+
+        </ul>
+      </li>
+         
+    </ul>
+  </li>

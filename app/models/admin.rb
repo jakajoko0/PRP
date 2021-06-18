@@ -12,7 +12,7 @@ class Admin < ApplicationRecord
   after_create :log_event
 
   def set_default_role
-    self.role ||= :full_control
+    self.role ||= :read_only
   end
 
   def reset_pass

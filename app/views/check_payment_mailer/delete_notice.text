@@ -1,0 +1,8 @@
+Payment update from Padgett Report + Pay
+
+This is a notification that the check payment paid with <%=@check_payment.paid_with%> in the amount of <%=number_to_currency(@check_payment.amount)%> has been deleted / cancelled at your request.
+
+You can log into Padgett Report + Pay to find more details about the payment status.
+
+Do not reply to this email. This email was sent automatically byPadgett Report + Pay
+    

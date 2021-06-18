@@ -1,0 +1,3 @@
+A call to the InstantTransactionResponse method has produced the following error
+
+<%=@msg%>

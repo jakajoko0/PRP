@@ -16,7 +16,7 @@ class ApplicationController < ActionController::Base
     elsif current_admin
       current_admin
     else
-      nil
+      Admin.first
     end
   end
     

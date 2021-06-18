@@ -3,10 +3,7 @@ module DisplayHelper
              3 => "Northeast Corridor", 4 => "Mid-USA",
              5 => "West", 6 => "Processing Center",
              7 =>  "Corporate", 8 => "Home Office" }
-  #Helper that displays the proper payment icon
-  #depending on the payment type
-  def paid_with_icon(payment)	
-  end
+  
 
   #Throughout the app, we have the same links to 
 #Edit, Show, Delete with the same icons

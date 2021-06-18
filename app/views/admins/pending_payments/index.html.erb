@@ -1,0 +1,10 @@
+<div class = "col-12 pb-2">
+  <h2 class="padgett-text">
+    Pending Payments
+  </h2>
+</div>
+
+<div id = "pending_payment_list" class = "col">
+  <%=render partial: 'pending_payments', 
+  locals: {payments: @payments}%>
+</div>

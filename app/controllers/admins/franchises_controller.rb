@@ -35,6 +35,7 @@ class Admins::FranchisesController < ApplicationController
   end
 
   def edit
+    @authorized_users = @franchise.users.order(:id)
     authorize! :edit, @franchise
   end
 

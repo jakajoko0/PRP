@@ -11,4 +11,13 @@
                 :action => 'edit'} %>
   </div>
 </div>
+<br>
+
+  <div class = "row">
+    <div class = "col-12">
+      <%= render :partial =>'users',
+      :locals => {:franchise => @franchise,
+                  :authorized_users => @authorized_users} %>
+    </div>
+  </div>
 

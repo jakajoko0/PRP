@@ -1,9 +1,7 @@
 class TestMailWorker
-include Sidekiq::Worker
+  include Sidekiq::Worker
 
-def perform
-  TestMailer.welcome_email().deliver_now
-end
-
-
+  def perform
+    TestMailer.welcome_email().deliver_now
+  end
 end

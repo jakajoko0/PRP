@@ -1,0 +1,101 @@
+<div class = "card">
+  <div class = "card-header login-header">
+    <h4>
+      <%if action == "edit"%>
+        <%=I18n.t('bank_payment.form.edit_title')%>
+      <%else%>
+        <%=I18n.t('bank_payment.form.create_title')%> 
+      <%end%>
+    </h4>
+  </div>
+
+  
+  <%=form_for bank_payment do |f| %>
+    <div class = "card-body card-background-padgett">
+      <%=f.hidden_field :franchise_id,
+    	   value: f.object.franchise_id	%>
+      <%=f.hidden_field :invoice_payment,
+         value: f.object.invoice_payment %>
+      <%=f.hidden_field :invoice_id,
+         value: f.object.invoice_id %>      
+      
+      <!-- Amount -->
+      <div class = "form-row col-12">
+        <div class = "form-group form-row col-12">
+          <%=f.label :amount,
+          class: "col-xl-2 col-lg-2 col-md-2 col-sm-3
+          col-form-label col-form-label-sm
+          label-bold"%>
+          <div class = "col-xl-2 col-lg-2 col-md-4 col-sm-3">
+            <%=f.number_field :amount ,
+            :min => "0",
+            :step => 'any',
+            :value => (number_with_precision(f.object.amount,
+            :precision => 2) || 0.00) ,
+            class: "form-control form-control-sm text-right ",
+            readonly: @bank_payment.invoice_payment == 1 %>
+          </div>
+          
+          <div class = "col-xl-8 col-lg-8 col-md-6 col-sm-6 padgett-text">
+            <%if @bank_payment.invoice_payment == 0 %>
+              <b>
+                ( Balance: <%=number_to_currency(@balance,precision:2)%> )
+              </b>
+            <%else%>
+              <b>
+                <%="Charge #{@target_invoice.id} (#{@target_invoice.note})"%>
+              </b>
+            <%end%>
+          </div>
+        </div>
+      </div>
+      <!-- Account -->      
+      <div class = "form-row col-12">
+        <div class = "form-group form-row col-12">
+          <%=f.label :gms_token,
+            class: "col-xl-2 col-lg-2 col-md-2 
+            col-sm-3 col-form-label col-form-label-sm
+            label-bold"%>
+          <div class = "col-12 col-sm-9 col-md-9 col-lg-6 col-xl-6">
+            <%=f.select(:gms_token, 
+            @tokens,
+            {},
+            {class: "form-control form-control-sm col"}) %>
+          </div>
+        </div>
+      </div>
+
+      <!-- Payment Date -->
+      <div class = "form-row col-12">
+        <div class = "form-group form-row col-12">
+          <%=f.label :payment_date,
+          class: "col-md-2 col-sm-3 col-lg-2 col-xl-2 
+                  col-form-label col-form-label-sm
+                  label-bold"%>
+          <div class = "col-sm-4 col-md-3 col-lg-3 col-xl-2">
+            <%=f.text_field :payment_date, 
+            value: (I18n.l(f.object.payment_date, format: :notime) if f.object.payment_date),
+            class: "form-control form-control-sm
+                    col text-center", 
+                    id: "bank_payment_payment_date",
+                    style: "display:inline-block;
+                    vertical-align: middle;
+                    width: 60%; margin: 0 5px 0 0;", readonly: 1 %>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
+
+<br>
+
+<div class = "row col-12 col-xl-10">
+  <%=f.submit (I18n.t('bank_payment.form.save')),
+    class: 'btn btn-padgett col-5 col-sm-4 col-md-3 col-lg-3 col-xl-2', name: "submit"%>
+  <div class = "col-1 sol-sm-1 col-md-1 col-lg-1"></div>
+    <%=link_to (I18n.t('bank_payment.form.discard')),
+      payments_path,
+      class: 'btn btn-padgett col-5 col-sm-4 col-md-3 col-lg-3 col-xl-2' %>
+    </div>
+  </div>
+<%end%>

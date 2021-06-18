@@ -54,7 +54,6 @@ class ChartsController < ApplicationController
 
     series = RemittancesQuery.new.total_collections_by_category(target_year, target_month)
     
-    logger.debug("Series: #{series}")
     render json: series
    end
 

@@ -1,0 +1,11 @@
+Payment confirmation from Padgett Report + Pay
+
+This is a notification that a bank payment has been updated. Bank Payment made with <%=@bank_payment.paid_with%> in the amount of <%=number_to_currency(@bank_payment.amount)%> scheduled for <%=((l @bank_payment.payment_date) if @bank_payment.payment_date)%>.
+
+<%=bank_payment_status(@bank_payment)%>
+   
+You can log into Padgett Report + Pay to find more details about the payment status.
+
+Note: Bank payments take up to five (5) business days to complete.
+    
+Do not reply to this email. This email was sent automatically by Padgett Report + Pay

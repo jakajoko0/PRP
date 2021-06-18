@@ -21,6 +21,18 @@ class UserAbility
       can [:destroy], Invoice, franchise_id: user.franchise_id, paid: 0 ,admin_generated: 0 
       can [:delete], Invoice, franchise_id: user.franchise_id, paid: 0, admin_generated: 0
       can :manage, DepositTracking, franchise_id: user.franchise_id
+      can [:read, :create], BankPayment, franchise_id: user.franchise_id 
+      can [:edit], BankPayment, franchise_id: user.franchise_id, status: "pending"
+      can [:update], BankPayment, franchise_id: user.franchise_id, status: "pending"
+      can [:destroy], BankPayment, franchise_id: user.franchise_id, status: "pending"
+      can [:delete], BankPayment, franchise_id: user.franchise_id, status: "pending"
+      can [:read, :create], CheckPayment, franchise_id: user.franchise_id 
+      can [:edit], CheckPayment, franchise_id: user.franchise_id, status: ["pending","transit"]
+      can [:update], CheckPayment, franchise_id: user.franchise_id, status: ["pending","transit"]
+      can [:destroy], CheckPayment, franchise_id: user.franchise_id, status: ["pending","transit"]
+      can [:delete], CheckPayment, franchise_id: user.franchise_id, status: ["pending","transit"]
+      can [:read, :create], CardPayment, franchise_id: user.franchise_id 
+      can [:manage], FranchisesUser, franchise_id: user.franchise_id
     end    
   end
 end

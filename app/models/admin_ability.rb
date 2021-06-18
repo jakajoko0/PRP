@@ -4,6 +4,7 @@ class AdminAbility
 
   def initialize(user)
     if user.full_control? 
+      can :manage, Admin
       can :manage, Franchise
       can :manage, Accountant
       can :manage, Insurance
@@ -14,14 +15,33 @@ class AdminAbility
       can :manage, Remittance
       can :manage, FranchiseDocument
       can :manage, Invoice
+      can :manage, User
       can :masquerade, User
+      can [:read, :create], BankPayment
+      can [:edit], BankPayment, status: "pending"
+      can [:update], BankPayment, status: "pending"
+      can [:destroy], BankPayment,  status: "pending"
+      can [:delete], BankPayment, status: ["pending","error"]
+      can :manage,  CheckPayment 
     else
-      can :read, Franchise
-      can :read, Accountant
-      can :read, Insurance
-      can :read, WebsitePreference
-      can :read, Financial
-      can :read, Invoice
+      can :read, :all
+      # can :read, Franchise
+      # can :read, Accountant
+      # can :read, Insurance
+      # can :read, WebsitePreference
+      # can :read, Financial
+      # can :read, Invoice
+      # can :read, WebsitePreference
+      # can :read, Financial
+      # can :read, TransactionCode
+      # can :read, PrpTransaction
+      # can :read, Remittance
+      # can :read, FranchiseDocument
+      # can :read, Invoice
+      # can :read, User
+      # can :masquerade, User
+      # can :read, BankPayment
+      # can :read,  CheckPayment 
     end    
     # Define abilities for the passed in user here. For example:
     #

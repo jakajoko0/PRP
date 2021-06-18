@@ -1,0 +1,9 @@
+<%=pluralize(@num_trans,"Transaction")%> sent to Gulf Management Systems
+Franchise TransID   RefID   Date posted   Amount  Paid With   Status
+<% if @translog.size  > 0 %>
+  <% @translog.each do |t| %>
+    <%=t.franchise%>  <%=t.trans_id%> <%=t.gms_refid%>  <%=(l t.date) if t.date%>   <%=number_to_currency(t.amount)%>   <%=t.paid_with%><%=t.status%>
+
+  <% end %>
+<% end %>
+

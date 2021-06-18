@@ -5,6 +5,7 @@ class FranchisesController < ApplicationController
   before_action :set_franchise, only: %i[edit update]
 
   def edit
+    @authorized_users = current_user.franchise.users.order(:id)
     authorize! :edit, @franchise
   end
 

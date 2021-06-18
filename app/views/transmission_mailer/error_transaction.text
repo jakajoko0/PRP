@@ -1,0 +1,10 @@
+A Bank Transaction with reference ID <%=@d[:reference_id] %> returned an error. Below is the detail of this Bank Payment
+
+Date: <%=l @d[:date_of_transaction]%>
+PRP ID: <%=@d[:transaction_id]%>
+Gulf ID: <%=@d[:reference_id]%>
+Trans Type: <%=@d[:transaction_type]%>
+Amount: <%=number_to_currency(@d[:transaction_amount])%>
+State: <%=@d[:transaction_state]%>
+Reason: <%=@d[:state_reason]%>
+        

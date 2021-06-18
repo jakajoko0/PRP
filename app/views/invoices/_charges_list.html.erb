@@ -22,6 +22,12 @@
         <th scope = "col" class = "td-left">
             <%=I18n.t('invoice.index.note')%>
         </th>
+
+        <%if type == "pending"%>
+          <th scope = "col" class = "td-center">
+            Payment Options
+          </th>
+        <%end%>
         
         <!-- Total -->
         <th scope = "col" class = "td-right">
@@ -49,7 +55,8 @@
             <td data-name = "Entered"
                 scope = "col"
                 class = "td-left">
-                <%=I18n.l(invoice.date_entered, format: :notime)%>
+                <%=I18n.l(invoice.date_entered,
+                format: :notime)%>
             </td>
 
             <%if type == "posted"%>
@@ -57,7 +64,8 @@
               <td data-name = "Paid"
                 scope = "col"
                 class = "td-left">
-                <%=I18n.l(invoice.date_posted, format: :notime)%>
+                <%=I18n.l(invoice.date_posted,
+                format: :notime)%>
               </td>
             <%end%>  
 
@@ -67,6 +75,28 @@
                  class = "td-left">
               <%=invoice.note%> 
             </td>
+
+            <% if type == "pending" %>
+              <td data-name = "Payment"
+                  scope = "col"
+                  class = "td-center">
+                <%=link_to new_card_payment_path(:invoice_id => invoice.id), data: {turbolinks: false} do%>
+                  <button class = 'btn btn-padgett'>Card
+                  </button>
+                <%end%>
+
+                <%=link_to new_bank_payment_path(:invoice_id => invoice.id), data: {turbolinks: false} do%>
+                    <button class = 'btn btn-padgett'>  ACH
+                    </button>
+                 <%end%>
+                 
+                <%=link_to new_check_payment_path(:invoice_id => invoice.id), data: {turbolinks: false} do%>
+                    <button class = 'btn btn-padgett'>
+                      Check
+                    </button>
+                  <%end%>
+              </td>
+            <%end%>
 
             <!-- Total -->
             <td data-name = "Total" 

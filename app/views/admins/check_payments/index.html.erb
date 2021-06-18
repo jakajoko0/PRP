@@ -1,0 +1,9 @@
+<div class = "col-12 pb-2">
+	<h2 class="padgett-text">
+		Manage Pending Checks
+	</h2>
+</div>
+<div id = "pending-checks" class = "col">
+	<%=render partial: 'pending_checks', 
+	locals: {pending_checks: @pending_checks}%>
+</div>

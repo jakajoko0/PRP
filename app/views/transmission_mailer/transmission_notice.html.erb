@@ -1,0 +1,66 @@
+<h2>
+  <%=pluralize(@num_trans,"Transaction")%> sent to Gulf Management Systems
+</h2>
+
+<table width = "100%" 
+       class="table table-striped pretty">
+  <thead>
+    <tr>
+      <th style="text-align:left">
+        Franchise
+      </th>
+      <th style="text-align:center">
+        PRP Transaction ID
+      </th>
+      <th style="text-align:center">
+        Gulf Reference ID
+      </th>
+      <th style="text-align:left">
+        Date posted
+      </th>
+      <th style="text-align:right">
+        Amount
+      </th>
+      <th width = "5%" style="text-align:center">
+      </th>
+      <th style="text-align:left">
+        Paid With
+      </th>
+      <th style="text-align:left">
+        Status
+      </th>
+    </tr>
+  </thead>
+
+  <% if @translog.length  > 0 %>
+    <tbody>
+    <% @translog.each do |t| %>
+      <tr>
+        <td align = "left">
+          <%=t.franchise%>
+        </td>
+        <td align = "center">
+          <%=t.trans_id%>
+        </td> 
+        <td align = "center">
+          <%=t.gms_refid%>
+        </td> 
+        <td align = "left">
+          <%=(l t.date) if t.date%>
+        </td>
+        <td align = "right">
+          <%=number_to_currency(t.amount)%>
+        </td>
+        <td></td>
+        <td align = "left">
+          <%=t.paid_with%>
+        </td>
+        <td align = "left">
+          <%=t.status%>
+        </td>
+      </tr>
+    <% end %>
+    </tbody>
+  <%end%>
+</table>
+

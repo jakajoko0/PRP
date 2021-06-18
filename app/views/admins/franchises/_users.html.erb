@@ -1,0 +1,92 @@
+<h2 class="padgett-text">
+	Authorized Users
+</h2>
+
+<div id = "authorized_users_list">
+	<div id = "table-scroll"
+     class = "table-scroll">
+    <table id = "authorized-users-list"
+    class = "table-striped">
+      <thead id = "list">
+        <tr>
+          <!-- User Email -->
+          <th scope = "col" class = "td-left">
+            Email
+          </th>
+          <!-- Access Level -->
+          <th scope = "col" class = "td-left">
+            Access Level
+          </th>
+         
+          <!-- Edit / Show -->
+          <th scope = "col" class = "td-center">
+          </th>        
+        
+          <!-- Delete -->
+          <th scope = "col" class = "td-center">
+          </th>        
+        </tr>
+      </thead>
+
+      <% if authorized_users.size > 0 %>
+        <tbody>    
+          <%authorized_users.each do |user|%>
+            <tr>
+              <!-- Email -->
+              <td data-name = "Email"
+                scope = "col"
+                class = "td-left">
+                <%=user.email%>
+              </td>
+
+              <!-- Access Level -->
+              <td data-name = "Access"
+                scope = "col"
+                class = "td-left">
+                <%=user.role_description%>
+              </td>
+
+              <%if can? :edit, user%>
+               <td data-name = ""
+                   scope = "col"
+                   class = "td-center">
+                 <%=link_with_icon(edit_admins_franchises_user_path(id:user.id ,franchise_id: franchise.id),
+                 "edit",
+                 "Edit this user",
+                 "",
+                 false)%>
+               </td>
+              <% else %>
+                <td></td>
+              <%end%>
+              
+              <%if can? :delete, user%>
+                <td data-name = ""
+                    scope = "col"
+                    class = "td-center">
+                  <%=link_with_icon(admins_franchises_user_path(user.id),
+                   "delete",
+                   "Delete this user",
+                   "Are you sure you want to delete this user?",
+                   false)%>
+                </td>
+              <%else%>
+                <td></td>
+              <%end%>
+
+            </tr>
+          <%end%>
+        </tbody>
+      <%end%>
+    </table>
+  </div>    
+</div>
+
+<br />
+<div class = "row col-sm-6">
+  <%=link_to "Add User", new_admins_franchises_user_path(franchise_id: @franchise.id),
+   class:'btn btn-padgett col-sm-4 col-md-4 col-lg-3',
+    data: {turbolinks: false}%>
+</div>
+
+  

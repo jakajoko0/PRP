@@ -3,6 +3,21 @@
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
+  ERRORS_TO_RESCUE = [
+    EOFError,
+    IOError,
+    TimeoutError,
+    Errno::ECONNRESET,
+    Errno::ECONNABORTED,
+    Errno::EPIPE,
+    Errno::ETIMEDOUT,
+    Net::SMTPAuthenticationError,
+    Net::SMTPServerBusy,
+    Net::SMTPSyntaxError,
+    Net::SMTPFatalError,
+    Net::SMTPUnknownError,
+    Errno::ECONNREFUSED]
+  ROLES = {"full_control" => "Full Control", "can_pay" => "Entry and Payments", "data_entry" => "Data Entry Only"}
   belongs_to :franchise
   
   devise :database_authenticatable,
@@ -14,6 +29,7 @@ class User < ApplicationRecord
   enum role: [:full_control, :can_pay, :data_entry]
 
   scope :franchise_users, -> (target_franchise_id) { where('franchise_id = ?', target_franchise_id).order('created_at ASC') }
+  scope :all_active, -> { where("franchise_id NOT IN (Select id FROM franchises where inactive = 1)") } 
   
   after_initialize :set_default_role, if: :new_record?
   after_create :log_event
@@ -22,9 +38,21 @@ class User < ApplicationRecord
   	self.role ||= :full_control
   end
 
-  def reset_pass
-    self.send_reset_password_instructions
+  def role_description
+    ROLES[self.role]
   end
+
+  def reset_pass
+    begin
+      self.send_reset_password_instructions
+    rescue *ERRORS_TO_RESCUE => e 
+      SmtpErrorMailer.send_error(e,self.email).deliver_now
+    end
+  end
+      
+    
+    
+
 
   def show_excluded?
     self.franchise.show_exempt_collect == 1

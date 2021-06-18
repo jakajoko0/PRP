@@ -1,0 +1,9 @@
+<div class = "col-12 pb-2">
+	<h2 class="padgett-text">
+		Latest Payments
+	</h2>
+</div>
+<div id = "payment_list" class = "col">
+	<%=render partial: 'recent_payments', 
+	locals: {payments: @payments}%>
+</div>

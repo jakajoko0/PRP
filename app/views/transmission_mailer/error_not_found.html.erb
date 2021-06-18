@@ -1,0 +1,51 @@
+<h2> Bank Transaction with reference ID <%=@d[:reference_id] %> could not be traced back in the BankPayment table. Below is the detail of this Bank Payment</p>
+<br>
+
+  <table width = "100%" class="table table-striped pretty">
+    <thead>
+      <tr>
+        <th style="text-align:left">Date</th>
+        <th style="text-align:left">PRP ID</th>
+        <th style="text-align:left">Gulf ID</th>
+        <th style="text-align:left">Trans Type</th>
+        <th style="text-align:right">Amount</th>
+        <th style="text-align:left">State</th>
+        <th style="text-align:left">Reason</th>
+      </tr>
+    </thead>
+
+    <tr>
+      <td align = "left">
+        <%=l @d[:date_of_transaction]%>
+      </td>
+      
+      <td align = "left">
+        <%=@d[:transaction_id]%>
+      </td>
+
+      <td align="left">
+        <%=@d[:reference_id]%>
+      </td>
+              
+      <td align="left">
+        <%=@d[:transaction_type]%>
+      </td>
+                  
+      <td align="right">
+        <%=number_to_currency(@d[:transaction_amount])%>
+      </td>
+    
+      <td align="left">
+        <%=@d[:transaction_state]%>
+      </td>
+      
+      <td align="left">
+        <%=@d[:state_reason]%>
+      </td>
+    </tr>
+</table>
+
+
+
+
+

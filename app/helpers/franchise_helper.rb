@@ -72,8 +72,8 @@ module FranchiseHelper
       when 'add_invoice'
         route = new_admins_invoice_path(franchise_id: franchise.id)
         button_text = I18n.t('franchise_select.add_invoice')
-      when 'add_payment'
-        route = new_check_payment_path(franchise_id: franchise.id)
+      when 'add_check'
+        route = new_admins_check_payment_path(franchise_id: franchise.id)
         button_text = I18n.t('franchise_select.enter_check')
       when 'add_credit'
         route = new_admins_credit_path(franchise_id: franchise.id)

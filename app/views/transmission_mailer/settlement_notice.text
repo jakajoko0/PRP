@@ -1,0 +1,15 @@
+<%=pluralize(@num_trans,"Transaction")%> retrieved from Gulf Management Systems on <%= l @date%>
+
+Franchise PRP Transaction ID Gulf Reference ID         Date posted Amount Paid With Status Reason Processed
+
+<% if @settlement_log.length  > 0 %>
+  <% @settlement_log.each do |t| %>
+    <%=t.franchise%> <%=t.trans_id%> <%=t.gms_refid%> <%=(l t.date) if t.date%> <%=number_to_currency(t.amount)%> <%=t.paid_with%> <%=t.status%> <%=t.reason%> <%case t.processed%>
+            <%when 1%>
+            Yes
+            <%when 0%>
+            No
+            <%end%>                              
+      <% end %>
+  <%end%>
+

@@ -1,0 +1,66 @@
+<!-- CHARGES AND RECEIPTS MENU DROPDOWN-->   
+  <li class="nav-item dropdown">
+    <a href ="#" class="nav-link dropdown-toggle" 
+       data-toggle="dropdown" 
+       role="button" aria-haspopup = "true" 
+       aria-expanded = "false">
+      <%=I18n.t('admin_menu.charge_receipt.charges_receipts')%>
+    </a>
+    <ul class = "dropdown-menu multi-level" 
+      aria-labelledby="navbarDropdownReceiptsLink">
+      <!-- CHARGES-->  
+      <li>
+        <%= link_to I18n.t('admin_menu.charge_receipt.charges') ,
+        admins_charges_path, class: "dropdown-item" %>
+      </li>
+      <!-- CREDITS-->  
+      <li>
+        <%= link_to I18n.t('admin_menu.charge_receipt.credits') , admins_credits_path, class: "dropdown-item" %>
+      </li>
+      <!-- CHECKS-->  
+      <li>
+        <%= link_to I18n.t('admin_menu.charge_receipt.checks') ,admins_receipts_path , class: "dropdown-item" %>
+      </li>
+      <!-- FRANCHISE INVOICES-->  
+      <li>
+        <%= link_to I18n.t('admin_menu.charge_receipt.invoices') ,
+        admins_invoices_path, class: "dropdown-item" %>
+      </li>
+      <div class="dropdown-divider"></div>
+      <!-- CHARGES AND RECEIPTS REPORTS-->  
+      <li class = "dropdown-submenu">
+        <a class = "dropdown-item dropdown-toggle" 
+        tabindex="-1" href="#">
+          <%=I18n.t('admin_menu.charge_receipt.reports')%>
+        </a>
+        <ul class = "dropdown-menu">
+          <!-- AMOUNTS DUE-->  
+          <li>
+            <%= link_to I18n.t('admin_menu.charge_receipt.report.due') , "#",
+              class: "dropdown-item" %>
+          </li>
+          <!-- DELINQUENT REPORT-->  
+          <li>
+            <%= link_to I18n.t('admin_menu.charge_receipt.report.delinquent') ,
+            "#" , class: "dropdown-item"%>
+          </li>
+          <!-- STATEMENT-->  
+          <li>
+            <%= link_to I18n.t('admin_menu.charge_receipt.report.statement') ,
+            "#" , class: "dropdown-item"%>
+          </li>
+          <div class="dropdown-divider"></div>
+          <!-- TRANSACTION SUMMARY-->  
+          <li>
+            <%= link_to I18n.t('admin_menu.charge_receipt.report.trans_sum') , "#" ,
+              class: "dropdown-item"%>
+          </li>
+          <!-- TRANSACTION DETAIL-->   
+          <li>
+            <%= link_to I18n.t('admin_menu.charge_receipt.report.trans_det') ,
+             "#" , class: "dropdown-item"%>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>

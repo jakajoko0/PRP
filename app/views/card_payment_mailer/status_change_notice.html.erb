@@ -1,0 +1,8 @@
+<h2>Payment confirmation from Padgett Report + Pay</h2>
+
+<p>This is a notification for the credit card payment you have made with <%=@card_payment.paid_with%> in the amount of <%=number_to_currency(@card_payment.amount)%>.</p>
+<p><%=card_payment_status(@card_payment)%></p>
+   
+<p>You can log into Padgett Report + Pay to find more details about the payment status.</p>
+    
+<p>Do not reply to this email. This email was sent automatically by Padgett Report + Pay</p>

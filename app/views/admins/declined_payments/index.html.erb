@@ -1,0 +1,10 @@
+<div class = "col-12 pb-2">
+  <h2 class="padgett-text">
+    Declined or Erroneous Payments
+  </h2>
+</div>
+
+<div id = "declined_payment_list" class = "col">
+  <%=render partial: 'declined_payments', 
+  locals: {payments: @payments}%>
+</div>

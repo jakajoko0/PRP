@@ -1,0 +1,16 @@
+<div class = "col-12 pb-2">
+  <%=link_to admins_franchises_select_index_path(destination: 'add_check'),
+     data: {turbolinks: false} do%>
+     <button class = 'btn btn-padgett'>
+       <%=I18n.t('check_payment.index.add_check')%>
+     </button>
+  <%end%>
+</div>
+
+
+<!-- Check Payments -->
+<div class = "col-12">
+  <div id="check_payments" >
+    <%=render partial: 'check_payments_list'%>
+  </div>
+</div>

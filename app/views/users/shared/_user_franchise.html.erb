@@ -83,17 +83,18 @@
   <!-- PAYMENTS -->
   <%=main_dropdown_menu(I18n.t('user_menu.payments.payments_text'))%>
     <%=dropdown_item(
-    I18n.t('user_menu.payments.payment_history'),"#")%>
+    I18n.t('user_menu.payments.payment_history'),payments_path)%>
     <li class="dropdown-divider"></li>
     <%=dropdown_submenu(
     I18n.t('user_menu.payments.make_payment.make_payment_text'))%>
 
       <%=dropdown_item(
-      I18n.t('user_menu.payments.make_payment.with_bank'),"#")%>
+      I18n.t('user_menu.payments.make_payment.with_bank'),new_bank_payment_path)%>
       <%=dropdown_item(
-      I18n.t('user_menu.payments.make_payment.with_card'),"#")%>
+      I18n.t('user_menu.payments.make_payment.with_card'),new_card_payment_path)%>
       <%=dropdown_item(
-      I18n.t('user_menu.payments.make_payment.with_check'),"#")%>
+      I18n.t('user_menu.payments.make_payment.with_check'),
+      new_check_payment_path)%>
     <%=close_dropdown_submenu%>  
   <%=close_main_dropdown%>
 
