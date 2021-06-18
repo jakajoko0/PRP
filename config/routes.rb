@@ -56,10 +56,17 @@ Rails.application.routes.draw do
     resources :franchise_documents, except: [:show, :edit, :update]
     resources :invoices
     resources :deposit_trackings
+    resources :bank_payments
+    resources :card_payments 
+    resources :check_payments
+    resources :franchises_users
 
     get '/franchise_directory' => 'franchise_directory#index'
-
     get '/bank_routings/bank_name' => 'bank_routings#bank_name'
+    get '/payments' => 'payments#index'
+    get '/payments/refresh_partial' => 'payments#refresh_partial', as: 'refresh_partial'
+    get '/payment_review' => 'payment_review#index'
+    post '/payment_review' => 'payment_review#index'
   end
   
   # Authenticated route to show specific Dashboard for admins
@@ -80,6 +87,7 @@ Rails.application.routes.draw do
       resources :franchises_select
       resources :credits
       resources :franchise_documents
+      resources :franchises_users
       get 'credits/audit/:id', to: "credits#audit", as: 'credit_audit'
       resources :charges
       get 'charges/audit/:id', to: "charges#audit", as: 'charge_audit'
@@ -98,7 +106,15 @@ Rails.application.routes.draw do
       get 'invoices/audit/:id', to: "invoices#audit", as: 'invoices_audit'
       resources :transaction_codes
       get '/switch_user', to: "switch_user#index"
-
+      resources :check_payments
+      get '/receipts', to: "receipts#index"
+      get '/payments', to: "payments#index"
+      get '/payment_review' => 'payment_review#index'
+      post '/payment_review' => 'payment_review#index'
+      get '/pending_payments' => 'pending_payments#index'
+      get '/declined_payments' => 'declined_payments#index'
+      get '/approved_payments' => 'approved_payments#index'
+      post '/approved_payments' => 'approved_payments_review#index'
       #Reports
       scope module: :reports do 
         #Franchise List

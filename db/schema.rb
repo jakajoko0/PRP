@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_20_173551) do
+ActiveRecord::Schema.define(version: 2021_06_03_182620) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -354,6 +354,27 @@ ActiveRecord::Schema.define(version: 2021_05_20_173551) do
     t.index ["franchise_id"], name: "index_invoices_on_franchise_id"
   end
 
+  create_table "payments", force: :cascade do |t|
+    t.bigint "franchise_id"
+    t.string "type", null: false
+    t.decimal "amount", precision: 12, scale: 2, default: "0.0", null: false
+    t.decimal "fees", precision: 12, scale: 2, default: "0.0"
+    t.integer "status", null: false
+    t.datetime "date_entered"
+    t.datetime "date_approved"
+    t.datetime "payment_date"
+    t.string "reference_id"
+    t.string "gms_token"
+    t.string "paid_with"
+    t.string "note"
+    t.integer "invoice_payment", default: 0
+    t.integer "invoice_id", default: 0
+    t.string "check_number"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["franchise_id"], name: "index_payments_on_franchise_id"
+  end
+
   create_table "prp_transactions", force: :cascade do |t|
     t.bigint "franchise_id"
     t.datetime "date_posted"
@@ -471,6 +492,7 @@ ActiveRecord::Schema.define(version: 2021_05_20_173551) do
   add_foreign_key "insurances", "franchises"
   add_foreign_key "invoice_items", "invoices"
   add_foreign_key "invoices", "franchises"
+  add_foreign_key "payments", "franchises"
   add_foreign_key "prp_transactions", "franchises"
   add_foreign_key "remittances", "franchises"
   add_foreign_key "website_preferences", "franchises"

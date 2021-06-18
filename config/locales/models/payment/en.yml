@@ -1,0 +1,95 @@
+en:
+  activerecord:
+    errors:
+      models:
+        payment:
+          attributes:
+            franchise:
+              blank: Franchise cannot be blank
+            date_entered:
+              blank: Please enter the entered date
+            date_posted:
+              blank: Please enter the Approved date  
+            check_number:
+              blank: Please provide a check number  
+            amount:
+              blank: Please enter a payment amount  
+            gms_token:
+              blank: Please select a payment method  
+          no_negative: Please enter an amount greater than 0.00    
+        check_payment:
+          attributes:
+            date_approved:
+              blank: Please enter the approved date  
+  helpers:
+    label:
+      payment:
+        franchise_id: Franchise
+        amount: Amount
+        date_entered: Date entered 
+        date_approved: Date approved 
+        payment_date: Scheduled On 
+        reference_id: Reference ID 
+        check_number: Check Number
+      bank_payment:
+        amount: Amount
+        gms_token: Pay with  
+        payment_date: Payment Date
+      check_payment:
+        date_entered: Date entered
+        date_approved: Date approved
+        note: Note
+        amount: Amount
+        check_number: Check Number
+        status: Status
+  payment:
+    object_name: Payment
+    create:
+      confirm: Payment Created Successfully 
+    update:
+      confirm: Payment Updated Successfully
+    delete:
+      confirm: Payment Deleted Successfully  
+      error: A Problem Occured Deleting Payment
+    index:
+      franchise: Franchise
+      posted: Posted On
+      scheduled: Scheduled On
+      processed: Processed On
+      amount: Amount
+      paid_with: Paid With
+      status: Status
+      edit_link: Edit this Payment
+      view_link: View this payment
+      delete_link: Delete this Payment
+      delete_confirm: Are you sure you want to delete this payment?
+  bank_payment:
+    object_name: ACH Payment  
+    form:
+      edit_title: Edit ACH Payment 
+      create_title: New ACH Payment  
+      discard: Discard
+      save: Post Payment
+  check_payment:
+    object_name: Check Payment
+    index:
+      add_check: Add Check Payment 
+      franchise: Franchise
+      sent: Date Created
+      approved: Date Approved
+      amount: Amount
+      status: Status
+    form:
+      edit_title: Edit Check Payment
+      create_title: New Check Payment
+      discard: Discard
+      save: Post Payment
+  card_payment:
+    object_name: Card Payment  
+    form:
+      create_title: New Card Payment
+      discard: Discard
+      save: Post Payment
+
+
+
