@@ -1,0 +1,77 @@
+<div id = "table-scroll"
+     class = "table-scroll">
+
+  <table id = "admin-user-list" 
+         class="table-striped">
+    <thead id="list">
+      <tr>
+        <!-- Email  -->
+        <th scope = "col" 
+            class = "td-left">
+          Username
+        </th>
+        
+        <!-- Role  -->
+        <th  scope = "col" class = "td-left">
+          Access
+        </th>
+        
+       
+        <!-- For links we have 3 other columns  -->
+        <th  scope = "col" ></th>
+        <th  scope = "col"></th>
+       
+      </tr>
+    </thead>
+    <tbody>
+      <!-- Go through our filtered franchises  -->
+      <% @admin_users.each do |admin| %>
+        <tr>
+          <!-- Username  -->
+          <td data-name = "User" 
+              scope = "col" 
+              class = "td-left">
+            <%=admin.email %> 
+          </td>
+          
+          <!-- Role  -->
+          <td data-name="Access"
+              scope="col" 
+              class = "td-left">
+            <%=admin.role_description%> 
+          </td>
+          
+          
+          <!-- Edit Icon and Link  -->
+          <%if can? :edit, admin%>
+            <td data-name="" class = "td-center">
+              <%=link_with_icon(edit_admins_admin_path(id:admin),
+                "edit",
+                "Edit this User",
+                "",
+                false)%> 
+            </td>
+          <%else%>
+            <td data-name="" class = "td-center"></td>
+          <%end%>
+          
+          <!-- Delete Icon and Link  -->
+          <%if can? :delete, admin%>
+            <td data-name="" class = "td-center">
+              <%=link_with_icon(admins_admin_path(id:admin),
+                "delete",
+                "Delete this User",
+                "Are you sure you want to delete this user?",
+                false)%> 
+            </td>
+          <%else%>
+            <td data-name="" class = "td-center"></td>
+          <%end%>
+         
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
+

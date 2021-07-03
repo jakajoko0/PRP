@@ -1,0 +1,50 @@
+<form>
+    <div class = "form-row col-12">
+      <!-- START DATE -->
+      <div class = "form-group form-row col-6">
+        <label class= "col-md-4 col-sm-4 col-lg-4
+                col-form-label-sm label-bold">Start Date</label>
+        <div class = "col-sm-5 col-md-5 col-lg-4">
+          <div class = "form-control-plaintext">
+            <%=I18n.l(accountant.start_date) if accountant.start_date%> 
+          </div>
+        </div>
+      </div>
+      
+      <!-- TERM DATE -->
+      <div class = "form-group form-row col-6">
+        <label class= 'col-md-4 col-sm-4 col-lg-4
+                col-form-label-sm label-bold'>Termination Date</label>
+        <div class = "col-sm-5 col-md-5 col-lg-4">
+          <div class = "form-control-plaintext">
+            <%=I18n.l(accountant.term_date) if accountant.term_date%>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class = "form-row col-12">
+      <!-- INACTIVE -->
+      <div class = "form-group form-row col-6">
+        <label class = "col-md-4 col-sm-4 col-lg-4 
+                col-form-label-sm label-bold">Inactive</label>
+        <div class = "col-sm-7 col-md-7 col-lg-7">
+          <div class = "form-control-plaintext">
+            <%=accountant.inactive == 1 ? "Yes" : "No" %>
+          </div>
+        </div>
+      </div>
+      
+      <!-- ADVISORY BOARD -->
+      <div class = "form-group form-row col-6">
+        <label class = "col-md-4 col-sm-4 col-lg-4 
+                col-form-label-sm label-bold" >Advisory Board</label>
+        <div class = "col-sm-7 col-md-7 col-lg-7">
+          <div class = "form-control-plaintext">
+            <%=accountant.advisory_board == 1 ? "Yes" : "No"%>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+</form>  

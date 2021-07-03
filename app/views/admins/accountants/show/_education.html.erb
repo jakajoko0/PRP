@@ -1,0 +1,50 @@
+<form>
+    <div class = "form-row col-12">
+      <!-- CPA -->
+      <div class = "form-group form-row col-6">
+        <label class= "col-md-4 col-sm-4 col-lg-4
+                col-form-label-sm label-bold">CPA</label>
+        <div class = "col-sm-7 col-md-7 col-lg-7">
+          <div class = "form-control-plaintext">
+            <%=accountant.cpa == 1 ? "Yes" : "No"%>
+          </div>
+        </div>
+      </div>
+
+      <!-- MBA -->
+      <div class = "form-group form-row col-6">
+        <label class= "col-md-4 col-sm-4 col-lg-4 
+                col-form-label-sm label-bold" >MBA</label>
+        <div class = "col-sm-7 col-md-7 col-lg-7">
+          <div class = "form-control-plaintext">
+            <%=accountant.mba == 1 ? "Yes" : "No"%>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class = "form-row col-12">
+      <!-- ACCOUNTING DEGREE -->
+      <div class = "form-group form-row col-6">
+        <label class= "col-md-4 col-sm-4 col-lg-4 
+                col-form-label-sm label-bold" >Accounting Degree</label>
+        <div class = "col-sm-7 col-md-7 col-lg-7">
+          <div class = "form-control-plaintext">
+            <%=accountant.degree == 1 ? "Yes" : "No"%>
+          </div>
+        </div>
+      </div>
+
+      <!-- PTIN -->
+      <div class = "form-group form-row col-6">
+        <label class = "col-md-4 col-sm-4 col-lg-4 
+                col-form-label-sm label-bold" >PTIN</label>
+        <div class = "col-sm-5 col-md-4 col-lg-3">
+            <div class = "form-control-plaintext">
+              P<%=accountant.ptin%>
+            </div>
+          
+        </div>
+      </div>
+    </div>
+  
+</form>  

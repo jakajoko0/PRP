@@ -1,0 +1,89 @@
+<form>
+      <div class = "form-row col-12">
+        
+        <!-- FRANCHISE -->   
+        <div class = "form-group form-row col-6">
+          <label class= "col-md-4 col-sm-4 col-lg-4
+                  col-form-label col-form-label-sm 
+                  label-bold" >Franchise</label>
+          <div class = "col-sm-6 col-md-6 col-lg-6">
+            <div class = "form-control-plaintext">
+              <%=accountant.franchise.franchise_number%>
+            </div>
+          </div>
+        </div>
+        
+        <!-- ACCOUNTANT NUMBER -->
+        <div class = "form-group form-row col-6">
+          <label
+           class= 'col-md-4 col-sm-4 col-lg-4
+                   col-form-label-sm label-bold'>Accountant</label>
+          <div class = "col-sm-3 col-md-3 col-lg-2">
+            <div class = "form-control-plaintext">
+              <%= accountant.accountant_num%>
+            </div>
+          </div>
+        </div>
+      </div>
+     
+      <div class = "form-row col-12">
+        <!-- LAST NAME -->
+        <div class = "form-group form-row col-6">
+          <label class= 'col-md-4 col-sm-4 col-lg-4
+                    col-form-label-sm label-bold'>Last Name</label>
+          <div class = "col-sm-6 col-md-6 col-lg-5">
+            <div class = "form-control-plaintext">
+              <%= accountant.lastname%>
+            </div>
+          </div>   
+        </div>
+        
+        <!-- FIRST NAME -->
+        <div class = "form-group form-row col-6">
+          <label class= 'col-md-4 col-sm-4 col-lg-4
+                    col-form-label-sm label-bold'>First Name</label>
+          <div class = "col-sm-6 col-md-6 col-lg-5">
+            <div class = "form-control-plaintext">
+              <%= accountant.firstname%>
+            </div>
+          </div>   
+        </div>
+      </div>
+
+      <div class = "form-row col-12">
+        <!-- MIDDLE INITIAL -->
+        <div class = "form-group form-row col-6">
+          <label class = 'col-md-4 col-sm-4 col-lg-4
+                    col-form-label-sm label-bold'>Initial</label>
+          <div class = "col-sm-3 col-md-3 col-lg-2">
+            <div class = "form-control-plaintext">
+              <%= accountant.initial%>
+            </div>
+          </div>   
+        </div>
+
+        <!-- SALUTATION -->
+        <div class = "form-group form-row col-6">
+          <label class= 'col-md-4 col-sm-4 col-lg-4
+                    col-form-label-sm label-bold'>Salutation</label>
+          <div class = "col-sm-3 col-md-3 col-lg-2">
+            <div class = "form-control-plaintext">
+              <%= accountant.salutation%>
+            </div>
+          </div>   
+        </div>
+      </div>
+
+      <div class = "form-row col-12">
+        <!-- BIRTHDATE -->
+        <div class = "form-group form-row col-6">
+          <label class= 'col-md-4 col-sm-4 col-lg-4
+                    col-form-label-sm label-bold'>Birth Date</label>
+          <div class = "col-sm-5 col-md-5 col-lg-4">
+            <div class = "form-control-plaintext">
+            <%= I18n.l(accountant.birthdate) if accountant.birthdate%>
+            </div>
+          </div>   
+        </div>
+      </div>
+    </form>

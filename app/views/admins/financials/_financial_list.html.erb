@@ -48,11 +48,13 @@
             <%=I18n.t('financial.index.total_quarterly_fees')%>
         </th>        
             
-        <th></th>
+        <th scope = "col"></th>
 
-        <th></th>
+        <th scope = "col"></th>
 
-        <th></th>
+        <th scope = "col"></th>
+
+        <th scope = "col"></th>
 
       </tr>
     </thead>
@@ -136,6 +138,20 @@
     	  	<%else%>   
     	  	  <td></td>
     	  	<%end%>
+
+            <!-- View Icon and Link  -->
+            <%if can? :read, financial%>
+              <td data-name = "" 
+                  class = "td-center">
+                <%=link_with_icon(admins_financial_path(id:financial),
+                "show",
+                I18n.t('financial.index.edit_link'),
+                "",
+                false)%> 
+              </td>
+            <%else%>
+              <td></td>
+            <%end%>
             
             <!-- Delete Link if User can Delete -->
     	  	<%if can? :delete, financial%>

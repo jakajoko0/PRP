@@ -160,6 +160,7 @@ en:
       quarterly_clients: Quarterly Clients
       total_quarterly_fees: Total Quarterly Fees
       edit_link: Edit this Financial Report
+      view_link: View this Financial Report
       delete_link: Delete this Financial Report
       delete_confirm: Are you sure you want to Delete this Financial Report?
       audit_link: View Audit Trail

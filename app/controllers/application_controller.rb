@@ -24,7 +24,7 @@ class ApplicationController < ActionController::Base
   protected 
     
   def configure_permitted_params
-    devise_parameter_sanitizer.permit(:account_update, keys: [:email,:password, :current_password, :time_zone])
+    devise_parameter_sanitizer.permit(:account_update, keys: [:email,:password, :current_password, :time_zone, :role])
   end
 
   private

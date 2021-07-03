@@ -26,5 +26,8 @@ en:
     min_chars: (6 characters minimum)
     confirm: Confirm New Password
     change_btn: Change Password
+  admin:
+    index:
+      create_admin: Create User  
 
 

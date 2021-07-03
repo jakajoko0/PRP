@@ -1,0 +1,89 @@
+<form>
+	<%label_classes = "col-md-8 col-sm-9 col-lg-7 col-xl-7 col-form-label-sm label-bold"%>
+  <%field_classes = "form-control-plaintext text-right col-xl-4 col-lg-4 col-md-4 col-sm-3"%>
+
+  
+	<div class = "card-body card-background-padgett">
+		<div class = "row">
+			<div class = "container-fluid col-sm-6 no-gutters">
+				<div class = "form-row col-12">
+					<div class = "form-group form-row col-sm-12">
+						<label class = '<%="#{label_classes}"%>'> 
+	  			      <%= I18n.t('helpers.label.financial.other_income')%> 
+	  			  </label>
+
+	  			  <div class = '<%="#{field_classes}"%>'>
+	  			  	  <%= number_with_precision(financial.other_income, precision: 2)%>
+				    </div>
+
+	  			  
+				  </div>
+
+				  <div class = "form-group form-row col-sm-12">
+						<label class = '<%="#{label_classes}"%>'>
+	  			      <%= I18n.t('helpers.label.financial.interest_income')%> 
+	  			    </label>
+
+	  			    <div class = '<%="#{field_classes}"%>'>
+	  			  	  <%= number_with_precision(financial.interest_income, precision: 2)%>
+				    </div>
+	  			      
+
+	  			  
+				  </div>
+
+				  <div class = "form-group form-row col-sm-12">
+						<label class = '<%="#{label_classes}"%>'> 
+	  			      <%= I18n.t('helpers.label.financial.net_gain_asset')%> 
+	  			    </label>
+	  			  <div class = '<%="#{field_classes}"%>'>
+	  			  	  <%= number_with_precision(financial.net_gain_asset, precision: 2)%>
+				    </div>  
+	  			  
+				  </div>
+				</div>
+			</div>
+
+			<div class = "container-fluid col-sm-6 no-gutters">
+				<div class = "form-row col-12">
+				  <div class = "form-group form-row col-sm-12">
+						<label class = '<%="#{label_classes}"%>'>
+	  			      <%= I18n.t('helpers.label.financial.casualty_gain')%> 
+	  			    </label>
+
+	  			  <div class = '<%="#{field_classes}"%>'>
+	  			  	  <%= number_with_precision(financial.casualty_gain, precision: 2)%>
+				    </div>  
+	  			      
+
+	  			  
+				  </div>
+
+				  <div class = "form-group form-row col-sm-12">
+						<label class = '<%="#{label_classes}"%>'> 
+	  			      <%= I18n.t('helpers.label.financial.other_expense')%> 
+	  			    </label>
+
+	  			    <div class = '<%="#{field_classes}"%>'>
+	  			  	  <%= number_with_precision(financial.other_expense, precision: 2)%>
+				    </div>
+
+	  			  
+				  </div>
+
+				  <div class = "form-group form-row col-sm-12">
+						<label class = '<%="#{label_classes}"%>'>
+	  			      <%= I18n.t('helpers.label.financial.prov_income_tax')%> 
+	  			 </label>
+
+	  			 <div class = '<%="#{field_classes}"%>'>
+	  			  	  <%= number_with_precision(financial.prov_income_tax, precision: 2)%>
+				    </div>
+
+	  			  
+				  </div>
+				</div>
+			</div>
+  	</div>
+  </div>
+</form>

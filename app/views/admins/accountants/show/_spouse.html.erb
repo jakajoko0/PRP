@@ -1,0 +1,39 @@
+<form>
+    <div class = "form-row col-12">
+      <!-- SPOUSE NAME -->
+      <div class = "form-group form-row col-6">
+        <label class= "col-md-4 col-sm-4 col-lg-4 
+                col-form-label-sm label-bold">Spouse Name</label>
+        <div class = "col-sm-6 col-md-6 col-lg-6">
+          <div class = "form-control-plaintext">
+            <%=accountant.spouse_name%>
+          </div>
+        </div>
+      </div>
+      <!-- SPOUSE BIRTHDATE -->
+      <div class = "form-group form-row col-6">
+        <label class= 'col-md-4 col-sm-4 col-lg-4
+                col-form-label-sm label-bold'>Birth Date</label>
+        <div class = "col-sm-5 col-md-5 col-lg-4">
+          <div class = "form-control-plaintext">
+           <%= I18n.l(accountant.spouse_birthdate) if accountant.spouse_birthdate%>
+         </div>
+        </div>
+      </div>
+    </div>
+    <div class = "form-row col-12">
+      <!-- SPOUSE PARTNER -->
+      <div class = "form-group form-row col-6">
+        <label class= "col-md-4 col-sm-4 col-lg-4 
+                col-form-label-sm label-bold">Partner?</label>
+        <div class = "col-sm-7 col-md-7 col-lg-7">
+          <div class = "form-control-plaintext">
+            <%=accountant.spouse_partner == 1 ? "Yes" : "No"%>
+          </div>
+        </div>
+      </div>
+      <div class = "form-group form-row col-6">
+      </div>
+    </div>
+  
+</form>  

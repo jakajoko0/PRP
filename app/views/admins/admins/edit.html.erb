@@ -1,0 +1,64 @@
+<div class = "row justify-content-center">
+  <div class = "col-12 col-sm-12 col-md-10 col-lg-8">
+    <%= render partial: "shared/error_handling",
+      locals: { the_object: @admin,
+                objectname: "Admin User"} %>
+    <div class = "card">
+      <div class = "card-header login-header">
+        <h4>Edit Admin User</h4>
+      </div>
+  
+      <%= form_for [:admins, @admin] do |f| %>
+      <div class = "card-body
+                    card-background-padgett">
+        <div class = "form-row col-12">
+         
+          <!-- Email -->   
+          <div class = "form-group form-row col-12">
+          <%=f.label :email,
+            class: "col-md-3 col-sm-4 col-lg-3
+                    col-form-label-sm 
+                    label-bold" %>
+          <div class = "col-sm-6 col-md-6 col-lg-6 col-xl-6">
+            <%=f.email_field :email,
+              class: 'form-control
+                form-control-sm col',
+               required: true%>
+          </div>
+        </div>
+      </div>
+     
+      <div class = "form-row col-12">
+        <!-- ROLE -->
+        <div class = "form-group form-row col-12">
+          <%=f.label :role,
+            class: 'col-md-3 col-sm-4 col-lg-3
+                    col-form-label-sm label-bold'%>
+          <div class = "col-sm-4 col-md-4 col-lg-3">
+            <%= f.select(:role, [["Full Control","full_control"], ["Read Only","read_only" ]],{include_blank: false},{
+              class: "form-control form-control-sm col"})%>
+          </div>   
+        </div>
+      </div>
+    </div>
+</div>  
+
+<br>
+
+<div class = "row col-12">
+  <%=f.submit "Save User",
+    class: 'btn btn-padgett col-4 col-sm-4 col-md-3 col-lg-3',
+    name: "submit" %>
+  <div class = "col-1 col-sm-1 col-md-1 col-lg-1">
+  </div>
+  
+  <%=link_to "Discard",
+    admins_admins_path,
+    class: 'btn btn-padgett col-4 col-sm-4 col-md-3 col-lg-3' %>
+</div>
+
+<%end%>  
+
+
+
+

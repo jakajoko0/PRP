@@ -2,7 +2,7 @@
 
 # For Admins to List, Add, Edit, Delete Financial Reports
 class Admins::FinancialsController < ApplicationController
-  before_action :set_financial, only: %i[audit edit update destroy]
+  before_action :set_financial, only: %i[audit edit update destroy show]
   before_action :set_franchise, only: %i[create]
 
   def index
@@ -51,6 +51,8 @@ class Admins::FinancialsController < ApplicationController
       render 'edit'
     end
   end
+
+  
 
   def destroy
     authorize! :destroy, @financial

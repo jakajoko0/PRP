@@ -54,6 +54,7 @@ en:
       lastname: Last Name
       firstname: First Name
       edit_link: Edit this accountant
+      view_link: View this accountant
       delete_link: Delete this accountant
       delete_confirm: Are you sure you want to delete this accountant?
     form:

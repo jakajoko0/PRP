@@ -1,0 +1,96 @@
+<div class = "row">
+  <div class = "col-12">
+    <div class = "card">
+      <div class = "card-header login-header" style="display:inline">
+        <h3 class = "float-left">
+          Financial Report
+        </h3>
+       
+      </div>
+    
+    <!--FRANCHISE INFORMATION -->
+    
+      <div class="card-body">
+        <%= render :partial => 'admins/financials/show/franchise',
+        :locals => {:financial => @financial} %>
+      </div>
+    </div>
+    <br>
+    
+    <!--REVENUES -->
+    <div class = "card">
+      <div class = "card-header login-header">
+        <h4 class="card-title">
+          Revenues
+        </h4>
+      </div>
+      <div class="card-body">
+       <%= render :partial => 'admins/financials/show/revenues',
+        :locals => {:financial => @financial} %>
+      </div>
+    </div>
+    <br>
+    <!--Expenses -->
+    <div class = "card">
+      <div class = "card-header login-header">
+        <h4 class="card-title">
+          Expenses
+        </h4>
+      </div>
+      <div class="card-body">
+        <%= render :partial => 'admins/financials/show/expenses',
+        :locals => {:financial => @financial} %>
+      </div>
+    </div>
+    <br>
+    
+    <!--Other -->
+    <div class = "card">
+      <div class = "card-header login-header">
+        <h4 class="card-title">
+          Other Revenues / Expenses
+        </h4>
+      </div>
+      <div class="card-body">
+        <%= render :partial => 'admins/financials/show/other',
+        :locals => {:financial => @financial} %>
+      </div>
+    </div>
+    <br>
+    <!--CUSTOM  -->
+    <div class = "card">
+      <div class = "card-header login-header">
+        <h4 class="card-title">
+           Custom Accounts <%=bubble_help(I18n.t('helpers.label.financial.custom_accounts_desc'),"right")%>
+        </h4>
+      </div>
+      <div class="card-body">
+        <%= render :partial => 'admins/financials/show/custom',
+        :locals => {:financial => @financial} %>
+      </div>
+    </div>
+     <br> 
+     <!--COUNTS  -->
+    <div class = "card">
+      <div class = "card-header login-header">
+        <h4 class="card-title">
+           Client Counts & Total Fees <%=bubble_help(I18n.t('helpers.label.financial.client_counts_desc'),"right")%>
+        </h4>
+      </div>
+      <div class="card-body">
+        <%= render :partial => 'admins/financials/show/counts',
+        :locals => {:financial => @financial} %>
+      </div>
+    </div>
+    <br>
+    
+  </div>
+  
+  <div class = "col-6">
+    <%=link_to "Back", admins_financials_path, class: "btn btn-padgett col-md-3 col-lg-3"%>
+  </div>
+
+</div>  
+  
+
+

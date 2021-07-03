@@ -32,6 +32,7 @@
         <th scope = "col"></th>
         <th scope = "col"></th>
         <th scope = "col"></th>
+        <th scope = "col"></th>
       </tr>
     </thead>
     <tbody>
@@ -72,6 +73,20 @@
                 class = "td-center">
             <%=link_with_icon(edit_admins_accountant_path(id:accountant),
               "edit",
+              I18n.t('accountant.index.edit_link'),
+              "",
+              false)%> 
+            </td>
+          <%else%>
+            <td></td>
+          <%end%>
+
+          <!-- View Icon and Link  -->
+          <%if can? :read, accountant%>
+            <td data-name = "" 
+                class = "td-center">
+            <%=link_with_icon(admins_accountant_path(id:accountant),
+              "show",
               I18n.t('accountant.index.edit_link'),
               "",
               false)%> 

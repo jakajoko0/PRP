@@ -1,1 +1,15 @@
-<h1>Admins Lists</h1>
+<div class = "col-12">
+  <%=link_to new_admins_admin_path,
+  data: {turbolinks: false} do%>
+    <button class = 'btn btn-padgett'>
+      <%=I18n.t('admin.index.create_admin')%>
+    </button>
+  <%end%>
+</div>
+<br>
+<!-- User  list -->
+<div class = "col-12">
+  <div id="franchises">
+    <%=render partial: 'admin_user_list' %>
+  </div>
+</div>

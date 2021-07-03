@@ -8,10 +8,12 @@
     </a>
     <ul class = "dropdown-menu multi-level" 
       aria-labelledby="navbarDropdownRoyaltyLink">
-      <!-- ENTER ROYALTIES-->  
-      <li>
-        <%= link_to I18n.t('admin_menu.royalty.royalty_enter') , admins_franchises_select_index_path(destination: 'add_royalty'), class: "dropdown-item" %>
-      </li>
+      <%if can? :manage, Remittance%>
+        <!-- ENTER ROYALTIES-->  
+        <li>
+          <%= link_to I18n.t('admin_menu.royalty.royalty_enter') , admins_franchises_select_index_path(destination: 'add_royalty'), class: "dropdown-item" %>
+        </li>
+        <%end%>
       <!-- REVIEW ROYALTIES-->  
       <li>
         <%= link_to I18n.t('admin_menu.royalty.royalty_review') , admins_remittances_path, class: "dropdown-item" %>

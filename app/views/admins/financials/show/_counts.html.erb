@@ -1,0 +1,63 @@
+<form>
+
+<%label_classes = "col-md-8 col-sm-9 col-lg-7 col-xl-7 col-form-label-sm label-bold"%>
+<%field_classes = "form-control-plaintext text-right col-xl-4 col-lg-4 col-md-4 col-sm-3"%>
+
+	<div class = "card-body card-background-padgett">
+		<div class = "row">
+			<div class = "container-fluid col-sm-6 no-gutters">
+				<div class = "form-row col-12">
+					<div class = "form-group form-row col-sm-12">
+						<label class = '<%="#{label_classes}"%>'> 
+	  			      <%= I18n.t('helpers.label.financial.monthly_clients')%> 
+	  			  </label>
+
+	  			  <div class = '<%="#{field_classes}"%>'>
+	  			  	  <%= number_with_precision(financial.monthly_clients, precision: 0)%>
+				    </div>
+
+	  			 
+				  </div>
+
+				  <div class = "form-group form-row col-sm-12">
+						<label class = '<%="#{label_classes}"%>'>
+	  			      <%= I18n.t('helpers.label.financial.quarterly_clients')%> 
+	  			  </label>
+
+	  			  <div class = '<%="#{field_classes}"%>'>
+	  			  	  <%= number_with_precision(financial.quarterly_clients, precision: 0)%>
+				    </div>
+			 
+				  </div>
+				</div>
+			</div>
+
+			<div class = "container-fluid col-sm-6 no-gutters">
+				<div class = "form-row col-12">
+					<div class = "form-group form-row col-sm-12">
+						<label class = '<%="#{label_classes}"%>'>
+	  			      <%= I18n.t('helpers.label.financial.total_monthly_fees')%> 
+	  			    </label>
+
+	  			  <div class = '<%="#{field_classes}"%>'>
+	  			  	  <%= number_with_precision(financial.total_monthly_fees, precision: 2)%>
+				    </div>
+
+	  			 
+				  </div>
+
+				  <div class = "form-group form-row col-sm-12">
+						<label class = '<%="#{label_classes}"%>'>
+	  			      <%= I18n.t('helpers.label.financial.total_quarterly_fees')%>
+	  			    </label>
+	  			  <div class = '<%="#{field_classes}"%>'>
+	  			  	  <%= number_with_precision(financial.total_quarterly_fees, precision: 2)%>
+				    </div>  
+
+	  			  
+				  </div>
+				</div>
+			</div>
+  	</div>
+  </div>
+</form>
