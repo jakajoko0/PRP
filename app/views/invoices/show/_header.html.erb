@@ -1,0 +1,25 @@
+<form>
+  <div class = "form-row form-group col-12">
+    <!-- DATE -->
+    <label class= "col-md-4 col-sm-4 
+            col-lg-4 col-xl-3 col-form-label-sm label-bold">
+      Charge Date
+    </label>
+    <div class = "form-control-plaintext col-8">
+    	<%=I18n.l(invoice.date_entered, format: :notime)%>
+    </div>        
+  </div>
+
+  <div class = "form-row form-group col-12">
+    <!-- DESCRIPTION -->
+    <label class= "col-md-4 col-sm-4 
+            col-lg-4 col-xl-3 col-form-label-sm label-bold">
+      Description
+    </label>
+    <div class = "form-control-plaintext col-8">
+    	<%=invoice.note%>
+    </div>        
+  </div>
+
+
+</form>

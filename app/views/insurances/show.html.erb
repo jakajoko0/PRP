@@ -1,0 +1,163 @@
+<div class = "card">
+ <div class = "card-header login-header">
+    <h4>
+      Insurance Information
+    </h4>
+  </div>
+  <%=form_for @insurance do |f| %>
+    <div class = "card-body card-background-padgett">
+      
+      <!-- E&O INSURANCE SECTION -->
+      <div class = "form-row col-12">
+        <%=f.hidden_field :franchise_id,
+        value: f.object.franchise_id	%>
+        <!-- E&O INSURANCE -->
+        <div class = "form-group form-row col-6">
+          <%=f.label :eo_insurance,
+          class: "col-md-4 col-sm-4 col-lg-4
+                  col-form-label col-form-label-sm 
+                  label-bold"%>
+          <div class = "col-sm-4 col-md-4 col-lg-4">
+      	    <%=f.check_box :eo_insurance,
+            class: 'form-control form-control-sm col',
+            style: "width:15px;vertical-align:middle",
+            disabled: true%>
+          </div>
+        </div>
+        <!-- E&O EXPIRATION -->
+        <div class = "form-group form-row col-6">
+          <%=f.label :eo_expiration,
+          class: "col-md-4 col-sm-4 col-lg-4 
+                  col-form-label col-form-label-sm
+                  label-bold"%>
+          <div class = "col-sm-4 col-md-4 col-lg-4">
+            <%=f.text_field :eo_expiration,
+            value: (l f.object.eo_expiration if f.object.eo_expiration),
+            class: "form-control form-control-sm
+                    col text-center",
+        	  id: "insurance_eo_expiration",
+            style: "display:inline-block;
+                    vertical-align:middle;
+                    width: 60%; margin: 0 5px 0 0;", disabled: true%>
+          </div>
+        </div>
+      </div>  	      
+      <!-- GENERAL INSURANCE SECTION -->
+      <div class = "form-row col-12">
+        <!-- GENERAL INSURANCE -->
+        <div class = "form-group form-row col-6">
+          <%=f.label :gen_insurance, 
+          class: "col-md-4 col-sm-4 col-lg-4
+           	      col-form-label col-form-label-sm
+                  label-bold"%>
+          <div class = "col-sm-4 col-md-4 col-lg-4">
+      	    <%=f.check_box :gen_insurance,
+            class: 'form-control form-control-sm col',
+            style: "width:15px;vertical-align:middle", disabled: true%>
+          </div>
+        </div>
+        <!-- GENERAL INSURANCE EXPIRATION -->
+        <div class = "form-group form-row col-6">
+          <%=f.label :gen_expiration,
+          class: "col-md-4 col-sm-4 col-lg-4
+                  col-form-label col-form-label-sm
+                  label-bold"%>
+          <div class = "col-sm-4 col-md-4 col-lg-4">
+            <%=f.text_field :gen_expiration,
+            value: (l f.object.gen_expiration if f.object.gen_expiration),
+            class: "form-control form-control-sm
+                    col text-center",
+          	id: "insurance_gen_expiration",
+            style: "display:inline-block;
+                   	vertical-align:middle;
+                    width: 60%; margin: 0 5px 0 0;", disabled: true%>
+          </div>
+        </div>
+      </div>  
+      <!-- OTHER INSURANCE SECTION-->
+      <div class = "form-row col-12">
+        <div class = "form-group form-row col-6">
+          <!-- OTHER INSURANCE -->
+          <%=f.label :other_insurance,
+          class: "col-md-4 col-sm-4 col-lg-4
+                  col-form-label col-form-label-sm
+                  label-bold"%>
+          <div class = "col-sm-1 col-md-1 col-lg-1">
+      	    <%=f.check_box :other_insurance,
+            class: 'form-control form-control-sm col',
+            style: "width:15px;vertical-align:middle", disabled: true%>
+          </div>
+          <!-- OTHER INSURANCE DESCRIPTION -->
+          <div class = "col-sm-6 col-md-6 col-lg-6">
+      	    <%=f.text_field :other_description,
+            class: 'form-control form-control-sm col',
+              disabled: true%>
+          </div>
+        </div>
+        <!-- OTHER INSURANCE EXPIRATION -->
+        <div class = "form-group form-row col-6">
+          <%=f.label :other_expiration,
+          class: "col-md-4 col-sm-4 col-lg-4
+                  col-form-label col-form-label-sm
+                  label-bold"%>
+          <div class = "col-sm-4 col-md-4 col-lg-4">
+            <%=f.text_field :other_expiration,
+            value: (l f.object.other_expiration if f.object.other_expiration),
+            class: "form-control form-control-sm
+                   col text-center",
+          	id: "insurance_other_expiration",
+            style: "display:inline-block;
+                   	vertical-align:middle;
+                    width: 60%; margin: 0 5px 0 0;",
+                    disabled: true%>
+          </div>
+        </div>
+      </div>
+      <!-- OTHER2 INSURANCE SECTION -->
+      <div class = "form-row col-12">
+        <div class = "form-group form-row col-6">
+          <%=f.label :other2_insurance,
+          class: "col-md-4 col-sm-4 col-lg-4
+                  col-form-label col-form-label-sm
+                  label-bold"%>
+          <div class = "col-sm-1 col-md-1 col-lg-1">
+            <%=f.check_box :other2_insurance,
+            class: 'form-control form-control-sm col',
+            style: "width:15px;vertical-align:middle", disabled: true%>
+          </div>
+
+          <div class = "col-sm-6 col-md-6 col-lg-6">
+            <%=f.text_field :other2_description,
+            class: 'form-control form-control-sm col', disabled: true%>
+          </div>
+        </div>
+        <div class = "form-group form-row col-6">
+          <%=f.label :other2_expiration,
+          class: "col-md-4 col-sm-4 col-lg-4 
+                  col-form-label col-form-label-sm
+                  label-bold"%>
+          <div class = "col-sm-4 col-md-4 col-lg-4">
+            <%=f.text_field :other2_expiration,
+            value: (l f.object.other2_expiration if f.object.other2_expiration),
+            class: "form-control form-control-sm
+                   col text-center",
+            id: "insurance_other2_expiration",
+            style: "display:inline-block;
+                    vertical-align:middle;
+                    width: 60%; margin: 0 5px 0 0;",
+                    disabled: true%>
+          </div>
+        </div>
+      </div>                    	      	      
+    </div>
+</div>
+<br />
+  <div class = "row col-6">
+    <%=link_to (I18n.t('insurance.form.return')),
+      root_path,
+      class: 'btn btn-padgett col-md-3 col-lg-3' %>
+    
+      
+    
+  </div>
+<%end%>

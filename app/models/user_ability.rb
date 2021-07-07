@@ -33,6 +33,7 @@ class UserAbility
       can [:delete], CheckPayment, franchise_id: user.franchise_id, status: ["pending","transit"]
       can [:read, :create], CardPayment, franchise_id: user.franchise_id 
       can [:manage], FranchisesUser, franchise_id: user.franchise_id
+      can [:read], Accountant, franchise_id: user.franchise_id
     end    
   end
 end

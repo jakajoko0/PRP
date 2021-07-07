@@ -63,4 +63,8 @@ class Invoice < ApplicationRecord
   def set_dates(date_entered)
     self.date_entered = Date.strptime(date_entered, I18n.translate('date.formats.default')) unless date_entered.blank?
   end
+
+  def self.description(invoice_id)
+    Invoice.find(invoice_id).note
+  end
 end

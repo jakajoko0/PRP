@@ -36,12 +36,14 @@ en:
       confirm: Charge Deleted Successfully
       error: A Problem Occured Deleting Charge
     index:
-      add_invoice: Add Invoice
+      add_invoice: Add Charge
       franchise: Franchise
       entered: Entered
       note: Note
       paid: Paid
       total: Total
+      pending_charges: Pending Charges
+      paid_charges: Paid Charges
       edit_link: Edit this Charge
       delete_link: Delete this Charge
       delete_confirm: Are you sure you want to Delete this Charge?

@@ -45,11 +45,12 @@ Rails.application.routes.draw do
   authenticate :user do  
     resources :users
     resources :franchises, only: [:edit, :update]
-    resources :accountants, only: [:show]
+    resources :accountants, only: [:index,:show]
     resources :insurances, only: [:show]
     resources :bank_accounts
     resources :credit_cards
     resources :website_preferences, except: :destroy
+    resources :insurances, only: :show
     resources :financials
     resources :remittances
     post '/remittances/new' => 'remittances#new'

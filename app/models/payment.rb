@@ -18,6 +18,10 @@ class Payment < ApplicationRecord
 	validates :date_entered, presence: true 
 	validates :amount, presence: true 
   validates :amount, numericality: { greater_than: 0, message: :no_negative }
+  
 
+  def invoice_payment?
+  	self.invoice_payment == 1
+  end
 
 end

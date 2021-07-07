@@ -23,6 +23,19 @@ def link_with_icon(link, action, description,confirm="",turbo=true)
     </i>
     </a>
     HTML
+  when "invoice"
+    a_tag = <<-HTML
+    <a data-turbolinks="#{turbo}" 
+       href="#{link}" 
+       class="show-link">
+    <i class="fa fa-file-invoice-dollar fa-2x padgett-blue-icon" 
+    aria-hidden="true" 
+    data-html = "true" 
+    data-toggle="tooltip" 
+    title="#{description}">
+    </i>
+    </a>
+    HTML
   when "edit"
     a_tag = <<-HTML
     <a data-turbolinks="#{turbo}" href="#{link}" class = "edit-link">

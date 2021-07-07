@@ -1,0 +1,78 @@
+<div id = "table-scroll"
+     class = "table-scroll">
+
+  <table id = "accountant-list" 
+         class="table-striped">
+    <thead id="list">
+      <tr>
+       
+
+        <!-- Accountant  -->
+        <th scope = "col" class = "td-left">
+          <%=I18n.t('accountant.index.accountant')%>
+        </th>
+
+        <!-- Lastname  -->
+        <th scope = "col" class="td-left">
+          <%=I18n.t('accountant.index.lastname') %>
+        </th>
+      
+        <!-- Firstname  -->
+        <th scope = "col" class = "td-left">
+          <%= I18n.t('accountant.index.firstname') %>
+        </th>
+
+       
+        <th scope = "col"></th>
+        
+      </tr>
+    </thead>
+    <tbody>
+      <!-- Go through our filtered franchises  -->
+      <% @accountants.each do |accountant| %>
+        <tr>
+          
+      
+          <!-- Accountant Number  -->
+          <td data-name = "Accountant"
+              scope="col" 
+              class = "td-left">
+            <%=accountant.accountant_num%>
+          </td>
+
+          <!-- Lastname  -->
+          <td data-name="Last Name"
+              scope="col"
+              class = "td-left">
+            <%=accountant.lastname%> 
+          </td>
+
+          <!-- Firstname  -->
+          <td data-name = "First Name"
+              scope = "col"
+              class = "td-left">
+            <%=accountant.firstname%> 
+          </td>
+
+          <!-- View Icon and Link  -->
+          <%if can? :read, accountant%>
+            <td data-name = "" 
+                class = "td-center">
+            <%=link_with_icon(accountant_path(id:accountant),
+              "show",
+              I18n.t('accountant.index.edit_link'),
+              "",
+              false)%> 
+            </td>
+          <%else%>
+            <td></td>
+          <%end%>
+          
+
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>  
+
+

@@ -48,7 +48,7 @@ class CardPaymentsController < ApplicationController
     @balance = FranchisesQuery.new.get_royalty_balance(current_user.franchise_id)
 	end
 
-	def set_bank_payment
+	def set_card_payment
 		@card_payment = CardPayment.find(params[:id])
 	end
 

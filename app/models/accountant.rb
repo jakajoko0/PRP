@@ -29,6 +29,7 @@ class Accountant < ApplicationRecord
   audited except: [:slug], on: %i[update destroy]
 
   scope :by_number, -> { order('accountant_num') }
+  
 
   validates :franchise, presence: true
   validates :firstname, presence: true
