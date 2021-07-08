@@ -39,6 +39,10 @@
             <%=I18n.t('payment.index.amount')%>
         </th>
 
+         <!-- Invoice identifier -->  
+        <th scope = "col" class = "td-center">
+        </th> 
+
         <!-- Paid With -->
         <th scope = "col" class = "td-center">
             <%=I18n.t('payment.index.paid_with')%>
@@ -96,6 +100,20 @@
                 class = "td-right">
                 <%=number_to_currency(payment.amount, precision: 2)%>
             </td>
+
+            <!-- Invoice Reference -->
+            <%if (payment.invoice_payment?)%>
+              <td data-name = ""
+                  class = "td-center">
+                  <%=link_with_icon(invoice_path(id: payment.invoice_id),
+                  "invoice",
+                  "This payment is tied to an ivoice",
+                  "",
+                  false)%>
+                </td>
+            <%else%>
+            <td></td>
+            <%end%>
 
             <!-- Paid With -->
             <td data-name = "Paid With" 
