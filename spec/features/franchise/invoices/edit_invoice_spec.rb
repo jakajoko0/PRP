@@ -24,7 +24,7 @@ RSpec.feature "Feature - Editing Invoice", type: :feature do
     click_button "Save"
 
     expect(get_table_cell_text('pending-charges-list',1,2)).to eq("New Description")
-    expect(get_table_cell_text('pending-charges-list',1,3)).to eq(number_to_currency(999.99, precision:2))
+    expect(get_table_cell_text('pending-charges-list',1,4)).to eq(number_to_currency(999.99, precision:2))
 	
 	end
 

@@ -136,7 +136,7 @@
               <%if (payment.pending? || payment.transit?) && (can? :edit, payment) %>
                 <td data-name = ""
                   class = "td-center">
-                  <%=link_with_icon(edit_polymorphic_path(payment),
+                  <%=link_with_icon(edit_polymorphic_path([:admins,payment]),
                   "edit",
                   I18n.t('payment.index.edit_link'),
                   "",
@@ -145,7 +145,7 @@
             <%else%>   
               <td data-name = ""
                   class = "td-center">
-                  <%=link_with_icon(polymorphic_path(payment),
+                  <%=link_with_icon(polymorphic_path([:admins,payment]),
                   "show",
                   I18n.t('payment.index.view_link'),
                   "",
@@ -157,7 +157,7 @@
             <%if can? :delete, payment%>
               <td data-name = ""
                   class = "td-center">
-                  <%=link_with_icon(polymorphic_path(payment),
+                  <%=link_with_icon(polymorphic_path([:admins,payment]),
                   "delete",
                   I18n.t('payment.index.delete_link'),
                   I18n.t('payment.index.delete_confirm'),false)%>

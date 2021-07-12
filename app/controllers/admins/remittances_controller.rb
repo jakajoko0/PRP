@@ -18,6 +18,7 @@ class Admins::RemittancesController < ApplicationController
     prepare_gon(franchise_id)
     
     #Create the new Remittance object with defaults
+    logger.debug "CURRENT TIME: #{Time.now}"
     @remittance = Remittance.new(franchise_id: franchise_id,
                                  month: proper_month,
                                  year: proper_year,

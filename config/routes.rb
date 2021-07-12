@@ -108,6 +108,8 @@ Rails.application.routes.draw do
       resources :transaction_codes
       get '/switch_user', to: "switch_user#index"
       resources :check_payments
+      resources :bank_payments, only: :show
+      resources :card_payments, only: :show
       get '/receipts', to: "receipts#index"
       get '/payments', to: "payments#index"
       get '/payment_review' => 'payment_review#index'

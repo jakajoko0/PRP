@@ -11,7 +11,7 @@ RSpec.feature "Feature - Adding Invoice", type: :feature do
     visit '/'	
     simulate_user_sign_in(user)
     visit invoices_path
-    click_button("Add Invoice")
+    click_button("Add Charge")
     expect(page).to have_content("New Charge")
     
     fill_in "Description", with: "My Invoice Description"
@@ -21,14 +21,14 @@ RSpec.feature "Feature - Adding Invoice", type: :feature do
     click_button "Save"
     
     expect(get_table_cell_text('pending-charges-list',1,2)).to eq("My Invoice Description")
-    expect(get_table_cell_text('pending-charges-list',1,3)).to eq(number_to_currency(100, precision:2))
+    expect(get_table_cell_text('pending-charges-list',1,4)).to eq(number_to_currency(100, precision:2))
   end
 
   scenario "User cannot Create an Invalid Invoice", js: true do
     visit '/' 
     simulate_user_sign_in(user)
     visit invoices_path
-    click_button("Add Invoice")
+    click_button("Add Charge")
     expect(page).to have_content("New Charge")
     
     select(trans_codes[1].description, from: 'invoice_invoice_items_attributes_0_code')

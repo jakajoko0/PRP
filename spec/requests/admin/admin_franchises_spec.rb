@@ -3,10 +3,14 @@ require "rails_helper"
 RSpec.describe "Requests Admin Franchises", :type => :request do 
   #Create a user and a property tied to that user
   let!(:admin) {create(:admin)} 
+
   let!(:glass)    {create :franchise, lastname: "Glass", firstname: "Forrest"}
   let!(:kittle)   {create :franchise, lastname: "Kittle", firstname: "Theresa"}
   let!(:hull)     {create :franchise, lastname: "Hull", firstname: "Scott"}
-
+  
+  let!(:glass_user) {create :user, franchise: glass}
+  let!(:kittle_user) {create :user, franchise: kittle}
+  let!(:hull_user) {create :user, franchise: hull}
   #Tests to access the different enpoints while user not signed in
   describe 'Admin Not Signed In' do 
     

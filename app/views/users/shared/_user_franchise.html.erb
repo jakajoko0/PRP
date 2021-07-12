@@ -20,10 +20,12 @@
       <%=dropdown_item(
       I18n.t('user_menu.account.setup.accountants'),
         accountants_path)%>
-      <!-- INSURANCE -->
-      <%=dropdown_item(
-        I18n.t('user_menu.account.setup.insurance'),
-        insurance_path(current_user.franchise.insurance))%>
+      <%if current_user.franchise.insurance%>
+        <!-- INSURANCE -->
+        <%=dropdown_item(
+          I18n.t('user_menu.account.setup.insurance'),
+          insurance_path(current_user.franchise.insurance))%>
+          <%end%>
       <!-- WEBSITE -->
       <%=dropdown_item(
         I18n.t('user_menu.account.setup.website'),

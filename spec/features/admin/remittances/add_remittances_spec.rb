@@ -8,6 +8,8 @@ RSpec.feature "Feature - Adding Remittance", type: :feature do
   let!(:franchise) {create(:franchise)}
   let!(:franchise2) {create(:franchise)}
 
+  let! (:zone) {ActiveSupport::TimeZone.new('Eastern Time (US & Canada)')}
+  
   scenario "Admin User Click Add Remittance", js: true do 
     visit '/'
     simulate_admin_sign_in(admin)
@@ -25,10 +27,11 @@ RSpec.feature "Feature - Adding Remittance", type: :feature do
     within("table#franchise-list") do
       first(".btn").click
     end
+    pp Time.now.strftime("%m/%d/%Y")
     expect(page).to have_field("remittance_year")
     #Make sure the proper default dates are showing
-    expect(page).to have_field("remittance_date_received", with: Date.today.strftime("%m/%d/%Y"))
-    expect(page).to have_field("remittance_date_posted", with: Date.today.strftime("%m/%d/%Y"))
+    expect(page).to have_field("remittance_date_received", with: DateTime.now.strftime("%m/%d/%Y"))
+    expect(page).to have_field("remittance_date_posted", with: DateTime.now.strftime("%m/%d/%Y"))
     #Fill In some Collections
     #Make sure the report is never late
     fill_in 'Year', with: (Date.today.year)+1

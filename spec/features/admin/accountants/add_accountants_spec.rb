@@ -12,6 +12,7 @@ RSpec.feature "Feature - Adding Accountants", :type => :feature do
     within("table#franchise-list") do
       first(".btn").click
     end
+   
     expect(page).to have_field("accountant_lastname")
   end
 

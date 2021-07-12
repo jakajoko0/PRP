@@ -1,0 +1,151 @@
+<div class = "row justify-content-center">
+  <div class = "col-12 col-sm-12 col-md-10 col-lg-10 col-xl-10">
+    <div class = "card">
+      <div class = "card-header login-header" style="display:inline">
+        <h3 class = "float-left">
+          Bank Payment Information
+        </h3>
+       
+      </div>
+    
+    
+      <div class="card-body">
+        <form>
+
+          <div class = "form-row form-group col-12">
+            <!-- Franchise -->
+            <label class= "col-md-4 col-sm-4 
+            col-lg-4 col-xl-3 col-form-label-sm label-bold">
+              Franchise
+            </label>
+            
+              <div class = "form-control-plaintext col-8"><%=@bank_payment.franchise.number_and_name%>
+              </div>
+            
+          </div>
+        	<div class = "form-row form-group col-12">
+            <!-- POSTED ON -->
+            <label class= "col-md-4 col-sm-4 
+            col-lg-4 col-xl-3 col-form-label-sm label-bold">
+              Posted On
+            </label>
+            
+              <div class = "form-control-plaintext col-8"><%=I18n.l(@bank_payment.date_entered, format: :notime)%>
+              </div>
+            
+          </div>
+     
+          <div class = "form-row form-group col-12">
+            <!-- SCHEDULED ON -->
+            <label class= "col-md-4 col-sm-4 col-lg-4 col-xl-3 col-form-label-sm label-bold">
+              	Scheduled On
+            </label>
+              
+            
+              <div class = "form-control-plaintext col-8"><%=I18n.l(@bank_payment.payment_date, format: :notime)%>
+              </div>
+            
+          </div>
+          <%if @bank_payment.approved?%>
+            <div class = "form-row form-group col-12">
+              <!-- APPROVED ON ON -->
+              <label class= "col-md-4 col-sm-4 col-lg-4 col-xl-3 col-form-label-sm label-bold">
+              	Approved On
+              </label>
+              
+                <div class = "form-control-plaintext col-8">
+                 <%=I18n.l(@bank_payment.date_approved, format: :notime) if date_approved%>
+                </div>
+              
+            </div>
+          <%end%>
+          <div class = "form-row form-group col-12">
+            <!-- AMOUNT -->
+            <label class= "col-md-4 col-sm-4 col-lg-4 col-xl-3 
+                col-form-label-sm label-bold">
+                Amount
+            </label>
+            
+              <div class = "form-control-plaintext col-8">
+                 <%=number_to_currency(@bank_payment.amount, precision: 2)%>
+              </div>
+            
+          </div>
+          <div class = "form-row form-group col-12">
+            <!-- PAID WITH -->
+            <label class= "col-md-4 col-sm-4 col-lg-4 col-xl-3 
+                col-form-label-sm label-bold">
+                Paid With
+            </label>
+            
+              <div class = "form-control-plaintext col-8">
+                 <%=@bank_payment.paid_with%>
+              </div>
+            
+          </div>
+          <div class = "form-row form-group col-12">
+            <!-- STATUS -->
+            <label class= "col-md-4 col-sm-4 col-lg-4 col-xl-3 
+                col-form-label-sm label-bold">
+                Status
+            </label>
+            
+              <div class = "form-control-plaintext col-8">
+                 <%=@bank_payment.note%>
+              </div>
+           
+          </div>
+          
+          <div class = "form-row form-group col-12">
+            <!-- POSTED ON -->
+            <label class= "col-md-4 col-sm-4 col-lg-4 col-xl-3 
+                col-form-label-sm label-bold">
+                PRP Transaction ID
+            </label>
+            
+              <div class = "form-control-plaintext col-8">
+                 <%=@bank_payment.id%>
+              </div>
+            
+          </div>
+          <div class = "form-row form-group col-12">
+            <!-- GULF ID -->
+            <label class= "col-md-4 col-sm-4 col-lg-4 col-xl-3 
+                col-form-label-sm label-bold">
+                Gulf Reference ID
+            </label>
+            
+              <div class = "form-control-plaintext col-8">
+                 <%=@bank_payment.reference_id%>
+              </div>
+             
+          </div>
+        </form>
+      </div>
+      <%if @bank_payment.invoice_payment? %>
+      <div class = "card-footer">
+        <div class = "form-row form-group col-12">
+          <h4 class = "col-12">
+           <%="This payment was made to pay Invoice #{@bank_payment.invoice_id}, #{
+           Invoice.description(@bank_payment.invoice_id)}"%>
+          </h4>
+             
+       </div>
+
+      </div>
+      <%end%>
+    </div>
+  
+  </div>
+</div>
+<br>
+<div class = "row justify-content-center">
+  
+  <div class = "col-12 col-sm-12 col-md-10 col-lg-10 col-xl-10">
+    <%=link_to "Back", :back, class: "btn btn-padgett col-md-3 col-lg-3 col-xl-2"%>
+  </div>
+
+</div>  
+  
+
+

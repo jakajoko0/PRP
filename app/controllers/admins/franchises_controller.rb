@@ -47,6 +47,7 @@ class Admins::FranchisesController < ApplicationController
       flash[:success] = I18n.t('franchise.update.confirm')
       redirect_to admins_franchises_path
     else
+      @authorized_users = @franchise.users.order(:id)
       @franchise = result.franchise
       render 'edit'
     end
