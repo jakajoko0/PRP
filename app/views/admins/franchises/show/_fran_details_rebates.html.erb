@@ -21,7 +21,7 @@
       </div>
 
       <div class = 'form-row col-12'>
-        <!-- MOBILE -->
+        <!-- ADVANCED REBATE -->
         <div class="form-group form-row col-6">
           <label class = "col-sm-6 col-md-4 col-lg-4 col-form-label  label-bold">
             <%=I18n.t('helpers.label.franchise.advanced_rebate')%>
@@ -33,6 +33,22 @@
           </div>
         </div>
       </div>
+
+      <div class = 'form-row col-12'>
+        <!-- MINIMUM ROYALTY -->
+        <div class="form-group form-row col-6">
+          <label class = "col-sm-6 col-md-4 col-lg-4 col-form-label  label-bold">
+            <%=I18n.t('helpers.label.franchise.minimum_royalty')%>
+          </label>
+          <div class = "col-sm-5 col-md-5 col-lg-8">
+            <div class= 'form-control-plaintext'>
+              <%=number_to_currency(franchise.minimum_royalty)%>
+            </div>
+          </div>
+        </div>
+
+        
+      </div>  
     </div>
   </form>
 </div> 

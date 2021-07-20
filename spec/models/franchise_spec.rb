@@ -4,7 +4,7 @@ RSpec.describe Franchise, type: :model do
   let!(:glass)    {create :franchise, lastname: "Glass", firstname: "Forrest"}
   let!(:kittle)   {create :franchise, lastname: "Kittle", firstname: "Theresa"}
   let!(:hull)     {create :franchise, lastname: "Hull", firstname: "Scott"}
-  let!(:williams) {create :franchise, lastname: "Williams", firstname: "Dan"}
+  let!(:williams) {create :franchise, :with_min_royalty, lastname: "Williams", firstname: "Dan"}
   let!(:canata)   {create :franchise, :not_compliant,  lastname: "Canata", firstname: "Dennis"}
 
   describe "Test Model validations" do 
@@ -96,6 +96,10 @@ RSpec.describe Franchise, type: :model do
       expect(build(:franchise, franchise_number: glass.franchise_number)).not_to be_valid
     end
 
+    it "is invalid if minimum royalty is les than zero" do
+      expect(build(:franchise, minimum_royalty: -1)).not_to be_valid
+    end
+
   end
 
   describe "Test the instance methods" do 
@@ -126,6 +130,13 @@ RSpec.describe Franchise, type: :model do
     describe "#one_line_address" do 
       it "should return the proper formatted address" do 
         expect(glass.one_line_address).to eq("#{glass.address} #{glass.address2}, #{glass.city}, #{glass.state}, #{glass.zip_code}")
+      end
+    end
+
+    describe "#has_minimum_royalty?" do 
+      it "should return true if minimum_royalty is over 0.00" do 
+        expect(glass.has_minimum_royalty?).to eq(false)
+        expect(williams.has_minimum_royalty?).to eq(true)
       end
     end
 

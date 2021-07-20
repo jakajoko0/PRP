@@ -40,6 +40,7 @@ en:
         show_exempt_collect: Exempted Collections
         prior_year_rebate: Prior Year Rebate
         advanced_rebate: Advanced Rebate
+        minimum_royalty: Minimum Royalty
   activerecord:
     errors:
       models:
@@ -108,7 +109,7 @@ en:
       home_address: Home Address
       contact_email: Contact Numbers & Emails
       status: Franchise Status
-      rebates: Rebates
+      rebates: Royalty (Rebates, Minimum)
       save_btn: Save Changes
       return_btn: Return
     show:

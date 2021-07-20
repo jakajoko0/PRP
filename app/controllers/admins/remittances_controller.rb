@@ -18,13 +18,14 @@ class Admins::RemittancesController < ApplicationController
     prepare_gon(franchise_id)
     
     #Create the new Remittance object with defaults
-    logger.debug "CURRENT TIME: #{Time.now}"
     @remittance = Remittance.new(franchise_id: franchise_id,
                                  month: proper_month,
                                  year: proper_year,
                                  date_received: DateTime.now,
                                  date_posted: DateTime.now,
-                                 status: :pending)
+                                 status: :pending,
+                                 minimum_royalty: Franchise.find(franchise_id).minimum_royalty,
+                                 royalty: Franchise.find(franchise_id).minimum_royalty)
     #Make sure users can create a new remittance
     authorize! :new, @remittance
   end
@@ -34,9 +35,9 @@ class Admins::RemittancesController < ApplicationController
     authorize! :create, Remittance
     #Make sure a Franchise was selected
     fran = remittance_params[:franchise_id].to_i 
-    current_franchise = Franchise.find(fran)
+    #current_franchise = Franchise.find(fran)
     #Grab history, rebates and royalty rate
-    prepare_gon(current_franchise)
+    prepare_gon(fran)
     
     #Call the CreateRemittance interactor
     result = CreateRemittance.call(params: remittance_params, user: current_authenticated, 
@@ -131,6 +132,7 @@ class Admins::RemittancesController < ApplicationController
     gon.rebates = Franchise.rebates(fran_id)
     gon.admin = true
     gon.royalty_rate = Remittance::ROYALTY_RATE
+    gon.min_royalty = Franchise.find(fran_id).minimum_royalty
   end
 
 end

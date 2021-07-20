@@ -19,8 +19,14 @@ class NewRemittance
       end
 
       @remittance.calculated_royalty = @remittance.calc_royalties
-      @remittance.royalty = @remittance.calculated_royalty
+      
     end
+
+    if current_user.franchise.has_minimum_royalty?
+      @remittance.minimum_royalty = current_user.franchise.minimum_royalty
+    end
+
+    @remittance.royalty = @remittance.calculated_royalty > @remittance.minimum_royalty ? @remittance.calculated_royalty : @remittance.minimum_royalty 
 
     context.remittance = @remittance
   end

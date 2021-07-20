@@ -82,7 +82,7 @@ class Admins::FranchisesController < ApplicationController
                   :phone, :phone2, :mobile, :fax, :email, :alt_email,
                   :start_date, :renew_date, :salesman, :territory,
                   :non_compliant, :non_compliant_reason, :prior_year_rebate,
-                  :advanced_rebate, :show_exempt_collect, :term_date,
+                  :advanced_rebate, :minimum_royalty, :show_exempt_collect, :term_date,
                   :term_reason, :inactive,
                   franchise_cons_attributes: %i[id fran _destroy])
   end

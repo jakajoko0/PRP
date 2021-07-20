@@ -102,6 +102,7 @@ class Franchise < ApplicationRecord
   validates :zip_code,   presence: true
   validates :prior_year_rebate, numericality: { greater_than_or_equal_to: 0, message: :cannot_exceed }
   validates :advanced_rebate, numericality: { greater_than_or_equal_to: 0, message: :no_negative }
+  validates :minimum_royalty, numericality: {greater_than_or_equal_to: 0.00, message: :no_negative}
   validates :franchise_number, uniqueness: { scope: %i[region office], message: :already_exists }
   validates :email, format: { with: /\A([\w+\-]\.?)+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/, message: :invalid_format }
   validates :alt_email, format: { with: /\A([\w+\-]\.?)+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/, message: :invalid_format },
@@ -147,6 +148,10 @@ class Franchise < ApplicationRecord
     self.start_date = Date.strptime(start_date, I18n.translate('date.formats.default')) unless start_date.blank?
     self.renew_date = Date.strptime(renew_date, I18n.translate('date.formats.default')) unless renew_date.blank?
     self.term_date = Date.strptime(term_date, I18n.translate('date.formats.default')) unless term_date.blank?
+  end
+
+  def has_minimum_royalty?
+    minimum_royalty.positive?
   end
 
   #=================================================================

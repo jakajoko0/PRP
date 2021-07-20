@@ -3,7 +3,7 @@ include ActionView::Helpers::NumberHelper
 
 RSpec.feature "Feature - Adding Remittance", type: :feature do 
 
-  let!(:franchise) {create(:franchise)}
+  let!(:franchise) {create(:franchise, :with_min_royalty )}
   let!(:user) {create(:user, franchise: franchise)}
 	
   scenario "User can Create a Valid Pending Remittance", js: true do 
@@ -14,6 +14,7 @@ RSpec.feature "Feature - Adding Remittance", type: :feature do
     expect(page).to have_content("New Royalty Report")
     expect(page).to have_field("remittance_year")
     expect(page).to_not have_field("remittance_date_received")
+    expect(page).to have_field("Minimum Royalty", with: "450.00")
     fill_in 'Year', with: (Date.today.year)+1 
     fill_in "Accounting", with: "1000.00"
     fill_in "Backwork", with: "1000.00"

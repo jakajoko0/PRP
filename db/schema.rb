@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_03_182620) do
+ActiveRecord::Schema.define(version: 2021_07_12_224744) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -311,6 +311,7 @@ ActiveRecord::Schema.define(version: 2021_06_03_182620) do
     t.datetime "updated_at", precision: 6, null: false
     t.string "term_reason"
     t.string "slug"
+    t.decimal "minimum_royalty", precision: 10, scale: 2, default: "0.0"
     t.index ["area", "mast", "region", "franchise_number", "office", "email", "inactive"], name: "office_index", unique: true
     t.index ["franchise_number", "region", "office"], name: "index_franchises_on_franchise_number_and_region_and_office", unique: true
     t.index ["franchise_number"], name: "franchise_number"

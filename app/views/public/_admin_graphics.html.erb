@@ -2,10 +2,14 @@
 <div class = "row">
 	<div class = "col-md-6" 
 	  style="border-top: 1px solid">
-		<h5 class="text-center">
-		  <%=I18n.t('dashboard.admin.revenue_by_state')%>
-		</h5>	
-		<%=revenue_by_state(@year, @month)%>
+	  <h5 class="text-center">
+		  Recent Transactions
+	  </h5>
+		<div class = "card">
+			<div class = "card-body">
+				<%=render %>
+			</div>
+		</div>
 	</div>
 
 

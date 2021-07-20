@@ -136,6 +136,7 @@ class PublicController < ApplicationController
     @prior_roy_avg_class = @prior_roy_avg_diff >= 0.00 ? "green" : "red"
     @last_year_roy_avg_class = @last_year_roy_avg_diff >= 0.00 ? "green" : "red"
 
+    @latest_transactions = AdminpageService.get_latest_transactions
 
   end
 end

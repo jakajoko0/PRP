@@ -286,7 +286,9 @@ const initForm = (report_year, report_month) => {
   $("#remittance_total_collect").val(totalCollect.toFixed(2));
 
   //Then we evaluate the credit lines and disable the proper fields
-  
+  if (gon.min_royalty > 0.00) {
+    $("#remittance_minimum_royalty").prop("readonly", true);
+  }
 
   initCredits();
   

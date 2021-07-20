@@ -96,6 +96,7 @@ class RemittancesController < ApplicationController
     gon.rebates = Franchise.rebates(fran_id)
     gon.admin = false
     gon.royalty_rate = Remittance::ROYALTY_RATE
+    gon.min_royalty = Franchise.find(fran_id).has_minimum_royalty?
   end
 
   def set_period

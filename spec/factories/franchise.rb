@@ -52,6 +52,7 @@ FactoryBot.define do
     avg_collections {0.00}
     max_coll_year {0}
     max_coll_month {0}
+    minimum_royalty {0.00}
     created_at {DateTime.now}
     updated_at {DateTime.now}
     trait :show_exempt do 
@@ -65,6 +66,10 @@ FactoryBot.define do
     trait :not_compliant do 
       non_compliant {1}    
       non_compliant_reason {"Did not pay royalties over 1 year"}
+    end
+
+    trait :with_min_royalty do 
+      minimum_royalty {450.00}
     end
 
   end
