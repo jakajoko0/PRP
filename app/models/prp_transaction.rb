@@ -20,12 +20,21 @@ class PrpTransaction < ApplicationRecord
   # Scopes for Admin users
   scope :all_credits, -> { includes(:franchise).where(trans_type: 2).order('date_posted DESC') }
   scope :all_charges, -> { includes(:franchise).where(trans_type: 1).order('date_posted DESC') }
-
+  scope :latest, -> {includes(:franchise,:transactionable).order('date_posted DESC').limit(10)}
+  scope :by_date_range, ->(start_date, end_date) {includes(:franchise, :transactionable).where("date_posted >= ? and date_posted <=?",start_date, end_date).order("date_posted DESC")}
   # Scopes for Franchise Users
   scope :credits_for_franchise, ->(fran_id) { where(franchise_id: fran_id, trans_type: 2).order('date_posted DESC') }
   scope :charges_for_franchise, ->(fran_id) { where(franchise_id: fran_id, trans_type: 1).order('date_posted DESC') }
 
   def quick_info
     "Transaction Code #{trans_code} for #{amount} on #{date_posted} for #{franchise.number_and_name}"
+  end
+
+  def self.get_min_year
+    PrpTransaction.minimum(:date_posted).year
+  end
+
+  def self.get_max_year
+    PrpTransaction.maximum(:date_posted).year
   end
 end

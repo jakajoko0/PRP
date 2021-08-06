@@ -86,6 +86,10 @@ module AdminpageService
     def get_average_royalties_for_last_year(year,month)
       year = year -1
       RemittancesQuery.new.total_average_royalties_for_month(year,month)
-    end    
+    end   
+
+    def get_latest_transactions
+      PrpTransaction.latest
+    end 
   end
 end

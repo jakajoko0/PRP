@@ -73,6 +73,19 @@ def link_with_icon(link, action, description,confirm="",turbo=true)
   a_tag.html_safe
 end
 
+def description_peek(description, location)
+  i_tag = <<-HTML
+  <i class = "far fa-comment fa-2x"
+  aria-hidden="true"
+  data-html="true"
+  data-toggle="tooltip"
+  title ="#{description}"
+  data-placement="#{location}"
+  data-container="body">
+  </i>
+  HTML
+  i_tag.html_safe
+end
 
 def bubble_help(help_description,location)
   i_tag = <<-HTML

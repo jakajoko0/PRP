@@ -1,0 +1,116 @@
+
+<%=form_tag url_for(controller: 'activity_reviews', action: 'index'),
+  class: 'form-inline mb-2' do %>
+  
+  <h3 class="mr-2">
+    Year
+  </h3>
+    
+  <%=select_year(@target_year,
+    {start_year: PrpTransaction.get_min_year,
+     end_year: PrpTransaction.get_max_year,
+     :prefix => ""}, 
+    html_options = {:class => 'form-control form-control-sm mr-2'})%>
+    
+    <%=submit_tag "Reload",
+      class: 'btn btn-padgett'%>
+<%end%>
+
+<div id = "table-scroll"
+     class = "table-scroll">
+  <table id = "activity-reviews-list" class = "table-striped">
+    <thead id = "list">
+      <tr>
+        <!-- Franchise -->
+        <th scope = "col" class = "td-left">
+            Franchise
+        </th>
+        <!-- Date -->
+        <th scope = "col" class = "td-left">
+            Date
+        </th>
+        <!-- Trans Code -->
+        <th scope = "col" class = "td-left">
+          Transaction
+        </th>
+        
+        <!-- Description -->
+        <th scope = "col" class = "td-left">
+            Description
+        </th>
+
+        <!-- Amount -->
+        <th scope = "col" class = "td-right">
+            Amount
+        </th>
+
+        <!-- Link to Source -->  
+        <th scope = "col" class = "td-center">
+        </th> 
+        
+        
+      </tr>
+    </thead>
+
+    <% if @trans.size > 0 %>
+      <tbody>    
+        <%@trans.each do |tran|%>
+          <tr>
+            <!-- Franchise -->
+            <td data-name = "Franchise"
+                scope = "col"
+                class = "td-left">
+                <%=tran.franchise.number_and_name%>
+            </td>
+
+            <!-- Posted Date -->
+            <td data-name = "Date"
+                scope = "col"
+                class = "td-left">
+                <%=I18n.l(tran.date_posted, format: :prp)%>
+            </td>
+
+            <!-- Transaction -->
+            <td data-name = "Transaction"
+                scope = "col"
+                class = "td-left">
+                <%=TransactionCode.description_from_code(tran.trans_code)%>
+            </td>
+
+            <!-- Description -->
+            <td data-name = "Processed"
+                scope = "col"
+                class = "td-left">
+                <%=tran.trans_description%>
+            </td>
+            
+            <!-- Amount -->
+            <td data-name = "Amount" 
+                scope = "col"
+                class = "td-right">
+                <%=number_to_currency(tran.amount, precision: 2)%>
+            </td>
+
+            <!-- Link to Source -->
+            <td>
+              <%= link_with_icon(
+                    polymorphic_path([:admins,tran.transactionable]),
+                    "show",
+                    "See this transaction",
+                    false)%>
+                  </td>
+             
+          </tr>
+        <%end%>
+      </tbody>
+    <%end%>
+    
+  </table>
+</div>
+<div class = "row justify-content-center">
+ <div class ='flickr_pagination'>
+    <%= will_paginate @trans, :params=> {:target_year => @target_year} %>
+    <br>
+    <span class = "page_info">(<%=@trans_count %> Transactions) </span>
+  </div>    
+</div>

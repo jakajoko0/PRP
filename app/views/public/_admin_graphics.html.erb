@@ -1,23 +1,29 @@
-<!--GEO MAP SHOWING REVENUES BY STATE -->
+<!--LATEST TRANSACTIONS -->
 <div class = "row">
 	<div class = "col-md-6" 
 	  style="border-top: 1px solid">
-	  <h5 class="text-center">
+
+	  <h5 style="display:inline-block" class="text-center mt-2 col-md-11">
 		  Recent Transactions
+
 	  </h5>
-		<div class = "card">
-			<div class = "card-body">
-				<%=render %>
-			</div>
-		</div>
+	
+
+	
+	
+		<%=link_to "See All", admins_activity_review_path,
+		class: "btn btn-padgett float-right col-md-1 my-1"%>
+	
+	  <br>
+		
+				<%=render partial: 'admin_recent_trans'%>
+		
 	</div>
-
-
 	<!--DONUT CHART SHOWING MONTHLY COLLECTIONS BY CATEGORY -->
 	<div class = "col-md-6" 
 			 style = "border-top: 1px solid;
 			 border-left: 1px solid">
-		<h5 class="text-center">
+		<h5 class="text-center mt-2">
 		  <%=I18n.t('dashboard.admin.coll_by_category')%>
 	  </h5>
 	  <%= collections_by_category(@year, @month) %>

@@ -192,8 +192,10 @@
   </table>
 </div>
 
- <div class ='flickr_pagination'>
+<div class = "row justify-content-center">
+   <div class ='flickr_pagination'>
     <%= will_paginate @payments, :params=> {:target_year => @target_year} %>
     <br>
     <span class = "page_info">(<%=@payments_count %> payments) </span>
   </div>    
+</div>

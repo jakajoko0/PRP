@@ -81,7 +81,8 @@ Rails.application.routes.draw do
     mount Logster::Web, at: "/logs"
     mount Sidekiq::Web => '/sidekiq'
     # Namespace the Admin pages
-    namespace :admins do 
+    namespace :admins do
+      get '/' => 'public#adminpage'
       resources :users
       resources :admins
       resources :franchises
@@ -118,6 +119,8 @@ Rails.application.routes.draw do
       get '/declined_payments' => 'declined_payments#index'
       get '/approved_payments' => 'approved_payments#index'
       post '/approved_payments' => 'approved_payments_review#index'
+      get '/activity_review' =>'activity_reviews#index'
+      post '/activity_review' => 'activity_reviews#index'
       #Reports
       scope module: :reports do 
         #Franchise List

@@ -12,7 +12,7 @@ class FranchiseDocument < ApplicationRecord
                            'application/vnd.openxmlformats-officedocument.wordprocessingml.document'],
             size: { less_than: 10.megabytes, message: 'Document must be less than 10Mb' }
 
-  enum document_type: { 'tax return' => 1, 'insurance' => 2, 'other' => 5 }
+  enum document_type: { 'tax return' => 1, 'insurance' => 2, 'p&l' => 3 , 'client list' => 4, 'other' => 5 }
 
   scope :for_franchise, lambda { |fran_id|
                           FranchiseDocument.includes(document_attachment: :blob).where(franchise_id: fran_id).order('created_at DESC')
