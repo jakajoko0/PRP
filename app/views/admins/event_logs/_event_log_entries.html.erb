@@ -1,0 +1,70 @@
+
+<div id = "table-scroll" class = "table-scroll">
+  <table id = "event_log_entries_table" class="table-striped">
+    <thead id = "list">
+      <tr>
+        <th scope = "col" class = "td-left">
+          Date
+        </th>
+        <th scope = "col" class = "td-left">
+          Franchise
+        </th>
+        <th scope = "col" class = "td-left">
+          User
+        </th>
+        <th scope = "col" class = "td-left">
+          Event Description
+        </th>
+        
+      </tr>
+    </thead>
+    <%if @events.size >0 %>
+      <tbody>
+      <%@events.each do |event|%>
+        <tr>
+          <td data-name = "Date"
+              scope = "col"
+              class = "td-left">
+              <%=I18n.l(event.event_date,
+              format: :default)%>
+             
+          </td>
+
+          <td data-name = "Franchise"
+              scope = "col"
+              class = "td-left">
+             <%=event.fran%> <%=event.lastname%>
+          </td>
+
+          <td data-name = "User"
+              scope = "col"
+              class = "td-left">
+            <%=event.user_email%>
+          </td>
+
+          <td data-name = "Event"
+              scope = "col" 
+              class = "td-left">
+            <%=event.event_desc%></h5> 
+          </td>
+
+          
+        </tr>
+      <%end%>
+      </tbody>
+    <%end%>
+  </table>
+
+</div>
+
+<!-- Pagination Links  -->
+<div class = "row justify-content-center">
+  <div class = "flickr_pagination">
+    <%= will_paginate @events, params: {email: @email, franchise: @franchise, start_date: @starting, end_date: @ending},
+    pervious_label: I18n.t('pagination.prev'),
+    next_label: I18n.t('pagination.next') %>
+  </div>
+</div>
+
+
+

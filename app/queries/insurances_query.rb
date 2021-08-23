@@ -43,12 +43,6 @@ class InsurancesQuery
 		records = @relation.includes(:franchise).where("eo_insurance = 0 AND gen_insurance = 0 AND other_insurance = 0 AND other2_insurance = 0 AND franchises.inactive = 0").order(sort)
 	end
 
-	private
-
-	  
-
-	
-	
 
 
 end

@@ -121,6 +121,10 @@ Rails.application.routes.draw do
       post '/approved_payments' => 'approved_payments_review#index'
       get '/activity_review' =>'activity_reviews#index'
       post '/activity_review' => 'activity_reviews#index'
+      get '/event_logs' => 'event_logs#index'
+      post '/event_logs' => 'event_logs#index'
+      get '/audit_trail' => 'audits#index'
+      post '/audit_trail' => 'audits#index'
       #Reports
       scope module: :reports do 
         #Franchise List

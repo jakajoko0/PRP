@@ -1,0 +1,86 @@
+
+<div id = "table-scroll" class = "table-scroll">
+  <table id = "audits-list" 
+    class="table-striped">
+  <thead id = "list">
+  	<tr>
+      <!-- Resource  -->
+      <th class = "td-left" scope = "col">
+       Resource
+      </th>
+      <!-- Type  -->
+      <th class = "td-left" scope = "col">
+       <%=I18n.t('audit.type')%>
+      </th>
+      <!-- When  -->
+      <th scope = "col" class = "td-left">
+        <%=I18n.t('audit.when')%>
+      </th>
+      <!-- Who  -->
+      <th scope = "col" 
+          class = "td-left">
+        <%=I18n.t('audit.who')%>
+      </th>
+      <!-- Who  -->
+      <th scope = "col" 
+          class = "td-left">
+        Franchise>
+      </th>
+      <!-- Changes  -->
+      <th scope = "col" class="td-left">
+        <%=I18n.t('audit.changes')%>
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+  <%@audits.each do |audit| %>
+  	<tr>
+      <td data-name = "Resource"
+          scope = "col"
+          class = "td-left">
+        <%=audit.auditable_type%>
+      </td>
+  	  <td data-name = "Action"
+          scope = "col"
+          class = "td-left">
+  	  	<%=audit.action.capitalize%>
+  	  </td>	
+  	  <td data-name = "When" 
+          scope = "col"
+          class = "td-left">
+  	  	<%= I18n.l audit.created_at.in_time_zone,
+        format: :notime %>
+  	  </td>
+  	  <td data-name = "Who"
+          scope = "col"
+          class = "td-left">
+  	  	<%=audit.user.try(:email) || ""%>
+  	  </td>
+      <td data-name = "Franchise"
+          scope = "col"
+          class = "td-left">
+        <%=audit.target_franchise%>
+      </td>
+  	  <td data-name = "Changes"
+          scope = "col"
+          class = "td-left">
+          <%=format_audited_events(audit)%>
+  	  	
+  	  </td>
+  	</tr>
+
+  <%end%>
+
+  </tbody>
+</table>
+
+<!-- Pagination Links  -->
+<div class = "row justify-content-center">
+  <div class = "flickr_pagination">
+    <%= will_paginate @audits, params: {resource: @resource, operand: @actions, start_date: @starting, end_date: @ending},
+    pervious_label: I18n.t('pagination.prev'),
+    next_label: I18n.t('pagination.next') %>
+  </div>
+</div>
+
+

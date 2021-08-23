@@ -39,6 +39,8 @@ require("custom/deposit_trackings")
 require("custom/bank_payments")
 require("custom/check_payments")
 require("custom/payments")
+require("custom/event_logs")
+require("custom/audits")
 
 
 

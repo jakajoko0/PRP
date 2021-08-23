@@ -1,0 +1,68 @@
+<div class = "col-12">
+  <h2 class = "padgett-text">
+  	Event Logs
+	</h2>
+</div>
+
+<%=form_tag admins_event_logs_path,
+   :method => 'post',
+   :id => "event_logs_search",
+   class: 'pt-2 pb-2' do %>
+
+   
+    <div class ="form-group row col-12">
+      <div class = "col-sm-3 col-md-3 col-lg-3">
+
+      	<%=label_tag :email, "User",
+		      class:"col-form-label-sm label-bold"%>
+		    <%=text_field_tag :email, "",
+		      value: @email,
+		      class:"form-control input-sm"
+		      	%>
+	    </div>
+	  
+	    <div class ="col-sm-3 col-md-3 col-lg-2 col-xl-2">
+	    	<%=label_tag :start_date, "From",
+		      class:"col-form-label-sm label-bold"%>
+		    <%=text_field_tag :start_date, "", 
+		      value: @starting,
+		      class:"form-control input-sm",
+		      	id: "event_logs_start_date"
+		      %>
+      </div>
+
+      <div class ="col-sm-3 col-md-3 col-lg-2 col-xl-2">
+      	<%=label_tag :end_date, "Until",
+		      class:"col-form-label-sm label-bold"%>
+		    <%=text_field_tag :end_date, "", 
+		      value: @ending,
+		      class:"form-control input-sm",id: "event_logs_end_date"%>
+      </div>
+
+	    <div class ="col-sm-3 col-md-3 col-lg-2 col-xl-2">
+	    	 <%=label_tag :franchise, "Franchise Number",
+		      class:"col-form-label-sm label-bold"%>
+		    <%=text_field_tag :franchise, "",
+		      value: @franchise,
+		      class:"form-control input-sm",
+		      	style: "display:inline-block"%>
+	    </div>
+
+	    <div class = "col-sm-3 col-md-3 col-lg-3  d-flex align-items-end justify-content-start" >
+	    	
+        <%= submit_tag "Filter",
+          class:'btn btn-padgett'%>
+       
+      </div>
+    </div>  
+<%end%>
+
+
+<div class = "col-12">
+	<div id = "event_log_enties">
+		<%=render partial: 'event_log_entries'%>
+	</div>
+</div>
+
+
+	

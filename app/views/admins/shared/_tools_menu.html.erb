@@ -37,7 +37,7 @@
         <ul class = "dropdown-menu">
           <!-- EVENT LOG-->  
           <li>
-            <%= link_to I18n.t('admin_menu.tool.system.event_log') , "#",
+            <%= link_to I18n.t('admin_menu.tool.system.event_log') , admins_event_logs_path,
               class: "dropdown-item" %>
           </li>
           <!-- SERVER LOGS-->  
@@ -47,7 +47,7 @@
           </li>
           <!-- AUDIT TRAIL-->  
           <li>
-            <%= link_to I18n.t('admin_menu.tool.system.audit') , "#",
+            <%= link_to I18n.t('admin_menu.tool.system.audit') , admins_audit_trail_path,
             class: "dropdown-item" %>
           </li>
           <!-- BACKGROUND JOBS-->  

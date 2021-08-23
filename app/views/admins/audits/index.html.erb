@@ -1,0 +1,61 @@
+<div class = "col-12">
+  <h2 class = "padgett-text">
+  	Audits
+	</h2>
+</div>
+
+<%=form_tag admins_audit_trail_path,
+   :method => 'post',
+   :id => "audits_search",
+   class: 'pt-2 pb-2' do %>
+   
+    <div class ="form-group row col-12">
+      <div class = "col-sm-3 col-md-3 col-lg-3">
+      	<%=label_tag :resource, "Resource",
+		      class:"col-form-label-sm label-bold"%>
+		    <%=select_tag :resource, options_for_select([["All",""],[ "Franchise Information", "Franchise"], ["Accountants", "Accountant"],["Royalties","Remittance"]],{:include_blank => true, selected: @resource}),
+		      class:"form-control input-sm"
+		      	%>
+	    </div>
+	  
+	    <div class ="col-sm-3 col-md-3 col-lg-2 col-xl-2">
+	    	<%=label_tag :start_date, "From",
+		      class:"col-form-label-sm label-bold"%>
+		    <%=text_field_tag :start_date, "", 
+		      value: @starting,
+		      class:"form-control input-sm",
+		      	id: "audits_start_date"
+		      %>
+      </div>
+
+      <div class ="col-sm-3 col-md-3 col-lg-2 col-xl-2">
+      	<%=label_tag :end_date, "Until",
+		      class:"col-form-label-sm label-bold"%>
+		    <%=text_field_tag :end_date, "", 
+		      value: @ending,
+		      class:"form-control input-sm",id: "audits_end_date"%>
+      </div>
+
+	    <div class ="col-sm-3 col-md-3 col-lg-2 col-xl-2">
+	    	 <%=label_tag :operand, "Actions",
+		      class:"col-form-label-sm label-bold"%>
+		    <%=select_tag :operand ,
+		    options_for_select([["All",""],["Creation", "create"],["Update", "update"],["Delete","destroy"]],{:include_blank => true, selected: @actions}),
+		      class:"form-control input-sm"%>
+	    </div>
+
+	    <div class = "col-sm-3 col-md-3 col-lg-3  d-flex align-items-end justify-content-start" >
+	    	
+        <%= submit_tag "Filter",
+          class:'btn btn-padgett'%>
+       
+      </div>
+    </div>  
+<%end%>
+
+<div class = "col-12">
+	<div id = "audit_enties">
+		<%=render partial: 'audit_entries'%>
+	</div>
+</div>
+
