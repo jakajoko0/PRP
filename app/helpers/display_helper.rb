@@ -69,6 +69,18 @@ def link_with_icon(link, action, description,confirm="",turbo=true)
     </i>
     </a>
     HTML
+  when "details" 
+    a_tag = <<-HTML
+    <a data-turbolinks="#{turbo}"
+       href="#{link}">
+    <i class="fas fa-list fa-2x padgett-blue-icon" 
+    aria-hidden="true" 
+    data-html = "true" 
+    data-toggle="tooltip" 
+    title="#{description}">
+    </i>
+    </a> 
+    HTML
   end 
   a_tag.html_safe
 end

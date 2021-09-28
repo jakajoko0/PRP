@@ -1,0 +1,13 @@
+<div class = "col-12 pb-2">
+  <h2 class="padgett-text">
+    <%=I18n.t('website_payment.index.title', month: Date::MONTHNAMES[@mo], year: @yr)%>
+   </h2>
+</div>
+
+
+<!-- Website payment List -->
+<div class = "col-12">
+  <div id="website_payments"  >
+    <%=render partial: 'website_payments'%>
+  </div>
+</div>

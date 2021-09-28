@@ -26,6 +26,11 @@ sidekiq_options :retry => false
                              trans_description: desc,
                              amount: @card_payment.amount,
                              transactionable: @card_payment)
+        process_invoice if @card_payment.invoice_payment?
+      else
+        if @card_payment.declined? || @card_payment.error?
+          unprocess_invoice if @card_payment.invoice_payment?
+        end
       end
 
       CardPaymentMailer.status_change_notice(@card_payment).deliver_now
@@ -47,7 +52,6 @@ sidekiq_options :retry => false
       @card_payment.date_approved = DateTime.now
       @card_payment.status = "approved"
       @card_payment.note = data[:transaction_state] 
-      process_invoice if @card_payment.invoice_payment == 1
               
     when 'Pending'
       @card_payment.status = "pending"
@@ -56,21 +60,29 @@ sidekiq_options :retry => false
     when 'Declined'
       @card_payment.status = "declined"
       @card_payment.description = data[:transaction_state] + " , "+data[:state_reason]
-      unprocess_invoice if @card_payment.invoice_payment == 1        
+
     when 'Error'
       @card_payment.status = "error"
       @card_payment.note = data[:state_reason]
-      unprocess_invoice if @card_payment.invoice_payment == 1        
     end 
   end
 
   def unprocess_invoice
-    Invoice.find(@card_payment.invoice_id).update_columns(paid: 0, date_posted: nil)
+    inv = Invoice.find(@card_payment.invoice_id)
+    inv.update_columns(paid: 0, date_posted: nil)
+    if inv.web_payment?
+      WebsitePayment.find_by(invoice_id: inv.id).update_columns(status: "declined" )
+    end
   end
 
   def process_invoice
-    Invoice.find(@card_payment.invoice_id).update_columns(paid: 1, date_posted: DateTime.now)
+    inv = Invoice.find(@card_payment.invoice_id)
+    inv.update_columns(paid: 1, date_posted: DateTime.now)
+    if inv.web_payment?
+      WebsitePayment.find_by(invoice_id: inv.id).update_columns(status: "processed" )
+    end
   end
+ 
 
 end
 

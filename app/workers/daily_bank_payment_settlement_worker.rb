@@ -58,25 +58,35 @@ class DailyBankPaymentSettlementWorker
           payment.date_approved = DateTime.now
           payment.status = "approved"
           payment.note = "#{trans[:transaction_state]} , #{trans[:state_reason]}"
+          #process_invoice(payment) if payment.invoice_payment?
         when 'Pending' 
           payment.status = "transit"
           payment.note = "#{trans[:transaction_state]} , #{trans[:state_reason]}"
+          #process_invoice(payment) if payment.invoice_payment?
         when 'Declined'
           payment.note = "#{trans[:transaction_state]} , #{trans[:state_reason]}"
           payment.status = "declined"
           payment.prp_transactions.destroy_all
-          process_invoice(payment) if payment.invoice_payment == 1
+          #unprocess_invoice(payment) if payment.invoice_payment?
 
         when 'Error'
           payment.note = "Error: #{trans[:state_reason]}"
           payment.status = "error"
           payment.prp_transactions.destroy_all
-          process_invoice(payment) if payment.invoice_payment == 1
+          #unprocess_invoice(payment) if payment.invoice_payment?
           TransmissionMailer.error_transaction(trans).deliver_now
         end
         
         if payment.save
           BankPaymentMailer.status_change_notice(payment).deliver_now 
+
+          if payment.approved? || payment.transit? 
+            process_invoice if payment.invoice_payment?
+          else
+            if payment.declined? || payment.error?
+              unprocess_invoice if payment.invoice_payment?
+            end
+          end
         end        
       end
 
@@ -86,8 +96,25 @@ class DailyBankPaymentSettlementWorker
   end
 
 
+  def unprocess_invoice(payment)
+    invoice = Invoice.find(payment.invoice_id)
+    invoice.update_columns(paid: 0, date_posted: nil)
+    if invoice.invoice_type == "web_payment"
+      WebsitePayment.find_by(invoice_id: invoice.id).update_columns(status: "declined")
+    end
+  end
+
   def process_invoice(payment)
-    Invoice.find(payment.invoice_id).update_columns(paid: 0, date_posted: nil)
+    invoice = Invoice.find(payment.invoice_id)
+    if invoice.invoice_type = "web_payment"
+      if payment.status == "approved"
+        WebsitePayment.find_by(invoice_id: invoice.id ).update_columns(status: "processed")
+      end
+
+      if payment.status == "transit"
+        WebsitePayment.find_by(invoice_id: invoice.id ).update_columns(status: "processing")
+      end
+    end
   end
 end
 

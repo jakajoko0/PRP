@@ -52,7 +52,10 @@ en:
       insurance: Insurance 
       financials: Financials
       documents: Documents
-      website: Website Preferences
+      websites: Website
+      website: 
+        website_preferences: Website Preferences
+        payment_status: Payment Status
       supports: Support
       support:
         support_history: Support History

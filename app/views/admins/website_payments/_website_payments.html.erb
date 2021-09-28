@@ -1,0 +1,89 @@
+<div id = "table-scroll"
+     class = "table-scroll">
+  <table id = "website-payments" 
+         class="table-striped">
+    <thead id="list">
+      <tr>
+        <!-- Franchise -->
+        <th scope = "col" class = "td-left">
+          <%=I18n.t('website_payment.index.franchise') %>
+        </th>
+
+        <!-- Fee  -->
+        <th scope = "col" class = "td-right">
+          <%=I18n.t('website_payment.index.fee')%>
+        </th>
+
+        <!-- Paid With  -->
+        <th scope = "col" class="td-center">
+          <%= I18n.t('website_payment.index.paid_with') %>
+        </th>
+
+        <!-- Payment Status  -->
+        <th scope = "col" class="td-center">
+          <%= I18n.t('website_payment.index.payment_status') %>
+        </th>        
+      
+        <!-- Invoice  -->
+        <th scope = "col" class = "td-center">
+          <%= I18n.t('website_payment.index.invoice') %>
+        </th>
+     
+
+      </tr>
+    </thead>
+    <% if @payments.size > 0 %>
+      <tbody>
+        <!-- Go through our website preferences  -->
+        <% @payments.each do |p| %>
+          <tr>
+            <!-- Franchise  -->
+            <td  data-name = "Franchise"
+                 scope="col" 
+                 class = "td-left">
+              <%=p.franchise.number_and_name%> 
+            </td>
+      
+            <!-- Fee  -->
+            <td data-name = "Fee"
+                scope="col" 
+                class = "td-right">
+              <%=number_to_currency(p.fees, precision: 2)%>
+            </td>
+
+            <!-- Paid With  -->
+            <td data-name="Paid With"
+                scope="col"
+                class = "td-center">
+              <%if p.payment_type == 'ach'%>
+                <%=bankicon%>
+              <%else%>
+                <%=cardicon%>
+              <%end%>
+            </td>
+
+            <!-- Payment Status  -->
+            <td data-name = "Status"
+                scope = "col"
+                class = "td-center">
+              <%=web_payment_status(p.status)%>&nbsp;&nbsp;<%=p.status.capitalize%>
+            </td>
+
+            <!-- Invoice  -->          
+            <td data-name = "Invoice"
+                scope = "col"
+                class = "td-center">
+                  <%=link_with_icon(
+                    admins_invoice_path(p.invoice_id),
+                    "show",
+                    "Review Invoice")%>
+            </td>
+           
+          </tr>
+        <% end %>
+      </tbody>
+    <%end%>
+  </table>
+</div>  
+
+

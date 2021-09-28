@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_12_224744) do
+ActiveRecord::Schema.define(version: 2021_09_01_131916) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -352,6 +352,7 @@ ActiveRecord::Schema.define(version: 2021_07_12_224744) do
     t.integer "admin_generated"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "invoice_type", default: 0
     t.index ["franchise_id"], name: "index_invoices_on_franchise_id"
   end
 
@@ -471,6 +472,20 @@ ActiveRecord::Schema.define(version: 2021_07_12_224744) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  create_table "website_payments", force: :cascade do |t|
+    t.bigint "franchise_id"
+    t.integer "year"
+    t.integer "month"
+    t.decimal "fees", precision: 10, scale: 2, default: "0.0"
+    t.integer "payment_type", default: 0
+    t.integer "status", default: 0
+    t.string "gms_token"
+    t.integer "invoice_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["franchise_id"], name: "index_website_payments_on_franchise_id"
+  end
+
   create_table "website_preferences", force: :cascade do |t|
     t.bigint "franchise_id"
     t.integer "website_preference"
@@ -496,5 +511,6 @@ ActiveRecord::Schema.define(version: 2021_07_12_224744) do
   add_foreign_key "payments", "franchises"
   add_foreign_key "prp_transactions", "franchises"
   add_foreign_key "remittances", "franchises"
+  add_foreign_key "website_payments", "franchises"
   add_foreign_key "website_preferences", "franchises"
 end

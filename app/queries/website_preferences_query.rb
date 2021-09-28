@@ -4,6 +4,20 @@ class WebsitePreferencesQuery
 		@relation = relation
 	end
 
+	def web_options_listing(sortby)
+    case sortby
+    when 1
+      ordertext = 'franchises.franchise ASC'
+    when 2  
+      ordertext = 'franchises.lastname ASC'  
+    when 3
+      ordertext = 'website_options.updated_at DESC' 
+    end
+    WebsiteOption.includes("franchise").all.order(ordertext)
+
+  end
+
+
 	def website_preferences_list_sorted(sort)
 		if sort == "website_preferences.updated_at"
 			sort+=" DESC"

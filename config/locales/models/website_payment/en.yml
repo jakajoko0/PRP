@@ -1,0 +1,49 @@
+en:
+  activerecord:
+    errors:
+      models:
+        website_payment:
+          attributes:
+            franchise:
+              blank: Franchise cannot be blank
+            payment_type:
+              blank: Please Provide Payment Type
+            year:
+              blank: Please Provide year
+            month:
+              blank: Please Provide Month  
+            status:
+              blank: Please Provide Status
+            invoice_id:
+              blank: Please Provice Invoice
+            fees:
+              blank: Please Provice Fee Amount
+            gms_token:
+              blank: Please Provide Payment Token
+  website_payment:
+    object_name: Website Payment
+    create:
+      confirm: Website Payment Created Successfully
+    update:
+      confirm: Website Payment Updated Successfully
+    delete:
+      confirm: Website Payment Deleted Successfully
+      error: A Problem Occured Deleting Website Payment
+    index:
+      title: "Website Payments for %{month} %{year}"
+      franchise: Franchise
+      fee: Fee
+      paid_with: Paid With
+      payment_status: Payment Status
+      invoice: Invoice
+  website_payment_list:
+    index:
+      title: Website Payments List
+      year: Year
+      month: Month
+      banks: Bank Payments
+      cards: Card Payments
+      total: Total
+      completion: Completion
+
+

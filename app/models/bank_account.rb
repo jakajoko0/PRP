@@ -29,6 +29,15 @@ class BankAccount < ApplicationRecord
 
   before_destroy :verify_if_used
 
+  def self.get_description_from_token(franchise_id, token)
+    b = BankAccount.find_by franchise_id: franchise_id, bank_token: token
+    if b.nil?
+      return "UNKNOWN ACCOUNT"
+    else
+      return b.bank_name_and_number
+    end
+  end
+
   def should_generate_new_friendly_id?
     new_record? || name_or_number_has_changed? || super
   end

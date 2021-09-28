@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head> 
+
+  <meta content = 'text/html; charset=UTF-8' http-equiv = 'Content-Type' />
+</head>
+
+<body>
+  <table width = "100%" >
+    <thead>
+      <tr>
+        <th style="text-align:left">Date / Time</th>
+        <th style="text-align:left">Event</th>
+        <th style="text-align:left">Details</th>
+      </tr>
+    </thead>
+    <% if @process_log.size  > 0 %>
+      <% @process_log.each do |pl| %>
+        <tr>
+          <td>
+            <h4 align="left"><%=pl.date_time%></h4> 
+          </td>
+          <td>
+            <h4 align = "left"><%=pl.action%></h4>
+          </td> 
+          <td>
+            <h4 align = "left"><%=pl.items%></h4>
+          </td> 
+        </tr>
+      <% end %>
+    <%end%>
+  </table>
+</body>
+</html>
+
+
+
+
+

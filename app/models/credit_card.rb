@@ -42,6 +42,15 @@ class CreditCard < ApplicationRecord
 
   before_destroy :verify_if_used
 
+  def self.get_description_from_token(franchise_id, token)
+    c = CreditCard.find_by franchise_id: franchise_id, card_token: token
+    if c.nil?
+      return "UNKNOWN CARD"
+    else
+      return c.card_type_and_number
+    end
+  end
+
   def should_generate_new_friendly_id?
     new_record? || name_or_number_has_changed? || super
   end

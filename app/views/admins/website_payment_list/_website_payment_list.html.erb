@@ -1,0 +1,103 @@
+<div id = "table-scroll"
+     class = "table-scroll">
+  <table id = "website-preference-list" 
+         class="table-striped">
+    <thead id="list">
+      <tr>
+        <!-- Year -->
+        <th scope = "col" class = "td-center">
+          <%=I18n.t('website_payment_list.index.year') %>
+        </th>
+
+        <!-- Month  -->
+        <th scope = "col" class = "td-center">
+          <%=I18n.t('website_payment_list.index.month')%>
+        </th>
+
+        <!-- Bank Payments  -->
+        <th scope = "col" class="td-center">
+          <%= I18n.t('website_payment_list.index.banks') %>
+        </th>
+
+        <!-- Card Payments  -->
+        <th scope = "col" class="td-center">
+          <%= I18n.t('website_payment_list.index.cards') %>
+        </th>        
+      
+        <!-- Total  -->
+        <th scope = "col" class = "td-center">
+          <%= I18n.t('website_payment_list.index.total') %>
+        </th>
+
+        <!-- Completion  -->
+        <th scope = "col" class = "td-center">
+          <%= I18n.t('website_payment_list.index.completion') %>
+        </th>
+
+        <!-- For Edit and Delete link we have 2 other columns  -->
+        <th scope = "col"
+         class = "td-center"></th>
+      </tr>
+    </thead>
+    <% if @payment_summary.size > 0 %>
+      <tbody>
+        <!-- Go through our website preferences  -->
+        <% @payment_summary.each do |ps| %>
+          <tr>
+            <!-- Year  -->
+            <td  data-name = "Year"
+                 scope="col" 
+                 class = "td-center">
+              <%=ps.yr%> 
+            </td>
+      
+            <!-- Month  -->
+            <td data-name = "Month"
+                scope="col" 
+                class = "td-center">
+              <%=Date::MONTHNAMES[ps.mo]%>
+            </td>
+
+            <!-- Bank  -->
+            <td data-name="Bank Payments"
+                scope="col"
+                class = "td-center">
+              <%=ps.bank_count%> 
+            </td>
+
+            <!-- Cards  -->
+            <td data-name = "Card Payments"
+                scope = "col"
+                class = "td-center">
+              <%=ps.credit_count%> 
+            </td>
+
+            <!-- Total  -->          
+            <td data-name = "Total"
+                scope = "col"
+                class = "td-center">
+              <%=(ps.bank_count + ps.credit_count)%> 
+            </td>
+
+            <!-- Completion  -->
+            <td data-name = "Completion"
+                scope = "col"
+                class = "td-center">
+              <%=number_to_percentage((ps.completed.to_f / (ps.bank_count.to_f+ps.credit_count.to_f)) * 100 , precision: 2) %> 
+            </td>
+ 
+            <!-- View Detail Icon  -->
+            <td data-name="" class = "td-center">
+             <%=link_with_icon(
+                    admins_website_payments_path(year: ps.yr, month: ps.mo),
+                    "details",
+                    "See Details") %> 
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    <%end%>
+  </table>
+</div>  
+
+

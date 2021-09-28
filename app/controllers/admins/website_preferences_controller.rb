@@ -5,7 +5,7 @@ class Admins::WebsitePreferencesController < ApplicationController
   before_action :set_website_preference, only: %i[audit edit update destroy]
 
   def index
-    @website_preferences = WebsitePreference.all
+    @website_preferences = WebsitePreference.includes([:franchise]).all
                                             .order('website_preferences.created_at DESC')
                                             .paginate(per_page: 20, page: params[:page])
 

@@ -78,8 +78,10 @@ class WebsitePreference < ApplicationRecord
       credit_card_there?(wp.payment_token)
     end
   end
-
-  def self.bank_acount_there?(token)
+  
+  private
+  
+  def self.bank_account_there?(token)
     ba = BankAccount.find_by(bank_token: token)
     ba.nil? ? false : true
   end

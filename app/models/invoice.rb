@@ -11,7 +11,7 @@ class Invoice < ApplicationRecord
   accepts_nested_attributes_for :invoice_items, allow_destroy: true
   
   audited except: [:slug], on: %i[update destroy]
-
+  enum invoice_type: { regular: 0, web_payment: 1 }
   friendly_id :number_name, use: %i[sequentially_slugged scoped], scope: :franchise_id
 
   # Scope for Admin users
@@ -52,9 +52,9 @@ class Invoice < ApplicationRecord
     paid == 1
   end
 
-  #def website_payment?
-  #
-  #end
+  def website_payment?
+    invoice_type == "web_payment"
+  end
 
   def invoice_total
     invoice_items.map(&:amount).sum
