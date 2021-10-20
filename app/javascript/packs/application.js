@@ -41,6 +41,8 @@ require("custom/check_payments")
 require("custom/payments")
 require("custom/event_logs")
 require("custom/audits")
+require("custom/admin_statements")
+require("custom/admin_amounts_due")
 
 
 

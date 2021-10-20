@@ -5,6 +5,7 @@ class PrpTransaction < ApplicationRecord
   # Can belong to any transactionable entity (royalty, payment, invoice)
   belongs_to :transactionable, polymorphic: true, optional: true
 
+  
   # Audit updates or deletions
   audited  on: %i[update destroy]
 
@@ -25,7 +26,9 @@ class PrpTransaction < ApplicationRecord
   # Scopes for Franchise Users
   scope :credits_for_franchise, ->(fran_id) { where(franchise_id: fran_id, trans_type: 2).order('date_posted DESC') }
   scope :charges_for_franchise, ->(fran_id) { where(franchise_id: fran_id, trans_type: 1).order('date_posted DESC') }
-
+  scope :invoice_payment_for_franchise, ->(fran_id) { where(franchise_id: fran_id, transactionable_type: 'Payment').joins("INNER JOIN payments ON prp_transactions.transactionable_id = payments.id").where(payments: {invoice_payment: 1}) }
+  scope :royalty_payment_for_franchise, ->(fran_id) { where(franchise_id: fran_id, transactionable_type: 'Payment').joins("INNER JOIN payments ON prp_transactions.transactionable_id = payments.id").where(payments: {invoice_payment: 0}) }
+  
   def quick_info
     "Transaction Code #{trans_code} for #{amount} on #{date_posted} for #{franchise.number_and_name}"
   end

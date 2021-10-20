@@ -42,7 +42,7 @@ def report
 
 
     end
-    format.xlsx{response.headers['Content-Disposition'] = "attachment; filename='PaymentMethodsMissing.xlsx'"}
+    format.xlsx{response.headers['Content-Disposition'] = "attachment; filename=PaymentMethodsMissing.xlsx"}
   end
 
 end

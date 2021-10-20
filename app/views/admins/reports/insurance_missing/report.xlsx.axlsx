@@ -2,7 +2,9 @@ wb = xlsx_package.workbook
 
 styles = set_axlsx_styles(wb)
 
-wb.add_worksheet(name:I18n.t('reports.insurance_missing.title_workbook')) do |ws|
+wb.add_worksheet(
+  name:I18n.t('reports.insurance_missing.title_workbook')) do |ws|
+  
   ws.add_row [@report_info[:title_excel]],
   style: styles[:header_title],
   widths: [:ignore, :auto, :auto, :auto, :auto],

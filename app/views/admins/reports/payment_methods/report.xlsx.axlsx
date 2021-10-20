@@ -17,8 +17,11 @@ wb.add_worksheet(
   I18n.t('reports.payment_method.type'),
   I18n.t('reports.payment_method.entity'),
   I18n.t('reports.payment_method.last_four')],
-  style: [styles[:header_left],styles[:header_left],
-  styles[:header_left],styles[:header_left],styles[:header_left]],
+  style: [ styles[:header_left],
+    styles[:header_left],
+    styles[:header_left],
+    styles[:header_left],
+    styles[:header_left] ],
   width: [:auto, :auto, :auto, :auto, :auto]
 
   if @franchises.length > 0
@@ -27,11 +30,15 @@ wb.add_worksheet(
       fr.franchise_number,
       fr.full_name,
       payment_method_type(fr.type),
-      payment_method_name(fr.type, fr.name)
-      fr.last_four,
-      style: [styles[:data_left],styles[:data_left],
-      styles[:data_left],styles[:data_left],styles[:data_left]],
-      width: [:auto, :auto,:auto,:auto, :auto], types: [:string, :string, :string, :string, :string]
+      payment_method_name(fr.type, fr.name),
+      fr.last_four],
+      style: [ styles[:data_left],
+        styles[:data_left],
+        styles[:data_left],
+        styles[:data_left],
+        styles[:data_left]],
+      width: [:auto, :auto,:auto,:auto, :auto],
+      types: [:string, :string, :string, :string, :string]
     end
   end
 

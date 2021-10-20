@@ -32,7 +32,7 @@ def report
       margin: {top: 10}
 
     end
-    format.xlsx{response.headers['Content-Disposition'] = "attachment; filename='MissingWebsitePreferences.xlsx'"}
+    format.xlsx{response.headers['Content-Disposition'] = "attachment; filename=MissingWebsitePreferences.xlsx"}
   end
 
 end

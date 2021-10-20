@@ -31,7 +31,7 @@ def report
       disposition:'attachment'
 
     end
-    format.xlsx{response.headers['Content-Disposition'] = "attachment; filename='InsuranceMissing.xlsx'"}
+    format.xlsx{response.headers['Content-Disposition'] = "attachment; filename=InsuranceMissing.xlsx"}
   end
 
 end

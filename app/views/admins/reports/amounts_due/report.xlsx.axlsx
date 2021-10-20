@@ -1,0 +1,51 @@
+wb = xlsx_package.workbook
+
+styles = set_axlsx_styles(wb)
+
+wb.add_worksheet(name:I18n.t('reports.amounts_due.title_workbook')) do |ws|
+  ws.add_row [@report_info[:title_excel]],
+  style: styles[:header_title],
+  widths: [:ignore, :auto, :auto, :auto],
+  height: 100
+  
+  
+  ws.add_row
+
+  ws.add_row [
+  I18n.t('reports.amounts_due.franchise'),
+  nil,
+  nil,
+  I18n.t('reports.amounts_due.balance')],
+  style: [styles[:header_left],styles[:header_left],styles[:header_left],styles[:header_right]],
+  widths: [:auto, 20, 20, :auto]
+
+  if @results.size > 0
+    @results.each do |s|
+      ws.add_row [
+      "#{s.franchise_number} #{s.lastname} #{s.firstname}",
+      nil,
+      nil,
+      s.balance],
+      style: [styles[:data_left],styles[:data_left],styles[:data_left], styles[:currency_red_bold]],
+      widths: [:auto, 20, 20, :auto],
+      types: [:string, :string, :string, :float]
+    end
+    
+    ws.add_row
+
+    ws.add_row [
+    "Total",
+    nil,
+    nil,
+    @report_info[:total_due]],
+      style: [styles[:data_left], styles[:data_left], styles[:data_left], styles[:currency_red_bold]],
+      widths: [:auto, 20, 20, :auto],
+      types: [:string, :string, :string, :float]
+
+  end
+
+  ws.merge_cells "A1:D1"
+
+  
+end
+

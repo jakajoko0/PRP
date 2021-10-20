@@ -153,3 +153,20 @@
       total_expenses: Total Expense
       address: Address
       non_padgett_revenues: Non Padgett Revenues
+    statement:
+      index_title: Statement
+      title: "Statement from %{start} to %{end}"
+      title2: "Report Date: %{report_date}"
+      title_workbook: Statement
+      date: Date
+      type: Type
+      description: Description
+      amount: Amount
+    amounts_due:
+      index_title: Amounts Due
+      title: "Amounts Due as of %{target_date}"
+      title_excel: "Amounts Due as of %{target_date}"
+      title_workbook: Amounts Due
+      franchise: Franchise
+      balance: Balance
+

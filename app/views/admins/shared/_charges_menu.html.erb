@@ -36,7 +36,7 @@
         <ul class = "dropdown-menu">
           <!-- AMOUNTS DUE-->  
           <li>
-            <%= link_to I18n.t('admin_menu.charge_receipt.report.due') , "#",
+            <%= link_to I18n.t('admin_menu.charge_receipt.report.due') , admins_amounts_due_path,
               class: "dropdown-item" %>
           </li>
           <!-- DELINQUENT REPORT-->  
@@ -47,7 +47,7 @@
           <!-- STATEMENT-->  
           <li>
             <%= link_to I18n.t('admin_menu.charge_receipt.report.statement') ,
-            "#" , class: "dropdown-item"%>
+            admins_statement_path , class: "dropdown-item"%>
           </li>
           <div class="dropdown-divider"></div>
           <!-- TRANSACTION SUMMARY-->  

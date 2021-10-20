@@ -20,6 +20,8 @@ module AxlsxHelper
 		  styles[:number_fix_box] = s.add_style num_fmt: 3, sz: 10, alignment: {horizontal: :right}, border: {style: :medium, color: "00000000"}
 		  styles[:currency] = s.add_style num_fmt: 6, sz: 10, alignment: {horizontal: :right}
 		  styles[:currency_bold] = s.add_style num_fmt: 6, b: true, sz: 10, alignment: {horizontal: :right}
+  		styles[:currency_red] = s.add_style num_fmt: 40, sz: 10, alignment: {horizontal: :right}
+  		styles[:currency_red_bold] = s.add_style num_fmt: 40, b: true, sz: 10, alignment: {horizontal: :right}
   		styles[:pct] = s.add_style num_fmt: 10, sz: 10, alignment: {horizontal: :right}
   		styles[:pct_bold] = s.add_style num_fmt: 10, b: true, sz: 10, alignment: {horizontal: :right}
   		styles[:pct_box] = s.add_style num_fmt: 10, sz: 10, alignment: {horizontal: :right}, border: {style: :medium, color: "00000000"}

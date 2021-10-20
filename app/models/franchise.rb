@@ -78,10 +78,12 @@ class Franchise < ApplicationRecord
 
   scope :all_active, -> { where(inactive: 0) }
 
+  attr_accessor :balance
+  attr_accessor :total_collections
+
   NULL_ATTRS = %w[start_date renew_date term_date].freeze
 
   before_save :nil_if_blank
-
   # after_save :reset_name_variable, if: :name_has_changed?
 
   # Model Validation
@@ -167,7 +169,7 @@ class Franchise < ApplicationRecord
     end
   end
 
-    def self.directory(last,first,state)
+  def self.directory(last,first,state)
     scope = Franchise.where("inactive = ?", 0)
     if last && !last.blank?
       scope = scope.where("lower(lastname) LIKE ?","%#{last.downcase}%")

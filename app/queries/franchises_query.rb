@@ -51,14 +51,42 @@ class FranchisesQuery
     end
   end
 
-  def get_royalty_balance(franchise_id)
-    credits = PrpTransaction.where(franchise_id: franchise_id, trans_type: ["payment","credit"]).sum(:amount)
+  def get_balance(franchise_id)
+    credits = PrpTransaction.where(franchise_id: franchise_id, trans_type: ["credit"]).sum(:amount)
+    payments = PrpTransaction.(franchise_id: franchise_id, trans_type: ["payment"]).sum(:amount)
     debits = PrpTransaction.where(franchise_id: franchise_id, trans_type: ["receivable"]).sum(:amount)
-    return debits - credits  
+    return debits - credits - payments 
   end
 
+  def get_royalty_balance(franchise_id)
+    credits = PrpTransaction.where(franchise_id: franchise_id, trans_type: ["credit"]).sum(:amount)
+    payments = PrpTransaction.royalty_payment_for_franchise(franchise_id).sum(:amount)
+    debits = PrpTransaction.where(franchise_id: franchise_id, trans_type: ["receivable"]).where.not(transactionable_type: ["Invoice"]).sum(:amount)
+    return debits - credits - payments 
+  end
 
-	
+  def get_invoice_balance(franchise_id)
+    payments = PrpTransaction.invoice_payment_for_franchise(franchise_id).sum(:amount)
+    debits = PrpTransaction.where(franchise_id: franchise_id, trans_type: ["receivable"], transactionable_type: ["Invoice"]).sum(:amount)
+    return debits -  payments 
+  end
 
+  def amount_due(franchise_id, target_date)
+    credits = PrpTransaction.where("franchise_id = ? AND trans_type IN (?) AND  date_posted <= ?", franchise_id, [2,3], target_date ).sum(:amount)
+    debits = PrpTransaction.where("franchise_id = ? AND trans_type = ? AND date_posted <= ?",franchise_id, 1, target_date).sum(:amount)
+    return debits - credits
+  end
+
+  def amounts_due(target_date)
+    results = []
+    Franchise.order("lastname asc").each do |f|
+      bal = amount_due(f.id, target_date)
+      if bal != 0.00 
+        f.balance = bal
+        results << f
+      end
+    end
+    results
+  end
 
 end

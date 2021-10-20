@@ -1,11 +1,11 @@
 module ReportHelper
 
 	def sort_by_number_or_name(fieldname,rowclass,labelclass,selectclass,options)
-  option_text = "<select id='#{fieldname}' class='form-control form-control-sm col' name='#{fieldname}'>"
-  options.each do |value,text|
-  	option_text += "<option value ='#{value}'>#{text}</option>"
-  end
-  option_text += "</select>"
+    option_text = "<select id='#{fieldname}' class='form-control form-control-sm col' name='#{fieldname}'>"
+    options.each do |value,text|
+  	  option_text += "<option value ='#{value}'>#{text}</option>"
+    end
+    option_text += "</select>"
 
 
     html = <<-HTML
@@ -74,13 +74,15 @@ module ReportHelper
 	end
 
 
-	def select_franchise_dropdown(fieldname,rowclass,labelclass,selectclass)
+	def select_franchise_dropdown(fieldname,rowclass,labelclass,selectclass,empty_notice = true)
 		html = "<div class = '#{rowclass}''>"
 		html += "<label class = '#{labelclass}' for=#{fieldname}>#{I18n.t('reports.general.franchise')}</label>"
 		html += "<div class = '#{selectclass}'>"
-		html += select_tag 'franchise', options_for_select(Franchise.order('lastname ASC').collect{|f| ["#{f.lastname} #{f.firstname}", f.id]}), {include_blank: '' ,class: 'form-control form-control-sm col'}
+		html += select_tag 'franchise', options_for_select(Franchise.order('lastname ASC').collect{|f| ["#{f.lastname} #{f.firstname} (#{f.franchise_number})", f.id]}), {include_blank: '' ,class: 'form-control form-control-sm col'}
     html += '</div>'
-    html += '<em>(Leave empty for all)</em>'
+    if empty_notice
+      html += '<em>(Leave empty for all)</em>'
+    end
 		html += '</div>'
 		
 		

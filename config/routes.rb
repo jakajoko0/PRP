@@ -111,6 +111,7 @@ Rails.application.routes.draw do
       resources :check_payments
       resources :bank_payments
       resources :card_payments
+
       get 'website_payment_list' => 'website_payment_list#index'
       get 'website_payments' => 'website_payments#index'
       get '/receipts', to: "receipts#index"
@@ -130,6 +131,7 @@ Rails.application.routes.draw do
       #Reports
       scope module: :reports do 
         #Franchise List
+        get '/statement_date' => 'statements#update_date'
         get '/franchise_list' => 'franchise_list#index'
         post '/franchise_list/render' => 'franchise_list#report'
         get '/franchise_list/render' => redirect('/admins/franchise_list')
@@ -159,6 +161,14 @@ Rails.application.routes.draw do
         get 'payment_methods_missing' => 'payment_methods_missing#index'
         post '/payment_methods_missing/render' => 'payment_methods_missing#report'
         get '/payment_methods_missing/render' => redirect('/admins/payment_methods_missing')
+
+        get '/statement' => 'statements#index'
+        post '/statement/render' => 'statements#report'
+        get '/statement/render' => redirect('/admins/statement')
+
+        get '/amounts_due' => 'amounts_due#index'
+        post '/amounts_due/render' => 'amounts_due#report'
+        get 'amounts_due/render' => redirect('admins/amounts_due')
 
         get '/website_preferences_list' => 'website_preferences_list#index'
         post '/website_preferences_list/render' => 'website_preferences_list#report'
