@@ -1,0 +1,70 @@
+wb = xlsx_package.workbook
+
+styles = set_axlsx_styles(wb)
+
+wb.add_worksheet(
+  name:I18n.t('reports.statement.title_workbook')) do |ws|
+  
+  ws.add_row [@report_info[:title_excel]],
+  style: styles[:header_title],
+  widths: [:ignore, :auto, :auto, :auto],
+  height: 60
+    
+ 
+  ws.add_row [
+  I18n.t('reports.statement.date'),
+  I18n.t('reports.statement.type'),
+  I18n.t('reports.statement.description'),
+  I18n.t('reports.statement.amount')],
+  style: [styles[:header_left],styles[:header_left],styles[:header_left],styles[:header_right]],
+  width: [:auto, :auto, :auto, :auto],
+  types: [:string, :string, :string, :string]
+
+  ws.add_row
+
+  ws.add_row [
+  (I18n.l(@start_date, format: :notime)),
+  "Balance",
+  "Opening Balance",
+  @opening_balance],
+  style: [styles[:header_left],
+          styles[:header_left],
+          styles[:header_left],
+          styles[:currency_red_bold]],
+  width: [:auto, :auto, :auto, :auto],
+  types: [:string, :string, :string, :float]
+
+  if @activity.size > 0
+    
+    @activity.each do |act|
+      ws.add_row [
+      I18n.l(act.date_posted, format: :notime),
+      TransactionCode.description_from_code(act.trans_code),
+      act.trans_description,
+      (act.trans_type == "receivable" ? act.amount : act.amount*-1)],
+      style: [styles[:data_left], styles[:data_left], styles[:data_left], styles[:currency_red]],
+      width: [:auto, :auto, :auto, :auto],
+      types: [:string, :string, :string, :float]
+    end
+  end  
+  
+  ws.add_row
+
+  ws.add_row [
+  (I18n.l(@end_date, format: :notime)),
+  "Balance",
+  "Closing Balance",
+  @closing_balance],
+  style: [styles[:header_left],
+          styles[:header_left],
+          styles[:header_left],
+          styles[:currency_red_bold]],
+  width: [:auto, :auto, :auto, :auto],
+  types: [:string, :string, :string, :float]
+  
+
+  ws.merge_cells "A1:D1"
+  ws.merge_cells "A2:D2"
+  
+end
+

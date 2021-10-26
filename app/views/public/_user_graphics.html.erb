@@ -1,22 +1,36 @@
-<!--GEO MAP SHOWING REVENUES BY STATE -->
+<!--LATEST ROYALTY ACTIVITY-->
 <div class = "row">
 	<div class = "col-md-6" 
 	  style="border-top: 1px solid">
-		<h5 class="text-center">
-		  Recent Royalty Activity
-		</h5>	
+		 
+		 <h5 style="display:inline-block" class="text-center mt-2 col-md-11">
+		  Recent Transactions
+	  </h5>
+		
+		<%=link_to "See All", "#",
+		class: "btn btn-padgett float-right col-md-1 my-1"%>
+	
+	  <br>
+		
+	  <%=render partial: 'user_recent_roy'%>	
 		
 	</div>
 
 
-	<!--DONUT CHART SHOWING MONTHLY COLLECTIONS BY CATEGORY -->
 	<div class = "col-md-6" 
-			 style = "border-top: 1px solid;
-			 border-left: 1px solid">
-		<h5 class="text-center">
-		  Recent Charges Activity
+	  style="border-top: 1px solid">
+		 
+		 <h5 style="display:inline-block" class="text-center mt-2 col-md-11">
+		  Recent Charges
 	  </h5>
-
+		
+		<%=link_to "See All", "#",
+		class: "btn btn-padgett float-right col-md-1 my-1"%>
+	
+	  <br>
+		
+	  <%=render partial: 'user_recent_charges'%>	
+		
 	</div>
 </div>
 

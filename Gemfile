@@ -28,7 +28,7 @@ gem 'sidekiq-cron'
 
 # Gems to handle authentication
 gem 'devise', '~> 4.7', '>= 4.7.3'
-gem 'devise_masquerade', '1.3.2'
+gem 'devise_masquerade', '1.3.9'
 
 # Gem to keep audit track of changes
 gem 'audited', '~> 4.10'

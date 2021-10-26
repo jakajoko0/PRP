@@ -68,6 +68,13 @@ Rails.application.routes.draw do
     get '/payments/refresh_partial' => 'payments#refresh_partial', as: 'refresh_partial'
     get '/payment_review' => 'payment_review#index'
     post '/payment_review' => 'payment_review#index'
+
+    scope module: :reports do 
+      #Statement
+      get '/statement' => 'statements#index'
+      post '/statement/render' => 'statements#report'
+      get '/statement/render' => redirect('/statement')
+    end
   end
   
   # Authenticated route to show specific Dashboard for admins

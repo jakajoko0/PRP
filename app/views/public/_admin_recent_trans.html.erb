@@ -70,7 +70,7 @@
             </td>
 
             <!-- Amount -->
-            <td data-name = "Monthly Clients" 
+            <td data-name = "Amount" 
                 scope = "col"
                 class = "td-right">
                 <%=number_to_currency(trans.amount, precision: 2)%>
@@ -80,16 +80,12 @@
     	  	
             <!-- View Link if User can View -->
     	  	<td>
-                <%= link_with_icon(
-                    polymorphic_path([:admins,trans.transactionable]),
-                    "show",
-                    "See this transaction",
-                    false)%>
-
-                
-            </td>
-            
-            
+            <%= link_with_icon(
+              polymorphic_path([:admins,trans.transactionable]),
+              "show",
+              "See this transaction",
+              false)%>
+          </td>
     	  </tr>
    	  	<%end%>
       </tbody>

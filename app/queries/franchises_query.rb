@@ -65,6 +65,16 @@ class FranchisesQuery
     return debits - credits - payments 
   end
 
+  def get_royalty_balance_at_id(franchise_id, target_id)
+    credits = PrpTransaction.where(franchise_id: franchise_id, trans_type:["credit"], id: -Float::INFINITY..target_id).sum(:amount)
+    payments = PrpTransaction.royalty_payment_for_franchise_at_id(franchise_id, target_id).sum(:amount)
+    debits = PrpTransaction.where(franchise_id: franchise_id, trans_type: ["receivable"], id: -Float::INFINITY..target_id).where.not(transactionable_type: ["Invoice"]).sum(:amount)
+    puts "Crdits: #{credits.to_f}"
+    puts "Payments: #{payments.to_f}"
+    puts "Debits: #{debits.to_f}"
+    return debits - credits - payments
+  end
+
   def get_invoice_balance(franchise_id)
     payments = PrpTransaction.invoice_payment_for_franchise(franchise_id).sum(:amount)
     debits = PrpTransaction.where(franchise_id: franchise_id, trans_type: ["receivable"], transactionable_type: ["Invoice"]).sum(:amount)

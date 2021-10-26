@@ -78,6 +78,10 @@ class PublicController < ApplicationController
   	@expiring_cards = CreditCard.expiring_cards(current_user.franchise)
     @expired_cards = CreditCard.expired_cards(current_user.franchise)
     @invalid_payment_token = WebsitePreference.valid_payment_token?(current_user.franchise.id)
+
+    @latest_transactions = UserpageService.get_latest_roy_trans(current_user.franchise_id)
+    @latest_invoices = UserpageService.get_latest_inv_trans(current_user.franchise_id)
+
   end
 
   def adminpage

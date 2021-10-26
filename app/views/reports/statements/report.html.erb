@@ -1,0 +1,89 @@
+<%=render 'shared/report_header'%>
+<div class = "row">
+	<div class = "col-12">
+		<h5 class="text-center">
+			<%=@report_info[:title]%>
+		</h5>
+	</div>
+</div>
+
+<div id = "table-scroll" 
+     class = "table-scroll"
+     style = "height: calc(100vh - 270px)">
+  <table id = "main-table">
+    <thead id="report">
+  	  <tr>
+  	    <th>
+  		    <%=I18n.t('reports.statement.date')%>
+ 		    </th>
+		    <th>
+		      <%=I18n.t('reports.statement.type')%>
+	      </th>
+		    <th>
+		      <%=I18n.t('reports.statement.description')%>
+        </th>
+		    <th class = "td-right">
+			    <%=I18n.t('reports.statement.amount')%>
+		    </th>
+
+		  </tr>
+	  </thead>
+	  <%if @activity.size > 0%>
+	    <tbody>
+	      <tr>
+	        <td data-name="Date">
+	      	  <%=(I18n.l @start_date, format: :notime) if @start_date %>
+	        </td>
+	        <td data-name="Type">
+	      	  Balance
+	        </td>
+	        <td data-name="Description">
+	      	  Opening Balance
+	        </td>
+	        <td class = "td-right" data-name="Amount">
+	      	  <strong><%=number_to_currency(@opening_balance, precision: 2)%></strong>
+	        </td>
+	      </tr>
+	      <%@activity.each do |activity|%>
+	        <tr>
+	          <td data-name="Date">
+		          <%=(I18n.l activity.date_posted, format: :notime)%>
+		        </td>
+		  
+		  	    <td data-name="Type">
+		  		    <%=TransactionCode.description_from_code(activity.trans_code)%>
+		  	    </td>
+
+		  		  <td data-name="Description">
+		  		    <%=activity.trans_description%>
+		  		  </td>
+
+		  		  <td class = "td-right" data-name="Amount">
+		  			  <%if activity.trans_type == "receivable"%>
+                <strong><%=number_to_currency(activity.amount)%></strong>
+              <% else %>   
+                <span style="color:red"><strong><%=number_to_currency(activity.amount*-1)%></strong></span>
+              <% end %>
+		  		  </td>
+				  </tr>
+			  <%end%>
+			</tbody>
+  	 
+  	  
+    <%end%> 
+
+  </table>
+ </div>  
+  <table class="table-scroll">
+		<tfoot id="report-footer">
+  		<tr>
+  			 
+          <td>   
+           <strong>Closing Balance</strong>
+          </td>
+          <td class = "td-right"> 
+            <strong><%=number_to_currency(@closing_balance)%></strong>
+          </td>
+  		</tr>
+  	</tfoot>
+  </table>

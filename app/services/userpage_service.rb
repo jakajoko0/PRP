@@ -133,6 +133,13 @@ module UserpageService
       RemittancesQuery.new.ytd_average_collections(year,month)
     end
 
+    def get_latest_roy_trans(franchise_id)
+      PrpTransactionsQuery.new.latest_roy_trans(franchise_id)
+    end
+
+    def get_latest_inv_trans(franchise_id)
+      PrpTransactionsQuery.new.latest_inv_trans(franchise_id)
+    end
 
 
 
