@@ -1,0 +1,94 @@
+
+<div class = "row">
+	<div class = "col-12">
+		<h5 class="text-center">
+			<%=@report_info[:title]%>
+		</h5>
+	</div>
+</div>
+
+<div id = "table-scroll" 
+     class = "table-scroll">
+  
+  	<%@payment_types.each_with_index do |pt,idx|%>
+  	<h4><%= case idx 
+  	when 0 then "Bank"
+    when 1 then "Card"
+    when 2 then "Check" end%></h4>
+  	  <table id = "main-table">
+  	  
+      <thead>
+  	    <tr>
+  	      <th>
+  		      <%=I18n.t('reports.franchise_payments.posted')%>
+ 		      </th>
+			    <th>
+			      <%=I18n.t('reports.franchise_payments.approved')%>
+		      </th>
+			    <th>
+			      <%=I18n.t('reports.franchise_payments.reference')%>
+	        </th>
+        <th>
+		      <%=I18n.t('reports.franchise_payments.paid_with')%>
+        </th>
+		    <th class = "td-right">
+			    <%=I18n.t('reports.franchise_payments.amount')%>
+		    </th>
+
+		  </tr>
+	  </thead>
+	  <%if pt.size > 0%>
+	    <tbody>
+	      
+	      <%pt.each do |pa|%>
+	        <tr>
+	          <td data-name="Posted">
+		          <%=(I18n.l pa.date_entered, format: :notime)%>
+		        </td>
+		  
+		  	    <td data-name="Approved">
+		  		    <%=(I18n.l pa.date_approved, format: :notime)%>
+		  	    </td>
+
+		  		  <td data-name="Reference #">
+		  		    <%=pa.reference_id%>
+		  		  </td>
+
+		  		  <td data-name="Paid With">
+		  		    <%=pa.paid_with%>
+		  		  </td>
+
+		  		  <td class = "td-right" data-name="Amount">
+		  		  	<%=number_to_currency(pa.amount, precision: 2)%>
+		  			  
+		  		  </td>
+				  </tr>
+			  <%end%>
+			  <tr>
+			  	<td><strong>Total</strong></td>
+			  	<td>&nbsp;</td>
+			  	<td>&nbsp;</td>
+			  	<td>&nbsp;</td>
+			  	<td class = "td-right"><strong><%=number_to_currency(@sums[idx], precision: 2)%></strong> </td>
+			  </tr>
+			</tbody>
+
+  	
+  	<%else%>
+  	<tbody>
+  		<tr>
+  			<td>No Transactions found </td>
+  		</tr>
+  	</tbody>
+
+  	  
+    <%end%> 
+
+   
+
+  </table>
+  <br>
+  <%end%>
+ </div>  
+  
+ 

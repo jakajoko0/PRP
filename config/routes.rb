@@ -74,6 +74,11 @@ Rails.application.routes.draw do
       get '/statement' => 'statements#index'
       post '/statement/render' => 'statements#report'
       get '/statement/render' => redirect('/statement')
+
+      #Payments report
+      get '/payment_report' => 'payment_report#index'
+      post '/payment_report/render' => 'payment_report#report'
+      get '/payment_report/render' => redirect('/payment_report')
     end
   end
   
@@ -156,6 +161,10 @@ Rails.application.routes.draw do
         get '/insurance_expiration' => 'insurance_expiration#index'
         post '/insurance_expiration/render' => 'insurance_expiration#report'
         get '/insurance_expiration/render' => redirect('/admins/insurance_expiration')
+
+        get '/payment_report' => 'payment_report#index'
+        post '/payment_report/render' => 'payment_report#report'
+        get '/payment_report/render' => redirect('/admins/payment_report')
 
         get '/insurance_missing' => 'insurance_missing#index'
         post '/insurance_missing/render' => 'insurance_missing#report'

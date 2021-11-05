@@ -3,6 +3,8 @@ module AxlsxHelper
 		styles = {}
 		wb.styles do |s|
 		  styles[:header_title] = s.add_style sz: 18, b: true, alignment: {horizontal: :center, wrap_text: true }
+		  styles[:header_title_left] = s.add_style sz: 18, b: true, alignment: {horizontal: :left, wrap_text: true }
+		  styles[:header_title_right] = s.add_style sz: 18, b: true, alignment: {horizontal: :right, wrap_text: true }
 		  styles[:header_left] = s.add_style alignment: {horizontal: :left}, b: true, sz: 10
 		  styles[:header_center] = s.add_style alignment: {horizontal: :center}, b: true, sz: 10
 		  styles[:header_right] = s.add_style alignment: {horizontal: :right}, b: true, sz: 10

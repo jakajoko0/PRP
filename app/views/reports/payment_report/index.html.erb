@@ -1,0 +1,48 @@
+<div class = "col-12">
+<div class = "card">
+	<div class = "card-header login-header">
+	  <h4>
+	  	<%=I18n.t('reports.franchise_payments.index_title')%>
+   	</h4>
+	</div>
+
+	<%=form_tag payment_report_render_path(format: :html),
+	method: "post" do |f|%>
+
+	<div class = "card-body card-background-padgett">
+		<div class = "form-row">
+		  	<%=date_argument(
+		  		"From",
+		  		"start_date",
+		  		"form-group form-row col-12",
+		  		"col-form-label col-form-label-sm label-bold col-sm-2 col-md-2
+		  		 col-lg-1 col-xl-1",
+		  		"col-6 col-sm-4 col-md-3
+				 col-lg-2")
+				 %>
+		</div>
+		<div class = "form-row">
+		  	<%=date_argument(
+		  		"To",
+		  		"end_date",
+		  		"form-group form-row col-12",
+		  		"col-form-label col-form-label-sm label-bold col-sm-2 col-md-2
+		  		 col-lg-1 col-xl-",
+		  		"col-6 col-sm-4 col-md-3
+				 col-lg-2")
+				 %>
+		</div>
+
+	</div>
+
+	<div class = "card-footer">
+		<div class = "col-6 col-sm-3 col-md-2 
+		              col-lg-3 col-xl-1 pl-0">
+			<%=submit_tag (I18n.t('reports.general.btn_generate')),
+			class: "btn btn-padgett btn-block"%>
+		</div> 
+	</div>
+	<%end%>
+</div>
+
+</div>

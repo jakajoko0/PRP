@@ -4,6 +4,9 @@ class CheckPayment < Payment
   scope :all_pending, -> {CheckPayment.includes(:franchise).where(status: ["pending","transit"]).order('date_entered DESC')}
   scope :all_active, -> {CheckPayment.includes(:franchise).where.not(status: "deleted").order('date_entered DESC')}
 
+  scope :for_franchise_date_range, -> (franchise_id, start_date, end_date) { where("franchise_id = ? AND (date_approved >= ? AND date_approved <= ?) AND status IN (?)", franchise_id, start_date, end_date, [4] ).order("date_entered ASC")}
+	scope :for_date_range, -> (start_date, end_date) {CheckPayment.includes(:franchise).where("date_posted >= ?  AN date_posted <= ? AND status IN (?)", star_date, end_date, [4])}
+
 	validates :check_number, presence: true 
 	validates :date_approved, presence: true, if: :approved?
 

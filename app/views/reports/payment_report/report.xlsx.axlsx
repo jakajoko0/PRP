@@ -1,0 +1,65 @@
+wb = xlsx_package.workbook
+
+styles = set_axlsx_styles(wb)
+
+wb.add_worksheet(
+  name:I18n.t('reports.franchise_payments.title_workbook')) do |ws|
+  
+  ws.add_row [@report_info[:title_excel]],
+  style: styles[:header_title],
+  widths: [:ignore, :auto, :auto, :auto, :auto],
+  height: 20
+
+  ws.add_row
+    
+  @payment_types.each_with_index do |pt,idx|
+    ws.add_row [(case idx 
+    when 0 then "Bank"
+    when 1 then "Card"
+    when 2 then "Check" end)],
+    style: styles[:header_title_left],
+    widths: [:ignore]
+
+    
+
+    if pt.size > 0
+    ws.add_row [
+      I18n.t('reports.franchise_payments.posted'),
+      I18n.t('reports.franchise_payments.approved'),
+      I18n.t('reports.franchise_payments.reference'),
+      I18n.t('reports.franchise_payments.paid_with'),
+      I18n.t('reports.franchise_payments.amount')],
+      style: [styles[:header_left],styles[:header_left],styles[:header_left],styles[:header_left],styles[:header_right]],
+      width: [:auto, :auto, :auto, :auto, :auto],
+      types: [:string, :string, :string, :string, :string]
+      pt.each do |pa|
+        ws.add_row [
+          I18n.l(pa.date_entered, format: :notime),
+          I18n.l(pa.date_approved, format: :notime),
+          pa.reference_id,
+          pa.paid_with,
+          pa.amount],
+          style: [styles[:data_left], styles[:data_left], styles[:data_left], styles[:data_left],styles[:currency_red]],
+          width: [:auto, :auto, :auto, :auto, :auto],
+          types: [:string, :string, :string, :string, :float]
+      end
+      
+      ws.add_row ["Total", " ", " ", " ",@sums[idx]],
+        style: [styles[:header_left], styles[:data_left], styles[:data_left], styles[:data_left],styles[:currency_red_bold]],
+        width: [:auto, :auto, :auto, :auto, :auto],
+        types: [:string, :string, :string, :string, :float]
+    else
+      ws.add_row ["No entries found"],
+      style: styles[:data_left],
+      width: [:auto],
+      types: [:string]
+    end
+  end  
+  
+  
+
+  ws.merge_cells "A1:E1"
+  ws.merge_cells "A2:E2"
+  
+end
+

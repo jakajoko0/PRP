@@ -53,14 +53,15 @@ class RemittancesQuery
 	end
 
 	def total_collections_by_category(year,month)
-		res = @relation.posted.select("COALESCE(SUM(accounting),0) as accounting, COALESCE(SUM(backwork),0) as backwork, COALESCE(SUM(consulting),0) as consulting, COALESCE(SUM(excluded),0) as excluded, COALESCE(SUM(other1),0) as other1, COALESCE(SUM(other2),0) as other2, COALESCE(SUM(payroll),0) as payroll, COALESCE(SUM(setup),0) as setup, COALESCE(SUM(tax_preparation),0) as tax_preparation").where(year: year, month: month)[0]
+		res = @relation.posted.select("COALESCE(SUM(accounting),0) as accounting, COALESCE(SUM(backwork),0) as backwork, COALESCE(SUM(consulting),0) as consulting, COALESCE(SUM(excluded),0) as excluded, COALESCE(SUM(other1),0) as other1, COALESCE(SUM(other2),0) as other2, COALESCE(SUM(payroll),0) as payroll, COALESCE(SUM(setup),0) as setup, COALESCE(SUM(tax_preparation),0) as tax_preparation, COALESCE(SUM(payroll),0) as payroll").where(year: year, month: month)[0]
 		return [["Accounting", res.accounting],
 	          ["Tax", res.tax_preparation],
 	          ["Consultation", res.consulting],
+	          ["Payroll", res.payroll],
 	          ["Setup", res.setup],
 	          ["Backwork", res.backwork],
 	          ["Other", (res.other1+res.other2)],
-	          ["Excluded", res.excluded]]
+	          ["Excluded", res.excluded] ]
 	end
 
 	def collections_monthly_ranking(year, month, franchise_id)

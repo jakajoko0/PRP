@@ -3,7 +3,7 @@ module GraphHelper
 	  line_chart all_royalties_by_month_charts_path(target_year: target_year),
 	  height: '300px',
 	  width: '100%',
-	  colors: ["#002b7f","#7fba00"],
+	  colors: ["#00143c","#80c389"],
 	  decimal: ".",
 	  thousands: " ",
 	  title: I18n.t('dashboard.admin.total_royalties_by_month'),
@@ -19,7 +19,7 @@ module GraphHelper
 	  line_chart collections_by_month_charts_path(target_year: target_year),
 	  height: '300px',
 	  width: '100%',
-	  colors: ["#002b7f","#7fba00"],
+	  colors: ["#00143c","#80c389"],
 	  decimal: ".",
 	  thousands: " ",
 	  title: I18n.t('dashboard.user.collections_by_month'),
@@ -53,9 +53,9 @@ module GraphHelper
 		data = collections_by_category_charts_path(target_year: target_year, target_month: target_month)
 		pie_chart data,
 		donut: true,
-    colors: ['#7fba00','#002b7f','#FF0000',
-      	      '#ffec21','#7CDDDD','#9552ea',
-      	      '#ff6361','#A9A9A9'], 
+    colors: ['#ffa100','#80c389','#8b75cc',
+    	'#05abc6', '#b0c3ff','#00143c','#3768d1',
+      	      '#c70039'], 
 	  library: {
 	    plotOptions:{
 	      pie: {

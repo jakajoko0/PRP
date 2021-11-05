@@ -43,6 +43,7 @@ require("custom/event_logs")
 require("custom/audits")
 require("custom/admin_statements")
 require("custom/admin_amounts_due")
+require("custom/payment_report")
 
 
 

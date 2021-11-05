@@ -178,4 +178,14 @@
       title_workbook: Amounts Due
       franchise: Franchise
       balance: Balance
+    franchise_payments:
+      index_title: Payment Report
+      title: "Payments made between %{start} and %{end}"
+      title_workbook: Payments
+      title_excel: "Payments made between %{start} and %{end}"
+      posted: Posted
+      approved: Approved
+      reference: Reference #
+      paid_with: Paid With
+      amount: Amount
 

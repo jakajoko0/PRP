@@ -3,10 +3,18 @@
 
 
 :root {
-  --padgett-blue:#002b7f;
-  --padgett-green:#7fba00;
+  --padgett-blue:#00143c;
+  --padgett-green:#80c389;
+  --padgett-mint: #a6f4ae;
   --padgett-red:#c70039;
-  --padgett-orange: #fc652d;
+  --padgett-orange: #ffa100;
+  --padgett-cobalt: #3768d1;
+  --padgett-flint: #b0c3ff;
+  --padgett-corn: #6e88ff;
+  --padgett-teal: #05abc6;
+  --padgett-yellow: #eec458;
+  --padgett-purple: #8b75cc;
+  --padgett-sand: #f8e09c;
   --padgett-light-grey: #4f4f57;
   --nav-background: rgba(127,186,0,0.60);
   --card-background: rgba(0, 43, 127, 0.05);
@@ -15,9 +23,10 @@
 }
 
 //Overriding some of the variables
-$dropdown-bg:  #e5f1cc;
-$dropdown-link-hover-bg: darken(#e5f1cc,10%);
-$dropdown-link-active-bg: darken(#e5f1cc,10%);
+//$dropdown-bg:  #e5f1cc;
+$dropdown-bg:  var(--padgett-flint);
+$dropdown-link-hover-bg: darken(#b0c3ff,10%);
+$dropdown-link-active-bg: darken(#b0c3ff,10%);
 $dropdown-link-color: var(--padgett-blue);
 
 
@@ -52,7 +61,7 @@ $dropdown-link-color: var(--padgett-blue);
 }
 
 .padgett-blue-icon:hover{
-  color: lighten(#002b7f,20%);
+  color: lighten(#00143c,20%);
 }
 
 
@@ -91,11 +100,11 @@ body {
 }
 
 .btn-padgett{
-  @include button-variant(#002b7f, darken(#002b7f,7.5%),lighten(#002b7f,10%),lighten(#002b7f,5%),lighten(#002b7f,10%),darken(#002b7f,30%))
+  @include button-variant(#00143c, darken(#00143c,7.5%),lighten(#00143c,10%),lighten(#00143c,5%),lighten(#00143c,10%),darken(#00143c,30%))
 }
 
 .btn-outline-padgett {
-  @include button-outline-variant(#002b7f, #222222, lighten(#002b7f,5%), #002b7f);
+  @include button-outline-variant(#00143c, #222222, lighten(#00143c,5%), #00143c);
 }
 
 .padgett-text{
@@ -123,7 +132,7 @@ body {
 /***************************************************/
 .navbar-brand {
   padding: 0px;
-  color: var(--padgett-blue);
+  color: var(--padgett-flint);
   font-weight: 500;
 }
 
@@ -134,7 +143,7 @@ body {
 }
 
 .navbar {
-background-color: #e5f1cc;
+background-color: var(--padgett-flint);//#e5f1cc;
 //background-color: white;
 //border-top: 2px solid var(--padgett-green);
 //border-left: 2px solid var(--padgett-green);
@@ -733,7 +742,7 @@ select.select-date {
   .flickr_pagination .current {
     font-style: normal;
     font-weight: bold;
-    color: #002b7f; }
+    color: #00143c; }
   .flickr_pagination a {
     border: 1px solid #dddddd;
     color: #0063dc;
