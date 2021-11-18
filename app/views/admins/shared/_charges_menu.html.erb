@@ -52,13 +52,14 @@
           <div class="dropdown-divider"></div>
           <!-- TRANSACTION SUMMARY-->  
           <li>
-            <%= link_to I18n.t('admin_menu.charge_receipt.report.trans_sum') , "#" ,
+            <%= link_to I18n.t('admin_menu.charge_receipt.report.trans_sum') ,
+            admins_transaction_summary_path  ,
               class: "dropdown-item"%>
           </li>
           <!-- TRANSACTION DETAIL-->   
           <li>
             <%= link_to I18n.t('admin_menu.charge_receipt.report.trans_det') ,
-             "#" , class: "dropdown-item"%>
+             admins_transaction_detail_path , class: "dropdown-item"%>
           </li>
         </ul>
       </li>

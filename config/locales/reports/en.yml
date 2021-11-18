@@ -2,6 +2,7 @@
   reports:
     general:
       franchise: Franchise
+      trans_code: Trans Code
       sort_by: Sort By
       inc_inactives: Include Inactives
       btn_generate: Generate
@@ -155,6 +156,7 @@
       non_padgett_revenues: Non Padgett Revenues
     statement:
       index_title: Statement
+      title_excel: Statement
       title: "Statement from %{start} to %{end}"
       title2: "Report Date: %{report_date}"
       title_workbook: Statement
@@ -188,4 +190,26 @@
       reference: Reference #
       paid_with: Paid With
       amount: Amount
+    trans_summary:
+      index_title: Transaction Summary
+      title: "Transaction Summary between %{start} and %{end}"
+      title_excel: "Transaction Summary between %{start} and %{end}"
+      title_workbook: "Transaction Summary"
+      code: Code
+      description: Description
+      total: Total
+    trans_detail:
+      index_title: Transaction Detail
+      title: "Transactions between %{start} and %{end}"
+      title2: "Code: %{code} %{desc}"
+      title_excel: "Transactions between %{start} and %{end}"
+      title_workbook: "Transaction Detail"
+      date: Date
+      franchise: Franchise
+      note: Note
+      amount: Amount
+      total: Total
+
+
+
 

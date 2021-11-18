@@ -1,0 +1,52 @@
+wb = xlsx_package.workbook
+
+styles = set_axlsx_styles(wb)
+
+wb.add_worksheet(
+  name:I18n.t('reports.trans_detail.title_workbook')) do |ws|
+  
+  ws.add_row [@report_info[:title_excel]],
+  style: styles[:header_title],
+  widths: [:ignore, :auto, :auto, :auto],
+  height: 70
+    
+ 
+  ws.add_row [
+  I18n.t('reports.trans_detail.date'),
+  @report_info[:fr] == -1 ? I18n.t('reports.trans_summary.description') : nil ,
+  I18n.t('reports.trans_detail.note'),
+  I18n.t('reports.trans_summary.total')],
+  style: [styles[:header_left],styles[:header_left],styles[:header_left],styles[:header_right]],
+  width: [:auto, :auto,  :auto, :auto],
+  types: [:string, :string, :string, :string]
+
+  if @transact.size > 0    
+    @transact.each do |t|
+      ws.add_row [
+      I18n.l(t.date_posted, format: :notime),
+      (@report_info[:fr] == -1 ? t.franchise.number_and_name : nil),
+      t.trans_description,
+      t.amount],
+      style: [styles[:data_left], styles[:data_left], styles[:data_left],styles[:currency_red]],
+      width: [:auto, :auto,  :auto, :auto],
+      types: [:string, :string, :string, :float]
+    end
+
+    ws.add_row [
+    I18n.t('reports.trans_detail.total'),
+    nil,
+    nil,
+    @report_info[:total]],
+    style: [styles[:header_left], styles[:header_left],
+    styles[:header_left],  styles[:currency_red]],
+    width: [:auto, :auto,  :auto, :auto],
+    types: [:string, :string, :string, :float]
+  
+  end
+  
+  
+  ws.merge_cells "A1:D1"
+ 
+  
+end
+

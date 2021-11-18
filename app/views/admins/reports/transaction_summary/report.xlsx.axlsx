@@ -1,0 +1,43 @@
+wb = xlsx_package.workbook
+
+styles = set_axlsx_styles(wb)
+
+wb.add_worksheet(
+  name:I18n.t('reports.trans_summary.title_workbook')) do |ws|
+  
+  ws.add_row [@report_info[:title_excel]],
+  style: styles[:header_title],
+  widths: [:ignore, :auto, :auto, :auto],
+  height: 70
+    
+ 
+  ws.add_row [
+  I18n.t('reports.trans_summary.code'),
+  I18n.t('reports.trans_summary.description'),
+  I18n.t('reports.trans_summary.total')],
+  style: [styles[:header_left],styles[:header_left],styles[:header_right]],
+  width: [:auto, :auto,  :auto],
+  types: [:string, :string, :string]
+
+  
+
+  
+    
+    @transact.each do |t|
+      ws.add_row [
+      t.code,
+      t.desc,
+      t.total],
+      style: [styles[:data_left], styles[:data_left], styles[:currency_red]],
+      width: [:auto, :auto,  :auto],
+      types: [:string, :string,  :float]
+    end
+  
+  
+  
+  
+  ws.merge_cells "A1:D1"
+ 
+  
+end
+

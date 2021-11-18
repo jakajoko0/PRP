@@ -182,6 +182,15 @@ Rails.application.routes.draw do
         post '/statement/render' => 'statements#report'
         get '/statement/render' => redirect('/admins/statement')
 
+        get '/transaction_summary' => 'transaction_summary#index'
+        post '/transaction_summary/render' => 'transaction_summary#report'
+        get '/transaction_summary/render' => redirect('/admins/transaction_summary')
+
+        get '/transaction_detail' => 'transaction_detail#index'
+        post '/transaction_detail/render' => 'transaction_detail#report'
+        get '/transaction_detail/render' => redirect('/admins/transaction_detail')
+
+
         get '/amounts_due' => 'amounts_due#index'
         post '/amounts_due/render' => 'amounts_due#report'
         get 'amounts_due/render' => redirect('admins/amounts_due')

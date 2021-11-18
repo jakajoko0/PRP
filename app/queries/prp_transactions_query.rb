@@ -101,9 +101,26 @@ class PrpTransactionsQuery
 
 	end
 
-	
+	def trans_code_summary(start_date, end_date, franchise)
+	  if franchise == -1 
+      where_clause = ["date_posted >= ? AND date_posted <= ?",start_date, end_date]
+    else
+      where_clause = ["date_posted >= ? AND date_posted <= ? AND franchise_id = ?",start_date, end_date, franchise]
+    end
+    @relation.joins("INNER JOIN transaction_codes ON transaction_codes.code = prp_transactions.trans_code").select("prp_transactions.trans_code as code, transaction_codes.description as desc, sum(prp_transactions.amount) as total").where(where_clause).group("prp_transactions.trans_code, transaction_codes.description").order("prp_transactions.trans_code")
 
+	end
 
-
-
+	def trans_code_detail(start_date, end_date, franchise, code)
+		if franchise == -1 
+			where_clause = ["date_posted >= ? AND date_posted <= ? AND trans_code = ?", start_date, end_date, code]
+		else
+		  where_clause = ["date_posted >= ? AND date_posted <= ? AND prp_transactions.franchise_id = ? AND trans_code = ?", start_date, end_date, franchise, code]
+		end
+		if franchise == -1
+		  @relation.includes(:franchise).where(where_clause).order("date_posted ASC") 
+		else
+			@relation.where(where_clause).order("date_posted ASC") 
+		end
+	end
 end

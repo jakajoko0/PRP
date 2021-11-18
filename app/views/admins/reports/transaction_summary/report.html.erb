@@ -1,0 +1,54 @@
+<%=render 'shared/report_header'%>
+<div class = "row">
+	<div class = "col-12">
+		<h5 class="text-center">
+			<%=@report_info[:title]%>
+		</h5>
+	</div>
+</div>
+
+<div id = "table-scroll" 
+     class = "table-scroll"
+     style = "height: calc(100vh - 270px)">
+  <table id = "main-table">
+    <thead id="report">
+  	  <tr>
+  	    <th>
+  		    <%=I18n.t('reports.trans_summary.code')%>
+ 		    </th>
+		    <th>
+		      <%=I18n.t('reports.trans_summary.description')%>
+	      </th>
+		    
+		    <th class = "td-right">
+			    <%=I18n.t('reports.trans_summary.total')%>
+		    </th>
+
+		  </tr>
+	  </thead>
+	  
+	    <tbody>
+	      
+	      <%@transact.each do |t|%>
+	        <tr>
+	          <td data-name="Code">
+		          <%=t.code%>
+		        </td>
+		  
+		  	    <td data-name="Desc">
+		  		    <%=t.desc%>
+		  	    </td>
+
+		  		 
+
+		  		  <td class = "td-right" data-name="Total">
+		  			 
+                <strong><%=number_to_currency(t.total)%></strong>
+            
+		  		  </td>
+				  </tr>
+			  <%end%>
+			</tbody>
+   </table>
+ </div>  
+ 

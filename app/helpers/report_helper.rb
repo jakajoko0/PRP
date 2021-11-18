@@ -75,7 +75,7 @@ module ReportHelper
 
 
 	def select_franchise_dropdown(fieldname,rowclass,labelclass,selectclass,empty_notice = true)
-		html = "<div class = '#{rowclass}''>"
+		html = "<div class = '#{rowclass}'>"
 		html += "<label class = '#{labelclass}' for=#{fieldname}>#{I18n.t('reports.general.franchise')}</label>"
 		html += "<div class = '#{selectclass}'>"
 		html += select_tag 'franchise', options_for_select(Franchise.order('lastname ASC').collect{|f| ["#{f.lastname} #{f.firstname} (#{f.franchise_number})", f.id]}), {include_blank: '' ,class: 'form-control form-control-sm col'}
@@ -87,6 +87,16 @@ module ReportHelper
 		
 		
 		html.html_safe
+	end
+
+	def select_trans_code_dropdown(fieldname, rowclass, labelclass, selectclass)
+		html = "<div class = '#{rowclass}'>"
+		html += "<label class = '#{labelclass}' for=#{fieldname}>#{I18n.t('reports.general.trans_code')}</label>"
+		html += "<div class = '#{selectclass}'>"
+		html += select_tag 'trans_code', options_for_select(TransactionCode.by_code.collect{|t| ["#{t.code} #{t.description}", t.code]}), {class: 'form-control form-control-sm col'}
+	  html += "</div> </div>"
+
+	  html.html_safe
 	end
 	
 end

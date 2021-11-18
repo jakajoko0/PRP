@@ -44,7 +44,8 @@ require("custom/audits")
 require("custom/admin_statements")
 require("custom/admin_amounts_due")
 require("custom/payment_report")
-
+require("custom/trans_summary")
+require("custom/trans_detail")
 
 
 require.context('../images',true, /\.(?:png|jpg|gif|ico|svg)$/)

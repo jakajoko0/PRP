@@ -1,0 +1,83 @@
+<%=render 'shared/report_header'%>
+<div class = "row">
+	<div class = "col-12">
+		<h5 class="text-center">
+			<%=@report_info[:title]%>
+		</h5>
+	</div>
+</div>
+
+<div id = "table-scroll" 
+     class = "table-scroll"
+     style = "height: calc(100vh - 270px)">
+  <table id = "main-table">
+    <thead id="report">
+  	  <tr>
+  	  	<th>
+  		    <%=I18n.t('reports.trans_detail.date')%>
+ 		    </th>
+ 		    
+ 		    <%if @report_info[:fr] == -1%>
+  	      <th>
+  		      <%=I18n.t('reports.trans_detail.franchise')%>
+ 		      </th>
+ 		    <%end%>
+		    
+		    <th>
+		      <%=I18n.t('reports.trans_detail.note')%>
+	      </th>
+		    
+		    <th class = "td-right">
+			    <%=I18n.t('reports.trans_detail.amount')%>
+		    </th>
+		  </tr>
+	  </thead>
+    
+    <tbody>
+	    <%if @transact.size > 0 %> 
+	      <%@transact.each do |t|%>
+	        <tr>
+	          <td data-name="Date">
+		          <%=I18n.l(t.date_posted, format: :notime)%>
+		        </td>
+		        <%if @report_info[:fr] == -1 %>
+		  	      <td data-name="Franchise">
+		  		      <%=t.franchise.number_and_name%>
+		  	      </td>
+    	      <%end%>
+
+    	      <td data-name="Note">
+		  		    <%=t.trans_description%>
+		  	    </td>
+
+		  		  <td class = "td-right" data-name="Amount">
+              <strong><%=number_to_currency(t.amount)%></strong>
+		  		  </td>
+				  </tr>
+			  <%end%>
+			<%end%>
+		</tbody>
+  </table>
+</div> 
+
+<table class="table-scroll">
+	<tfoot id="report-footer">
+  	<tr>
+      <td>   
+        <strong><%=I18n.t('reports.trans_detail.total')%></strong>
+      </td>
+  
+      <%if @report_info[:fr] == 1 %>
+        <td>&nbsp;</td>
+      <%end%>
+  
+      <td>&nbsp;</td>
+
+      <td class = "td-right"> 
+        <strong><%=number_to_currency(@report_info[:total])%></strong>
+      </td>
+  	</tr>
+ 	</tfoot>
+</table>
+  
+ 
