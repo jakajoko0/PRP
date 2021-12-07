@@ -209,6 +209,14 @@
       note: Note
       amount: Amount
       total: Total
+    delinquents:
+      index_title: Delinquent Report
+      title: Missing Royalty Reports
+      title2: "%{month1} %{year1} thru %{month2} %{year2}"
+      title_excel: Missing Royalty Reports
+      title_workbook: Delinquent Report
+      franchise: Franchise
+      missing: Missing Report(s)
 
 
 

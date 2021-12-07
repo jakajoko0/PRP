@@ -195,6 +195,10 @@ Rails.application.routes.draw do
         post '/amounts_due/render' => 'amounts_due#report'
         get 'amounts_due/render' => redirect('admins/amounts_due')
 
+        get '/delinquent_report' => 'delinquents#index'
+        post '/delinquent_report/render' => 'delinquents#report'
+        get '/delinquent_report/render' => redirect('admins/delinquent_report')
+
         get '/website_preferences_list' => 'website_preferences_list#index'
         post '/website_preferences_list/render' => 'website_preferences_list#report'
         get '/website_preferences_list/render' => redirect('/admins/website_preferences_list')

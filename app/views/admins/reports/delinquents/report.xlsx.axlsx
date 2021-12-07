@@ -1,0 +1,36 @@
+wb = xlsx_package.workbook
+
+styles = set_axlsx_styles(wb)
+
+wb.add_worksheet(name:I18n.t('reports.delinquents.title_workbook')) do |ws|
+  ws.add_row [@report_info[:title_excel]],
+  style: styles[:header_title],
+  widths: [:ignore],
+  height: 80
+  
+  
+  ws.add_row
+
+  ws.add_row [
+  I18n.t('reports.delinquents.franchise'),
+  I18n.t('reports.delinquents.missing')],
+  style: [styles[:header_left],styles[:header_left]],
+  width: [:auto, :auto]
+
+  if @results.size > 0
+    @results.each do |result|
+      ws.add_row [
+      result[:name],
+      "#{Date::MONTHNAMES[result[:month]]} #{result[:year]}"],
+      style: [styles[:data_left], styles[:data_left]],
+      width: [:auto, :auto],
+      types: [:string, :string]
+    end
+  end
+
+ 
+
+  ws.merge_cells "A1:C1"
+  
+end
+

@@ -1,0 +1,41 @@
+
+<div class = "row">
+	<div class = "col-12">
+		<h5 class="text-center">
+			<%=@report_info[:title]%>
+		</h5>
+	</div>
+</div>
+
+<div id = "table-scroll" 
+     class = "table-scroll" >
+  <table id = "main-table">
+    <thead id="report">
+  	  <tr>
+  	    <th class="td-left">
+  		    <%=I18n.t('reports.delinquents.franchise')%>
+ 		    </th>
+		    <th class = "td-left">
+		      <%=I18n.t('reports.delinquents.missing')%>
+	      </th>
+		    
+		  </tr>
+	  </thead>
+	  <%if @results.size > 0%>
+	    <tbody>	
+	      <%@results.each do |result|%>
+	        <tr>
+	          <td data-name="Franchise" class="td-left">
+		  	      <strong><%=result[:name]%></strong>
+		        </td>
+		  
+		  			<td  data-name="Missing Report" class="td-left">
+		  				<%=Date::MONTHNAMES[result[:month]]%> <%=result[:year]%>
+		  			</td>
+
+					</tr>
+				<%end%>
+			</tbody>
+  	<%end%>
+  </table>
+</div>

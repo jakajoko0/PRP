@@ -119,7 +119,7 @@ en:
       manage_checks: Manage Check Payments
       reports: Reports
       report: 
-        by_method: Payments by Method
+        by_method: Payment
     tool:
       tools: Tools
       transaction_codes: Manage Transaction Codes

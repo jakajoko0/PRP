@@ -38,14 +38,14 @@ module ReportHelper
 		html.html_safe
 	end
 
-	def month_and_year_dropdowns(labelname,monthfield, yearfield, rowclass, monthlabelclass, monthselectclass, yearselectclass)
+	def month_and_year_dropdowns(labelname,monthfield, yearfield, rowclass, monthlabelclass, monthselectclass, yearselectclass, min_year = Date.today.year, max_year = Date.today.year + 10)
 		html = "<div class = '#{rowclass}'>"
 		html += "<label class = '#{monthlabelclass}' for=#{monthfield}>#{labelname}</label>"
 		html += "<div class = '#{monthselectclass}'>"
 		html += select_month(Date.today, {prefix: "#{monthfield}", field_name:'selected_month'}, {class: 'form-control form-control-sm col'})
 		html += '</div>'
 		html += "<div class = '#{yearselectclass}'>"
-		html += select_year(Date.today, {start_year: Date.today.year, end_year: Date.today.year+10, prefix: "#{yearfield}", field_name: 'selected_year' }, {class: 'form-control form-control-sm col'})
+		html += select_year(Date.today, {start_year: min_year, end_year: max_year, prefix: "#{yearfield}", field_name: 'selected_year' }, {class: 'form-control form-control-sm col'})
 		html += '</div>'
 		html += '</div>'
 		html.html_safe

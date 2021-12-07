@@ -106,6 +106,21 @@ class RemittancesQuery
     res.map{|r| [r.month, r.royalty]}
 
 	end
+	
+
+	def royalty_missing_list(franchise, from_year, from_month, to_year, to_month, start_date, end_date)
+		reports = Remittance.joins(:franchise)
+		.select("franchise_id, year, month")
+		.where("remittances.franchise_id = ? AND remittances.year *12 + remittances.month BETWEEN ? and ?",franchise.id,from_year*12+from_month, to_year*12+to_month)
+		.order("franchises.lastname, franchises.firstname, franchises.franchise_number")
+		unique_reports = reports.pluck(:franchise_id, :year, :month)
+		franchise_start = (franchise.accountants.first.start_date if franchise.accountants.first) || franchise.start_date
+		date_to_use = [franchise_start, start_date].max
+		#Build an array of all possible year and months reports should have been submitted
+    periods = (date_to_use..end_date).map{|d| [franchise.id, d.year, d.month]}.uniq
+    missing = periods - unique_reports
+
+	end
 
 
 
