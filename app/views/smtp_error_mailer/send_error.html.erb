@@ -1,5 +1,8 @@
 <h2>
   There was an SMTP Rescued Error trying to send an Email
 </h2>
-<p><b>Faulty Recipient(s):</b> <%=@faulty_recipients%></p>
+<p><b>Faulty Recipient(s):</b> <p>
+  <%@faulty_recipients.each do |fp| %>
+    <p> <%=fp%></p>
+  <%end%>
 <p><b>Error:</b> <%=@msg%></p>

@@ -17,9 +17,19 @@ class RemittanceReminderWorker
     warning_date = DateUtils.find_warning_date(target_date)
     
     if today == warning_date
-      RemittanceMailer.remittance_reminder(last_month.month,last_month.year).deliver_now
-    end 
+      franchises_to_email = franchises_without_royalties(last_month.month, last_month.year)
+      franchises_to_email.each do |fr| 
+        RemittanceMailer.remittance_reminder(fr.franchise_id).deliver_now
+      end 
+    end
   end	
+
+  private
+
+  def franchises_without_royalties(month,year)
+    User.all_active.select("franchise_id").where("franchise_id NOT IN (SELECT franchise_id FROM remittances WHERE year = ? and month = ?)", year, month).distinct
+  end
+
 end
 
     
