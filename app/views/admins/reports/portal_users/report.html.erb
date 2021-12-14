@@ -1,0 +1,79 @@
+<%=render 'shared/report_header'%>
+<div class = "row">
+	<div class = "col-12">
+		<h5 class="text-center">
+			<%=@report_info[:title]%>
+		</h5>
+	</div>
+</div>
+<br>
+<%= hidden_field_tag :direction, params[:direction] %>
+<%= hidden_field_tag :sort, params[:sort] %>
+<div id = "table-scroll" 
+     class = "table-scroll"
+     style = "height: calc(100vh - 290px)">
+  <table id = "main-table">
+    <thead id="report">
+  	  <tr>
+  	    <th>
+  		    <%=I18n.t('reports.portal_users.franchise')%>
+ 		    </th>
+		    <th>
+		      <%=I18n.t('reports.portal_users.user')%>
+	      </th>
+	      <th>
+		      <%=I18n.t('reports.portal_users.user_type')%>
+	      </th>
+	      <th>
+		      <%=sortable("created_at",I18n.t('reports.portal_users.signed_up'))%>
+	      </th>
+	      <th>
+		      <%=sortable("last_sign_in_at",I18n.t('reports.portal_users.last_login'))%>
+	      </th>
+
+		  </tr>
+	  </thead>
+	  <%if @signed_users.size > 0%>
+	    <tbody>	
+	      <%@signed_users.each do |user|%>
+	        <tr>
+	          <td data-name="Franchise">
+		  	      <%=user.franchise.number_and_name%>
+		        </td>
+		  
+		  			<td  data-name="User">
+		  				<%=user.email%>
+		  			</td>
+
+		  			<td  data-name="User Type">
+		  				<%=user.role_description%>
+		  			</td>
+
+		  			<td  data-name="Signed Up">
+		  				<%=I18n.l(user.created_at)%>
+		  			</td>
+
+		  			<td  data-name="Last Login">
+		  				<%=I18n.l user.last_sign_in_at if user.last_sign_in_at %>
+		  			</td>
+
+					</tr>
+				<%end%>
+			</tbody>
+  	<%end%>
+  </table>
+</div>
+
+<table class="table-scroll">
+	<tfoot id="report-footer">
+ 		<tr>
+      <td class = "td-left">
+    	  <strong>Franchise Count: <%=@report_info[:total_franchises]%></strong>   
+      </td>
+
+      <td class = "td-right"> 
+        <strong>User Count: <%=@report_info[:total_users]%></strong>               
+      </td>
+		</tr>
+	</tfoot>
+</table>

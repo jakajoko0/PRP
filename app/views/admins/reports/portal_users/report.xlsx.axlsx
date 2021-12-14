@@ -1,0 +1,51 @@
+wb = xlsx_package.workbook
+
+styles = set_axlsx_styles(wb)
+
+wb.add_worksheet(name:I18n.t('reports.portal_users.title_workbook')) do |ws|
+  ws.add_row [@report_info[:title_excel]],
+  style: styles[:header_title],
+  widths: [:ignore],
+  height: 40
+  
+  
+  ws.add_row
+
+  ws.add_row [
+  I18n.t('reports.portal_users.franchise'),
+  I18n.t('reports.portal_users.user'),
+  I18n.t('reports.portal_users.user_type'),
+  I18n.t('reports.portal_users.signed_up'),
+  I18n.t('reports.portal_users.last_login')],
+  style: [styles[:header_left],styles[:header_left], styles[:header_left],styles[:header_left],styles[:header_left]],
+  width: [:auto, :auto, :auto, :auto, :auto]
+
+  if @signed_users.size > 0
+    @signed_users.each do |user|
+      ws.add_row [
+      user.franchise.number_and_name,
+      user.email,
+      user.role_description,
+      (I18n.l user.created_at),
+      (I18n.l user.last_sign_in_at if user.last_sign_in_at)],
+      style: [styles[:data_left], styles[:data_left],
+      styles[:data_left],styles[:data_left],styles[:data_left]],
+      width: [:auto, :auto,:auto,:auto, :auto],
+      types: [:string, :string, :string, :string, :string]
+    end
+    ws.add_row
+    ws.add_row [
+    "Franchise Count: #{@report_info[:total_franchises]}",
+    nil,
+    nil,
+    nil,
+    "User Count: #{@report_info[:total_users]}"],
+    style: [styles[:header_left],styles[:header_left],styles[:header_left],styles[:header_left],styles[:header_left]],
+  width: [:auto, :auto, :auto, :auto, :auto
+  ]
+  end
+
+  ws.merge_cells "A1:E1"
+  
+end
+

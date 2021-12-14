@@ -217,7 +217,15 @@
       title_workbook: Delinquent Report
       franchise: Franchise
       missing: Missing Report(s)
-
+    portal_users:
+      title: Portal Users
+      title_excel: Portal Users
+      title_workbook: Portal Users
+      franchise: Franshise
+      user: User
+      user_type: User Type
+      signed_up: Signed Up On
+      last_login: Last Login
 
 
 

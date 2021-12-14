@@ -155,6 +155,9 @@ Rails.application.routes.draw do
         get '/franchise_advanced_rebate' => 'franchise_advanced_rebate#report'
         post '/franchise_advanced_rebate' => 'franchise_advanced_rebate#report'
 
+        get '/portal_users' => 'portal_users#report'
+        post '/portal_users' => 'portal_users#report'
+
         get '/franchise_prior_rebate' => 'franchise_prior_rebate#report'
         post '/franchise_prior_rebate' => 'franchise_prior_rebate#report'
 
