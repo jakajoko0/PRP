@@ -98,6 +98,26 @@ module ReportHelper
 
 	  html.html_safe
 	end
+
+	def select_resource_dropdown(fieldname,rowclass,labelclass,selectclass, selected)
+		html = "<div class = '#{rowclass}'>"
+		html += "<label class = '#{labelclass}' for=#{fieldname}>#{I18n.t('reports.general.resource')}</label>"
+		html += "<div class = '#{selectclass}'>"
+		html += select_tag 'resource', options_for_select([["All",""],[ "Franchise Information", "Franchise"], ["Accountants", "Accountant"],["Royalties","Remittance"]]), {:include_blank => true, selected: selected, class: 'form-control form-control-sm col'}
+	  html += "</div> </div>"
+
+	  html.html_safe
+	end
+
+	def select_action_dropdown(fieldname,rowclass,labelclass,selectclass, selected)
+		html = "<div class = '#{rowclass}'>"
+		html += "<label class = '#{labelclass}' for=#{fieldname}>#{I18n.t('reports.general.action')}</label>"
+		html += "<div class = '#{selectclass}'>"
+		html += select_tag 'operand', options_for_select([["All",""],["Creation", "create"],["Update", "update"],["Delete","destroy"]]), {:include_blank => true, selected: selected, class: 'form-control form-control-sm col'}
+	  html += "</div> </div>"
+
+	  html.html_safe
+	end	
 	
 end
 

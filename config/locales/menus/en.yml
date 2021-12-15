@@ -134,7 +134,7 @@ en:
         pay_resp: Payment Responses
       reports: Reports 
       report:
-        event_log: Event Log
+        audit_trail: Audit Trail
         users: Portal Users
         not_using: Franchises Not Signed Up
     user:

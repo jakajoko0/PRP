@@ -151,6 +151,20 @@ def format_audited_events(audits)
 
   html.html_safe
 end
+def unformatted_audited_events(audits)
+  txt = ""
+  audits.audited_changes.each do |key,val|
+    txt = txt+= "#{key.titleize}"
+    txt = txt += " #{I18n.t('audit.was_changed')} "
+    if val.class == Array 
+      txt = txt += "#{I18n.t('audit.from_to', former_value: val[0], new_value: val[1])}"
+    else
+      txt = txt += "#{I18n.t('audit.to', value: val)}"
+    end
+    txt = txt += "\x0D\x0A"
+  end
+  txt
+end
 
 
 

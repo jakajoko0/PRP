@@ -11,9 +11,9 @@ module AxlsxHelper
 		  styles[:header_box] = s.add_style sz: 12, b: true, alignment: {horizontal: :center}, border: {style: :medium, color: "00000000"}
 		  styles[:header_box_left] = s.add_style sz: 12, b: true, alignment: {horizontal: :left}, border: {style: :medium, color: "00000000"}
 		  styles[:header_box_right] = s.add_style sz: 12, b: true, alignment: {horizontal: :right}, border: {style: :medium, color: "00000000"}
-		  styles[:data_left] = s.add_style alignment: {horizontal: :left}, sz: 10	
-		  styles[:data_center] = s.add_style alignment: {horizontal: :center}, sz: 10	
-		  styles[:data_right] = s.add_style alignment: {horizontal: :right}, sz: 10	
+		  styles[:data_left] = s.add_style alignment: {horizontal: :left, wrap_text: true}, sz: 10	
+		  styles[:data_center] = s.add_style alignment: {horizontal: :center, wrap_text: true}, sz: 10	
+		  styles[:data_right] = s.add_style alignment: {horizontal: :right, wrap_text: true}, sz: 10	
 		  styles[:number] = s.add_style num_fmt: 4, sz: 10, alignment: {horizontal: :right}
 		  styles[:number_box] = s.add_style num_fmt: 4, sz: 10, alignment: {horizontal: :right}, border: {style: :medium, color: "00000000"}
 		  styles[:number_bold] = s.add_style num_fmt: 4, sz: 10 , b: true

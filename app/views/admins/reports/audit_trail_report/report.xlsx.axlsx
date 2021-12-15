@@ -1,0 +1,41 @@
+wb = xlsx_package.workbook
+
+styles = set_axlsx_styles(wb)
+
+wb.add_worksheet(name: I18n.t('reports.audit_trail.title_workbook')) do |ws|
+  ws.add_row [@report_info[:title_excel]],
+  style: styles[:header_title],
+  widths:  [:ignore, :auto, :auto], height: 80
+  
+  
+  ws.add_row
+
+  ws.add_row [
+  I18n.t('reports.audit_trail.resource'),
+  I18n.t('reports.audit_trail.type'),
+  I18n.t('reports.audit_trail.when'),
+  I18n.t('reports.audit_trail.who'),
+  I18n.t('reports.audit_trail.franchise'),
+  I18n.t('reports.audit_trail.changes')], style: [styles[:header_left],styles[:header_left], styles[:header_left], styles[:header_left], styles[:header_left], styles[:header_left]],
+  width: [:auto, :auto, :auto, :auto, :auto, :auto]
+
+  if @audits.size > 0
+    @audits.each do |audit|
+      ws.add_row [
+      audit.auditable_type, 
+      audit.action.capitalize, 
+      (I18n.l audit.created_at.in_time_zone,
+        format: :notime),
+        (audit.user.try(:email) || ""),
+        audit.target_franchise,
+        unformatted_audited_events(audit)],
+      style: [styles[:data_left], styles[:data_left],styles[:date_left],styles[:data_left], styles[:data_left],styles[:date_left]],
+      width: [:auto, :auto, :auto,:auto, :auto, :auto],
+      types: [:string, :string, :string, :string,:string, :string]
+    end
+  end
+
+  ws.merge_cells "A1:F1"
+  
+end
+

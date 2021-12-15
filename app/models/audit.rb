@@ -19,7 +19,7 @@ class Audit
     end
 
     #if not, we try to check from the user
-    user.try(:franchise).try(:number_and_name) || "UNAVAILABLE"
+    user.try(:franchise).try(:number_and_name) || "SYSTEM CHANGE"
   end
 
 end

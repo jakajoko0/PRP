@@ -1,0 +1,70 @@
+<div class = "row">
+	<div class = "col-12">
+		<h5 class="text-center">
+			<%=@report_info[:title]%>
+		</h5>
+	</div>
+</div>
+
+<div id = "table-scroll" 
+     class = "table-scroll">
+  <table id = "main-table">
+    <thead id="report">
+  	  <tr>
+  	    <th>
+  		    <%=I18n.t('reports.audit_trail.resource')%>
+ 		    </th>
+		    <th>
+		      <%=I18n.t('reports.audit_trail.type')%>
+	      </th>
+		    <th>
+		      <%=I18n.t('reports.audit_trail.when')%>
+        </th>
+		    <th>
+			    <%=I18n.t('reports.audit_trail.who')%>
+		    </th>
+		     <th>
+			    <%=I18n.t('reports.audit_trail.franchise')%>
+		    </th>
+		     <th>
+			    <%=I18n.t('reports.audit_trail.changes')%>
+		    </th>
+		  </tr>
+	  </thead>
+	  <%if @audits.size > 0%>
+	    <tbody>	
+	      <%@audits.each do |audit|%>
+	        <tr>
+	          <td data-name="Resource">
+		  	      <%=audit.auditable_type%>
+		        </td>
+		  
+		  			<td  data-name="Action">
+		  				<%=audit.action.capitalize%>
+		  			</td>
+
+		  			<td data-name="When">
+		  				<%= I18n.l audit.created_at.in_time_zone,
+        format: :notime %>
+		  			</td>
+
+		  			<td  data-name="Who">
+		  				<%=audit.user.try(:email) || ""%>
+		  			</td>
+
+
+		  			<td  data-name="Franchise">
+		  				 <%=audit.target_franchise%>
+		  			</td>
+
+		  			<td  data-name="Changes">
+		  				 <%=format_audited_events(audit)%>
+		  			</td>
+
+
+					</tr>
+				<%end%>
+			</tbody>
+  	<%end%>
+  </table>
+</div>

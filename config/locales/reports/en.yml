@@ -26,6 +26,8 @@
       sorted_by: Sorted by %{sortbytext}
       including_inactives: Including Inactives
       year: Year
+      resource: Resource
+      action: Action
     franchise_list:
       title: Franchise List
       title_workbook: Franchises
@@ -226,6 +228,19 @@
       user_type: User Type
       signed_up: Signed Up On
       last_login: Last Login
+    audit_trail:
+      index_title: Audit Trail Report
+      title: "Audit Trail for %{resource}"
+      title2: "%{start} thru %{end}"
+      title3: "Actions: %{operation}"
+      title_workbook: Audit Trail
+      resource: Resource
+      type: Type
+      when: When
+      who: Who
+      franchise: Franchise
+      changes: Changes
+
 
 
 

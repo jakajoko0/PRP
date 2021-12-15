@@ -155,6 +155,10 @@ Rails.application.routes.draw do
         get '/franchise_advanced_rebate' => 'franchise_advanced_rebate#report'
         post '/franchise_advanced_rebate' => 'franchise_advanced_rebate#report'
 
+        get '/audit_trail_report' => 'audit_trail_report#index'
+        post '/audit_trail_report/render' => 'audit_trail_report#report'
+        get '/audit_trail_report/render' => redirect('/admins/audit_trail_report')
+
         get '/portal_users' => 'portal_users#report'
         post '/portal_users' => 'portal_users#report'
 
