@@ -7,6 +7,7 @@ class Payment < ApplicationRecord
 	enum status: { pending: 0, transit: 1, error: 2, declined: 3, approved: 4, deleted: 5 }
 
 	scope :recent, -> { where.not(status: "deleted").order('date_entered DESC').limit(20) }
+	scope :recent_show, -> { where.not(status: "deleted").order('date_entered DESC').limit(5) }
   scope :all_recent, -> { Payment.includes(:franchise).where.not(status: "deleted").order('date_entered DESC').limit(20) } 
   scope :all_by_date_range, -> (start_date, end_date) { Payment.includes(:franchise).where.not(status: "deleted").where("date_entered >= ? AND date_entered <= ?", start_date, end_date).order('date_entered DESC') }
   scope :all_pending, -> { Payment.includes(:franchise).where(status: [:pending, :transit]).order('date_entered DESC') }

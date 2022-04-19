@@ -5,11 +5,12 @@ class Remittance < ApplicationRecord
 	include Transactionable
 	extend FriendlyId
 	belongs_to :franchise
+	belongs_to :consolidated , class_name: "FranchiseConsolidation", primary_key: 'franchise_number', foreign_key: 'franchise_number', optional: true
 	# This will be audited when updated or destroyed
 	audited except: [:slug], on: %[update destroy]
 	friendly_id :number_name_year_month, use: :slugged
 
-	attr_accessor :fran_number, :franchise_name, :total_collect
+	attr_accessor :franchise_name, :total_collect
 
 	# Using an enum for the status
 	enum status: {posted: 1, pending: 0}

@@ -136,7 +136,6 @@ en:
       report:
         audit_trail: Audit Trail
         users: Portal Users
-        not_using: Franchises Not Signed Up
     user:
       users: Users
       manage: Manage Corporate Users     

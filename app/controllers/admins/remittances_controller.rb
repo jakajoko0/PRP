@@ -25,7 +25,8 @@ class Admins::RemittancesController < ApplicationController
                                  date_posted: DateTime.now,
                                  status: :pending,
                                  minimum_royalty: Franchise.find(franchise_id).minimum_royalty,
-                                 royalty: Franchise.find(franchise_id).minimum_royalty)
+                                 royalty: Franchise.find(franchise_id).minimum_royalty,
+    franchise_number: Franchise.find(franchise_id).franchise_number)
     #Make sure users can create a new remittance
     authorize! :new, @remittance
   end

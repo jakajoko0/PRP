@@ -99,6 +99,7 @@ Rails.application.routes.draw do
       resources :admins
       resources :franchises
       resources :franchises_select
+      resources :franchise_group_masters
       resources :credits
       resources :franchise_documents
       resources :franchises_users

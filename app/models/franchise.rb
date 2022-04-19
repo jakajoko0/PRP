@@ -57,7 +57,7 @@ class Franchise < ApplicationRecord
   # t.string "slug"
 
   extend FriendlyId
-
+  has_many :franchise_consolidations, dependent: :destroy
   has_many :accountants
   has_many :bank_accounts
   has_many :credit_cards
@@ -83,8 +83,14 @@ class Franchise < ApplicationRecord
 
   NULL_ATTRS = %w[start_date renew_date term_date].freeze
 
+  #Validates the consolidation transactions
+  validates_associated :franchise_consolidations, :message => "Error detected in Franchise Consolidation"
+  
+  #Franchise accepts nested attributes for Franchise Cons (consolidation)
+  accepts_nested_attributes_for :franchise_consolidations , :allow_destroy => true
+
   before_save :nil_if_blank
-  # after_save :reset_name_variable, if: :name_has_changed?
+  after_save :reset_name_variable, if: :name_has_changed?
 
   # Model Validation
   validates :area,       presence: true
@@ -137,6 +143,23 @@ class Franchise < ApplicationRecord
     [franchise_number, lastname].join(' ')
   end
 
+  def consolidator?
+    self.franchise_consolidations.any?
+  end
+  
+  def consolidated?
+    FranchiseConsolidation.exists?(franchise_number: self.franchise_number)
+  end
+
+  def consolidation_status
+    fran_id = FranchiseConsolidation.find_by(franchise_number: self.franchise_number).franchise_id || 0
+    if self.id == fran_id
+      "Consolidates ( "+FranchiseConsolidation.where('franchise_id = ?', self.id).pluck(:franchise_number).join(',')+" )"
+    else
+      "Consolidated under ( "+Franchise.get_franchise_number(fran_id) + " " + Franchise.get_lastname(fran_id)+" )"
+    end
+  end
+
   def one_line_address
     "#{address} #{address2}, #{city}, #{state}, #{zip_code}"
   end
@@ -156,6 +179,16 @@ class Franchise < ApplicationRecord
     minimum_royalty.positive?
   end
 
+  def calculate_total_averages(month,year)
+    remittance_record = Remittance.where('franchise_id = ?',self.id).order(Arel.sql('(accounting + backwork + consulting + other1 + other2 + payroll + setup + tax_preparation ) DESC ')).first
+    avg_remittance = Remittance.where('franchise_id = ? and (year = ? AND month >= ? or year = ? AND month < ?)',self.id, year-1, month, year, month).average('accounting + backwork + consulting + other1 + other2 + payroll + setup + tax_preparation')
+
+    self.max_collections = remittance_record.total_collections if remittance_record
+    self.avg_collections = avg_remittance.round(2)  if avg_remittance
+    self.max_coll_year = remittance_record.year if remittance_record
+    self.max_coll_month = remittance_record.month if remittance_record
+  end
+
   #=================================================================
   # Class Methods
   #=================================================================
@@ -167,6 +200,36 @@ class Franchise < ApplicationRecord
     else
       where(nil)
     end
+  end
+
+  def self.get_franchise_number(franchise_id)
+    #Here we cache the franchise list so we can easily return the number 
+    #after the first call. This will speed up some screens
+    @fran_by_number ||= compute_number
+    return @fran_by_number[franchise_id] if @fran_by_number[franchise_id]
+    result = Franchise.select('franchise_number').where('id = ?',franchise_id)
+    return @fran_by_number[franchise_id]  = result[0].franchise_number
+  end
+
+  def self.compute_number 
+    Franchise.select(:id, :franchise_number)
+    .map {|e| e.attributes.values}
+    .inject({}) {|memo, fran| memo[fran[0]] = fran[1]; memo}
+  end
+
+   def self.get_lastname(franchise_id)
+    #Here we cache the franchise list so we can easily return the number 
+    #after the first call. This will speed up some screens
+    @fran_by_lastname ||= compute_franchise_lastname
+    return @fran_by_lastname[franchise_id] if @fran_by_lastname[franchise_id]
+    result = Franchise.select('lastname').where('id = ?',franchise_id)
+    return @fran_by_lastname[franchise_id] = result[0].lastname
+  end
+
+  def self.compute_franchise_lastname
+    Franchise.select(:id, :lastname)
+    .map {|e| e.attributes.values}
+    .inject({}) {|memo, fran| memo[fran[0]] = fran[1]; memo}
   end
 
   def self.directory(last,first,state)
@@ -199,6 +262,12 @@ class Franchise < ApplicationRecord
              .each_with_object({}) { |fran, memo| memo[fran[0]] = fran[1]; }
   end
 
+  def self.compute_fullname
+    Franchise.select(:id, "(firstname || ' ' || lastname) as name")
+    .map {|e| e.attributes.values}
+    .inject({}) {|memo, fran| memo[fran[0]] = fran[1]; memo}
+  end
+
   def self.rebates(franchise_id)
     Franchise.select('advanced_rebate, prior_year_rebate').where('id = ?', franchise_id)
   end
@@ -208,9 +277,30 @@ class Franchise < ApplicationRecord
     result.prior_year_rebate
   end
 
+  def self.reset_fullname
+    @fran_by_fullname = compute_fullname
+  end
+
+  def self.reset_lastname
+    @fran_by_lastname = compute_franchise_lastname
+  end
+
+  def self.franchise_list_with_consol_flag
+    Franchise.select("franchises.*, COUNT(franchise_consolidations.id) as consol")
+    .joins("LEFT OUTER JOIN franchise_consolidations ON (franchise_consolidations.franchise_id = franchises.id)")
+    .group("franchises.id").order("franchises.lastname ASC")
+  end
+
   private
 
   def nil_if_blank
     NULL_ATTRS.each { |attr| self[attr] = nil if self[attr].blank? }
   end
+
+  #method that resets the class variables that kees names for quick reference
+  def reset_name_variable
+    Franchise.reset_fullname
+    Franchise.reset_lastname
+  end
+
 end

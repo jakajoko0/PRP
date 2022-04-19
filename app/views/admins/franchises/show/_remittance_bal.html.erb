@@ -1,0 +1,98 @@
+<div class = "card">
+  <div class = "card-body card-background-padgett">
+    <table class = "table
+           table-striped table-in-card">
+      <thead>
+        <tr>
+          <tr>
+        <!-- Date -->
+        <th scope = "col" class = "td-left">
+          Date
+        </th>
+
+        <!-- Trans Code -->
+        <th scope = "col" class = "td-left">
+          Transaction
+        </th>
+
+        <!-- Icon for desc -->
+        <th scope = "col" class = "td-left">
+        </th>        
+
+        <!-- Amount  -->
+        <th scope = "col" class = "td-right">
+          Amount
+        </th>        
+
+        <!-- Balance  -->
+        <th scope = "col" class = "td-right">
+          Balance
+        </th>        
+                   
+        <th scope = "col" class = "td-center"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% PrpTransactionsQuery.new.latest_roy_trans(franchise.id).each do |trans|%>
+          <tr>
+            
+             <!-- Date -->
+          <td data-name = "Date"
+              scope = "col"
+              class = "td-left">
+              <%=I18n.l trans.date_posted, format: :prp%>
+          </td>
+
+          <!-- Transaction-->
+          <td data-name = "Transaction" 
+              scope = "col"
+              class = "td-left">
+              <%=TransactionCode.description_from_code(trans.trans_code)%>
+          </td>
+            
+          <!-- Icon for Desc -->
+          <td data-name = "Description" 
+              scope = "col"
+              class = "td-left">
+              <%=description_peek(trans.trans_description,"right")%>
+          </td>
+
+          <!-- Amount -->
+          <td data-name = "Amount" 
+              scope = "col"
+              class = "td-right">
+              <%if trans.trans_type == "receivable"%>
+                <span style = "color: green">
+              <%else%>
+                <span style = "color: red">
+              <%end%>
+
+                <%=number_to_currency(trans.amount, precision: 2)%>
+              </span>
+          </td>
+          
+          <!-- Balance -->
+          <td data-name = "Balance"
+              scope = "col"
+              class = "td-right">
+              <strong><%=number_to_currency(trans.balance, precision: 2)%></strong>
+          </td>
+
+         <!-- View Link if User can View -->
+          <td>
+            <%= link_with_icon(
+                polymorphic_path([:admins,trans.transactionable]),
+                "show",
+                "See this transaction",
+                false)%>
+          </td>  
+
+
+          </tr>
+        <%end%>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+                

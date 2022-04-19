@@ -24,10 +24,10 @@
 
 //Overriding some of the variables
 //$dropdown-bg:  #e5f1cc;
-$dropdown-bg:  var(--padgett-flint);
+$dropdown-bg:  var(--padgett-blue);
 $dropdown-link-hover-bg: darken(#b0c3ff,10%);
 $dropdown-link-active-bg: darken(#b0c3ff,10%);
-$dropdown-link-color: var(--padgett-blue);
+$dropdown-link-color: white;
 
 
 .padgett-blue-icon {
@@ -100,11 +100,11 @@ body {
 }
 
 .btn-padgett{
-  @include button-variant(#00143c, darken(#00143c,7.5%),lighten(#00143c,10%),lighten(#00143c,5%),lighten(#00143c,10%),darken(#00143c,30%))
+  @include button-variant(#3768d1, darken(#3768d1,7.5%),lighten(#3768d1,10%),lighten(#3768d1,5%),lighten(#3768d1,10%),darken(#00143c,30%))
 }
 
 .btn-outline-padgett {
-  @include button-outline-variant(#00143c, #222222, lighten(#00143c,5%), #00143c);
+  @include button-outline-variant(#3768d1, #222222, lighten(#3768d1,5%), #3768d1);
 }
 
 .padgett-text{
@@ -132,7 +132,7 @@ body {
 /***************************************************/
 .navbar-brand {
   padding: 0px;
-  color: var(--padgett-flint);
+  color: white;
   font-weight: 500;
 }
 
@@ -143,7 +143,7 @@ body {
 }
 
 .navbar {
-background-color: var(--padgett-flint);//#e5f1cc;
+background-color: var(--padgett-blue);//#e5f1cc;
 //background-color: white;
 //border-top: 2px solid var(--padgett-green);
 //border-left: 2px solid var(--padgett-green);
@@ -160,18 +160,18 @@ padding: 0px;
 
 
 .navbar li a {
-  color: var(--padgett-blue  );
+  color: white;
   @media (max-width: 1200px) {  
   font-size: 0.9rem;
 }
 }
 
 .navbar:hover li a {
-  color: var(--padgett-blue  );
+  color: white;
 }
 
 .navbar-text{
-  color: var(--padgett-blue  );
+  color: white;
   padding-right: 10px;
   /* Extra large devices (large desktops, 1200px and up) */
   @media (max-width: 1200px) {  
@@ -207,13 +207,14 @@ padding: 0px;
 }
 
 .dropdown-divider{
-  border-color: var(--padgett-blue);
+  border-color: white;
 }
 
 .dropdown-menu{
-  border-color: var(--padgett-blue);
+  border-color: white;
+  
   @media (max-width: 768px) {  
-    border: 0px;
+    border: 1px;
   }
 }
 

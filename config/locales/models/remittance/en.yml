@@ -6,6 +6,8 @@ en:
           attributes:
             franchise:
               blank: Franchise cannot be blank
+            franchise_number:
+              blank: Franchise number cannot be blank  
             year: 
               blank: Please provide the year
               year_unique: The Royalty report has already been posted for this month and year

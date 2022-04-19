@@ -47,6 +47,7 @@ require("custom/payment_report")
 require("custom/trans_summary")
 require("custom/trans_detail")
 require("custom/audit_report")
+require("custom/franchise_groups")
 
 
 require.context('../images',true, /\.(?:png|jpg|gif|ico|svg)$/)

@@ -1,0 +1,25 @@
+<fieldset>
+  <div class = "row">
+    <div class = "form-row col-12">
+      <div class = "form-group form-row col-12">
+        <div class = "col-sm-6 col-md-6 col-lg-6">
+          <%=f.select(:franchise_id,options_for_select(franchise_select_options, f.object.franchise_id), {prompt: "Add Franchise"}, {class: 'form-control form-control-sm col'})%>   	
+
+        </div>
+
+        <div class = "col-sm-2 col-md-2 col-lg-2" align="right">
+          <%=f.hidden_field :_destroy %>
+
+	      <%=link_to  "#" ,class: "remove_items" do %>
+         <i class="fa fa-trash fa-2x" aria-hidden="true"></i>
+        <% end %>
+      </div>
+
+
+      </div>
+    </div>
+    
+  </div>
+  </fieldset>
+
+

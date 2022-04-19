@@ -1,21 +1,7 @@
-$(document).on("invoices#edit:loaded invoices#new:loaded invoices#create:loaded invoices#update:loaded", function() {
+$(document).on("franchise_group_masters#edit:loaded franchise_group_masters#new:loaded franchise_group_masters#create:loaded franchise_group_masters#update:loaded", function() {
  
-  locale = gon.I18n;
-
-  $.datepicker.setDefaults($.datepicker.regional[locale]);  
-
-    $('#invoice_date_entered').datepicker({
-  showOn: 'button',
-    changeYear: true,
-    changeMonth: true,
-    yearRange:"-10:+10"});
-
-  $('#invoice_date_entered').next('button.ui-datepicker-trigger').css("verticalAlign","middle");
-
-  $('#invoices_add_item_button').on ("click", function(e)
+  $('#franchise_group_add_item_button').on ("click", function(e)
   {
-    
-   
    time = new Date().getTime();
    regexp = new RegExp($(this).data('id'), 'g');
    $(this).before($(this).data('fields').replace(regexp,time)) ;
@@ -34,7 +20,6 @@ $(document).on("invoices#edit:loaded invoices#new:loaded invoices#create:loaded 
 
   $(document).on ("click" , ".add_item", function(e)
     {
-      alert("TAbarnack");
       const lastId = document.querySelector("#fieldsetContainer").lastElementChild.id
       const newId = parseInt(lastId, 10) + 1;    
       const newFieldset = document

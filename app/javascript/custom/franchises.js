@@ -26,6 +26,27 @@ $(document).on("franchises#edit:loaded franchises#new:loaded franchises#create:l
     yearRange:"-10:+30"});
 
   $('#franchise_term_date').next('button.ui-datepicker-trigger').css("verticalAlign","middle");
+  
+  $('#franchises_add_item_button').on ("click", function(e)
+  {
+    
+   
+   time = new Date().getTime();
+   regexp = new RegExp($(this).data('id'), 'g');
+   $(this).before($(this).data('fields').replace(regexp,time)) ;
+  
+   e.preventDefault();
+   
+  });
+
+  $(document).on ("click" , ".remove_items", function(e)
+  {
+   $(this).prev('input[type=hidden]').val('1');
+   $(this).closest('fieldset').hide();
+   e.preventDefault();
+   
+  });
+
   });
 
 $(document).on("franchises#index:loaded", function() {

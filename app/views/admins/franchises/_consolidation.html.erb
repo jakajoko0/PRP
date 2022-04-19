@@ -1,0 +1,13 @@
+<div class = "card">
+  <div class = "card-header login-header">
+    Consdolidation
+  </div>
+  
+  <div class = "card-body card-background-padgett">
+    <%=f.fields_for :franchise_consolidations do |builder| %>
+     <%= render 'franchise_consolidation_fields', f: builder %> 
+    <%end%>
+    
+    <%= link_to_add_consolidation_fields "Add Franchise", f , :franchise_consolidations, "btn btn-padgett" %>
+  </div>
+</div>  

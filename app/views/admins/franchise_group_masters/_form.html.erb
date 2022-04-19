@@ -1,0 +1,69 @@
+<%=form_for [:admins, group], 
+  url:(group.new_record? ? admins_franchise_group_masters_path : admins_franchise_group_masters(group)) do |f| %>
+  <div class = "card">
+    <div class = "card-header login-header">
+      <h4>
+        <%if action == "edit"%>
+          <%=I18n.t('franchise_group.form.edit_title', group_handle: group.handle)%>
+        <%else%>
+          <%=I18n.t('franchise_group.form.create_title')%> 
+        <%end%>
+      </h4>
+    </div>
+  
+  
+    <div class = "card-body card-background-padgett">
+    	
+            
+      <div class = "form-row col-12">
+        <div class = "form-group form-row col-12">
+          <%=f.label :group_handle,
+          class: "col-md-2 col-sm-3 col-lg-2 col-xl-2  
+                col-form-label col-form-label-sm
+                label-bold"%>
+          <div class = "col-sm-5 col-md-4 col-lg-3 col-xl-3">
+            <%=f.text_field :group_handle ,class: "form-control form-control-sm col text-uppercase", style: "text-transform: uppercase", maxlength: 16 %>
+          </div>
+        </div>
+      </div>
+      <div class = "form-row col-12">
+        <div class = "form-group form-row col-12">
+          <%=f.label :group_description,
+          class: "col-md-2 col-sm-3 col-lg-2 col-xl-2  
+                col-form-label col-form-label-sm
+                label-bold"%>
+          <div class = "col-sm-8 col-md-7 col-lg-6 col-xl-6">
+            <%=f.text_field :group_description ,class: "form-control form-control-sm col" %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <br />
+  <div class = "card">
+    <div class = "card-header login-header">
+      <h4>
+        Franchises
+      </h4>
+    </div>
+    <div class = "card-body card-background-padgett">
+      <%=f.fields_for :franchise_group_details do |builder| %>
+        <%= render 'franchise_group_detail_fields', f: builder %>
+      <%end%>
+
+      <%= link_to_add_franchise_group_fields "Add Franchise", f , :franchise_group_details, "btn btn-padgett" %>
+    </div>
+  </div>
+
+  <br />
+  <div class = "row col-12 col-xl-10">
+    <%=f.submit (I18n.t('invoice.form.save')),
+    class: 'btn btn-padgett col-5 col-sm-4 col-md-3 col-lg-3 col-xl-2',
+	  name: "submit"%>
+    <div class = "col-1 sol-sm-1 col-md-1 col-lg-1"></div>
+      <%=link_to (I18n.t('invoice.form.discard')),
+      admins_invoices_path,
+      class: 'btn btn-padgett col-5 col-sm-4 col-md-3 col-lg-3 col-xl-2' %>
+    </div>
+  </div>
+<%end%>

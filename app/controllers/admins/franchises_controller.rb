@@ -6,7 +6,7 @@ class Admins::FranchisesController < ApplicationController
   before_action :set_franchise, only: %i[show edit update audit]
 
   def index
-    @franchises = Franchise.search(params[:search])
+    @franchises = Franchise.includes(:franchise_consolidations).search(params[:search])
                            .order("#{sort_column} #{sort_direction}")
                            .paginate(per_page: 20, page: params[:page])
     authorize! :read, Franchise
@@ -14,7 +14,10 @@ class Admins::FranchisesController < ApplicationController
 
   def new
     @franchise = Franchise.new(area: 1, mast: 0)
+    @franchise.franchise_consolidations.build
     authorize! :new, Franchise
+
+
   end
 
   def audit
@@ -36,7 +39,9 @@ class Admins::FranchisesController < ApplicationController
 
   def edit
     @authorized_users = @franchise.users.order(:id)
+    @franchise_consolidations = @franchise.franchise_consolidations
     authorize! :edit, @franchise
+    
   end
 
   def update
@@ -84,6 +89,6 @@ class Admins::FranchisesController < ApplicationController
                   :non_compliant, :non_compliant_reason, :prior_year_rebate,
                   :advanced_rebate, :minimum_royalty, :show_exempt_collect, :term_date,
                   :term_reason, :inactive,
-                  franchise_cons_attributes: %i[id fran _destroy])
+                  franchise_consolidations_attributes: [:id, :franchise_number, :_destroy])
   end
 end

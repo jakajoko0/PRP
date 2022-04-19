@@ -18,7 +18,7 @@ class Admins::InvoicesController < ApplicationController
     #Create the new Invoice object with defaults
     @invoice = Invoice.new(franchise_id: franchise_id,
                            date_entered: DateTime.now)
-    items = @invoice.invoice_items.build
+    @invoice_items = @invoice.invoice_items.build
     #Make sure users can create a new invoice
     authorize! :new, @invoice
   end
@@ -43,6 +43,7 @@ class Admins::InvoicesController < ApplicationController
 
   def edit
     #Make sure user can edit remittance
+    @invoice_items = @invoice.invoice_items
 	  authorize! :edit, @invoice
   end
 

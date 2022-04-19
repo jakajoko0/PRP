@@ -3,7 +3,7 @@
     <div class = "card">
       <div class = "card-header login-header" style="display:inline">
         <h3 class = "float-left">
-          <%=I18n.t('franchise.show.title', franchise_name: @franchise.full_denomination)%>
+          <%=I18n.t('franchise.show.title', franchise_name: @franchise.full_denomination)%> <span style = "color:red"><%=@franchise.consolidated? ? @franchise.consolidation_status : ""%></span>
         </h3>
         <%= link_to (I18n.t('franchise.show.return_btn')), admins_franchises_path, class: "btn btn-light float-right"%>
       </div>
@@ -48,6 +48,26 @@
       </div>
     </div>
 
+    <!-- ROYALTY BALANCE -->
+    <div class = "card-group accordion-padgett" id="accordion" role="tablist"     aria-multiselectable="true">
+      <div class = "card">
+        <div class = "card-header card-background-padgett" role="tab"
+          id="headingRoybal">
+          <h4 class="card-title">
+            <h3 class="collapsed"  role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseRoybal" aria-expanded="true" aria-controls="collapseRoybal">
+              <%=I18n.t('franchise.show.balance')%>
+            </h3>
+          </h4>
+        </div>
+        <div id="collapseRoybal" class="collapse" role="tabpanel" 
+          aria-labelledby="headingRoybal">
+          <div class="card-body">
+            <%= render :partial => 'admins/franchises/show/remittance_bal', :locals => {:franchise => @franchise} %>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <!--LATEST ROYALTY -->
     <div class = "card-group accordion-padgett" id="accordion" role="tablist"     aria-multiselectable="true">
       <div class = "card">
@@ -63,6 +83,46 @@
           aria-labelledby="headingRoy">
           <div class="card-body">
             <%= render :partial => 'admins/franchises/show/remittances', :locals => {:franchise => @franchise} %>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!--LATEST CHARGES -->
+    <div class = "card-group accordion-padgett" id="accordion" role="tablist"     aria-multiselectable="true">
+      <div class = "card">
+        <div class = "card-header card-background-padgett" role="tab"
+          id="headingCharges">
+          <h4 class="card-title">
+            <h3 class="collapsed"  role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseCharges" aria-expanded="true" aria-controls="collapseCharges">
+              <%=I18n.t('franchise.show.charges')%>
+            </h3>
+          </h4>
+        </div>
+        <div id="collapseCharges" class="collapse" role="tabpanel" 
+          aria-labelledby="headingCharges">
+          <div class="card-body">
+            <%= render :partial => 'admins/franchises/show/invoices', :locals => {:franchise => @franchise} %>
+          </div>
+        </div>
+      </div>
+    </div>
+
+     <!--LATEST PAYMENTS -->
+    <div class = "card-group accordion-padgett" id="accordion" role="tablist"     aria-multiselectable="true">
+      <div class = "card">
+        <div class = "card-header card-background-padgett" role="tab"
+          id="headingPayments">
+          <h4 class="card-title">
+            <h3 class="collapsed"  role="button" data-toggle="collapse" data-parent="#accordion" href="#collapsePayments" aria-expanded="true" aria-controls="collapsePayments">
+              <%=I18n.t('franchise.show.payments')%>
+            </h3>
+          </h4>
+        </div>
+        <div id="collapsePayments" class="collapse" role="tabpanel" 
+          aria-labelledby="headingPayments">
+          <div class="card-body">
+            <%= render :partial => 'admins/franchises/show/payments', :locals => {:franchise => @franchise} %>
           </div>
         </div>
       </div>
@@ -157,6 +217,7 @@
       </div>
     </div>
 
+
     <!--INSURANCE  -->
     <div class = "card-group accordion-padgett" id="accordion" role="tablist" 
          aria-multiselectable="true">
@@ -173,6 +234,28 @@
           aria-labelledby="headingInsurance">
           <div class="card-body">
             <%= render :partial => 'admins/franchises/show/insurance_details', :locals => {:franchise => @franchise} %>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    
+    <!--STATISTICS  -->
+    <div class = "card-group accordion-padgett" id="accordion" role="tablist" 
+         aria-multiselectable="true">
+      <div class = "card">
+        <div class = "card-header card-background-padgett" role="tab"
+          id="headingStats">
+          <h4 class="card-title">
+            <h3 class="collapsed"  role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseStats" aria-expanded="true" aria-controls="collapseStats">
+              <%=I18n.t('franchise.show.stats')%>
+            </h3>
+          </h4>
+        </div>
+        <div id="collapseStats" class="collapse" role="tabpanel" 
+          aria-labelledby="headingStats">
+          <div class="card-body">
+            <%= render :partial => 'admins/franchises/show/statistics', :locals => {:franchise => @franchise} %>
           </div>
         </div>
       </div>

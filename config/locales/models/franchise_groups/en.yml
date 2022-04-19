@@ -1,0 +1,32 @@
+en:
+  activerecord:
+    errors:
+      models:
+        franchise_group_master:
+          attributes:
+            group_handle:
+              blank: Group ID cannot be blank
+            group_description:
+              blank: Please enter group description
+  helpers:
+    label:
+      franchise_group_master:
+        group_handle: Group ID
+        group_description: Description
+  franchise_group:
+    object_name: Franchise Group
+    create:
+      confirm: Group Created Successfully
+    update:
+      confirm: Group Updated Successfully
+    delete:
+      confirm: Group Deleted Successfully
+      error: A Problem Occured Deleting Group
+    index:
+      create_group: Add Franchise Group
+    form:
+      edit_title: "Editing Franchise Group %{group_handle}"
+      create_title: New Franchise Group Information
+    
+
+

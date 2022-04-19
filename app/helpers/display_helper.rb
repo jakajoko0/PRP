@@ -151,6 +151,17 @@ def format_audited_events(audits)
 
   html.html_safe
 end
+
+def link_to_add_franchise_group_fields(name, f, association, display_class)
+    new_object = f.object.send(association).klass.new
+    id = new_object.object_id
+    fields = f.fields_for(association, new_object, child_index: id) do |builder|
+      render(association.to_s.singularize + "_fields", f: builder)
+    end
+       
+    link_to(name, '#', class: "#{display_class} add_items", id: "franchise_group_add_item_button", data: {id: id, fields: fields.gsub("\n", "")})
+  end
+
 def unformatted_audited_events(audits)
   txt = ""
   audits.audited_changes.each do |key,val|
@@ -166,8 +177,6 @@ def unformatted_audited_events(audits)
   txt
 end
 
-
-
 def payment_method_type(type)
   type == 'C' ? "Credit Card" : "ACH"
 end
@@ -176,14 +185,23 @@ def payment_method_name(type,name)
   type == 'B' ? name : credit_card_type(name)
 end
 
-
 def credit_card_type(type)
   case type
-      when 'V' then 'Visa'
-      when 'M' then 'MasterCard'
-      when 'I' then 'Discover'  
-      when 'A' then 'American Express'
-    end
+  when 'V' then 'Visa'
+  when 'M' then 'MasterCard'
+  when 'I' then 'Discover'  
+  when 'A' then 'American Express'
+  end
+end
+
+def franchise_select_options()
+  frans = Franchise.franchise_list_with_consol_flag
+  frans.map do |fran|
+    html_attributes = {}
+    html_attributes['style'] = 'color:blue' if fran.consol >0
+    display_value = fran.dropdown_list+ (fran.consol > 0 ? " **" : "")
+    [display_value, fran.id, html_attributes]
+  end
 end
 
 

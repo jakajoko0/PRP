@@ -1,0 +1,59 @@
+<div class = "card">
+  <form>
+    <div class = "card-body card-background-padgett">
+      <div class = 'form-row col-12'>
+        <!-- Record Collections -->
+        <div class="form-group form-row col-6">
+          <label class = "col-sm-6 col-md-4 col-lg-4 col-form-label label-bold">
+            <%=I18n.t('franchise.show.record_coll')%>
+          </label>
+          <div class = "col-sm-5 col-md-5 col-lg-8">
+            <div class= 'form-control-plaintext'>
+              <%=number_to_currency(franchise.max_collections, precision: 2)%>
+            </div>
+          </div>
+        </div>
+
+        <!-- Recorded On -->
+        <div class="form-group form-row col-6">
+          <label class = 'col-sm-6 col-md-4 col-lg-4 col-form-label  label-bold'>
+            <%=I18n.t('franchise.show.record_on')%>
+          </label>
+          <div class = "col-sm-5 col-md-5 col-lg-8">
+            <div class= 'form-control-plaintext'>
+              <%=I18n.t("date.month_names")[franchise.max_coll_month] if franchise.max_coll_month%><%= " of " +franchise.max_coll_year.to_s if franchise.max_coll_year%>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class = 'form-row col-12'>
+        <!-- Average Collections -->
+        <div class="form-group form-row col-6">
+          <label class = "col-sm-6 col-md-4 col-lg-4 col-form-label  label-bold">
+            <%=I18n.t('franchise.show.avg_coll')%>
+          </label>
+          <div class = "col-sm-5 col-md-5 col-lg-8">
+            <div class= 'form-control-plaintext'>
+              <%=number_to_currency(franchise.avg_collections, precision: 2)%>
+            </div>
+          </div>
+        </div>
+
+        <!-- Note -->
+        <div class="form-group form-row col-6">
+          <label class = 'col-sm-6 col-md-4 col-lg-4 col-form-label  label-bold'>
+            (<%=I18n.t('franchise.show.avg_note')%>)
+          </label>
+          <div class = "col-sm-5 col-md-5 col-lg-8">
+            <div class= 'form-control-plaintext'>
+            
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      
+    </div>
+  </form>
+</div> 

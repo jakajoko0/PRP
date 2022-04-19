@@ -1,3 +1,4 @@
+<%= form_for [:admins, @franchise] do |f| %>
 <div class = "card">
   <div class = "card-header login-header">
 
@@ -9,7 +10,7 @@
       <%end%>
     </h4>
   </div>
-  <%= form_for [:admins, franchise] do |f| %>
+  
     <%=f.hidden_field :mast, value: f.object.mast%>
     <%=f.hidden_field :area, value: f.object.area%>
     <div class = "card-body card-background-padgett">
@@ -58,52 +59,51 @@
           </div>   
   	    </div>
       </div>
-    <div class = "form-row col-12">
-  	  <!-- LAST NAME -->
-  	  <div class = "form-group form-row col-6">
-  	    <%=f.label :lastname, 
-          class: 'col-md-4 col-sm-4 col-lg-4 col-form-label-sm label-bold'%>
-        <div class = "col-sm-6 col-md-6 col-lg-5">
-      	  <%= f.text_field :lastname,
-      	    class: "form-control form-control-sm col", required: true%>
-        </div>   
-  	  </div>
-  	  <!-- FIRST NAME -->
-  	  <div class = "form-group form-row col-6">
-  	    <%=f.label :firstname, 
-          class: 'col-md-4 col-sm-4 col-lg-4 col-form-label-sm label-bold'%>
-        <div class = "col-sm-6 col-md-6 col-lg-5">
-      	  <%= f.text_field :firstname,
-      	    class: "form-control form-control-sm col", required: true%>
-        </div>   
-  	  </div>
+      <div class = "form-row col-12">
+  	    <!-- LAST NAME -->
+  	    <div class = "form-group form-row col-6">
+  	      <%=f.label :lastname, 
+            class: 'col-md-4 col-sm-4 col-lg-4 col-form-label-sm label-bold'%>
+          <div class = "col-sm-6 col-md-6 col-lg-5">
+      	    <%= f.text_field :lastname,
+      	      class: "form-control form-control-sm col", required: true%>
+          </div>   
+  	    </div>
+  	    <!-- FIRST NAME -->
+  	    <div class = "form-group form-row col-6">
+  	      <%=f.label :firstname, 
+            class: 'col-md-4 col-sm-4 col-lg-4 col-form-label-sm label-bold'%>
+          <div class = "col-sm-6 col-md-6 col-lg-5">
+      	    <%= f.text_field :firstname,
+      	      class: "form-control form-control-sm col", required: true%>
+          </div>   
+  	    </div>
+      </div>
+      <div class = "form-row col-12">
+  	    <!-- MIDDLE INITIAL -->
+  	    <div class = "form-group form-row col-6">
+  	      <%=f.label :initial, 
+            class: 'col-md-4 col-sm-4 col-lg-4 col-form-label-sm label-bold'%>
+          <div class = "col-sm-3 col-md-3 col-lg-2">
+      	    <%= f.text_field :initial,
+        	    class: "form-control form-control-sm col"%>
+          </div>   
+  	    </div>
+  	    <!-- SALUTATION -->
+  	    <div class = "form-group form-row col-6">
+  	      <%=f.label :salutation, 
+            class: 'col-md-4 col-sm-4 col-lg-4 col-form-label-sm label-bold'%>
+          <div class = "col-sm-3 col-md-3 col-lg-2">
+      	    <%= f.text_field :salutation,
+      	      class: "form-control form-control-sm col"%>
+          </div>   
+   	    </div>
+      </div>
+      <br />
+      <!-- Mailing , Shipping and Home Addressed -->
+      <%=render partial: "addresses", locals: {f: f}%>
     </div>
-    <div class = "form-row col-12">
-  	  <!-- MIDDLE INITIAL -->
-  	  <div class = "form-group form-row col-6">
-  	    <%=f.label :initial, 
-          class: 'col-md-4 col-sm-4 col-lg-4 col-form-label-sm label-bold'%>
-        <div class = "col-sm-3 col-md-3 col-lg-2">
-      	  <%= f.text_field :initial,
-        	  class: "form-control form-control-sm col"%>
-        </div>   
-  	  </div>
-  	  <!-- SALUTATION -->
-  	  <div class = "form-group form-row col-6">
-  	    <%=f.label :salutation, 
-          class: 'col-md-4 col-sm-4 col-lg-4 col-form-label-sm label-bold'%>
-        <div class = "col-sm-3 col-md-3 col-lg-2">
-      	  <%= f.text_field :salutation,
-      	    class: "form-control form-control-sm col"%>
-        </div>   
-   	  </div>
-    </div>
-  
-    <br />
-    <!-- Mailing , Shipping and Home Addressed -->
-    <%=render partial: "addresses", locals: {f: f}%>
-  </div>
- </div>  
+</div>  
 <br />
 <%=render partial: "numbers_emails", locals: {f: f}%>
 <br />
@@ -111,6 +111,9 @@
 <br />
 <%=render partial: "rebates", locals: {f: f}%>
 <br />
+<%=render partial: "consolidation", locals: {f: f}%>
+<br /> 
+
 <div class = "row col-6">
   <%=f.submit (I18n.t('franchise.form.save_btn')),
    class: 'btn btn-padgett col-md-3 col-lg-3',
@@ -121,8 +124,7 @@
     class: 'btn btn-padgett col-md-3 col-lg-3' %>
 </div>
 
-<%end%>
-
+  <%end%>  <!-- END FOR FORM -->
 
 
 

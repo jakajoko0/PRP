@@ -10,7 +10,8 @@ class NewRemittance
                  .franchise
                  .remittances.new(month: context.month,
                                   year: context.year,
-                                  status: :pending)
+                                  status: :pending,
+                                  franchise_number: current_user.franchise.franchise_number)
     @deposits = DepositTracking.get_sum_by_category(current_user.franchise_id, context.year, context.month)
 
     unless @deposits.nil?

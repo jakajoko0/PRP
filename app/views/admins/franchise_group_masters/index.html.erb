@@ -1,0 +1,46 @@
+<div class = "col-12">
+  <%=link_to new_admins_franchise_group_master_path,
+  data: {turbolinks: false} do%>
+    <button class = 'btn btn-padgett col-md-2'>
+      <%=I18n.t('franchise_group.index.create_group')%>
+    </button>
+  <%end%>
+</div>
+
+<br/>
+<div class = "col-12">
+  <!-- For each group we show a panel -->
+  <% @groups.each do |group| %>
+      <div class = "card-group accordion-padgett" id="accordion" role = "tablist" 
+      aria-multiselectable = "true">
+        <div class = "card">
+          <div class = "card-header card-background-padgett" role="tab" 
+          id="<%="heading#{group.group_handle}"%>">
+            <h4 class = "card-title">
+              <h3 class="collapsed float-left" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse<%="#{group.group_handle}"%>" aria-expanded="true" aria-controls="collapse<%="#{group.group_handle}"%>">
+                <%=group.group_handle%> <%=group.group_description%>
+              </h3>
+              <h3 class = "float-right">
+                <%=link_to edit_admins_franchise_group_master_path(group.id) do %>
+                  <i class="fa fa-edit
+                   pull-right" aria-hidden="true" data-html = "true" data-toggle="tooltip" title="Edit this group" data-placement ="right" data-container="body">
+                  </i>
+                <% end %>  
+              </h3>
+            </h4> 
+          </div>
+          <div id = "collapse<%="#{group.group_handle}"%>" class="collapse" role="tabpanel" aria-labelledby="heading<%="#{group.group_handle}"%>">
+            <div class = "card-body">
+              <div class = "row">
+                <%group.franchise_group_details.each do |detail|%>
+                  <label class= 'col-md-3 col-sm-3 col-lg-3 col-xs-4 control-label' style="<%=detail.franchise.consolidator? ? 'color:blue' : ''%>">
+                     <%=detail.franchise.number_and_name%> 
+                  </label>
+                <%end%>
+              </div>
+            </div>  
+          </div>  
+        </div>
+      </div>  
+  <%end%>       
+  </div>  

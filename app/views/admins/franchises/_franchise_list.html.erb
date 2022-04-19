@@ -24,7 +24,10 @@
         <th scope = "col" class = "td-center">
           <%=I18n.t('franchise.index.status')%>
         </th>
-      
+
+        <th scope = "col" class = "td-center">
+          Notes
+        </th>      
         <!-- Region  -->
         <th scope = "col" class = "td-center">
           <%=I18n.t('franchise.index.region')%>
@@ -60,6 +63,14 @@
               class = "td-center">
             <%=franchise_status(franchise)%>
           </td>
+
+          <!-- Note about consolidation etc -->
+          <td data-name = "Note"
+              scope = "col"
+              class = "td-center">
+              <%=franchise_consolidation_status(franchise)%>
+          </td>
+
         
           <!-- Region description  -->
           <td data-name="Region" 

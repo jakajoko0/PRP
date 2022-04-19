@@ -27,14 +27,14 @@
 	 		<!-- FRANCHISE NUMBER -->
     	<div class = "form-row col-12 col-sm-6">
     		<div class = "form-group form-row col-12">
-	 			  <%=f.label :franchise_id,
+	 			  <%=f.label :franchise_number,
 	  			    class: "col-md-4 col-sm-4 col-lg-4 col-xl-4
 	  			     col-form-label-sm label-bold"%>
 
-	  		  <%=f.text_field :fran_number,
+	  		  <%=f.text_field :franchise_number,
 	  			    class: "form-control form-control-sm col-xl-2 col-lg-2 col-md-3 col-sm-3 text-center",
-	  				  value: f.object.franchise.franchise_number,
-	  				  disabled: true%>
+	  				  value: f.object.franchise_number,
+	  				  readonly: true%>
   			</div>
   		</div>
   		<!-- FRANCHISE NAME -->

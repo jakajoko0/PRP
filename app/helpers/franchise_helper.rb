@@ -1,4 +1,24 @@
 module FranchiseHelper
+
+  def franchise_consolidation_status(fran)
+    rtn_html = ""
+    if fran.consolidated? || fran.consolidator? 
+        rtn_html += <<-HTML
+        <i class = "fas fa-sitemap fa-2x padgett-blue-icon"
+        aria-hidden = "true"
+        data-html = "true"
+        data-toggle = "tooltip"
+        title = "#{fran.consolidation_status}"
+        data-placement = "right"
+        data-container = "body">
+      </i>
+      HTML
+
+    end
+
+    rtn_html.html_safe    
+
+  end
   def franchise_status(fran)
   	rtn_html = ""
   	if fran.non_compliant == 1 
@@ -90,7 +110,6 @@ module FranchiseHelper
         route = new_admins_franchise_document_path(franchise_id: franchise.id)
         button_text = I18n.t('franchise_select.add_document')
       end
-
       rtn_html = <<-HTML     
         <td class = "text-nowrap" width="#{pct_width}%" style="text-align:right">
           <a data-turbolinks="false" href="#{route}" class="btn btn-sm btn-padgett">#{button_text}</a>
@@ -98,5 +117,15 @@ module FranchiseHelper
       HTML
     
     rtn_html.html_safe
+  end
+
+  def link_to_add_consolidation_fields(name, f, association, display_class)
+    new_object = f.object.send(association).klass.new
+    id = new_object.object_id
+    fields = f.fields_for(association, new_object, child_index: id) do |builder|
+      render(association.to_s.singularize + "_fields", f: builder)
+    end
+       
+    link_to(name, '#', class: "#{display_class} add_items", id: "franchises_add_item_button", data: {id: id, fields: fields.gsub("\n", "")})
   end
 end

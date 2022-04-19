@@ -17,7 +17,7 @@
       
       <!-- MANAGE FRANCHISE GROUPS-->  
       <li>
-        <%= link_to I18n.t('admin_menu.tool.fran_groups') , "#",
+        <%= link_to I18n.t('admin_menu.tool.fran_groups') , admins_franchise_group_masters_path,
           class: "dropdown-item" %>
       </li>
       <div class="dropdown-divider"></div>
@@ -83,11 +83,7 @@
             <%= link_to I18n.t('admin_menu.tool.report.users') , admins_portal_users_path,
               class: "dropdown-item" %>
           </li>
-          <!-- MISSING FRANCHISES-->  
-          <li>
-            <%= link_to I18n.t('admin_menu.tool.report.not_using') , "#",
-              class: "dropdown-item" %>
-          </li>
+          
         </ul>
       </li>
     </ul>

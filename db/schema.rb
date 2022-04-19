@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_09_01_131916) do
+ActiveRecord::Schema.define(version: 2021_12_30_004627) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -249,6 +249,14 @@ ActiveRecord::Schema.define(version: 2021_09_01_131916) do
     t.index ["franchise_id"], name: "index_financials_on_franchise_id"
   end
 
+  create_table "franchise_consolidations", force: :cascade do |t|
+    t.bigint "franchise_id"
+    t.string "franchise_number"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["franchise_id"], name: "index_franchise_consolidations_on_franchise_id"
+  end
+
   create_table "franchise_documents", force: :cascade do |t|
     t.bigint "franchise_id"
     t.string "description", null: false
@@ -256,6 +264,21 @@ ActiveRecord::Schema.define(version: 2021_09_01_131916) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["franchise_id"], name: "index_franchise_documents_on_franchise_id"
+  end
+
+  create_table "franchise_group_details", force: :cascade do |t|
+    t.string "franchise_number"
+    t.integer "franchise_id"
+    t.bigint "franchise_group_master_id"
+    t.index ["franchise_group_master_id"], name: "index_franchise_group_details_on_franchise_group_master_id"
+  end
+
+  create_table "franchise_group_masters", force: :cascade do |t|
+    t.string "group_handle", null: false
+    t.string "group_description", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["group_handle"], name: "franchise_group_master_index", unique: true
   end
 
   create_table "franchises", force: :cascade do |t|
@@ -436,6 +459,7 @@ ActiveRecord::Schema.define(version: 2021_09_01_131916) do
     t.decimal "other2", precision: 10, scale: 2, default: "0.0"
     t.string "slug"
     t.decimal "total_due", precision: 10, scale: 2, default: "0.0"
+    t.string "franchise_number"
     t.index ["franchise_id", "year", "month"], name: "index_remittances_on_franchise_id_and_year_and_month", unique: true
     t.index ["franchise_id"], name: "index_remittances_on_franchise_id"
     t.index ["month"], name: "index_remittances_on_month"
@@ -504,6 +528,7 @@ ActiveRecord::Schema.define(version: 2021_09_01_131916) do
   add_foreign_key "credit_cards", "franchises"
   add_foreign_key "deposit_trackings", "franchises"
   add_foreign_key "financials", "franchises"
+  add_foreign_key "franchise_consolidations", "franchises"
   add_foreign_key "franchise_documents", "franchises"
   add_foreign_key "insurances", "franchises"
   add_foreign_key "invoice_items", "invoices"

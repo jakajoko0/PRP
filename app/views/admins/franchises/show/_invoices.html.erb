@@ -1,0 +1,96 @@
+<div class = "card">
+  <div class = "card-body card-background-padgett">
+    <table class = "table
+           table-striped table-in-card">
+      <thead>
+        <tr>
+          <th scope="col" 
+              style="text-align:left">
+            <%=I18n.t('remittance.index.posted')%>
+          </th>
+          <th scope = "col" 
+              style = "text-align:center">
+            <%=I18n.t('remittance.index.year_month')%>
+          </th>
+          <th scope = "col" 
+              style = "text-align:right">
+            <%=I18n.t('remittance.index.collections')%>
+          </th>
+          <th scope = "col" 
+              style = "text-align:right">
+            <%=I18n.t('remittance.index.royalty')%>
+          </th>
+          <th scope = "col" 
+              style = "text-align:right">
+            <%=I18n.t('remittance.index.credits')%>
+          </th>
+          <th scope = "col" 
+              style = "text-align:right">
+            <%=I18n.t('remittance.index.total_due')%>
+          </th>
+          <th></th>
+          <th></th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <%franchise.remittances.fran_recent.each do |rem|%>
+          <tr>
+            
+            <td align="left" class = "text-nowrap">
+              <%=I18n.l(rem.date_posted.in_time_zone, format: :prp)%>
+            </td>
+            <td align="center" class = "text-nowrap">
+              <%="#{rem.year} / #{rem.month}"%>
+            </td>
+            <td align="right" class = "text-nowrap">
+              <%=number_to_currency(rem.total_collections, precision: 2)%>
+            </td>
+            <td align="right" class = "text-nowrap">
+              <%=number_to_currency(rem.royalty)%>
+            </td>
+            <td align="right" class = "text-nowrap">
+              <%=number_to_currency(rem.total_credits, precision: 2)%>
+            </td>
+            <td align="right" class = "text-nowrap">
+              <%=number_to_currency(rem.total_due, precision: 2)%>
+            </td>
+            
+            <td align = "center" class = "text-nowrap">
+              <%if can? :edit, rem %>
+                <%=link_with_icon(edit_admins_remittance_path(rem),
+                "edit",
+                I18n.t('remittance.index.edit_link'),
+                "",
+                false)%>
+              <%end%>
+            </td>
+            
+            <td align="center" class = "text-nowrap">
+              <%=link_with_icon(
+                admins_remittance_path(id:rem),
+                "show",
+                I18n.t('remittance.index.view_link'),
+                "",
+                false)%>
+            </td>
+
+            <td align="center" class = "text-nowrap">
+              <%if rem.audits.size > 0%>
+                <%=link_with_icon(
+                admins_remittances_audit_path(id:rem),
+                "audit",
+                I18n.t('remittance.index.audit_link'),
+                "",
+                false)%>
+              <%end%>    
+            </td>
+
+          </tr>
+        <%end%>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+                

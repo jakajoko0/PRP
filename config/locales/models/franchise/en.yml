@@ -123,6 +123,15 @@ en:
       insurance: Insurance
       documents: Documents
       return_btn: Return
+      payments: Latest Payments
+      charges: Latest Invoices
+      balance: Royalty Balance
+      stats: Statistics
+      record_coll: Record Collections
+      record_on: Recorded On
+      avg_coll: Average Collections
+      avg_note: Over the last 12 months
+
   franchise_select:
     title: Select a Franchise
     search: Search by First or Last Name
