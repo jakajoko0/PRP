@@ -81,10 +81,10 @@
           <!-- View Link if User can View -->
     	  	<td>
             <%= link_with_icon(
-                polymorphic_path(trans.transactionable),
-                "show",
-                "See this transaction",
-                false)%>
+            prp_transaction_destination(0,trans),
+              "show",
+              "See this transaction",
+              false)%>
           </td>
     	  </tr>
  	  	<%end%>

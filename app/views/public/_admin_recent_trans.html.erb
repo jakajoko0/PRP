@@ -81,7 +81,7 @@
             <!-- View Link if User can View -->
     	  	<td>
             <%= link_with_icon(
-              polymorphic_path([:admins,trans.transactionable]),
+            prp_transaction_destination(1,trans),
               "show",
               "See this transaction",
               false)%>

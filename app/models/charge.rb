@@ -1,0 +1,2 @@
+class Charge < PrpTransaction
+end

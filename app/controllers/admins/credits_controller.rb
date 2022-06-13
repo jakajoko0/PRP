@@ -2,7 +2,7 @@
 
 # For Admins to List, Add, Edit, Delete Credits
 class Admins::CreditsController < ApplicationController
-  before_action :set_credit, only: %i[audit edit update destroy]
+  before_action :set_credit, only: %i[audit edit update destroy show]
 
   def index
     @credits = PrpTransaction.all_credits
@@ -50,6 +50,9 @@ class Admins::CreditsController < ApplicationController
       @credit = result.credit
       render 'edit'
     end
+  end
+
+  def show
   end
 
   def destroy

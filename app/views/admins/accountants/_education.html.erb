@@ -42,6 +42,19 @@
         </div>
       </div>
 
+      <!-- EA -->
+      <div class = "form-group form-row col-6">
+        <%=acc.label :ea,
+        class: "col-md-4 col-sm-4 col-lg-4 
+                col-form-label-sm label-bold" %>
+        <div class = "col-sm-7 col-md-7 col-lg-7">
+          <%=acc.check_box :ea,
+          class: 'form-control form-control-sm col',
+          style: "width:15px;vertical-align:middle"%>
+        </div>
+      </div>
+    </div>
+    <div class = "form-row col-12">
       <!-- PTIN -->
       <div class = "form-group form-row col-6">
         <%=acc.label :ptin, "PTIN",

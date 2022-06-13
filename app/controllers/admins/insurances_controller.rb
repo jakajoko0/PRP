@@ -8,7 +8,7 @@ class Admins::InsurancesController < ApplicationController
   def index
     @insurances = Insurance.search(params[:search])
                            .order("#{sort_column} #{sort_direction}")
-                           .paginate(per_page: 10, page: params[:page])
+                           .paginate(per_page: 20, page: params[:page])
 
     authorize! :read, Insurance
   end

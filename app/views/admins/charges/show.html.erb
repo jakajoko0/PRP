@@ -1,0 +1,75 @@
+<div class = "row justify-content-center">
+  <div class = "col-12 col-sm-12 col-md-10 col-lg-10 col-xl-10">
+    <div class = "card">
+      <div class = "card-header login-header" style = "display:inline">
+        <h3 class = "float-left">
+          Charge Information
+        </h3>
+      </div>
+
+      <div class = "card-body">
+        <form>
+          <div class = "form-group form-row col-12">
+            <label class = "col-md-4 col-sm-4 col-lg-4 col-xl-3 col-form-label-sm label-bold">
+              Franchise
+            </label>
+            <div class = "form-control-plaintext col-8">
+              <%=@charge.franchise.number_and_name%>
+            </div>
+          </div>        
+      
+      
+      
+          <!-- Date -->
+          <div class = "form-group form-row col-12">
+            <label class = "col-md-4 col-sm-4 col-lg-4 col-xl-3 col-form-label-sm label-bold">
+              Date
+            </label>
+            <div class = "form-control-plaintext col-8">
+              <%=(I18n.l(@charge.date_posted, format: :notime) if @charge.date_posted)%>
+            </div>
+          </div>
+      
+          <div class = "form-group form-row col-12">
+            <label class = "col-md-4 col-sm-4 col-lg-4 col-xl-3 col-form-label-sm label-bold">
+              Code
+            </label>
+            <div class = "form-control-plaintext col-8">
+              <%=TransactionCode.description_from_code(@charge.trans_code) %>
+            </div>
+      
+          </div>
+     
+      
+      	
+          <div class = "form-group form-row col-12">
+              <label class = "col-md-4 col-sm-4 col-lg-4 col-xl-3 col-form-label-sm label-bold">
+                Note
+              </label>
+              <div class = "form-control-plaintext col-8">
+                <%= @charge.trans_description%>
+              </div>
+          
+          </div>
+
+          <div class = "form-group form-row col-12">
+              <label class = "col-md-4 col-sm-4 col-lg-4 col-xl-3 col-form-label-sm label-bold">
+                Amount
+              </label>
+              <div class = "form-control-plaintext col-8">
+                <%= number_with_precision(@charge.amount, precision: 2)%>
+              </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<br />
+<div class = "row justify-content-center">
+  
+  <div class = "col-12 col-sm-12 col-md-10 col-lg-10 col-xl-10">
+    <%=link_to "Back", :back, class: "btn btn-padgett col-md-3 col-lg-3 col-xl-2"%>
+  </div>
+
+</div>  

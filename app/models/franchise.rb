@@ -101,7 +101,7 @@ class Franchise < ApplicationRecord
   validates :lastname,   presence: true
   validates :firstname,  presence: true
   validates :email,      presence: true
-  validates :phone,      presence: true
+  validates :phone,      presence: true, allow_nil: true
   validates :start_date, presence: true
   validates :firm_id, length: { is: 6, message: :six_characters }, allow_blank: true, allow_nil: true
   validates :address,    presence: true

@@ -1,0 +1,2 @@
+class Credit < PrpTransaction
+end

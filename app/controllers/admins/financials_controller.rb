@@ -6,7 +6,7 @@ class Admins::FinancialsController < ApplicationController
   before_action :set_franchise, only: %i[create]
 
   def index
-    @financials = Financial.all_ordered
+    @financials = Financial.all_ordered.paginate(per_page: 20, page: params[:page])
     authorize! :read, Financial
   end
 

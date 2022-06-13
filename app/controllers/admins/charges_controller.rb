@@ -2,7 +2,7 @@
 
 # For Admins to List, Add, Edit, Delete Charges
 class Admins::ChargesController < ApplicationController
-  before_action :set_charge, only: %i[audit edit update destroy]
+  before_action :set_charge, only: %i[audit edit update destroy show]
 
   def index
     @charges = PrpTransaction.all_charges
@@ -36,6 +36,9 @@ class Admins::ChargesController < ApplicationController
 
   def edit
     authorize! :edit, @charge
+  end
+
+  def show
   end
 
   def update
