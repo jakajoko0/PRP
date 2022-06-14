@@ -147,6 +147,15 @@ class WorkScripts
     end
   end
 
+  def import_invoice_items
+    file = "#{Rails.root}/public/invoice_item.csv"
+    ActiveRecord::Base.transaction do
+      CSV.for_each(file, headers: true) do |row|
+       InvoiceItem.create!(row.to_hash)
+      end
+    end
+  end
+
   def format_phone(old_phone)
   	return " " if old_phone.nil?
   	striped_phone = old_phone.delete('()-')

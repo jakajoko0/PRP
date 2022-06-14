@@ -134,6 +134,7 @@ module UserpageService
     end
 
     def get_latest_roy_trans(franchise_id)
+      puts "FRANCHISE ID BEFORE CALL #{franchise_id}"
       PrpTransactionsQuery.new.latest_roy_trans(franchise_id)
     end
 

@@ -47,6 +47,8 @@ Rails.application.routes.draw do
     resources :franchises, only: [:edit, :update]
     resources :accountants, only: [:index,:show]
     resources :insurances, only: [:show]
+    resources :charges, only: [:show]
+    resources :credits, only: [:show]
     resources :bank_accounts
     resources :credit_cards
     resources :website_preferences, except: :destroy

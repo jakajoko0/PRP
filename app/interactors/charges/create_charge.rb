@@ -9,6 +9,7 @@ class CreateCharge
     unless context.params[:date_posted].blank?
       charge.date_posted = Date.strptime(context.params[:date_posted],
                                          I18n.translate('date.formats.default'))
+      charge.transactionable_type = "Charge"
     end
     if charge.save
       context.charge = charge

@@ -83,6 +83,9 @@ gem 'wkhtmltopdf-binary'
 gem 'caxlsx'
 gem 'caxlsx_rails'
 
+# CSV Import
+gem 'activerecord-import'
+
 # gem that creates fake values, mostly for testing
 gem 'faker'
 

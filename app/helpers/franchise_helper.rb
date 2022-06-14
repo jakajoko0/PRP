@@ -27,7 +27,7 @@ module FranchiseHelper
         aria-hidden="true" 
         data-html = "true" 
         data-toggle="tooltip" 
-        title="Non Compliant#{fran.non_compliant_reason.empty? ? '' : ' ('+fran.non_compliant_reason+')'} "
+        title="Non Compliant#{fran.non_compliant_reason.blank? ? '' : ' ('+fran.non_compliant_reason+')'} "
         data-placement = "right" data-container="body">
        </i>
        HTML
@@ -39,7 +39,7 @@ module FranchiseHelper
         aria-hidden="true" 
         data-html = "true" 
         data-toggle="tooltip" 
-        title="Inactive#{fran.term_reason.empty? ? '' : ' ('+fran.term_reason+')' } "
+        title="Inactive#{fran.term_reason.blank?  ? '' : ' ('+fran.term_reason+')' } "
         data-placement = "right" data-container="body">
        </i>
        HTML
@@ -52,7 +52,7 @@ module FranchiseHelper
         aria-hidden="true" 
         data-html = "true" 
         data-toggle="tooltip" 
-        title="Terminated On #{(l fran.term_date)} #{fran.term_reason.empty? ? '' : ' ('+fran.term_reason+')'}" 
+        title="Terminated On #{(l fran.term_date)} #{fran.term_reason.blank? ? '' : ' ('+fran.term_reason+')'}" 
         data-placement = "right" data-container="body">
        </i>
        HTML

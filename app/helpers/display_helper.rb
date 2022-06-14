@@ -1,8 +1,8 @@
 module DisplayHelper
   REGIONS = {1 => "Southeast", 2 => "Mid-Atlantic", 
              3 => "Northeast Corridor", 4 => "Mid-USA",
-             5 => "West", 6 => "Processing Center",
-             7 =>  "Corporate", 8 => "Home Office" }
+             5 => "West", 19 => "Processing Center",
+             20 =>  "Corporate", 0 => "Home Office" }
   
 
   #Throughout the app, we have the same links to 
@@ -134,6 +134,23 @@ def region_desc(region)
   REGIONS.fetch(region)
 end
 
+def prp_transaction_destination(admin = 0, trans)
+  path = ""
+  special = ["Charge", "Credit"]
+  if special.include?(trans.transactionable_type)
+ 
+    path = "/#{trans.transactionable_type.downcase.pluralize}/#{trans.id}"
+
+    path = admin == 1 ? "/admins"+path : path
+  else
+    path = polymorphic_path([:admins, trans.transactionable])
+  end
+
+  path
+
+
+
+end
 
 
 def format_audited_events(audits)

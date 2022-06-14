@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_12_30_004627) do
+ActiveRecord::Schema.define(version: 2022_05_10_000435) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -37,6 +37,7 @@ ActiveRecord::Schema.define(version: 2021_12_30_004627) do
     t.text "notes"
     t.string "slug"
     t.string "ptin", limit: 8
+    t.integer "ea", default: 0
     t.index ["accountant_num", "franchise_id"], name: "index_accountants_on_accountant_num_and_franchise_id", unique: true
     t.index ["franchise_id"], name: "index_accountants_on_franchise_id"
   end
@@ -287,17 +288,17 @@ ActiveRecord::Schema.define(version: 2021_12_30_004627) do
     t.integer "region", null: false
     t.string "franchise_number", null: false
     t.string "office", null: false
-    t.string "firm_id", null: false
+    t.string "firm_id"
     t.string "salutation"
     t.string "lastname", null: false
     t.string "firstname", null: false
     t.string "initial"
-    t.string "address", null: false
+    t.string "address"
     t.string "address2"
-    t.string "city", null: false
-    t.string "state", null: false
-    t.string "zip_code", null: false
-    t.string "email", null: false
+    t.string "city"
+    t.string "state"
+    t.string "zip_code"
+    t.string "email"
     t.string "ship_address"
     t.string "ship_address2"
     t.string "ship_city"
@@ -308,7 +309,7 @@ ActiveRecord::Schema.define(version: 2021_12_30_004627) do
     t.string "home_city"
     t.string "home_state"
     t.string "home_zip_code"
-    t.string "phone", null: false
+    t.string "phone"
     t.string "phone2"
     t.string "fax"
     t.string "mobile"
@@ -413,6 +414,15 @@ ActiveRecord::Schema.define(version: 2021_12_30_004627) do
     t.bigint "transactionable_id"
     t.index ["franchise_id"], name: "index_prp_transactions_on_franchise_id"
     t.index ["transactionable_type", "transactionable_id"], name: "index_prp_transactions_on_transactionable"
+  end
+
+  create_table "region_states", force: :cascade do |t|
+    t.bigint "region_id"
+    t.string "state_abb"
+    t.string "state"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["region_id"], name: "index_region_states_on_region_id"
   end
 
   create_table "regions", force: :cascade do |t|
@@ -535,6 +545,7 @@ ActiveRecord::Schema.define(version: 2021_12_30_004627) do
   add_foreign_key "invoices", "franchises"
   add_foreign_key "payments", "franchises"
   add_foreign_key "prp_transactions", "franchises"
+  add_foreign_key "region_states", "regions"
   add_foreign_key "remittances", "franchises"
   add_foreign_key "website_payments", "franchises"
   add_foreign_key "website_preferences", "franchises"

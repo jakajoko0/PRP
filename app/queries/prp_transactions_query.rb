@@ -6,7 +6,7 @@ class PrpTransactionsQuery
 
 	def latest_roy_trans(franchise_id)
 		sql = <<-SQL
-		  SELECT prp_transactions.id as transaction_id,
+		  SELECT prp_transactions.id as id,
 		  prp_transactions.date_posted as date_posted,
 		  prp_transactions.trans_type as trans_type,
 		  prp_transactions.trans_code as trans_code,
@@ -17,10 +17,10 @@ class PrpTransactionsQuery
 		  0.00 as balance
 		  FROM prp_transactions
 		  WHERE prp_transactions.franchise_id = ?
-		  AND ( prp_transactions.trans_type = 1 AND prp_transactions.transactionable_type != 'Invoice' )
-		  OR ( prp_transactions.trans_type = 2 )
+		  AND (( prp_transactions.trans_type = 1 AND prp_transactions.transactionable_type != 'Invoice' )
+		  OR ( prp_transactions.trans_type = 2 ))
 		  UNION
-		  SELECT prp_transactions.id as transaction_id,
+		  SELECT prp_transactions.id as id,
 		  prp_transactions.date_posted as date_posted,
 		  prp_transactions.trans_type as trans_type,
 		  prp_transactions.trans_code as trans_code,
@@ -33,9 +33,9 @@ class PrpTransactionsQuery
 		  WHERE prp_transactions.franchise_id = ?
 		  AND prp_transactions.trans_type = 3
 		  AND payments.invoice_payment = 0
-		  ORDER BY date_posted ASC , trans_type ASC, transaction_id ASC
+		  ORDER BY date_posted ASC , trans_type ASC, id ASC
 		SQL
-
+		puts "FRANCHISE ID: #{franchise_id}"
 		trans = PrpTransaction.find_by_sql([sql, franchise_id, franchise_id]).last(5)
 
 		bal = FranchisesQuery.new.get_royalty_balance(franchise_id) 
