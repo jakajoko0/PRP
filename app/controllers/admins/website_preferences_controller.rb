@@ -16,7 +16,7 @@ class Admins::WebsitePreferencesController < ApplicationController
     redirect_to root_url, notice: I18n.t('franchise_not_selected') unless params[:franchise_id]
     franchise_id = params[:franchise_id].to_i
     @current_franchise = Franchise.find(franchise_id)
-    @website_preference = WebsitePreference.new(franchise_id: franchise_id)
+    @website_preference = WebsitePreference.new(franchise_id: franchise_id, website_preference: 1)
     populate_dropdowns
     authorize! :new, @website_preference
   end
