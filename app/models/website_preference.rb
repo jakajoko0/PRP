@@ -54,9 +54,9 @@ class WebsitePreference < ApplicationRecord
 
   def current_fee
     if website_preference.zero?
-      99.00
+      150.00
     else
-      (website_preference == 1 ? 329.99 : 149.99)
+      (website_preference == 1 ? 150.00 : 150.00)
     end
   end
 

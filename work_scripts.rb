@@ -1,6 +1,10 @@
 class WorkScripts
   require 'csv'
   include ActionView::Helpers
+
+  def update_website_pref_defaults
+    WebsitePreference.update_all website_preference: 1
+  end
   
   def import_franchises
   	file = "#{Rails.root}/public/franchises.csv"
@@ -104,6 +108,7 @@ class WorkScripts
   end
 
   def import_unattached_receivable
+       #Change CSV to have transactionable_type = Charge
     items = []
     file = "#{Rails.root}/public/lone_rec.csv"
     ActiveRecord::Base.transaction do 
@@ -115,6 +120,7 @@ class WorkScripts
   end
 
   def import_unattached_credits
+    #Change CSV to have transactionable_type = Credit
     items = []
     file = "#{Rails.root}/public/lone_credits.csv"
     ActiveRecord::Base.transaction do
@@ -148,11 +154,64 @@ class WorkScripts
   end
 
   def import_invoice_items
-    file = "#{Rails.root}/public/invoice_item.csv"
+    file = "#{Rails.root}/public/invoice_detail.csv"
     ActiveRecord::Base.transaction do
-      CSV.for_each(file, headers: true) do |row|
+      CSV.foreach(file, headers: true) do |row|
        InvoiceItem.create!(row.to_hash)
       end
+    end
+  end
+
+  def import_invoice_receivable
+    items = []
+    file = "#{Rails.root}/public/invoice_rec.csv"
+    ActiveRecord::Base.transaction do 
+      CSV.foreach(file, headers: true) do |row|
+       items << row.to_h
+      end
+    PrpTransaction.import(items)
+    end
+  end
+
+  def import_royalties
+     #Change CSV to have transactionable_type = Credit
+    items = []
+    file = "#{Rails.root}/public/royalties.csv"
+    ActiveRecord::Base.transaction do
+      CSV.foreach(file, headers: true) do |row|
+        items << row.to_h
+      end
+      Remittance.import items, validate: false
+    end
+  end
+
+  def import_roy
+     #Change CSV to have transactionable_type = Credit
+    items = []
+    file = "#{Rails.root}/public/royal.csv"
+    ActiveRecord::Base.transaction do
+      CSV.foreach(file, headers: true) do |row|
+        Remittance.create! row.to_hash
+      end
+     
+    end
+  end
+
+  def import_royalty_credits
+    #Change CSV to have transactionable_type = Credit
+    items = []
+    file = "#{Rails.root}/public/roy_credits.csv"
+    ActiveRecord::Base.transaction do
+      CSV.foreach(file, headers: true) do |row|
+        items << row.to_h
+      end
+      PrpTransaction.import(items)
+    end
+  end
+  
+  def reset_primary_keys
+    ActiveRecord::Base.connection.tables.each do |t|
+      ActiveRecord::Base.connection.reset_pk_sequence!(t)
     end
   end
 

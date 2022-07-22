@@ -18,11 +18,11 @@ class Remittance < ApplicationRecord
 	scope :for_period, -> (year,month) { where(status: :posted, year: year, month: month) }
 	scope :all_ordered, -> { Remittance.includes(:franchise).order('year DESC, month DESC') }
 	scope :all_recent_pending, -> { Remittance.includes(:franchise).where(status: :pending).order('date_received DESC').limit(10) }
-  scope :all_recent_posted, -> { Remittance.includes(:franchise).where(status: :posted).order('date_posted DESC').limit(10) }
-  scope :all_pending, -> { Remittance.includes(:franchise).where(status: :pending).order('date_received DESC') }
-  scope :all_posted, -> { Remittance.includes(:franchise).where(status: :posted).order('date_posted DESC') }
-  # Scope for Franchise users
-  scope :franchise_all, -> (fran_id) { where(franchise_id: fran_id).order('year DESC, month DESC') }
+    scope :all_recent_posted, -> { Remittance.includes(:franchise).where(status: :posted).order('date_posted DESC').limit(10) }
+    scope :all_pending, -> { Remittance.includes(:franchise).where(status: :pending).order('date_received DESC') }
+    scope :all_posted, -> { Remittance.includes(:franchise).where(status: :posted).order('date_posted DESC') }
+    # Scope for Franchise users
+    scope :franchise_all, -> (fran_id) { where(franchise_id: fran_id).order('year DESC, month DESC') }
 	scope :fran_recent, -> { where(status: :posted).order('date_posted DESC').limit(5) }
 	scope :fran_pending, -> { where(status: :pending).order('date_received DESC') }
 	scope :fran_posted, -> { where(status: :posted).order('date_received DESC') }

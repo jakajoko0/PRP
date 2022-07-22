@@ -27,7 +27,7 @@
 
   <body data-controller="<%= controller_name %>"
         data-action="<%= action_name %>">
-        <%=  "MASQUERADE: #{user_masquerade?}"%>
+       
    <% if user_masquerade? %>
     <div class="alert-warning text-center" style="margin-bottom: 0px">
       You're masquerading as <%= current_user.franchise.lastname %>.
