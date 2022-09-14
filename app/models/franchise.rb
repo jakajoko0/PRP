@@ -194,11 +194,17 @@ class Franchise < ApplicationRecord
   #=================================================================
   # Method that search through the franchises based on search criterias
   # This is called from the find frachise screen
-  def self.search(search)
-    if search
-      where('lower(lastname) LIKE ? OR lower(firstname) LIKE ?', "%#{search.downcase}%", "%#{search.downcase}%")
+  def self.search(search,include_inactives = 0)
+    if include_inactives.to_i == 1
+      where_clause = ""
     else
-      where(nil)
+      where_clause = "inactive = 0"
+    end
+    
+    if search
+      where('lower(lastname) LIKE ? OR lower(firstname) LIKE ?', "%#{search.downcase}%", "%#{search.downcase}%").where(where_clause)
+    else
+      where(nil).where(where_clause)
     end
   end
 

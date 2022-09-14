@@ -50,13 +50,18 @@ $(document).on("franchises#edit:loaded franchises#new:loaded franchises#create:l
   });
 
 $(document).on("franchises#index:loaded", function() {
-$("#franchise_search input").keyup(function() 
+  $("#franchise_search input[type=text]").keyup(function() 
     {
     $.get($("#franchise_search").attr("action"), $("#franchise_search").serialize()+"&destination="+gon.destination,  null, "script");
     return false;
   });
 
+$("#franchise_search input[type=checkbox]").on('change', function() { 
+      $.get($("#franchise_search").attr("action"), $("#franchise_search").serialize()+"&destination="+gon.destination,  null, "script");
+      return false;
+    })
+
 });
-  
+
 
 

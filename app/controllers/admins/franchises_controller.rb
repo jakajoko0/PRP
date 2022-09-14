@@ -6,7 +6,7 @@ class Admins::FranchisesController < ApplicationController
   before_action :set_franchise, only: %i[show edit update audit]
 
   def index
-    @franchises = Franchise.includes(:franchise_consolidations).search(params[:search])
+    @franchises = Franchise.includes(:franchise_consolidations).search(params[:search], params[:show_inactives])
                            .order("#{sort_column} #{sort_direction}")
                            .paginate(per_page: 20, page: params[:page])
     authorize! :read, Franchise

@@ -8,7 +8,7 @@ class Admins::FranchisesSelectController < ApplicationController
     @destination = params[:destination]
     # Pass the destination to javascript
     gon.destination = @destination
-    @franchises = Franchise.search(params[:search])
+    @franchises = Franchise.search(params[:search], params[:show_inactives])
                            .order("#{sort_column} #{sort_direction}")
                            .paginate(per_page: 20, page: params[:page])
     authorize! :read, Franchise
