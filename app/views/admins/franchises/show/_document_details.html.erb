@@ -45,7 +45,7 @@
               <%=number_to_human_size(fdoc.document.byte_size)%>
             </td>
             <td align="left" class = "text-nowrap">
-              <%=link_to (fdoc.document.filename), fdoc.document.service_url(disposition: 'attachment')%>
+              <%=link_to (fdoc.document.filename), rails_blob_url(fdoc.document, disposition: 'attachment')%>
             </td>
 
             <%if can? :delete, fdoc %>

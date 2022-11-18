@@ -35,6 +35,10 @@ Rails.application.routes.draw do
   get '/signup' => 'signups#index'
   post '/signup' => 'signups#create'
 
+  scope module: :integrations , constraints: { format: 'json' } do
+    put '/integrations/franchise/:id' => 'franchise_integrations#update'
+  end 
+
   # Authenticated route to show specific Dashboard for users
   authenticated :user do 
   	root to: 'public#userpage', as: "authenticated_user" 
