@@ -19,6 +19,7 @@ class User < ApplicationRecord
     Errno::ECONNREFUSED]
   ROLES = {"full_control" => "Full Control", "can_pay" => "Entry and Payments", "data_entry" => "Data Entry Only"}
   belongs_to :franchise
+  has_many :api_keys, as: :bearer
   
   devise :database_authenticatable,
          :recoverable, :rememberable,
