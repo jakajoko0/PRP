@@ -3,7 +3,7 @@
 class WebsitePreference < ApplicationRecord
   PREFERENCES = { 0 => 'Basic',
                   1 => 'Custom',
-                  2 => 'Basic & Link' }.freeze
+                  2 => 'Dual Custom' }.freeze
   
   attr_accessor :card_token, :bank_token                  
   
@@ -56,7 +56,7 @@ class WebsitePreference < ApplicationRecord
     if website_preference.zero?
       150.00
     else
-      (website_preference == 1 ? 150.00 : 150.00)
+      (website_preference == 1 ? 150.00 : 300.00)
     end
   end
 

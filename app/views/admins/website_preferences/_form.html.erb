@@ -27,12 +27,22 @@
     	    
 	  	  	<!-- CUSTOM OPTION -->        
 	  	  	<div class = "col-sm-3 col-md-3 col-lg-2 col-xl-2 radio-toolbar">
-      	    <%=f.radio_button :website_preference, 1, disabled: true%>
+      	    <%=f.radio_button :website_preference, 1, disabled: false%>
       	    <%=f.label :website_preference,
       	    I18n.t('website_preference.form.customized_option'),
       	    value: 1,
       	    class: "col-form-label col-form-label-sm col-12 ",
       	    style: "text-align:center"%>
+      	  </div>
+
+          <!-- DUAL -->
+	  	  	<div class = "col-sm-3 col-md-3 col-lg-2 col-xl-2 radio-toolbar">
+      	    <%=f.radio_button :website_preference, 2, disabled: false %>
+      	    <%=f.label :website_preference,
+      	      I18n.t('website_preference.form.dual_option'),
+      	      value: 2,
+      	      class: "col-form-label col-form-label-sm col-12 ",
+      	      style: "text-align:center"%>
       	  </div>
     	    
     	    

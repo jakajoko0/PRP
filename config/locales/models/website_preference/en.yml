@@ -50,7 +50,9 @@ en:
       basic_option: Basic
       basic_desc: Listing Only at $99 per month
       customized_option: Custom
-      customized_desc: Customized website at $329 per month
+      customized_desc: Customized website at $150 per month
+      dual_option: Dual Custom
+      dual_desc: Dual Customized website at $300 per month
       special_option: Special
       special_desc: Basic with a Link to Owner Site at $149 per month
       credit_card_ddw_val: Credit Card
