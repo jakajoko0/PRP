@@ -34,6 +34,8 @@ en:
         payroll_processing_desc: Receipts from the performance of payroll procssing 
         other_consult: Consulting
         other_consult_desc: Receipts from the performance of special project work.&#013;May be ongoing or one time        
+        erc: ERC
+        erc_desc: If you did not track ERC revenue, please enter your best estimate.&#013; Remember to remove ERC revenue from the original&#013;category you used in order to eliminate duplicates.
         total_revenues: Total Revenues
         total_revenues_desc: Total receipts deposited or received for the period
         payroll_operation: Payroll - Operations
@@ -135,6 +137,14 @@ en:
         quarterly_clients_desc: Total Number of Quarterly Clients
         total_quarterly_fees: Total Quarterly Fees
         total_quarterly_fees_desc: Total Fees for One Quarter
+        ind_tax_returns: Individual Tax Returns
+        ind_tax_returns_desc: Total Number of Individual Tax Returns
+        ind_tax_returns_revenues: Individual Tax Returns Revenues
+        ind_tax_returns_revenues_desc: Total Revenues for Individual Tax Returns
+        entity_tax_returns: Entity Tax Returns
+        entity_tax_returns_desc: Total Number of Entity Tax Returns
+        entity_tax_returns_revenues:  Entity Tax Returns Revenues
+        entity_tax_returns_revenues_desc: Total Revenues for Entity Tax Returns
         custom_accounts_desc: Use this account only if absolutely necessary&#013;Describe how each account is used.
         client_counts_desc: Enter total monthly and quarterly clients&#013;with respectivetotal fees collected 
 
