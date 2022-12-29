@@ -82,8 +82,8 @@ class FranchisesQuery
   end
 
   def amount_due(franchise_id, target_date)
-    credits = PrpTransaction.where("franchise_id = ? AND trans_type IN (?) AND  date_posted <= ?", franchise_id, [2,3], target_date ).sum(:amount)
-    debits = PrpTransaction.where("franchise_id = ? AND trans_type = ? AND date_posted <= ?",franchise_id, 1, target_date).sum(:amount)
+    credits = PrpTransaction.where("franchise_id = ? AND trans_type IN (?) AND  date_posted <= ?", franchise_id, [2,3], target_date.to_time.end_of_day.utc ).sum(:amount)
+    debits = PrpTransaction.where("franchise_id = ? AND trans_type = ? AND date_posted <= ?",franchise_id, 1, target_date.to_time.end_of_day.utc).sum(:amount)
     return debits - credits
   end
 

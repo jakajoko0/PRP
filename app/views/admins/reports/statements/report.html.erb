@@ -47,7 +47,7 @@
 	      <%@activity.each do |activity|%>
 	        <tr>
 	          <td data-name="Date">
-		          <%=(I18n.l activity.date_posted, format: :notime)%>
+		          <%=(I18n.l activity.date_posted.in_time_zone, format: :notime)%>
 		        </td>
 		  
 		  	    <td data-name="Type">
