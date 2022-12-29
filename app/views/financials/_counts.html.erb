@@ -1,12 +1,12 @@
 <div class = "card">
-	<div class = "card-header login-header">
+  <div class = "card-header login-header">
 		<h4>
 			Client Counts & Total Fees <%=bubble_help(I18n.t('helpers.label.financial.client_counts_desc'),"right")%>
 		</h4>
 	</div>
 
-<%label_classes = "col-md-8 col-sm-9 col-lg-7 col-xl-7 col-form-label-sm label-bold"%>
-<%field_classes = "form-control form-control-sm text-right col-xl-4 col-lg-4 col-md-4 col-sm-3"%>
+  <%label_classes = "col-md-8 col-sm-9 col-lg-7 col-xl-7 col-form-label-sm label-bold"%>
+  <%field_classes = "form-control form-control-sm text-right col-xl-4 col-lg-4 col-md-4 col-sm-3"%>
 
 	<div class = "card-body card-background-padgett">
 		<div class = "row">
@@ -32,6 +32,30 @@
 	  			  <%end%>
 
 	  			  <%=f.number_field :quarterly_clients, 
+	  			    step: "any", 
+	  			    class: "#{field_classes}"%>
+				  </div>
+
+				  <div class = "form-group form-row col-sm-12">
+						<%=f.label :ind_tax_returns ,
+						class: "#{label_classes}" do %>
+	  			      <%= I18n.t('helpers.label.financial.ind_tax_returns')%> 
+	  			      <%=bubble_help(I18n.t('helpers.label.financial.ind_tax_returns_desc'),"right")%>
+	  			  <%end%>
+
+	  			  <%=f.number_field :ind_tax_returns, 
+	  			    step: "any", 
+	  			    class: "#{field_classes}"%>
+				  </div>
+
+				  <div class = "form-group form-row col-sm-12">
+						<%=f.label :entity_tax_returns ,
+						class: "#{label_classes}" do %>
+	  			      <%= I18n.t('helpers.label.financial.entity_tax_returns')%> 
+	  			      <%=bubble_help(I18n.t('helpers.label.financial.entity_tax_returns_desc'),"right")%>
+	  			  <%end%>
+
+	  			  <%=f.number_field :entity_tax_returns, 
 	  			    step: "any", 
 	  			    class: "#{field_classes}"%>
 				  </div>
@@ -64,6 +88,32 @@
 	  			    step: "any", 
 	  			    class: "#{field_classes}",
 	  			    	value: (number_with_precision(f.object.total_quarterly_fees, precision: 2))%>
+				  </div>
+
+				  <div class = "form-group form-row col-sm-12">
+						<%=f.label :ind_tax_returns_revenues ,
+						class: "#{label_classes}" do %>
+	  			      <%= I18n.t('helpers.label.financial.ind_tax_returns_revenues')%> 
+	  			      <%=bubble_help(I18n.t('helpers.label.financial.ind_tax_returns_revenues_desc'),"right")%>
+	  			  <%end%>
+
+	  			  <%=f.number_field :ind_tax_returns_revenues, 
+	  			    step: "any", 
+	  			    class: "#{field_classes}",
+	  			    	value: (number_with_precision(f.object.ind_tax_returns_revenues, precision: 2))%>
+				  </div>
+
+				  <div class = "form-group form-row col-sm-12">
+						<%=f.label :entity_tax_returns_revenues ,
+						class: "#{label_classes}" do %>
+	  			      <%= I18n.t('helpers.label.financial.entity_tax_returns_revenues')%> 
+	  			      <%=bubble_help(I18n.t('helpers.label.financial.entity_tax_returns_revenues_desc'),"right")%>
+	  			  <%end%>
+
+	  			  <%=f.number_field :entity_tax_returns_revenues, 
+	  			    step: "any", 
+	  			    class: "#{field_classes}",
+	  			    	value: (number_with_precision(f.object.entity_tax_returns_revenues, precision: 2))%>
 				  </div>
 				</div>
 			</div>

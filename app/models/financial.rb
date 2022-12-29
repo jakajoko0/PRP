@@ -11,8 +11,8 @@ class Financial < ApplicationRecord
   scope :all_ordered, -> { Financial.includes(:franchise).order('year DESC, id DESC') }
   scope :for_franchise, ->(fran_id) { where(franchise_id: fran_id).order('year DESC') }
 
-  REVENUE_ATTRIBUTES = %w[acct_monthly acct_startup acct_backwork tax_prep payroll_processing other_consult].freeze
-  REVENUE_DESC = %w[Accounting\ Monthly Startup Backwork Tax\ Preparation Payroll\ Processing Consulting].freeze
+  REVENUE_ATTRIBUTES = %w[acct_monthly acct_startup acct_backwork tax_prep payroll_processing other_consult erc].freeze
+  REVENUE_DESC = %w[Accounting\ Monthly Startup Backwork Tax\ Preparation Payroll\ Processing Consulting ERC].freeze
   EXPENSE_ATTRIBUTES = %w[payroll_operation owner_wages owner_payroll_taxes payroll_taxes_ben_ee insurance_business
                           supplies legal_accounting marketing rent outside_labor vehicles travel utilities licenses_taxes postage repairs interests meals_entertainment bank_charges contributions office miscellaneous equipment_lease dues_subscriptions bad_debt continuing_ed property_tax telephone_data_internet software royalties marketing_material owner_health_ins owner_vehicle owner_ira_contrib amortization depreciation payroll_process_fees].freeze
   EXPENSE_DESC = %w[Payroll\ -\ Operations Owner\ -\ Salary Owner\ -\ Payroll\ taxes Payroll\ taxes\ &\ Benefits\ EE
@@ -22,7 +22,7 @@ class Financial < ApplicationRecord
   OTHER_EXPENSES = %w[other_expense prov_income_tax other1 other2 other3].freeze
   OTHER_EXPENSE_DESC = %w[Other\ Expense Prov.\ for\ Income\ Tax Other1 Other2 Other3].freeze
 
-  CLIENT_COUNTS = %w[monthly_clients total_monthly_fees quarterly_clients total_quarterly_fees].freeze
+  CLIENT_COUNTS = %w[monthly_clients total_monthly_fees quarterly_clients total_quarterly_fees ind_tax_returns ind_tax_returns_revenues entity_tax_returns entity_tax_returns_revenues].freeze
 
   EXPENSE_ATTRIBUTES_REPORT = %w[payroll_operation owner_wages owner_payroll_taxes payroll_taxes_ben_ee
                                  total_payroll_expense insurance_business supplies legal_accounting marketing rent outside_labor vehicles travel utilities licenses_taxes postage repairs interests meals_entertainment bank_charges contributions office miscellaneous equipment_lease dues_subscriptions bad_debt property_tax telephone_data_internet royalties marketing_material accounting_costs owner_health_ins owner_vehicle owner_ira_contrib depreciation_and_amortization payroll_process_fees].freeze

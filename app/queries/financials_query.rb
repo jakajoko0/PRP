@@ -50,6 +50,12 @@ class FinancialsQuery
         financials.quarterly_clients,
         financials.total_quarterly_fees,
         cast(total_quarterly_fees as float) / CASE quarterly_clients WHEN 0 THEN cast(1 as float) ELSE cast(quarterly_clients as float) END as average_quarterly_fees,
+        financials.ind_tax_returns,
+        financials.ind_tax_returns_revenues,
+        cast(ind_tax_returns_revenues as float) / CASE ind_tax_returns WHEN 0 THEN cast(1 as float) ELSE cast(ind_tax_returns as float) END as average_ind_tax_return,
+        financials.entity_tax_returns,
+        financials.entity_tax_returns_revenues,
+        cast(entity_tax_returns_revenues as float) / CASE entity_tax_returns WHEN 0 THEN cast(1 as float) ELSE cast(entity_tax_returns as float) END as average_entity_tax_return,
         financials.id as unique_id,
         franchises.franchise_number as franchise_number,
         franchises.lastname as lastname,
@@ -71,6 +77,12 @@ class FinancialsQuery
       SUM(financials.quarterly_clients) as quarterly_clients,
       SUM(financials.total_quarterly_fees) as total_quarterly_fees, 
       SUM(cast(total_quarterly_fees as float) / CASE quarterly_clients WHEN 0 THEN cast(1 as float) ELSE cast(quarterly_clients as float) END) as average_quarterly_fees,
+      SUM(financials.ind_tax_returns) as ind_tax_returns,
+      SUM(financials.ind_tax_returns_revenues) as ind_tax_returns_revenues,
+      SUM(cast(ind_tax_returns_revenues as float) / CASE ind_tax_returns WHEN 0 THEN cast(1 as float) ELSE cast(ind_tax_returns as float) END) as average_ind_tax_returns,
+      SUM(financials.entity_tax_returns) as entity_tax_returns,
+      SUM(financials.entity_tax_returns_revenues) as entity_tax_returns_revenues,
+      SUM(cast(entity_tax_returns_revenues as float) / CASE entity_tax_returns WHEN 0 THEN cast(1 as float) ELSE cast(entity_tax_returns as float) END) as average_entity_tax_returns,
       99999 as unique_id,
       'XXX' as fran_number,
       'TOTAL LAST' as lastname,
@@ -95,12 +107,14 @@ class FinancialsQuery
        financials.tax_prep, 
        financials.payroll_processing,
        financials.other_consult,
+       financials.erc,
        (financials.acct_monthly+ 
        financials.acct_startup+ 
        financials.acct_backwork+ 
        financials.tax_prep+ 
        financials.payroll_processing+
-       financials.other_consult) as total_revenue,
+       financials.other_consult+
+       financials.erc) as total_revenue,
        financials.payroll_operation, 
        financials.owner_wages, 
        financials.owner_payroll_taxes, 
@@ -215,6 +229,7 @@ class FinancialsQuery
         aggregation.tax_prep,
         aggregation.payroll_processing,
         aggregation.other_consult,
+        aggregation.erc,
         aggregation.total_revenue,
         aggregation.payroll_operation,
         aggregation.owner_wages,
@@ -283,6 +298,7 @@ class FinancialsQuery
         SUM(aggregation.tax_prep) as tax_prep,
         SUM(aggregation.payroll_processing) as payroll_processing,
         SUM(aggregation.other_consult) as other_consult,
+        SUM(aggregation.erc) as erc,
         SUM(aggregation.total_revenue) as total_revenue,
         SUM(aggregation.payroll_operation) as payroll_operation,
         SUM(aggregation.owner_wages) as owner_wages,

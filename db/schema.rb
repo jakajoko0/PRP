@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_11_17_225855) do
+ActiveRecord::Schema.define(version: 2022_12_29_014117) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -257,6 +257,11 @@ ActiveRecord::Schema.define(version: 2022_11_17_225855) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "slug"
+    t.decimal "erc", precision: 12, scale: 2, default: "0.0"
+    t.integer "ind_tax_returns", default: 0
+    t.decimal "ind_tax_returns_revenues", precision: 12, scale: 2, default: "0.0"
+    t.integer "entity_tax_returns", default: 0
+    t.decimal "entity_tax_returns_revenues", precision: 12, scale: 2, default: "0.0"
     t.index ["franchise_id"], name: "index_financials_on_franchise_id"
   end
 
