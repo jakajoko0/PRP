@@ -12,7 +12,7 @@ def report
   @results = []
   
   
-  @results = FranchisesQuery.new.amounts_due(@target_date.end_of_day)
+  @results = FranchisesQuery.new.amounts_due(@target_date)
   total_due = @results.reduce(0) {|sum,f| sum + f.balance}
   
 

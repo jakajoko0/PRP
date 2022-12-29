@@ -14,12 +14,14 @@ def report
   @start_date = Date.strptime(params[:start_date], I18n.translate('date.formats.default'))
   @end_date = Date.strptime(params[:end_date], I18n.translate('date.formats.default'))
   target_start = @start_date-1.day
-  target_start = target_start.end_of_day
-  target_end = @end_date.end_of_day
-  
-  
+  target_start = target_start
+  target_end = @end_date
+
+
   @opening_balance = StatementsQuery.new.balance_on(@franchise_id, target_start)
-  @activity = StatementsQuery.new.statement_activity(@franchise_id,@start_date, @end_date )
+ 
+  @activity = StatementsQuery.new.statement_activity(@franchise_id,@start_date.to_time, @end_date.to_time )
+
   @closing_balance = StatementsQuery.new.balance_on(@franchise_id, target_end)
   title = format_report_title([
     I18n.t('reports.statement.title', start: 
