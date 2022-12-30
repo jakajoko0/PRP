@@ -139,6 +139,10 @@
       quarterly_clients: Quarterly Clients
       total_quarterly_fees: Total Quarterly Fees
       average_quarter_fees: Average Quarterly Fees
+      ind_tax_returns: Individual Tax Returns
+      ind_tax_returns_revenues: Revenues from Individual Tax Returns
+      entity_tax_returns: Entity Tax Returns
+      entity_tax_returns_revenues: Revenues from Entity Tax Returns
       totals: Totals
     financial_aggregation:
       title: Financial Aggregation
