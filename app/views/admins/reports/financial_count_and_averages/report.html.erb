@@ -39,6 +39,24 @@
  		    <th class = "td-right" style="width:10%">
   		    <%=I18n.t('reports.financial_count_averages.average_quarter_fees')%>
  		    </th>
+
+ 		    <th class = "td-right" style="width:10%">
+  		    <%=I18n.t('reports.financial_count_averages.ind_tax_returns')%>
+ 		    </th>
+
+ 		    <th class = "td-right" style="width:10%">
+  		    <%=I18n.t('reports.financial_count_averages.ind_tax_returns_revenues')%>
+ 		    </th>
+
+ 		    <th class = "td-right" style="width:10%">
+  		    <%=I18n.t('reports.financial_count_averages.entity_tax_returns')%>
+ 		    </th>
+
+ 		    <th class = "td-right" style="width:10%">
+  		    <%=I18n.t('reports.financial_count_averages.entity_tax_returns_revenues')%>
+ 		    </th>
+
+
       
 		  </tr>
 	  </thead>
@@ -74,6 +92,24 @@
 		  			<td  data-name="Average Quarterly Fees" class = "td-right" style="width:10%">
 		  				<%=number_to_currency(count.average_quarterly_fees, precision: 2 )%>
 		  			</td>
+
+		  			<td  data-name="Individual Tax Returns" class = "td-center" style="width:10%">
+		  				<%=count.ind_tax_returns%>
+		  			</td>
+
+		  			<td  data-name="Revenues from Individual Tax Returns" class = "td-right" style="width:10%">
+		  				<%=number_to_currency(count.ind_tax_returns_revenues, precision: 2 )%>
+		  			</td>
+
+		  			<td  data-name="Entity Tax Returns" class = "td-center" style="width:10%">
+		  				<%=count.entity_tax_returns%>
+		  			</td>
+
+		  			<td  data-name="Revenues from Individual Tax Returns" class = "td-right" style="width:10%">
+		  				<%=number_to_currency(count.entity_tax_returns_revenues, precision: 2 )%>
+		  			</td>
+
+
 	  			
 					</tr>
 				<%end%>
@@ -112,6 +148,22 @@
 
   			<td class = "td-right" style="width:10%">
   				<%=number_to_currency(@report_info[:totals].average_monthly_fees, precision: 2)%>
+  			</td>
+
+  			<td class = "td-center" style="width:10%">
+  				<%=@report_info[:totals].ind_tax_returns%>
+  			</td>
+
+  			<td class = "td-right" style="width:10%">
+  				<%=number_to_currency(@report_info[:totals].ind_tax_returns_revenues, precision: 2)%>
+  			</td>
+
+  			<td class = "td-center" style="width:10%">
+  				<%=@report_info[:totals].entity_tax_returns%>
+  			</td>
+
+  			<td class = "td-right" style="width:10%">
+  				<%=number_to_currency(@report_info[:totals].entity_tax_returns_revenues, precision: 2)%>
   			</td>
 
   		</tr>
