@@ -451,7 +451,7 @@ headers = [I18n.t('reports.financial_aggregation.franchise')]+
   'Financial Report'!AN#{total_rows[0]} +
   'Financial Report'!AS#{total_rows[0]} ",
   "='Financial Report'!Q#{total_rows[1]} +
-  'Financial Report'!AE#{total_rows[1]} +
+  'Financial Report'!AD#{total_rows[1]} +
   'Financial Report'!AF#{total_rows[1]} +
   'Financial Report'!AH#{total_rows[1]} +
   'Financial Report'!AN#{total_rows[1]} +
