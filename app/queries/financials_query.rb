@@ -359,8 +359,7 @@ class FinancialsQuery
         '' as zip_code,
         COUNT(*) as franchise_count
         FROM aggregation
-        WHERE #{tier[:filter]}
-        AND EXISTS( SELECT * FROM aggregation WHERE #{tier[:filter]}) UNION "
+        WHERE #{tier[:filter]} UNION "
        end
 
        sql.delete_suffix!("UNION ")
