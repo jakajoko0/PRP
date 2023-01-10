@@ -2,8 +2,8 @@ class Integrations::FranchiseIntegrationsController < ApiController
 	include ApiKeyAuthenticatable
 
   # Require API key authentication
-  before_action :authenticate_with_api_key, only: %i[update]
-	before_action :set_franchise, only: [:update]
+  before_action :authenticate_with_api_key, only: %i[update show]
+	before_action :set_franchise, only: [:update, :show]
 
 	def update
 		fp = franchise_params
@@ -15,8 +15,10 @@ class Integrations::FranchiseIntegrationsController < ApiController
 		@franchise.save!
 
 		render json: @franchise
+	end
 
-
+	def show
+		render json: @franchise
 	end
 
 
