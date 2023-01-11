@@ -2,7 +2,7 @@ class Integrations::FranchiseIntegrationsController < ApiController
 	include ApiKeyAuthenticatable
 
   # Require API key authentication
-  before_action :authenticate_with_api_key, only: %i[update show]
+  before_action :authenticate_with_api_key, only: %i[update show index]
 	before_action :set_franchise, only: [:update, :show]
 
 	def update
@@ -19,6 +19,15 @@ class Integrations::FranchiseIntegrationsController < ApiController
 
 	def show
 		render json: @franchise
+	end
+
+	def index
+		@frans = Franchise.where.not(region: ['19','20']).order(franchise: :asc)
+		if franchise_index_params[:include_inactives].to_i == 0
+			@frans = @frans.where(inactive: 0)
+		end
+
+		render json: @frans
 	end
 
 
@@ -41,6 +50,11 @@ class Integrations::FranchiseIntegrationsController < ApiController
                   :advanced_rebate, :minimum_royalty, :show_exempt_collect, :term_date,
                   :term_reason, :inactive)
 
+	end
+
+	def franchise_index_params
+		params.require(:franchise)
+		.permit(:include_inactives)
 	end
 
   def set_dates(fp)

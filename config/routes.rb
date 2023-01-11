@@ -38,6 +38,7 @@ Rails.application.routes.draw do
   scope module: :integrations , constraints: { format: 'json' } do
     put '/integrations/franchise/:id' => 'franchise_integrations#update'
     get '/integrations/franchise/:id' => 'franchise_integrations#show'
+    get '/integrations/franchises' => 'franchise_integrations#index'
   end 
 
   # Authenticated route to show specific Dashboard for users
