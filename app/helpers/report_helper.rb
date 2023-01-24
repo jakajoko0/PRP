@@ -38,6 +38,25 @@ module ReportHelper
 		html.html_safe
 	end
 
+	def consolidate_data(fieldname,rowclass,labelclass,selectclass)
+		html = <<-HTML
+		<div class = "#{rowclass}">
+			<label class = "#{labelclass}" for="#{fieldname}">#{I18n.t('reports.general.consolidate_data')}</label>
+			<div class = "#{selectclass}">
+				<select id = "#{fieldname}" class = "form-control form-control-sm col" name = "#{fieldname}">
+					<option value = "0">
+						#{I18n.t('reports.general.choice_no')}
+					</option>
+					<option value = "1">
+						#{I18n.t('reports.general.choice_yes')}
+					</option>
+				</select>
+			</div>
+		</div>
+		HTML
+		html.html_safe
+	end
+
 	def month_and_year_dropdowns(labelname,monthfield, yearfield, rowclass, monthlabelclass, monthselectclass, yearselectclass, min_year = Date.today.year, max_year = Date.today.year + 10)
 		html = "<div class = '#{rowclass}'>"
 		html += "<label class = '#{monthlabelclass}' for=#{monthfield}>#{labelname}</label>"
@@ -118,8 +137,4 @@ module ReportHelper
 
 	  html.html_safe
 	end	
-	
 end
-
-	
-

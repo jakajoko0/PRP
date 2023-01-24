@@ -25,12 +25,13 @@ def report
     format.pdf do 
       render pdf: "FranchiseList",
       template: 'admins/reports/franchise_list/report_pdf.html.erb',
-      layout: 'pdf_report' ,
+      layout: 'pdf_report', 
       page_size: 'Letter',
       title: I18n.t('reports.franchise_list.title'),
       orientation: "landscape",
       print_media_type: true,
       disposition:'attachment'
+      
 
     end
     format.xlsx{response.headers['Content-Disposition'] = "attachment; filename=FranchiseList.xlsx"}

@@ -235,7 +235,9 @@ Rails.application.routes.draw do
         post '/financial_aggregation/render' => 'financial_aggregation#report'
         get '/financial_aggregation/render' => redirect('/admins/financial_aggregation')
 
-
+        get '/collections_report' => 'collections_report#index'
+        post '/collections_report/render' => 'collections_report#report'
+        get '/collections_report/render' => redirect('/admins/collections_report')
       end
 
     end

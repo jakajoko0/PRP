@@ -122,7 +122,14 @@ class RemittancesQuery
 
 	end
 
-
-
+	def collections_by_date_range(start_date, end_date, consolidate = 0, consol_list = [])
+    if consolidate == 1 && consol_list.length > 0  
+      non_consolidated =  Remittance.joins(:franchise).group("remittances.month, remittances.year, franchises.firstname, franchises.lastname, franchises.franchise_number").select('remittances.month, remittances.year, franchises.lastname, franchises.firstname, franchises.franchise_number, sum(royalty) as royalty,sum(accounting + backwork + consulting +  other1 + other2 + payroll + setup + tax_preparation) as tot_collect, (sum(royalty)/ nullif(sum(accounting + backwork + consulting +  other1 + other2 + payroll + setup + tax_preparation),0)::float)*100 as roy_pct').where("date_posted >= ? and date_posted <= ? and remittances.fran NOT IN (?)",(start_date.to_time.beginning_of_day),(end_date.to_time.end_of_day),consol_list).order("franchises.lastname asc, remittances.year asc, remittances.month asc")
+      consolidated = Remittance.joins(consolidated: :franchise).group("remittances.month, remittances.year, franchises.firstname, franchises.lastname, franchises.franchise_number").select('remittances.month, remittances.year, franchises.lastname, franchises.firstname, franchises.franchise_number, sum(royalty) as royalty,sum(accounting + backwork + consulting +  other1 + other2 + payroll + setup + tax_preparation) as tot_collect, (sum(royalty)/ nullif(sum(accounting + backwork + consulting +  other1 + other2 + payroll + setup + tax_preparation),0)::float)*100 as roy_pct').where("date_posted >= ? and date_posted <= ? and remittances.fran IN(?)",(start_date.to_time.beginning_of_day),(end_date.to_time.end_of_day),consol_list).order("franchises.lastname asc, remittances.year asc, remittances.month asc")
+      Remittance.from("((#{non_consolidated.to_sql}) UNION (#{consolidated.to_sql})) AS remittances")
+    else
+      Remittance.joins(:franchise).group("remittances.month, remittances.year, franchises.firstname, franchises.lastname", "franchises.franchise_number").select('remittances.month, remittances.year, franchises.lastname, franchises.firstname, franchises.franchise_number, sum(royalty) as royalty,sum(accounting + backwork + consulting +  other1 + other2 + payroll + setup + tax_preparation) as tot_collect, (sum(royalty)/ nullif(sum(accounting + backwork + consulting +  other1 + other2 + payroll + setup + tax_preparation),0)::float)*100 as roy_pct').where("date_posted >= ? and date_posted <= ?",(start_date.to_time.beginning_of_day),(end_date.to_time.end_of_day)).order("franchises.lastname asc, remittances.year asc, remittances.month asc")
+    end  
+  end
 
 end

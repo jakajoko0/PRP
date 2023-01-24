@@ -5,6 +5,7 @@
       trans_code: Trans Code
       sort_by: Sort By
       inc_inactives: Include Inactives
+      consolidate_data: Consolidate
       btn_generate: Generate
       sort_by_fran: Franchise Number
       sort_by_lastname: Last Name
@@ -186,6 +187,16 @@
       title_workbook: Amounts Due
       franchise: Franchise
       balance: Balance
+    collections_report:
+      index_title: Collections By Received Date
+      title: "Collections Received Between %{start} and %{end}"
+      title2: "Consolidation: %{consol}"
+      title_workbook: "Collections Received"
+      franchise: Franchise
+      recvd: Received For
+      collections: Collections
+      royalty: Royalty
+      pct: Percentage
     franchise_payments:
       index_title: Payment Report
       title: "Payments made between %{start} and %{end}"

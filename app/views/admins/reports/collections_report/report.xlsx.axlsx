@@ -1,0 +1,55 @@
+wb = xlsx_package.workbook
+
+styles = set_axlsx_styles(wb)
+
+wb.add_worksheet(
+  name: I18n.t('reports.collections_report.title_workbook')) do |ws|
+  
+  ws.add_row [@report_info[:title_excel]],
+  style: styles[:header_title],
+  width: [:auto],
+  height: 80, widths: [:ignore]
+  
+  ws.add_row
+
+  ws.add_row [
+  I18n.t('reports.collections_report.franchise'),
+  I18n.t('reports.collections_report.recvd'),
+  I18n.t('reports.collections_report.collections'),
+  I18n.t('reports.collections_report.royalty'),
+  I18n.t('reports.collections_report.pct')],
+  style: [styles[:header_left],styles[:header_center],
+  styles[:header_right],styles[:header_right],
+  styles[:header_right]],
+  width: [:auto, :auto, :auto, :auto, :auto]
+
+  if @collections.size > 0
+    @collections.each do |coll|
+      ws.add_row [
+      "#{coll.franchise_number} #{coll.lastname} #{coll.firstname}",
+      "#{coll.year} #{coll.month}",
+      coll.tot_collect,
+      coll.royalty,
+      coll.roy_pct],
+      style: [styles[:data_left],styles[:data_center],
+      styles[:currency_red],styles[:currency_red],
+      styles[:number]],
+      width: [:auto, :auto,:auto,:auto,:auto], types: [:string, :string, :float, :float, :float]
+    end
+
+    ws.add_row [
+      "Total",
+      "",
+      @report_info[:total_collections],
+      @report_info[:total_royalty],
+      @report_info[:total_pct]],
+      style: [styles[:data_left],styles[:data_center],
+      styles[:currency_red_bold],styles[:currency_red_bold],
+      styles[:number_bold]],
+      width: [:auto, :auto,:auto,:auto,:auto], types: [:string, :string, :float, :float, :float]
+  end
+
+  ws.merge_cells "A1:F1"
+  ws.merge_cells "A2:F2"
+end
+

@@ -1,3 +1,4 @@
+
 <div class = "row">
 	<div class = "col-12">
 		<h5 class="text-center">
@@ -6,9 +7,11 @@
 	</div>
 </div>
 
-<div id = "table-collections"   class = "table-daniel">
+<div id = "table-collections" 
+  class = "table-scroll"
+  style = "height: calc(100vh - 270px)">
   <table id = "main-table">
-    <thead>
+    <thead id="main-table">
   	  <tr>
   	    <th>
   		    <%=I18n.t('reports.collections_report.franchise')%>
@@ -29,10 +32,12 @@
 		    <th class = "td-right">
 		    	<%=I18n.t('reports.collections_report.pct')%>
 		    </th>
+
 		  </tr>
 	  </thead>
 	  <%if @collections.size > 0%>
-	    <tbody>	
+	    <tbody>
+	     
 	      <%@collections.each do |collection|%>
 	        <tr>
 	          <td data-name="Franchise">
@@ -52,12 +57,11 @@
 		  	    <td class = "td-right" data-name="Percentage">
 		  	    	<%=number_to_percentage(collection.roy_pct, precision: 2)%>
 		  	    </td>
-
-					</tr>
-				<%end%>
+				  </tr>
+			  <%end%>
 			</tbody>
-  	<%end%>
-  	<tfoot id="report-footer">
+    <%end%>
+		<tfoot id="report-footer">
   		<tr>
         <td class = "td-left">   
           Total

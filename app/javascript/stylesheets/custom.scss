@@ -507,6 +507,84 @@ table.table.table-dan td {
  }
 }
 
+
+.table-daniel {
+  position: relative;
+  width: 100%;
+  z-index: 1;
+  margin: auto;
+  overflow: auto;
+}
+
+.table-daniel table {
+  font-size: 14px;
+  width: 100%;
+  margin: auto;
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+.table-daniel thead th,
+.table-daniel tfoot tr {
+  position: sticky;
+}
+
+.table-daniel tfoot tr {
+  bottom: 0;
+}
+
+.table-daniel th {
+  border: 1px solid #ccc;
+
+}
+
+.table-daniel th,
+.table-daniel td {
+  padding: 5px 10px;
+  vertical-align: middle;
+}
+
+.table-daniel tbody tr:first-child td {
+  border-top: 0px;
+}
+
+
+.table-daniel thead th {
+  top: 0;
+  font-weight:bold;
+  font-size: 1rem;
+  border-width: 1px 0px 1px 0px;
+  border-style: solid;
+  border-color: black;
+  background: #f5f7fa;
+
+}
+
+
+.table-daniel tbody td {
+  border-top: 1px solid #ddd;
+}
+
+.table-daniel tfoot tr {
+  background: #f5f7fa; 
+}
+.table-daniel tfoot,
+.table-daniel tfoot th,
+.table-daniel tfoot td,
+{
+
+  font-weight: bold;
+  border-width: 1px 0px 1px 0px;
+  border-style: solid;
+  border-color: black;
+  z-index:2;
+}
+
+.table-daniel tbody tr:last-of-type td {
+  padding-bottom: 10px;
+}
+
+
 //TABLE USED FOR LISTS AND REPORT
 //RESPONSIVE AND SWITCHES TO VERTICAL 
 //DISPLAY ON PHONES
@@ -523,7 +601,6 @@ table.table.table-dan td {
 .table-scroll table {
   font-size: 14px;
   width: 100%;
-  //height: 100%;
   margin: auto;
   border-collapse: separate;
   border-spacing: 0;
@@ -554,7 +631,6 @@ table.table.table-dan td {
   font-size: 1rem;
   position: -webkit-sticky;
   position: sticky; 
-  top: 0px;
   border-width: 1px 0px 1px 0px;
   border-style: solid;
   border-color: black;
@@ -567,6 +643,10 @@ table.table.table-dan td {
 
 .table-scroll #list th {
   background: white;
+}
+
+.table-scroll tfoot tr{
+  bottom: 0
 }
 
 .table-scroll tfoot,
