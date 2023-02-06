@@ -1,0 +1,56 @@
+<%=render 'shared/report_header'%>
+<div class = "row">
+	<div class = "col-12">
+		<h5 class="text-center">
+			<%=@report_info[:title]%>
+		</h5>
+	</div>
+</div>
+
+<div id = "table-theshold" 
+  class = "table-daniel"
+  style = "height: calc(100vh - 270px)">
+  <table id = "main-table">
+    <thead id="report">
+  	  <tr>
+  	    <th>
+  		    <%=I18n.t('reports.collections_threshold.franchise')%>
+ 		    </th>
+		    
+		    <th class = "td-center">
+			    <%=I18n.t('reports.collections_threshold.period')%>
+		    </th>
+
+		    <th class = "td-right">
+		    	<%=I18n.t('reports.collections_threshold.collected')%>
+		    </th>
+
+		  </tr>
+	  </thead>
+	  <%if @results.length > 0%>
+	    <tbody>
+	     
+	      <%@results.each do |collection|%>
+	        <tr>
+	          <td data-name="Franchise">
+		          <%="#{collection.franchise_number} #{collection.lastname} #{collection.firstname}"%>
+		        </td>
+		  
+		  	    <td class = "td-center" data-name="Period">
+		  	    	<%="#{collection.year} #{collection.month}"%>
+		  	    </td>
+
+		  	     <td class = "td-right" data-name="Collected">
+		  	    	<%=number_to_currency(collection.collections, precision: 2)%>
+		  	    </td>
+		  	     
+				  </tr>
+			  <%end%>
+			</tbody>
+  	 
+  	  
+    <%end%> 
+
+		
+  </table>
+</div>

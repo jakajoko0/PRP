@@ -1,0 +1,76 @@
+<div class = "col-12">
+<div class = "card">
+	<div class = "card-header login-header">
+	  <h4>
+	  	<%=I18n.t('reports.collections_threshold.index_title')%>
+   	</h4>
+	</div>
+
+	<%=form_tag admins_collections_threshold_render_path(format: :html),
+	method: "post" do |f|%>
+
+	<div class = "card-body card-background-padgett">
+		<div class = "form-row">
+		  	<%=month_and_year_dropdowns(
+		  		I18n.t('reports.general.from'),
+		  		"month",
+		  		"year",
+		  		"form-group form-row col-12",
+		  		"col-form-label col-form-label-sm label-bold col-2 col-sm-2 col-md-2
+		  		 col-lg-2",
+		  		"col-6 col-sm-3 col-md-2
+				 col-lg-2",
+				 "col-3 col-sm-2 col-md-2
+				 col-lg-1",
+				 Remittance.get_min_year,
+				 Remittance.get_max_year)%>
+		</div>
+		
+		<div class = "form-row">
+		  	<%=month_and_year_dropdowns(
+		  		I18n.t('reports.general.to'),
+		  		"month2",
+		  		"year2",
+		  		"form-group form-row col-12",
+		  		"col-form-label col-form-label-sm label-bold col-2 col-sm-2 col-md-2
+		  		 col-lg-2",
+		  		"col-6 col-sm-3 col-md-2
+				 col-lg-2",
+				 "col-3 col-sm-2 col-md-2
+				 col-lg-1",
+				 Remittance.get_min_year,
+				 Remittance.get_max_year)%>
+		</div>
+		<div class = "form-row">
+			<%=number_field_argument(
+				"Threshold($)",
+				"threshold",
+			  "form-group form-row col-12",
+				"col-form-label col-form-label-sm label-bold col-2 col-sm-2 col-md-2
+		  		 col-lg-2",
+         "col-sm-4 col-md-3 col-lg-2" )%>
+  	</div>
+
+  	<div class = "form-row">
+			<%=sort_by_number_or_name(
+				"sortby",
+			  "form-group form-row col-12",
+				"col-form-label col-form-label-sm label-bold col-2 col-sm-2 col-md-2
+		  		 col-lg-2",
+         "col-sm-4 col-md-3 col-lg-2",
+         { "1" => I18n.t('reports.general.sort_by_lastname'), "2" => I18n.t('reports.general.sort_by_fran'), "3" => I18n.t('reports.general.sort_by_total_collected')} )%>
+  	</div>
+
+	</div>
+
+	<div class = "card-footer">
+		<div class = "col-6 col-sm-3 col-md-3 
+		              col-lg-3 col-xl-2 pl-0">
+			<%=submit_tag (I18n.t('reports.general.btn_generate')),
+			class: "btn btn-padgett btn-block"%>
+		</div> 
+	</div>
+	<%end%>
+</div>
+
+</div>

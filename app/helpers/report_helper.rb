@@ -64,7 +64,7 @@ module ReportHelper
 		html += select_month(Date.today, {prefix: "#{monthfield}", field_name:'selected_month'}, {class: 'form-control form-control-sm col'})
 		html += '</div>'
 		html += "<div class = '#{yearselectclass}'>"
-		html += select_year(Date.today, {start_year: min_year, end_year: max_year, prefix: "#{yearfield}", field_name: 'selected_year' }, {class: 'form-control form-control-sm col'})
+		html += select_year(Time.now.year, {start_year: min_year, end_year: max_year, prefix: "#{yearfield}", field_name: 'selected_year' }, {class: 'form-control form-control-sm col'})
 		html += '</div>'
 		html += '</div>'
 		html.html_safe
@@ -80,6 +80,16 @@ module ReportHelper
 		html.html_safe
 	end
 
+	def number_field_argument(labelname, fieldname, rowclass, labelclass, fieldclass)
+		html = "<div class = '#{rowclass}'>"
+		html += "<label class='#{labelclass}' for=#{fieldname}>#{labelname}</label>"
+		html += "<div class='#{fieldclass}'>"
+		html += number_field_tag("#{fieldname}", nil, {:class => 'form-control form-control-sm col'}) 
+		html += "</div> </div>"
+
+		html.html_safe
+	end
+
 	def date_argument(labelname,fieldname,rowclass,labelclass,fieldclass)
 	  html = <<-HTML
 		<div class = "#{rowclass}">
@@ -91,7 +101,6 @@ module ReportHelper
 		HTML
 		html.html_safe
 	end
-
 
 	def select_franchise_dropdown(fieldname,rowclass,labelclass,selectclass,empty_notice = true)
 		html = "<div class = '#{rowclass}'>"
@@ -136,5 +145,8 @@ module ReportHelper
 	  html += "</div> </div>"
 
 	  html.html_safe
-	end	
+	end
+
+
+	
 end

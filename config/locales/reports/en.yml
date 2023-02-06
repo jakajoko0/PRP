@@ -15,6 +15,7 @@
       sort_by_client_count: Total Monthly Clients
       sort_by_average_fees: Average Monthly Fees 
       sort_by_total_revenue: Total Revenue
+      sort_by_total_collected: Total Collected
       choice_no: "No"
       choice_yes: "Yes"
       btn_return: Return
@@ -255,6 +256,16 @@
       who: Who
       franchise: Franchise
       changes: Changes
+    collections_threshold:
+      index_title: Collections Under a Certain Threshold
+      title_excel: Collections Under Threshold
+      title_workbook: Collections Threshold
+      title: "Total Collections Under %{amount}"  
+      title2: "From %{start} thru %{end}"
+      title3: "Sorted by %{sort}"
+      franchise: Franchise
+      period: Period
+      collected: Collected
 
 
 

@@ -132,4 +132,21 @@ class RemittancesQuery
     end  
   end
 
+  def collections_under_threshold(year, month, year2, month2, min_amount, sortby)
+    case sortby
+    when 1
+      sort = 'franchises.lastname ASC, remittances.year ASC, remittances.month ASC'
+    when 2
+      sort = 'franchises.franchise_number ASC, remittances.year ASC, remittances.month ASC'
+    when 3
+      sort = 'collections ASC, remittances.year ASC, remittances.month ASC'
+    end
+  
+    Remittance.joins(:franchise).
+    select("franchises.firstname, franchises.lastname, franchises.franchise_number, SUM(remittances.accounting + remittances.backwork + remittances.consulting + remittances.other1 + remittances.other2 + remittances.payroll + remittances.setup + remittances.tax_preparation) as collections,  remittances.month, remittances.year").
+    where('(remittances.year *12 + remittances.month BETWEEN ? and ?)',year*12+month, year2*12+month2).having("SUM(remittances.accounting + remittances.backwork + remittances.consulting + remittances.other1 + remittances.other2 + remittances.payroll + remittances.setup + remittances.tax_preparation) < ?",min_amount).
+    group("franchises.lastname, franchises.firstname, franchises.franchise_number, remittances.month, remittances.year").
+    order(sort) 
+  end
+
 end

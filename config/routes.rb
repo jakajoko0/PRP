@@ -238,6 +238,10 @@ Rails.application.routes.draw do
         get '/collections_report' => 'collections_report#index'
         post '/collections_report/render' => 'collections_report#report'
         get '/collections_report/render' => redirect('/admins/collections_report')
+      
+        get '/collections_threshold' => 'collections_threshold#index'
+        post '/collections_threshold/render' => 'collections_threshold#report'
+        get '/collections_threshold/render' => redirect('/admins/collections_threshold')
       end
 
     end

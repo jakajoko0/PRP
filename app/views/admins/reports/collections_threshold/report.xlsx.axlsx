@@ -1,0 +1,38 @@
+wb = xlsx_package.workbook
+
+styles = set_axlsx_styles(wb)
+
+wb.add_worksheet(
+  name: I18n.t('reports.collections_threshold.title_workbook')) do |ws|
+
+  ws.add_row [@report_info[:title_excel]],
+  style: styles[:header_title],
+  width: [:auto],
+  height: 80, widths: [:ignore]
+
+  ws.add_row
+
+  ws.add_row [
+  I18n.t('reports.collections_threshold.franchise'),
+  I18n.t('reports.collections_threshold.period'),
+  I18n.t('reports.collections_threshold.collected')],
+  style: [styles[:header_left],styles[:header_center],
+  styles[:header_right]],
+  width: [:auto, :auto, :auto]
+
+  if @results.length > 0
+    @results.each do |r|
+      ws.add_row [
+      "#{r.franchise_number} #{r.lastname} #{r.firstname}",
+      "#{r.year} #{r.month}",
+      r.collections],
+      style: [styles[:data_left],styles[:data_center],
+      styles[:currency_red]],
+      width: [:auto, :auto,:auto], types: [:string, :string, :float]
+    end
+  end  
+	
+	ws.merge_cells "A1:C1"
+end	  
+		   
+	   
