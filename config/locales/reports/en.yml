@@ -266,6 +266,14 @@
       franchise: Franchise
       period: Period
       collected: Collected
+    collections_summary_year:
+      index_title: Collections Summary By Year
+      title_excel: Collections Summary By Year
+      title_workbook: Collections By Year
+      title: Collections Summary by Year
+      title2: From %{date1} thru %{date2}
+      year: Year
+      tot_collect: Total Collections
 
 
 

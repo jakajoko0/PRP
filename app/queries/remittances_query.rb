@@ -149,4 +149,11 @@ class RemittancesQuery
     order(sort) 
   end
 
+  def collections_and_royalties_by_year(from_yr, from_mo, to_yr, to_mo)
+    Remittance.group("remittances.year").
+    select("remittances.year,sum(accounting + backwork + consulting +  other1 + other2 + payroll + setup + tax_preparation) as tot_collect, sum(royalty) as tot_roy").
+    where("(remittances.year *12 + remittances.month BETWEEN ? and ?)", from_yr*12+from_mo, to_yr*12+to_mo).
+    order("remittances.year")
+  end
+
 end
