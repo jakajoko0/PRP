@@ -10,7 +10,7 @@ class Integrations::FranchiseIntegrationsController < ApiController
 
 		@franchise.assign_attributes(fp)
 
-		set_dates(fp)
+		#set_dates(fp)
 
 		@franchise.save!
 

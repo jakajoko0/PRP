@@ -10,7 +10,8 @@ class Financial < ApplicationRecord
 
   scope :all_ordered, -> { Financial.includes(:franchise).order('year DESC, id DESC') }
   scope :for_franchise, ->(fran_id) { where(franchise_id: fran_id).order('year DESC') }
-
+  scope :for_specific_year,-> (target_year) {where(year: target_year)}
+  
   REVENUE_ATTRIBUTES = %w[acct_monthly acct_startup acct_backwork tax_prep payroll_processing other_consult erc].freeze
   REVENUE_DESC = %w[Accounting\ Monthly Startup Backwork Tax\ Preparation Payroll\ Processing Consulting ERC].freeze
   EXPENSE_ATTRIBUTES = %w[payroll_operation owner_wages owner_payroll_taxes payroll_taxes_ben_ee insurance_business
