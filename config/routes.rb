@@ -39,6 +39,10 @@ Rails.application.routes.draw do
     put '/integrations/franchise/:id' => 'franchise_integrations#update'
     get '/integrations/franchise/:id' => 'franchise_integrations#show'
     get '/integrations/franchises' => 'franchise_integrations#index'
+    get '/integrations/financials/:id' => 'financials_integrations#show'
+    get '/integrations/financials' => 'financials_integrations#index'
+    get '/integrations/financials_specific' => 'financials_integrations#specific'
+
   end 
 
   # Authenticated route to show specific Dashboard for users
