@@ -22,7 +22,7 @@ class Integrations::FranchiseIntegrationsController < ApiController
 	end
 
 	def index
-		@frans = Franchise.where.not(region: ['19','20']).order(franchise: :asc)
+		@frans = Franchise.where.not(region: ['19','20']).order(franchise_number: :asc)
 		if franchise_index_params[:include_inactives].to_i == 0
 			@frans = @frans.where(inactive: 0)
 		end
