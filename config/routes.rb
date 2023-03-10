@@ -42,7 +42,8 @@ Rails.application.routes.draw do
     get '/integrations/financials/:id' => 'financials_integrations#show'
     get '/integrations/financials' => 'financials_integrations#index'
     get '/integrations/financials_specific' => 'financials_integrations#specific'
-
+    get 'integrations/royalties' => 'royalties_integrations#index'
+    get 'integrations/royalties/specific' => 'royalties_integrations#specific'
   end 
 
   # Authenticated route to show specific Dashboard for users

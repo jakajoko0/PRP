@@ -18,16 +18,20 @@ class Remittance < ApplicationRecord
 	scope :for_period, -> (year,month) { where(status: :posted, year: year, month: month) }
 	scope :all_ordered, -> { Remittance.includes(:franchise).order('year DESC, month DESC') }
 	scope :all_recent_pending, -> { Remittance.includes(:franchise).where(status: :pending).order('date_received DESC').limit(10) }
-    scope :all_recent_posted, -> { Remittance.includes(:franchise).where(status: :posted).order('date_posted DESC').limit(10) }
-    scope :all_pending, -> { Remittance.includes(:franchise).where(status: :pending).order('date_received DESC') }
-    scope :all_posted, -> { Remittance.includes(:franchise).where(status: :posted).order('date_posted DESC') }
-    # Scope for Franchise users
-    scope :franchise_all, -> (fran_id) { where(franchise_id: fran_id).order('year DESC, month DESC') }
+  scope :all_recent_posted, -> { Remittance.includes(:franchise).where(status: :posted).order('date_posted DESC').limit(10) }
+  scope :all_pending, -> { Remittance.includes(:franchise).where(status: :pending).order('date_received DESC') }
+  scope :all_posted, -> { Remittance.includes(:franchise).where(status: :posted).order('date_posted DESC') }
+  # Scope for Franchise users
+  scope :franchise_all, -> (fran_id) { where(franchise_id: fran_id).order('year DESC, month DESC') }
 	scope :fran_recent, -> { where(status: :posted).order('date_posted DESC').limit(5) }
 	scope :fran_pending, -> { where(status: :pending).order('date_received DESC') }
 	scope :fran_posted, -> { where(status: :posted).order('date_received DESC') }
 	scope :recent_pending, -> { where(status: :pending).order('date_received DESC').limit(5) }
 	scope :recent_posted, ->  { where(status: :posted).order('date_posted DESC').limit(10) }
+	# Scope for exports or reports
+	scope :for_franchise, -> (fran_id) { where(franchise_id: fran_id) }
+	scope :for_specific_year, -> (target_year) {where(year: target_year)}
+  scope :for_specific_month, -> (target_month) {where(month: target_month)} 
 
 	# Constants used for creating forms or getting totals 
 	ROYALTY_RATE = 0.09
