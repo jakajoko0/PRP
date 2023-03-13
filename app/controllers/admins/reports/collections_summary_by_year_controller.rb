@@ -19,9 +19,8 @@ def report
   year2 = to_year[:selected_year].to_i
   
   @results = RemittancesQuery.new.collections_and_royalties_by_year(year1, month1, year2, month2)
-  Rails.logger.debug "RESULTS: #{@results.inspect}"
+
   total_collections = @results.reduce(0) { |sum,f| sum + f.tot_collect}
-  Rails.logger.debug "TOTAL COLLECTIONS: #{total_collections}" 
   title = format_report_title([
     I18n.t('reports.collections_summary_year.title'),
     I18n.t('reports.collections_summary_year.title2', 

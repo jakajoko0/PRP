@@ -147,6 +147,5 @@ module ReportHelper
 	  html.html_safe
 	end
 
-
 	
 end

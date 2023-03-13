@@ -251,6 +251,10 @@ Rails.application.routes.draw do
         get '/collections_summary_year' => 'collections_summary_by_year#index'
         post '/collections_summary_year/render' => 'collections_summary_by_year#report'
         get '/collections_summary_year/render' => redirect('/admins/collections_summary_year')
+
+        get '/collections_summary' => 'collections_summary#index'
+        post '/collections_summary/render' => 'collections_summary#report'
+        get '/collections_summary/render' => redirect('/admins/collections_summary')
       end
 
     end
