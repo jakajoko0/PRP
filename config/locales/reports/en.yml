@@ -10,6 +10,7 @@
       sort_by_fran: Franchise Number
       sort_by_lastname: Last Name
       sort_by_state: State
+      sort_by_region: Region
       sort_by_modified: Last Modification
       sort_by_status: Status
       sort_by_client_count: Total Monthly Clients
@@ -266,6 +267,23 @@
       franchise: Franchise
       period: Period
       collected: Collected
+    collections_summary_year:
+      index_title: Collections Summary By Year
+      title_excel: Collections Summary By Year
+      title_workbook: Collections By Year
+      title: Collections Summary by Year
+      title2: From %{date1} thru %{date2}
+      year: Year
+      tot_collect: Total Collections
+    collections_summary:
+      index_title: Collections Summary
+      title_excel: Collections Summary
+      title_workbook: Collections
+      title: "Collections Summary by %{sort}"
+      title2: "%{start_date} thru %{end_date}"
+      title3: "Consolidation %{cons}"
+      franchise: Franchise
+      collections: Collections
 
 
 

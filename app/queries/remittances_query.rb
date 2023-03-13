@@ -132,6 +132,36 @@ class RemittancesQuery
     end  
   end
 
+  def colletions_summary_for_date_range(start_date, end_date, sort_by, consolidate = 0, consol_list = [])
+    case sort_by
+    when 1
+      orderby = 'franchises.lastname, franchises.firstname'
+    when 2
+      orderby = 'franchises.state, franchises.lastname, franchises.firstname'
+    when 3
+      orderby = 'reg_group, franchises.region, franchises.lastname, franchises.firstname'
+    end
+    Rails.logger.debug "CONSOLIDATE IN QUERY: #{consolidate}"
+    if consolidate == 1
+    	non_consolidated = Remittance.joins(:franchise).
+    	  group("franchises.region, franchises.id, franchises.state, franchises.lastname, franchises.firstname").
+    	  select("franchises.region, franchises.id, franchises.state, franchises.lastname, franchises.firstname, sum(accounting + backwork + consulting + other1 + other2 + payroll + setup + tax_preparation) as collections, 0 as row_type, CASE WHEN franchises.region != '5' THEN 0 ELSE 1 END as reg_group").
+    	  where('(date_posted >= ? and date_posted <= ?) AND remittances.franchise_number NOT IN (?)', start_date.to_time.beginning_of_day, end_date.to_time.end_of_day, consol_list).
+    	  order(orderby)
+
+    	consolidated = Remittance.joins(consolidated: :franchise).
+        group("franchises.region, franchises.id, franchises.state, franchises.lastname, franchises.firstname").
+        select("franchises.region, franchises.id, franchises.state, franchises.lastname, franchises.firstname, sum(accounting + backwork + consulting +  other1 + other2 + payroll + setup + tax_preparation) as collections, 0 as row_type, CASE WHEN franchises.region != '5' THEN 0 ELSE 1 END as reg_group").
+        where('(date_posted >= ? and date_posted <= ?) AND remittances.franchise_number IN (?)',start_date.to_time.beginning_of_day,end_date.to_time.end_of_day, consol_list).
+        order(orderby)
+      Remittance.from("((#{non_consolidated.to_sql}) UNION (#{consolidated.to_sql})) AS remittances")
+    else
+      Remittance.joins(:franchise).group("franchises.region, franchises.id, franchises.state, franchises.lastname, franchises.firstname").select("franchises.region, franchises.id, franchises.state, franchises.lastname, franchises.firstname, sum(accounting + backwork + consulting +  other1 + other2 + payroll + setup + tax_preparation) as collections, 0 as row_type, CASE WHEN franchises.region != '5' THEN 0 ELSE 1 END as reg_group").
+        where('date_posted >= ? and date_posted <= ?',start_date.to_time.beginning_of_day,end_date.to_time.end_of_day).
+        order(orderby)
+    end	
+  end
+  
   def collections_under_threshold(year, month, year2, month2, min_amount, sortby)
     case sortby
     when 1
@@ -147,6 +177,13 @@ class RemittancesQuery
     where('(remittances.year *12 + remittances.month BETWEEN ? and ?)',year*12+month, year2*12+month2).having("SUM(remittances.accounting + remittances.backwork + remittances.consulting + remittances.other1 + remittances.other2 + remittances.payroll + remittances.setup + remittances.tax_preparation) < ?",min_amount).
     group("franchises.lastname, franchises.firstname, franchises.franchise_number, remittances.month, remittances.year").
     order(sort) 
+  end
+
+  def collections_and_royalties_by_year(from_yr, from_mo, to_yr, to_mo)
+    Remittance.group("remittances.year").
+    select("remittances.year,sum(accounting + backwork + consulting +  other1 + other2 + payroll + setup + tax_preparation) as tot_collect, sum(royalty) as tot_roy").
+    where("(remittances.year *12 + remittances.month BETWEEN ? and ?)", from_yr*12+from_mo, to_yr*12+to_mo).
+    order("remittances.year")
   end
 
 end

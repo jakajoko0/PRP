@@ -2,11 +2,11 @@
 <div class = "card">
 	<div class = "card-header login-header">
 	  <h4>
-	  	<%=I18n.t('reports.collections_threshold.index_title')%>
+	  	<%=I18n.t('reports.collections_summary_year.index_title')%>
    	</h4>
 	</div>
 
-	<%=form_tag admins_collections_threshold_render_path(format: :html),
+	<%=form_tag admins_collections_summary_year_render_path(format: :html),
 	method: "post" do |f|%>
 
 	<div class = "card-body card-background-padgett">
@@ -41,26 +41,7 @@
 				 Remittance.get_min_year,
 				 Remittance.get_max_year)%>
 		</div>
-		<div class = "form-row">
-			<%=number_field_argument(
-				"Threshold($)",
-				"threshold",
-			  "form-group form-row col-12",
-				"col-form-label col-form-label-sm label-bold col-2 col-sm-2 col-md-2
-		  		 col-lg-2",
-         "col-sm-4 col-md-3 col-lg-2" )%>
-  	</div>
-
-  	<div class = "form-row">
-			<%=sort_by_number_or_name(
-				"sortby",
-			  "form-group form-row col-12",
-				"col-form-label col-form-label-sm label-bold col-2 col-sm-2 col-md-2
-		  		 col-lg-2",
-         "col-sm-4 col-md-3 col-lg-2",
-         { "1" => I18n.t('reports.general.sort_by_lastname'), "2" => I18n.t('reports.general.sort_state'), "3" => I18n.t('reports.general.sort_by_region')} )%>
-  	</div>
-
+	
 	</div>
 
 	<div class = "card-footer">

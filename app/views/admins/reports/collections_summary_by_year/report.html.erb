@@ -1,0 +1,60 @@
+<%=render 'shared/report_header'%>
+<div class = "row">
+	<div class = "col-12">
+		<h5 class="text-center">
+			<%=@report_info[:title]%>
+		</h5>
+	</div>
+</div>
+
+<div id = "table-collections" 
+  class = "table-daniel"
+  style = "height: calc(100vh - 270px)">
+  <table id = "main-table">
+    <thead id="report">
+  	  <tr>
+  	    <th class = "td-left">
+  		    <%=I18n.t('reports.collections_summary_year.year')%>
+ 		    </th>
+		    
+		    <th class = "td-right">
+			    <%=I18n.t('reports.collections_summary_year.tot_collect')%>
+		    </th>
+		  </tr>
+	  </thead>
+	  <%if @results.size > 0%>
+	    <tbody>
+	     
+	      <%@results.each do |collection|%>
+	        <tr>
+		  	    <td class = "td-left" data-name="Year">
+		  	    	<%=collection.year%>
+		  	    </td>
+
+		  	     <td class = "td-right" data-name="Collections">
+		  	    	<%=number_to_currency(collection.tot_collect, precision: 2)%>
+		  	    </td>
+		  
+				  </tr>
+			  <%end%>
+			</tbody>
+  	 
+  	  
+    <%end%> 
+
+		<tfoot id="report-footer">
+  		<tr>
+        <td class = "td-left">   
+          Total
+        </td>
+   
+        
+        <td class = "td-right"> 
+          <%=number_to_currency(@report_info[:total_collections], precision: 2)%>
+        </td>
+     
+        
+  		</tr>
+  	</tfoot>
+  </table>
+</div>

@@ -1,0 +1,65 @@
+<%=render 'shared/report_header'%>
+<div class = "row">
+	<div class = "col-12">
+		<h5 class="text-center">
+			<%=@report_info[:title]%>
+		</h5>
+	</div>
+</div>
+
+<div id = "table-collections" 
+  class = "table-daniel"
+  style = "height: calc(100vh - 270px)">
+  <table id = "main-table">
+    <thead id="report">
+  	  <tr>
+  	    <th>
+  		    <%=I18n.t('reports.collections_summary.franchise')%>
+ 		    </th>
+
+		    <th class = "td-right">
+		    	<%=I18n.t('reports.collections_summary.collections')%>
+		    </th>
+
+		   
+		  </tr>
+	  </thead>
+	  <%if @result.size > 0%>
+	    <tbody>
+	     
+	      <%@result.each do |r|%>
+	        <% bold = r[:row_type] == 1 ? "font-weight: bold" : ""%>
+
+	        <tr>
+	          <td data-name="Franchise" style="<%=bold%>">
+		          <%="#{r[:firstname]} #{r[:lastname]}"%>
+		        </td>
+		  
+		  	    <td class = "td-right" data-name="Collections" style = "<%=bold%>">
+		  	    	
+		  	    	<%=number_to_currency(r[:collections], precision: 2)%>
+		  	    </td>
+		  	     
+				  </tr>
+			  <%end%>
+			</tbody>
+  	 
+  	  
+    <%end%> 
+
+		<tfoot id="report-footer">
+  		<tr>
+        <td class = "td-left">   
+          Total
+        </td>
+       
+        
+        <td class = "td-right"> 
+          <%=number_to_currency(@report_info[:tot_collect], precision: 2)%>
+        </td>
+        
+     
+  		</tr>
+  	</tfoot>
+  </table>
+</div>
