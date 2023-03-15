@@ -1,0 +1,55 @@
+wb = xlsx_package.workbook
+
+styles = set_axlsx_styles(wb)
+
+wb.add_worksheet(
+  name: I18n.t('reports.royalty_summary.title_workbook')) do |ws|
+  
+  ws.add_row [@report_info[:title_excel]],
+  style: styles[:header_title],
+  width: [:auto],
+  height: 80, widths: [:ignore]
+  
+  ws.add_row
+
+  ws.add_row [
+  I18n.t('reports.royalty_summary.franchise'),
+  I18n.t('reports.royalty_summary.royalty')],
+  style: [styles[:header_left],styles[:header_right]],
+  width: [:auto, :auto]
+
+  if @result.size > 0
+    @result.each do |roy|
+      if roy[:row_type] == 1
+        @num = styles[:number_bold]
+        @left = styles[:header_left]
+      else
+        @num = styles[:number]
+        @left = styles[:data_left]
+      end
+      
+      ws.add_row [
+      "#{roy[:lastname]} #{roy[:firstname]}",
+      roy[:royalties]],
+      style: [@left,@num],
+      width: [:auto, :auto], types: [:string, :float]
+      
+
+      if roy[:row_type] == 1
+        ws.add_row
+      end
+
+    end
+
+    ws.add_row [
+      "Total",
+      @report_info[:tot_roy]],
+      style: [styles[:header_left],
+      styles[:number_bold]],
+      width: [:auto, :auto], types: [:string, :float]
+  end
+
+  ws.merge_cells "A1:C1"
+  ws.merge_cells "A2:C2"
+end
+
