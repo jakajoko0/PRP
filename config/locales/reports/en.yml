@@ -284,6 +284,23 @@
       title3: "Consolidation %{cons}"
       franchise: Franchise
       collections: Collections
+    royalty_summary_year:
+      index_title: Royalty Summary By Year
+      title_excel: Royalty Summary By Year
+      title_workbook: Royalty By Year
+      title: Royalty Summary by Year
+      title2: From %{date1} thru %{date2}
+      year: Year
+      tot_roy: Total Royalties
+    royalty_summary:
+      index_title: Royalty Summary
+      title_excel: Royalty Summary
+      title_workbook: Royalty
+      title: "Royalty Summary by %{sort}"
+      title2: "%{start_date} thru %{end_date}"
+      title3: "Consolidation %{cons}"
+      franchise: Franchise
+      royalty: Royalty  
 
 
 

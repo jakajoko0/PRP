@@ -255,6 +255,14 @@ Rails.application.routes.draw do
         get '/collections_summary' => 'collections_summary#index'
         post '/collections_summary/render' => 'collections_summary#report'
         get '/collections_summary/render' => redirect('/admins/collections_summary')
+
+        get '/royalty_summary_year' => 'royalty_summary_by_year#index'
+        post '/royalty_summary_year/render' => 'royalty_summary_by_year#report'
+        get '/royalty_summary_year/render' => redirect('/admins/royalty_summary_year')
+
+        get '/royalty_summary' => 'royalty_summary#index'
+        post '/royalty_summary/render' => 'royalty_summary#report'
+        get '/royalty_summary/render' => redirect('/admins/royalty_summary')
       end
 
     end

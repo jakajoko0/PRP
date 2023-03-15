@@ -1,0 +1,59 @@
+<div class = "row">
+	<div class = "col-12">
+		<h5 class="text-center">
+			<%=@report_info[:title]%>
+		</h5>
+	</div>
+</div>
+
+<div id = "table-royalty" 
+  class = "table-daniel"
+  style = "height: calc(100vh - 270px)">
+  <table id = "main-table">
+    <thead id="report">
+  	  <tr>
+  	    <th class = "td-left">
+  		    <%=I18n.t('reports.royalty_summary_year.year')%>
+ 		    </th>
+		    
+		    <th class = "td-right">
+			    <%=I18n.t('reports.royalty_summary_year.tot_roy')%>
+		    </th>
+		  </tr>
+	  </thead>
+	  <%if @results.size > 0%>
+	    <tbody>
+	     
+	      <%@results.each do |royalty|%>
+	        <tr>
+		  	    <td class = "td-left" data-name="Year">
+		  	    	<%=royalty.year%>
+		  	    </td>
+
+		  	     <td class = "td-right" data-name="Royalty">
+		  	    	<%=number_to_currency(royalty.tot_roy, precision: 2)%>
+		  	    </td>
+		  
+				  </tr>
+			  <%end%>
+			</tbody>
+  	 
+  	  
+    <%end%> 
+
+		<tfoot id="report-footer">
+  		<tr>
+        <td class = "td-left">   
+          Total
+        </td>
+   
+        
+        <td class = "td-right"> 
+          <%=number_to_currency(@report_info[:total_roy], precision: 2)%>
+        </td>
+     
+        
+  		</tr>
+  	</tfoot>
+  </table>
+</div>
