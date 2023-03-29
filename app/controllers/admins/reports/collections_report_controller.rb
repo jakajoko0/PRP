@@ -7,7 +7,7 @@ end
 
 def report
   redirect_to admins_collections_report, notice: "Invalid parameters" unless params_valid?
-  
+  redirect_to admins_collections_report_path, notice: "Invalid dates. Please check date formats" unless dates_valid?
   @start_date = Date.strptime(params[:start_date], I18n.translate('date.formats.default'))
   @end_date = Date.strptime(params[:end_date], I18n.translate('date.formats.default'))
   @consolidate = params[:consolidation].to_i
@@ -54,6 +54,16 @@ end
 private 
   def params_valid?
     params.has_key?(:start_date) && params.has_key?(:end_date) && params.has_key?(:consolidation)
+  end
+
+  def dates_valid?
+    begin
+      Date.strptime(params[:start_date], I18n.translate('date.formats.default'))
+      Date.strptime(params[:end_date], I18n.translate('date.formats.default'))
+    rescue ArgumentError
+      return false
+    end
+    true
   end
 end
 

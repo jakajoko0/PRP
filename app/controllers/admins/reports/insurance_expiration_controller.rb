@@ -6,6 +6,7 @@ end
 
 def report
   redirect_to admins_insurance_expiration_path, notice: "Invalid parameters" unless params_valid?
+  redirect_to admins_insurance_expiration_path, notice: "Invalid date. Check date format" unless dates_valid?
   target_date = Date.strptime(params[:target_date], I18n.translate('date.formats.default'))
   sortby = params[:sortby]
   
@@ -38,9 +39,20 @@ def report
 end
 
 private 
-  def params_valid?
-    params.has_key?(:target_date) && params.has_key?(:sortby)
+
+def params_valid?
+  params.has_key?(:target_date) && params.has_key?(:sortby)
+end
+
+def dates_valid?
+  begin
+    Date.strptime(params[:target_date], I18n.translate('date.formats.default'))
+  rescue ArgumentError
+    return false
   end
+  true
+
+end
 
 end
 

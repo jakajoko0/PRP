@@ -3,14 +3,11 @@ class Admins::Reports::AuditTrailReportController < ReportController
   end 
 
   def report 
-    
+    return redirect_to admins_audit_trail_report_path, notice: "Invalid date. Check date format" unless dates_valid?
     @resource = params[:resource]
     @starting = params[:start_date] || ""
     @ending = params[:end_date] || ""
     @actions = params[:operand] || ""
-    logger.debug "PARAMS: #{params}"
-    logger.debug "Resource: #{params[:resource]}"
-    logger.debug "Actions: #{params[:operand]}"
     
     
     if !@starting.blank? 
@@ -43,22 +40,32 @@ class Admins::Reports::AuditTrailReportController < ReportController
     @report_info = {title: title, title_excel: title_excel }
 
     respond_to do |format|
-    format.html
+      format.html
     
-    format.pdf do 
-      render pdf: "AuditTrailReport",
-      template: 'admins/reports/audit_trail_report/report_pdf.html.erb',
-      layout: 'pdf_report' ,
-      page_size: 'Letter',
-      title: I18n.t('reports.audit_trail.index_title'),
-      orientation: "portrait",
-      print_media_type: true,
-      disposition:'attachment'
-
+      format.pdf do 
+        render pdf: "AuditTrailReport",
+        template: 'admins/reports/audit_trail_report/report_pdf.html.erb',
+        layout: 'pdf_report' ,
+        page_size: 'Letter',
+        title: I18n.t('reports.audit_trail.index_title'),
+        orientation: "portrait",
+        print_media_type: true,
+        disposition:'attachment'
+      end
+      format.xlsx{response.headers['Content-Disposition'] = "attachment; filename=AuditTrailReport.xlsx"}
     end
-    format.xlsx{response.headers['Content-Disposition'] = "attachment; filename=AuditTrailReport.xlsx"}
   end
 
+  private
+
+  def dates_valid?
+    begin
+      Date.strptime(params[:start_date], I18n.translate('date.formats.default'))
+      Date.strptime(params[:end_date], I18n.translate('date.formats.default'))
+    rescue ArgumentError
+      return false
+    end
+    true 
   end
     
   
