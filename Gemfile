@@ -72,6 +72,7 @@ gem 'gon'
 
 # To make and process API calls
 gem 'savon' , '2.12.0'
+gem 'httparty'
 
 gem 'rubyzip', '1.3.0'
 

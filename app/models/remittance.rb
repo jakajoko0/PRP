@@ -62,7 +62,8 @@ class Remittance < ApplicationRecord
 
 	# Make sure we refund the prior rebate used when we destroy the record
 	before_destroy :refund_prior_year_rebate, if: (:prior_year_rebate_used?)
-
+  after_save :sync_to_hubspot, if: :is_posted?
+	
 	# Used in the slug
 	def number_name_year_month
 		[franchise&.number_and_name, year, month].join('-')
@@ -244,6 +245,16 @@ class Remittance < ApplicationRecord
 		          .where('franchise_id = ?', franchise_id)
 		          .order('year DESC , month DESC')
 	end
+
+	def sync_to_hubspot
+    change_hash = self.attributes
+    base_hash = {"transaction_type" => "royalty"}
+    merged_hash = base_hash.merge(change_hash)
+    Rails.logger.debug "SYNCING TO HUBSPOT Merge Hash #{merged_hash.inspect}"
+
+    HubspotRoyaltiesWorker.perform_async(merged_hash)
+  end
+
 
 	private
 

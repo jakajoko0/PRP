@@ -47,6 +47,9 @@ class Financial < ApplicationRecord
   validates_numericality_of CLIENT_COUNTS, { greater_than_or_equal_to: 0, message: :no_negative }
 
   before_validation :zero_if_nil
+  after_create :create_to_hubspot
+  after_update :update_to_hubspot
+
 
   def number_name_year
     [franchise&.number_and_name, year].join('-')
@@ -83,6 +86,28 @@ class Financial < ApplicationRecord
   def self.get_max_year
     Financial.maximum(:year)
   end
+
+  def update_to_hubspot
+    change_hash = self.changes.transform_values { |v| v[1] }
+    return if change_hash.empty?
+    
+    base_hash = {"transaction_type" => "financial", "franchise_id" => self.franchise_id, "id" => self.id, "year" => self.year}
+    merged_hash = base_hash.merge(change_hash)
+    Rails.logger.debug "SYNCING TO HUBSPOT Merge Hash #{merged_hash.inspect}"
+
+    HubspotFinancialsWorker.perform_async(merged_hash)
+  end
+
+  def create_to_hubspot
+    change_hash = self.attributes
+        
+    base_hash = {"transaction_type" => "financial"}
+    merged_hash = base_hash.merge(change_hash)
+    Rails.logger.debug "SYNCING TO HUBSPOT Merge Hash #{merged_hash.inspect}"
+
+    HubspotFinancialsWorker.perform_async(merged_hash)
+  end
+
 
   private
 
