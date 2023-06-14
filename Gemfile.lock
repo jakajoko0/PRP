@@ -192,6 +192,9 @@ GEM
     gyoku (1.3.1)
       builder (>= 2.1.2)
     htmlentities (4.3.4)
+    httparty (0.21.0)
+      mini_mime (>= 1.0.0)
+      multi_xml (>= 0.5.2)
     httpi (2.4.4)
       rack
       socksify
@@ -228,6 +231,7 @@ GEM
     minitest (5.14.3)
     msgpack (1.3.3)
     multi_json (1.14.1)
+    multi_xml (0.6.0)
     net-scp (3.0.0)
       net-ssh (>= 2.6.5, < 7.0.0)
     net-ssh (6.1.0)
@@ -453,6 +457,7 @@ DEPENDENCIES
   friendly_id (~> 5.4, >= 5.4.2)
   geckodriver-helper
   gon
+  httparty
   image_processing (~> 1.2)
   interactor (~> 3.0)
   jbuilder (~> 2.7)
