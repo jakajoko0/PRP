@@ -12,7 +12,7 @@
               col-form-label-sm label-bold'%>
             <div class = "col-sm-8 col-md-8 col-lg-8">
               <%= f.text_field :address,
-              class: "form-control form-control-sm col", required: true%>
+              class: "form-control form-control-sm col", required: false%>
             </div>   
           </div>
         </div>
@@ -34,7 +34,7 @@
               col-form-label-sm label-bold'%>
             <div class = "col-sm-8 col-md-8 col-lg-8">
               <%= f.text_field :city,
-              class: "form-control form-control-sm col", required: true%>
+              class: "form-control form-control-sm col", required: false%>
             </div>   
           </div>
         </div>
@@ -46,7 +46,7 @@
             <div class = "col-sm-4 col-md-4 col-lg-4">
               <%= f.text_field :state,
               class: "form-control form-control-sm col",
-              maxlength: 2, size: 2, required: true%>
+              maxlength: 2, size: 2, required: false%>
             </div>   
           </div>
         </div>
@@ -59,7 +59,7 @@
               <%= f.text_field :zip_code,
               value: f.object.zip_code,
               class: "form-control form-control-sm col",
-              'data-mask': '00000-0000', required: true%>
+              'data-mask': '00000-0000', required: false%>
             </div>   
           </div>
         </div>

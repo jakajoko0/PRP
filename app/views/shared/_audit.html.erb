@@ -32,7 +32,7 @@ data: {turbolinks: false}} %>
     </tr>
   </thead>
   <tbody>
-  <%@audits.each do |audit| %>
+  <%@audits.includes(:user).each do |audit| %>
   	<tr>
   	  <td data-name = "Type"
           scope = "col"
@@ -48,7 +48,7 @@ data: {turbolinks: false}} %>
   	  <td data-name = "Who"
           scope = "col"
           class = "td-left">
-  	  	<%=audit.user.email%>
+  	  	<%=audit.user.try(:email) || "System" %>
   	  </td>
   	  <td data-name = "Changes"
           scope = "col"

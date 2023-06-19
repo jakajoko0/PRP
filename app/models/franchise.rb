@@ -93,21 +93,10 @@ class Franchise < ApplicationRecord
   after_save :reset_name_variable, if: :name_has_changed?
 
   # Model Validation
-  validates :area,       presence: true
-  validates :mast,       presence: true
-  validates :region,     presence: true
   validates :franchise_number, presence: true
-  validates :office,     presence: true
-  validates :lastname,   presence: true
-  validates :firstname,  presence: true
   validates :email,      presence: true
-  validates :phone,      presence: true, allow_nil: true
   validates :start_date, presence: true
   validates :firm_id, length: { is: 6, message: :six_characters }, allow_blank: true, allow_nil: true
-  validates :address,    presence: true
-  validates :city,       presence: true
-  validates :state,      presence: true
-  validates :zip_code,   presence: true
   validates :prior_year_rebate, numericality: { greater_than_or_equal_to: 0, message: :cannot_exceed }
   validates :advanced_rebate, numericality: { greater_than_or_equal_to: 0, message: :no_negative }
   validates :minimum_royalty, numericality: {greater_than_or_equal_to: 0.00, message: :no_negative}

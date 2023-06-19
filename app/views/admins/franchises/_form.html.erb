@@ -26,7 +26,7 @@
   		    :region_id,
   		    :description,
           {prompt: I18n.t('franchise.form.select_region')},
-  		    {class: 'form-control form-control-sm col', required: true}%>
+  		    {class: 'form-control form-control-sm col', required: false}%>
           </div>
         </div>
         <!-- FRANCHISE NUMBER -->
@@ -46,7 +46,7 @@
           class: 'col-md-4 col-sm-4 col-lg-4 col-form-label-sm label-bold'%>
           <div class = "col-lg-2 col-md-3 col-sm-3">
       	    <%= f.text_field :office,
-      	    class: "form-control form-control-sm col", required: true%>
+      	    class: "form-control form-control-sm col", required: false%>
           </div>   
   	    </div>
         <!-- FIRM ID -->
@@ -55,7 +55,7 @@
            class: 'col-md-4 col-sm-4 col-lg-4 col-form-label-sm label-bold'%>
           <div class = "col-sm-5 col-md-5 col-lg-3">
       	    <%= f.text_field :firm_id, maxlength: 6, 
-      	    class: "form-control form-control-sm col", required: true%>
+      	    class: "form-control form-control-sm col", required: false%>
           </div>   
   	    </div>
       </div>
@@ -66,7 +66,7 @@
             class: 'col-md-4 col-sm-4 col-lg-4 col-form-label-sm label-bold'%>
           <div class = "col-sm-6 col-md-6 col-lg-5">
       	    <%= f.text_field :lastname,
-      	      class: "form-control form-control-sm col", required: true%>
+      	      class: "form-control form-control-sm col", required: false%>
           </div>   
   	    </div>
   	    <!-- FIRST NAME -->
@@ -75,7 +75,7 @@
             class: 'col-md-4 col-sm-4 col-lg-4 col-form-label-sm label-bold'%>
           <div class = "col-sm-6 col-md-6 col-lg-5">
       	    <%= f.text_field :firstname,
-      	      class: "form-control form-control-sm col", required: true%>
+      	      class: "form-control form-control-sm col", required: false%>
           </div>   
   	    </div>
       </div>

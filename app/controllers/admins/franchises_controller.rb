@@ -14,7 +14,7 @@ class Admins::FranchisesController < ApplicationController
 
   def new
     @franchise = Franchise.new(area: 1, mast: 0)
-    @franchise.franchise_consolidations.build
+    #@franchise.franchise_consolidations.build
     authorize! :new, Franchise
 
 
