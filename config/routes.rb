@@ -36,6 +36,7 @@ Rails.application.routes.draw do
   post '/signup' => 'signups#create'
 
   scope module: :integrations , constraints: { format: 'json' } do
+    post '/integrations/franchises' => 'franchise_integrations#create'
     put '/integrations/franchise/:id' => 'franchise_integrations#update'
     get '/integrations/franchise/:id' => 'franchise_integrations#show'
     get '/integrations/franchises' => 'franchise_integrations#index'
