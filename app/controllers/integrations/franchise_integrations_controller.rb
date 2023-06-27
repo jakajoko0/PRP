@@ -17,12 +17,25 @@ class Integrations::FranchiseIntegrationsController < ApiController
 		render json: @franchise
 	end
 
+	def create
+		fp = franchise_params
+		@new_franchise = Franchise.new
+		@new_franchise.assign_attributes(fp)
+		# By default we make those USA, compliant and active
+		@new_franchise.area = "1"
+		@new_franchise.region = 20
+		@new_franchise.inactive = 0
+		@new_franchise.non_compliant = 0
+		@new_franchise.save!
+		render json: @new_franchise
+	end
+
 	def show
 		render json: @franchise
 	end
 
 	def index
-		@frans = Franchise.where.not(region: ['19','20']).order(franchise_number: :asc)
+		@frans = Franchise.order(franchise_number: :asc)
 		if franchise_index_params[:include_inactives].to_i == 0
 			@frans = @frans.where(inactive: 0)
 		end
