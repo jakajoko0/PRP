@@ -63,6 +63,7 @@ en:
       reports: Reports
       report:
         franchise_list: Franchise List
+        inactive_franchise_list: Inactive Franchise List
         expiring: Expiring Franchise
         advanced_rebate: Using Advanced Rebates
         prior_rebate: Using Prior Rebates

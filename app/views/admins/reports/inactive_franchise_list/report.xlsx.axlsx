@@ -1,0 +1,46 @@
+wb = xlsx_package.workbook
+
+styles = set_axlsx_styles(wb)
+
+wb.add_worksheet(
+  name: I18n.t('reports.inactive_franchise_list.title_workbook')) do |ws|
+  
+  ws.add_row [@report_info[:title_excel]],
+  style: styles[:header_title],
+  width: [:auto],
+  height: 80, widths: [:ignore]
+  
+  ws.add_row
+
+  ws.add_row [
+  I18n.t('reports.franchise_list.number'),
+  I18n.t('reports.franchise_list.name'),
+  I18n.t('reports.franchise_list.address'),
+  I18n.t('reports.franchise_list.phone'),
+  I18n.t('reports.franchise_list.email'),
+  I18n.t('reports.franchise_list.firm_id')],
+  style: [styles[:header_left],styles[:header_left],
+  styles[:header_left],styles[:header_left],
+  styles[:header_left],styles[:header_left]],
+  width: [:auto, :auto, :auto, :auto, :auto, :auto]
+
+  if @franchises.length > 0
+    @franchises.each do |fr|
+      ws.add_row [
+      fr.franchise_number,
+      fr.full_name,
+      fr.one_line_address,
+      fr.phone,
+      fr.email,
+      fr.firm_id],
+      style: [styles[:data_left],styles[:data_left],
+      styles[:data_left],styles[:data_left],
+      styles[:data_left],styles[:data_left]],
+      width: [:auto, :auto,:auto,:auto,:auto,:auto], types: [:string, :string, :string, :string, :string, :string]
+    end
+  end
+
+  ws.merge_cells "A1:F1"
+  ws.merge_cells "A2:F2"
+end
+

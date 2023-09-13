@@ -11,36 +11,69 @@ wb.add_worksheet(
   height: 80, widths: [:ignore]
   
   ws.add_row
-
-  ws.add_row [
-  I18n.t('reports.franchise_list.number'),
-  I18n.t('reports.franchise_list.name'),
-  I18n.t('reports.franchise_list.address'),
-  I18n.t('reports.franchise_list.phone'),
-  I18n.t('reports.franchise_list.email'),
-  I18n.t('reports.franchise_list.firm_id')],
-  style: [styles[:header_left],styles[:header_left],
-  styles[:header_left],styles[:header_left],
-  styles[:header_left],styles[:header_left]],
-  width: [:auto, :auto, :auto, :auto, :auto, :auto]
+  if @report_info[:include_inactives] == 1
+    ws.add_row [
+    I18n.t('reports.franchise_list.status'),
+    I18n.t('reports.franchise_list.number'),
+    I18n.t('reports.franchise_list.name'),
+    I18n.t('reports.franchise_list.address'),
+    I18n.t('reports.franchise_list.phone'),
+    I18n.t('reports.franchise_list.email'),
+    I18n.t('reports.franchise_list.firm_id')],
+    style: [styles[:header_left],styles[:header_left],styles[:header_left],
+    styles[:header_left],styles[:header_left],
+    styles[:header_left],styles[:header_left]],
+    width: [:auto, :auto, :auto, :auto, :auto, :auto, :auto]
+  else
+    ws.add_row [
+    I18n.t('reports.franchise_list.number'),
+    I18n.t('reports.franchise_list.name'),
+    I18n.t('reports.franchise_list.address'),
+    I18n.t('reports.franchise_list.phone'),
+    I18n.t('reports.franchise_list.email'),
+    I18n.t('reports.franchise_list.firm_id')],
+    style: [styles[:header_left],styles[:header_left],
+    styles[:header_left],styles[:header_left],
+    styles[:header_left],styles[:header_left]],
+    width: [:auto, :auto, :auto, :auto, :auto, :auto]
+  end  
 
   if @franchises.length > 0
     @franchises.each do |fr|
-      ws.add_row [
-      fr.franchise_number,
-      fr.full_name,
-      fr.one_line_address,
-      fr.phone,
-      fr.email,
-      fr.firm_id],
-      style: [styles[:data_left],styles[:data_left],
-      styles[:data_left],styles[:data_left],
-      styles[:data_left],styles[:data_left]],
-      width: [:auto, :auto,:auto,:auto,:auto,:auto], types: [:string, :string, :string, :string, :string, :string]
+      if @report_info[:include_inactives] == 1 
+        ws.add_row [
+        fr.inactive == 1 ? "Inactive" : "Active",
+        fr.franchise_number,
+        fr.full_name,
+        fr.one_line_address,
+        fr.phone,
+        fr.email,
+        fr.firm_id],
+        style: [styles[:data_left],styles[:data_left],styles[:data_left],
+        styles[:data_left],styles[:data_left],
+        styles[:data_left],styles[:data_left]],
+        width: [:auto, :auto, :auto,:auto,:auto,:auto,:auto], types: [:string,:string, :string, :string, :string, :string, :string]
+      else
+        ws.add_row [
+        fr.franchise_number,
+        fr.full_name,
+        fr.one_line_address,
+        fr.phone,
+        fr.email,
+        fr.firm_id],
+        style: [styles[:data_left],styles[:data_left],
+        styles[:data_left],styles[:data_left],
+        styles[:data_left],styles[:data_left]],
+        width: [:auto, :auto,:auto,:auto,:auto,:auto], types: [:string, :string, :string, :string, :string, :string]
+      end
     end
   end
-
-  ws.merge_cells "A1:F1"
-  ws.merge_cells "A2:F2"
+  if @report_info[:include_inactives] == 1 
+    ws.merge_cells "A1:G1"
+    ws.merge_cells "A2:G2"
+  else
+    ws.merge_cells "A1:F1"
+    ws.merge_cells "A2:F2"
+  end      
 end
 

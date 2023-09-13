@@ -9,28 +9,23 @@
 <table id = "main-table" class = "main-table">
   <thead>
   	<tr>
-  		<% if @report_info[:include_inactives] == 1 %>
-  	  	  <th>
-  		      <%=I18n.t('reports.franchise_list.status')%>
- 		      </th>
- 		    <% end %>  
   	<th>
-  		<%=I18n.t('reports.franchise_list.number')%>
+  		<%=I18n.t('reports.inactive_franchise_list.number')%>
 		</th>
 		<th>
-			<%=I18n.t('reports.franchise_list.name')%>
+			<%=I18n.t('reports.inactive_franchise_list.name')%>
 		</th>
 		<th>
-			<%=I18n.t('reports.franchise_list.address')%>
+			<%=I18n.t('reports.inactive_franchise_list.address')%>
 		</th>
 		<th>
-			<%=I18n.t('reports.franchise_list.phone')%>
+			<%=I18n.t('reports.inactive_franchise_list.phone')%>
 		</th>
 		<th>
-			<%=I18n.t('reports.franchise_list.email')%>
+			<%=I18n.t('reports.inactive_franchise_list.email')%>
 		</th>
 		<th>
-			<%=I18n.t('reports.franchise_list.firm_id')%>
+			<%=I18n.t('reports.inactive_franchise_list.firm_id')%>
 		</th>
 	</tr>
 	</thead>
@@ -38,11 +33,6 @@
 	  <tbody>	
 	  <%@franchises.each do |franchise|%>
 	  <tr>
-	  	<% if @report_info[:include_inactives] == 1 %>
-	      <td data-name="Status">
-		  	  <%=franchise.inactive == 1 ? "Inactive" : "Active"%>
-		    </td>
-	    <% end %>
 	    <td data-name="Number">
 		  	<%=franchise.franchise_number%>
 		  </td>
