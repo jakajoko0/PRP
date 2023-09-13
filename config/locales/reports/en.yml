@@ -34,12 +34,22 @@
     franchise_list:
       title: Franchise List
       title_workbook: Franchises
+      status: Status
       number: Number
       name: Name
       address: Address
       phone: Phone
       email: Email
       firm_id: Firm ID
+    inactive_franchise_list:
+      title: Inactive Franchise List
+      title_workbook: Franchises
+      number: Number
+      name: Name
+      address: Address
+      phone: Phone
+      email: Email
+      firm_id: Firm ID  
     franchise_expiration:
       title: Expiring Franchises
       title_workbook: Expiring Franchises

@@ -9,6 +9,11 @@ class FranchisesQuery
 		@relation.where(wheretext).order(sort)
 	end
 
+  def inactive_franchise_list_sorted(sort)
+    wheretext = 'inactive = 1'
+    @relation.where(wheretext).order(sort)
+  end
+
 	def franchise_expiring(start_date, end_date)
 		@relation.where(renew_date: start_date..end_date).order("renew_date ASC")
 	end

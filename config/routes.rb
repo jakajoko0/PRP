@@ -163,6 +163,10 @@ Rails.application.routes.draw do
         post '/franchise_list/render' => 'franchise_list#report'
         get '/franchise_list/render' => redirect('/admins/franchise_list')
 
+        get '/inactive_franchise_list' => 'inactive_franchise_list#index'
+        post '/inactive_franchise_list/render' => 'inactive_franchise_list#report'
+        get '/inactive_franchise_list/render' => redirect('/admins/inactive_franchise_list')
+
         get '/franchise_expiration' => 'franchise_expiration#index'
         post '/franchise_expiration/render' => 'franchise_expiration#report'
         get '/franchise_expiration/render' => redirect('/admins/franchise_expiration')

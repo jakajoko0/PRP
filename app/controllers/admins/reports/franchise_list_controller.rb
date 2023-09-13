@@ -18,7 +18,7 @@ def report
   title_excel = format_report_title_excel([I18n.t('reports.franchise_list.title'),
                               sortby_text,
                               include_text])
-  @report_info = {title: title, title_excel: title_excel }
+  @report_info = {title: title, title_excel: title_excel, include_inactives: include_inactives }
 
   respond_to do |format|
     format.html

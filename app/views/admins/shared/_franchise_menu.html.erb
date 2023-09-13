@@ -71,6 +71,12 @@
             admins_franchise_list_path, 
               class: "dropdown-item" %>
           </li>
+          <!-- INACTIVE FRANCHISE LIST-->  
+          <li>
+            <%= link_to I18n.t('admin_menu.franchise.report.inactive_franchise_list') ,
+            admins_inactive_franchise_list_path, 
+              class: "dropdown-item" %>
+          </li>
           <!-- FRANCHISE EXPIRING-->  
           <li>
             <%= link_to I18n.t('admin_menu.franchise.report.expiring') , admins_franchise_expiration_path ,
